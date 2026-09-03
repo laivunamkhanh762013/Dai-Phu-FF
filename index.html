@@ -560,7 +560,7 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
       <div class="si-field">
         <label for="regName">Tên hiển thị</label>
         <div class="si-input">
-          <input type="text" id="regName" name="name" placeholder="Khánh Dev" autocomplete="name" required />
+          <input type="text" id="regName" name="name" placeholder="Game Thủ VIP" autocomplete="name" required />
         </div>
       </div>
       <div class="si-field">
@@ -629,10 +629,10 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
       <button class="login-badge" id="headerLoginBtn" onclick="openLogin(null)">Đăng nhập</button>
       <!-- Hiện khi đã đăng nhập -->
       <div class="u-av" id="userAv" style="display:none" tabindex="0">
-        <span id="uInit">K</span>
+        <span id="uInit">V</span>
         <div class="hcard">
-          <div class="hc-name" id="hcName">Khánh Dev</div>
-          <div class="hc-sub" id="hcEmail">khanh@daiphuvn.shop</div>
+          <div class="hc-name" id="hcName">Thành Viên VIP</div>
+          <div class="hc-sub" id="hcEmail">member@daiphuvn.shop</div>
           <button class="btn-sm" style="width:100%;margin-bottom:8px" onclick="openOrderHistory()">📦 Đơn hàng của tôi</button>
           <button class="hc-logout" onclick="doLogout()">🚪 Đăng xuất</button>
         </div>
@@ -965,7 +965,7 @@ var isLoggedIn=false;
 var pendingId=null; // sản phẩm chờ sau login
 var activeCat='all',activePlat='all';
 var CP=null,CL=null,OID='';
-var user={name:'Khánh Dev',email:'khanh@daiphuvn.shop',initial:'K'};
+var user={name:'Thành Viên VIP',email:'member@daiphuvn.shop',initial:'V'};
 
 /* ═══════ HELPERS ═══════ */
 function fp(n){return n.toLocaleString('vi-VN')+'đ';}
@@ -1017,6 +1017,20 @@ function doLogin(){
   btn.querySelector('span').textContent='Đang xử lý...';
   sp.style.display='block';
   pb.style.display='block';
+
+  // Lấy email hoặc tên do người dùng nhập vào
+  var inputEmail = document.getElementById('loginEmail').value.trim();
+  var inputRegName = document.getElementById('regName').value.trim();
+  var inputRegEmail = document.getElementById('regEmail').value.trim();
+
+  var displayName = inputRegName || (inputEmail ? inputEmail.split('@')[0] : 'Thành Viên VIP');
+  var displayEmail = inputRegEmail || inputEmail || 'member@daiphuvn.shop';
+  var initialChar = displayName.charAt(0).toUpperCase() || 'V';
+
+  user.name = displayName;
+  user.email = displayEmail;
+  user.initial = initialChar;
+
   setTimeout(function(){
     isLoggedIn=true;
     // Cập nhật header
