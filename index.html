@@ -941,7 +941,10 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
 
 <script>
 /* ═══════ CONFIG ═══════ */
-var BIN='970422',ACC='0941414448',ANAME='BUI VAN CAO',ZP='0588500524';
+var BIN='970422',ACC='0941414448',ANAME='BUI VAN CAO';
+var ZALO_CS='0588500524';   // Zalo hỗ trợ khách / quên mật khẩu (Anh Phú)
+var ZALO_BOT='0964976083';  // Zalo Bot nhận lệnh !done gửi file (Botzalobydevkhanhh)
+var ZP=ZALO_CS;             // Mặc định Zalo tư vấn CSKH
 
 // ★ ĐIỀN TOKEN SEPAY VÀO ĐÂY (đăng ký miễn phí tại sepay.vn)
 // Sau khi đăng ký: Dashboard → API → Copy token dán vào đây
@@ -1268,8 +1271,8 @@ function copyBotCmd(){
 function sendToBotZalo(){
   var orderId = CURRENT_SUCCESS_ORDER ? CURRENT_SUCCESS_ORDER.oid : OID;
   var cmd = '!done ' + orderId;
-  window.open('https://zalo.me/' + ZP + '?text=' + encodeURIComponent(cmd), '_blank');
-  toast('🚀','Đang chuyển qua Zalo gửi lệnh ' + cmd);
+  window.open('https://zalo.me/' + ZALO_BOT + '?text=' + encodeURIComponent(cmd), '_blank');
+  toast('🚀','Đang mở Zalo Bot (' + ZALO_BOT + ') gửi lệnh ' + cmd);
 }
 
 /* ═══════ LỊCH SỬ ĐƠN HÀNG ═══════ */
@@ -1393,8 +1396,8 @@ function closePurchase(){
 document.getElementById('mb').addEventListener('click',function(e){if(e.target===this)closePurchase();});
 function oz(){
   var msg='!done ' + OID;
-  window.open('https://zalo.me/'+ZP+'?text='+encodeURIComponent(msg),'_blank');
-  toast('✅','Đang mở Zalo gửi !done ' + OID);
+  window.open('https://zalo.me/'+ZALO_BOT+'?text='+encodeURIComponent(msg),'_blank');
+  toast('✅','Đang mở Zalo Bot ('+ZALO_BOT+') gửi !done ' + OID);
 }
 function cop(){
   var v=OID||'';
