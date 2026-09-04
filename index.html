@@ -336,22 +336,30 @@ section{position:relative;z-index:1;padding:72px 24px}
 .plan-price{font-size:.92rem;font-weight:800;color:var(--purple)}
 .plan-badge{font-size:.62rem;font-weight:800;background:var(--green);color:#fff;padding:2px 7px;border-radius:999px;text-transform:uppercase}
 hr.dv{border:none;border-top:1px solid var(--border);margin:20px 0}
-.order-box{background:rgba(139,92,246,.1);border:1px solid var(--border);border-radius:10px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.order-lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
-.order-val{font-size:1.05rem;font-weight:800;font-family:monospace;letter-spacing:.05em}
-.btn-cp{background:rgba(139,92,246,.18);border:1px solid var(--border);color:var(--purple);border-radius:7px;padding:7px 13px;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
-.btn-cp:hover{background:var(--purple);color:#fff}
-.qr-area{text-align:center;margin-bottom:18px}
-.qr-area p{font-size:.83rem;color:var(--muted);margin-bottom:10px}
-.qr-area img{width:190px;height:190px;border-radius:12px;border:3px solid var(--purple);transition:opacity .3s}
-.qr-info{margin-top:9px;font-size:.8rem;color:var(--muted)}
-.qr-info strong{color:var(--text)}
-.qr-spin{width:48px;height:48px;border:3px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:sp .8s linear infinite;margin:20px auto}
+/* ══ PAYMENT QR REDESIGN (FINTECH PRO) ══ */
+.pay-card{background:linear-gradient(145deg,rgba(20,27,45,.9),rgba(13,18,32,.95));border:1px solid rgba(139,92,246,.25);border-radius:18px;padding:20px;box-shadow:0 12px 36px rgba(0,0,0,.45);margin-bottom:16px;position:relative;overflow:hidden}
+.pay-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--pink))}
+.pay-badge-bank{display:inline-flex;align-items:center;gap:8px;background:rgba(0,104,255,.15);border:1px solid rgba(0,104,255,.35);padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:700;color:#60a5fa;margin-bottom:14px}
+.qr-frame-wrap{background:#ffffff;border-radius:16px;padding:14px;display:inline-block;box-shadow:0 8px 28px rgba(0,0,0,.4),0 0 0 3px rgba(139,92,246,.3);position:relative;transition:transform .25s ease}
+.qr-frame-wrap:hover{transform:scale(1.02);box-shadow:0 12px 36px rgba(139,92,246,.4),0 0 0 4px var(--purple)}
+.qr-frame-wrap img{display:block;width:190px;height:190px;border-radius:8px}
+.qr-scan-hint{display:flex;align-items:center;justify-content:center;gap:6px;font-size:.78rem;color:var(--muted);margin-top:12px}
+.qr-scan-hint span{color:var(--cyan);font-weight:700}
+.pay-info-table{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;margin-top:16px;display:grid;gap:10px}
+.pi-row{display:flex;align-items:center;justify-content:space-between;font-size:.82rem}
+.pi-label{color:var(--muted);font-weight:500}
+.pi-val-wrap{display:flex;align-items:center;gap:8px}
+.pi-val{font-weight:700;color:var(--text)}
+.pi-val.highlight{color:var(--cyan);font-family:monospace;font-size:.95rem;letter-spacing:.04em}
+.pi-val.money{color:var(--green);font-size:1.05rem;font-weight:900}
+.btn-mini-copy{background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.35);color:var(--purple);padding:3px 8px;border-radius:6px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:4px}
+.btn-mini-copy:hover{background:var(--purple);color:#fff}
+.qr-spin{width:44px;height:44px;border:3px solid rgba(139,92,246,.2);border-top-color:var(--purple);border-radius:50%;animation:sp .8s linear infinite;margin:40px auto}
 .modal-acts{display:grid;gap:9px}
-.btn-zalo{background:linear-gradient(135deg,#0068ff,#0054cc);color:#fff;border:none;border-radius:10px;padding:12px 0;font-size:.93rem;font-weight:700;cursor:pointer;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-zalo:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(0,104,255,.4)}
-.btn-cp2{background:rgba(139,92,246,.13);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:12px 0;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
-.btn-cp2:hover{background:rgba(139,92,246,.25);border-color:var(--purple)}
+.btn-zalo{background:linear-gradient(135deg,#0068ff,#0054cc);color:#fff;border:none;border-radius:11px;padding:13px 0;font-size:.92rem;font-weight:800;cursor:pointer;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(0,104,255,.35)}
+.btn-zalo:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,104,255,.55)}
+.btn-check{width:100%;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);color:var(--green);border-radius:11px;padding:12px 0;font-size:.86rem;font-weight:800;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-check:hover{background:rgba(16,185,129,.22);border-color:var(--green)}
 
 /* ══ PAYMENT STATUS ══ */
 .pay-status{border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;font-size:.85rem;font-weight:600;transition:all .4s}
@@ -370,9 +378,6 @@ hr.dv{border:none;border-top:1px solid var(--border);margin:20px 0}
 .no-sep{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:.78rem;color:#fcd34d;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
 .no-sep a{color:var(--cyan);text-decoration:none;font-weight:700}
 .no-sep a:hover{text-decoration:underline}
-/* Manual check btn */
-.btn-check{width:100%;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:var(--cyan);border-radius:9px;padding:9px 0;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
-.btn-check:hover{background:rgba(6,182,212,.2)}
 
 /* ══ MODAL ĐƠN HÀNG HOÀN TẤT & LỊCH SỬ ══ */
 .success-banner{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(6,182,212,.12));border:1.5px solid rgba(16,185,129,.4);border-radius:14px;padding:18px;text-align:center;margin-bottom:18px}
@@ -823,15 +828,57 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
     <!-- BƯỚC 2: KHU VỰC THANH TOÁN QR (CHỈ HIỆN KHI ĐÃ ĐĂNG NHẬP) -->
     <div id="paymentSection" style="display:none">
       <hr class="dv"/>
-      <div style="font-size:.82rem;font-weight:700;color:var(--cyan);text-transform:uppercase;margin-bottom:8px;letter-spacing:.06em">Bước 2: Quét mã QR & Nhận đơn</div>
-      <div class="order-box"><div><span class="order-lbl">Mã đơn hàng</span><span class="order-val" id="ov">—</span></div><button class="btn-cp" onclick="cop()">📋 Copy</button></div>
-      <div class="qr-area">
-        <p>Quét QR thanh toán qua MB Bank:</p>
-        <div class="qr-spin" id="qrSpin"></div>
-        <img id="qi" src="" alt="QR" style="display:none" onload="showQR()"/>
-        <div class="qr-info" id="qi2"></div>
+      <div style="font-size:.82rem;font-weight:700;color:var(--cyan);text-transform:uppercase;margin-bottom:12px;letter-spacing:.06em">
+        Bước 2: Quét mã QR thanh toán
       </div>
-      <hr class="dv"/>
+
+      <!-- Card Thanh Toán Fintech Hiện Đại -->
+      <div class="pay-card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div class="pay-badge-bank">🏛️ Ngân hàng MB Bank</div>
+          <div style="font-size:.75rem;color:var(--muted)">Tự động điền tiền & nội dung</div>
+        </div>
+
+        <div style="text-align:center;margin:10px 0 14px">
+          <div class="qr-frame-wrap">
+            <div class="qr-spin" id="qrSpin"></div>
+            <img id="qi" src="" alt="VietQR" style="display:none" onload="showQR()"/>
+          </div>
+          <div class="qr-scan-hint">
+            <span>⚡ Mở App Ngân Hàng hoặc MoMo</span> để quét mã
+          </div>
+        </div>
+
+        <!-- Bảng Thông Tin Chi Tiết Có Nút Copy -->
+        <div class="pay-info-table">
+          <div class="pi-row">
+            <span class="pi-label">Số tài khoản:</span>
+            <div class="pi-val-wrap">
+              <span class="pi-val">0941414448</span>
+              <button type="button" class="btn-mini-copy" onclick="copyCustomText('0941414448','Số tài khoản')">📋 Copy</button>
+            </div>
+          </div>
+          <div class="pi-row">
+            <span class="pi-label">Chủ tài khoản:</span>
+            <span class="pi-val" style="color:var(--text);font-weight:800">BUI VAN CAO</span>
+          </div>
+          <div class="pi-row">
+            <span class="pi-label">Số tiền cần CK:</span>
+            <div class="pi-val-wrap">
+              <span class="pi-val money" id="payAmtVal">0đ</span>
+              <button type="button" class="btn-mini-copy" onclick="copyCustomText((CL?CL.v:''),'Số tiền')">📋 Copy</button>
+            </div>
+          </div>
+          <div class="pi-row" style="background:rgba(139,92,246,.12);padding:8px 10px;border-radius:8px;margin-top:2px">
+            <span class="pi-label" style="color:#c4b5fd;font-weight:700">Nội dung CK:</span>
+            <div class="pi-val-wrap">
+              <span class="pi-val highlight" id="ov" style="font-size:1.05rem;color:#38bdf8">—</span>
+              <button type="button" class="btn-mini-copy" style="background:var(--purple);color:#fff" onclick="cop()">📋 Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Payment status checker -->
       <div class="no-sep" id="noSepWarn" style="display:none">
         ⚠️ Chưa cấu hình SePay Token — tự động check tiền chưa hoạt động.<br/>
@@ -845,10 +892,14 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
         </div>
         <div class="pay-spin" id="paySpin"></div>
       </div>
+
       <div class="modal-acts">
-        <button class="btn-zalo" onclick="oz()">💬 Nhắn Zalo Nhận File Ngay</button>
-        <button class="btn-cp2" onclick="cop()">📋 Sao chép mã đơn hàng</button>
-        <button class="btn-check" onclick="manualConfirm()">⚡ Tôi đã chuyển khoản xong (Xem mã đơn)</button>
+        <button class="btn-check" onclick="manualConfirm()">
+          ⚡ Tôi đã chuyển khoản xong (Nhận đơn ngay)
+        </button>
+        <button class="btn-zalo" onclick="oz()">
+          💬 Nhắn Zalo Bot Nhận File (!done)
+        </button>
       </div>
     </div>
   </div>
@@ -1381,13 +1432,33 @@ function selPlan(el,pl){
 }
 function uq(){
   if(!CL) return;
-  document.getElementById('ov').textContent=OID;
-  var img=document.getElementById('qi'),spin=document.getElementById('qrSpin');
-  img.style.display='none'; spin.style.display='block';
-  img.src=qrUrl(CL.v,OID);
-  document.getElementById('qi2').innerHTML='<strong>MB Bank</strong> · '+ACC+' · '+ANAME+'<br/>Nội dung CK: <strong>'+OID+'</strong> · <strong>'+fp(CL.v)+'</strong>';
+  var ovEl = document.getElementById('ov');
+  if(ovEl) ovEl.textContent = OID;
+  var amtEl = document.getElementById('payAmtVal');
+  if(amtEl) amtEl.textContent = fp(CL.v);
+
+  var img = document.getElementById('qi'), spin = document.getElementById('qrSpin');
+  if(img && spin){
+    img.style.display = 'none'; spin.style.display = 'block';
+    img.src = qrUrl(CL.v, OID);
+  }
 }
-function showQR(){document.getElementById('qrSpin').style.display='none';document.getElementById('qi').style.display='block';}
+function showQR(){
+  var spin = document.getElementById('qrSpin'), img = document.getElementById('qi');
+  if(spin) spin.style.display = 'none';
+  if(img) img.style.display = 'block';
+}
+
+function copyCustomText(txt, label){
+  var val = (txt || '').toString();
+  if(!val) return;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(val).then(function(){ toast('📋', 'Đã sao chép ' + label + ': ' + val); });
+  } else {
+    var t = document.createElement('textarea'); t.value = val; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t);
+    toast('📋', 'Đã sao chép ' + label + ': ' + val);
+  }
+}
 function closePurchase(){
   stopPayCheck();
   document.getElementById('mb').classList.remove('open');
