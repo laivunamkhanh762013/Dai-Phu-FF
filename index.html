@@ -930,9 +930,16 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
       <div class="od-row"><span class="od-label">Thời gian:</span><span class="od-value" id="sTimeVal">—</span></div>
     </div>
 
-    <div class="modal-acts">
-      <button class="btn-zalo" onclick="sendToBotZalo()">💬 Gửi Lệnh Cho Bot Zalo (!done)</button>
-      <button class="btn-cp" style="padding:12px;font-size:.9rem" onclick="copyBotCmd()">📋 Copy Cú Pháp: !done &lt;mã đơn&gt;</button>
+    <div class="modal-acts" style="margin-top:20px;gap:12px">
+      <!-- Nút mở thẳng Zalo gửi tin nhắn -->
+      <button class="btn-zalo" style="padding:14px;font-size:.95rem;display:flex;align-items:center;justify-content:center;gap:10px" onclick="sendToBotZalo()">
+        <span>🚀</span> Gửi lệnh này tới Zalo 0964976083
+      </button>
+
+      <!-- Nút sao chép lệnh -->
+      <button type="button" class="btn-cp2" style="padding:12px;font-size:.88rem;display:flex;align-items:center;justify-content:center;gap:8px" onclick="copyBotCmd()">
+        <span>📋</span> Sao chép cú pháp: <strong id="botCmdBtnText" style="color:var(--cyan);margin-left:4px">!done DP...</strong>
+      </button>
     </div>
   </div>
 </div>
@@ -1266,7 +1273,10 @@ function saveOrderToHistory(oid, prodName, planName, price){
 
 function showOrderSuccess(oid, prodName, planName, price){
   CURRENT_SUCCESS_ORDER = { oid: oid, prod: prodName, plan: planName, price: price };
-  document.getElementById('botCmdDisplay').textContent = '!done ' + oid;
+  var cmdText = '!done ' + oid;
+  document.getElementById('botCmdDisplay').textContent = cmdText;
+  var btnTxt = document.getElementById('botCmdBtnText');
+  if(btnTxt) btnTxt.textContent = cmdText;
   document.getElementById('sOrderVal').textContent = oid;
   document.getElementById('sProdName').textContent = prodName;
   document.getElementById('sPlanName').textContent = planName;
