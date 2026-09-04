@@ -879,11 +879,7 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
         </div>
       </div>
 
-      <!-- Payment status checker -->
-      <div class="no-sep" id="noSepWarn" style="display:none">
-        ⚠️ Chưa cấu hình SePay Token — tự động check tiền chưa hoạt động.<br/>
-        Đăng ký miễn phí tại <a href="https://sepay.vn" target="_blank">sepay.vn</a> → kết nối MB Bank → lấy API Token → điền vào biến <code style="background:rgba(255,255,255,.07);padding:1px 5px;border-radius:4px;font-size:.9em">SEPAY_TOKEN</code> trong file HTML.
-      </div>
+      <!-- Payment status checker (chỉ hiện khi có token SePay) -->
       <div class="pay-status pay-checking" id="payStatus" style="display:none">
         <span class="pay-ico" id="payIco">💳</span>
         <div class="pay-txt">
@@ -894,11 +890,8 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
       </div>
 
       <div class="modal-acts">
-        <button class="btn-check" onclick="manualConfirm()">
+        <button class="btn-check" style="padding:14px 0;font-size:.95rem" onclick="manualConfirm()">
           ⚡ Tôi đã chuyển khoản xong (Nhận đơn ngay)
-        </button>
-        <button class="btn-zalo" onclick="oz()">
-          💬 Nhắn Zalo Bot Nhận File (!done)
         </button>
       </div>
     </div>
@@ -1178,21 +1171,22 @@ function startPayCheck(){
   stopPayCheck();
   payConfirmed=false;
   var ps=document.getElementById('payStatus');
-  var warn=document.getElementById('noSepWarn');
   if(!SEPAY_TOKEN){
-    // Chưa có token → hiện hướng dẫn
-    warn.style.display='flex';
-    ps.style.display='none';
+    if(ps) ps.style.display='none';
     return;
   }
-  warn.style.display='none';
-  ps.style.display='flex';
-  ps.className='pay-status pay-checking';
-  document.getElementById('payIco').textContent='💳';
-  document.getElementById('payTtl').textContent='Đang chờ thanh toán...';
-  document.getElementById('paySub').textContent='Tự động kiểm tra mỗi 5 giây';
-  document.getElementById('paySpin').style.display='block';
+  if(ps){
+    ps.style.display='flex';
+    ps.className='pay-status pay-checking';
+    document.getElementById('payIco').textContent='💳';
+    document.getElementById('payTtl').textContent='Đang chờ thanh toán...';
+    document.getElementById('paySub').textContent='Tự động kiểm tra mỗi 5 giây';
+    document.getElementById('paySpin').style.display='block';
+  }
   // Poll ngay lần đầu, sau đó mỗi 5s
+  doPollSepay();
+  payTimer=setInterval(doPollSepay, 5000);
+}
   doPollSepay();
   payTimer=setInterval(doPollSepay, 5000);
 }
