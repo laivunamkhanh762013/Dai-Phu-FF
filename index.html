@@ -1187,9 +1187,6 @@ function startPayCheck(){
   doPollSepay();
   payTimer=setInterval(doPollSepay, 5000);
 }
-  doPollSepay();
-  payTimer=setInterval(doPollSepay, 5000);
-}
 
 function stopPayCheck(){
   if(payTimer){clearInterval(payTimer);payTimer=null;}
