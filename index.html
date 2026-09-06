@@ -1137,7 +1137,6 @@ function renderProducts(){
     return (activeCat==='all'||p.cat===activeCat)&&(activePlat==='all'||p.plat===activePlat);
   });
   document.getElementById('emSt').classList.toggle('show',filtered.length===0);
-  document.getElementById('pag').style.display=filtered.length>0?'flex':'none';
   grid.innerHTML=filtered.map(function(p){
     var m=p.status==='maintenance';
     return '<div class="pcard"'+(m?' style="cursor:default"':' onclick="om('+p.id+')"')+'>'
