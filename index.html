@@ -98,6 +98,31 @@
 .product:hover .product-thumb img.js-product-image {
   transform: scale(1.05) !important;
 }
+.thumb-no-img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  background: linear-gradient(135deg, #161b33 0%, #0d1020 100%) !important;
+  border-radius: var(--radius-sm) !important;
+  color: #a78bfa !important;
+  user-select: none !important;
+}
+.thumb-no-img i {
+  font-size: 26px !important;
+  color: #8b5cf6 !important;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.45)) !important;
+}
+.thumb-no-img span {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #94a3b8 !important;
+  letter-spacing: .5px !important;
+  text-transform: uppercase !important;
+}
 
 /* Mini plan chips directly on Product Card */
 .card-plans {
@@ -270,6 +295,36 @@
   letter-spacing: .5px;
   backdrop-filter: blur(8px);
   z-index: 2;
+}
+.m-preview-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: radial-gradient(circle at center, #181d38 0%, #070914 100%);
+  color: #a78bfa;
+  text-align: center;
+  padding: 20px;
+  z-index: 1;
+}
+.m-preview-empty i {
+  font-size: 38px;
+  color: #8b5cf6;
+  filter: drop-shadow(0 0 16px rgba(139, 92, 246, 0.6));
+}
+.m-preview-empty span {
+  font-size: 13px;
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.m-preview-empty small {
+  font-size: 11px;
+  color: #94a3b8;
 }
 .m-preview-bottom {
   position: absolute;
@@ -1065,9 +1120,14 @@
         <div class="m-preview-card">
           <span class="m-preview-badge" id="mPreviewBadge">ESP Ghim Đầu</span>
           <img id="mPreviewImg" src="proxy-ios.png" alt="Preview tính năng">
+          <div class="m-preview-empty" id="mPreviewEmpty" style="display:none;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Chờ Cập Nhật Banner Mới</span>
+            <small>Sản phẩm này đang được thiết kế banner chính thức</small>
+          </div>
           <div class="m-preview-bottom">
             <div class="m-preview-title" id="mPreviewTitle">ESP AIMCHECK R8 - Định Vị Ghim Đầu</div>
-            <button type="button" class="m-preview-zoom-btn" onclick="zoomCurrentPreview()">
+            <button type="button" class="m-preview-zoom-btn" id="mZoomBtn" onclick="zoomCurrentPreview()">
               <i class="fa-solid fa-magnifying-glass-plus"></i> Phóng to
             </button>
           </div>
@@ -1333,9 +1393,9 @@ var PRODUCTS = [
     fullDesc: 'Hệ thống Forget Hex độc quyền hỗ trợ Android & iOS:\n- 49K cơ bản: Forget Hex V1 🇻🇳\n- 99K nâng cấp: Forget Hex V2 🇻🇳\n- 199K đầy đủ: Forget Hex V3 🇻🇳\n- 399K Pro: Forget Hex V4 🇻🇳\n- 799K+ combo riêng: Forget Pro V5 🇻🇳',
     priceMin: 49000,
     priceFormatted: 'Từ 49.000đ',
-    image: 'assets/uploads/products/20260906-8b7858a3baf68a65ea54.jpg',
+    image: 'assets/uploads/products/forget-hex.jpg',
     images: [
-      { src: 'assets/uploads/products/20260906-8b7858a3baf68a65ea54.jpg', label: 'Forget Hex', title: 'Forget Hex VIP V1 - V5 Bản Quyền' }
+      { src: 'assets/uploads/products/forget-hex.jpg', label: 'Forget Hex V1-V5', title: 'Forget Hex VIP V1 - V5 - Make URL Code Xịn Nhất VN' }
     ],
     plans: [
       { name: '49K Cơ Bản - Forget Hex V1 🇻🇳', price: 49000 },
@@ -1394,10 +1454,8 @@ var PRODUCTS = [
     fullDesc: 'Menu Migul Pro cao cấp nhất cho iOS:\n- Đầy đủ tính năng: Aimbot 360 độ, ESP name/box/line, Teleport, Auto Kill.\n- Hệ thống Bypass bảo vệ chống quét 100% an toàn.',
     priceMin: 10000,
     priceFormatted: 'Từ 10.000đ',
-    image: 'assets/uploads/products/20260906-56b63a9832a84cb87343.jpg',
-    images: [
-      { src: 'assets/uploads/products/20260906-56b63a9832a84cb87343.jpg', label: 'Migul Pro', title: 'Menu Migul Pro Full Tính Năng Vip iOS' }
-    ],
+    image: '',
+    images: [],
     plans: [
       { name: 'Key 1 Giờ (Test)', price: 10000 },
       { name: 'Key 1 Ngày', price: 70000 },
@@ -1494,10 +1552,17 @@ function renderProducts() {
     });
     chipsHtml += '</div>';
 
+    var thumbHtml = '';
+    if (p.image) {
+      thumbHtml = '<img class="js-product-image" src="' + p.image + '" alt="' + p.name + '" loading="lazy">';
+    } else {
+      thumbHtml = '<div class="thumb-no-img"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span></div>';
+    }
+
     html += '<article class="product product-clickable" data-category="' + p.category + '" data-price="' + p.priceMin + '" data-name="' + p.name.toLowerCase() + '" onclick="openBuyModalById(\'' + p.id + '\')">'
       + '<div class="product-thumb">'
         + '<span class="tag">' + p.buyers + '</span>'
-        + '<img class="js-product-image" src="' + p.image + '" alt="' + p.name + '" loading="lazy">'
+        + thumbHtml
         + '<i class="fa-solid fa-crown image-fallback"></i>'
       + '</div>'
       + '<div class="product-meta"><span>' + p.category + '</span><i class="fa-solid fa-circle"></i><span>Có thể mua</span></div>'
@@ -1619,12 +1684,16 @@ function openBuyModalById(id) {
   }
 
   // Populate gallery & thumbnails
-  var imgs = (p.images && p.images.length > 0) ? p.images : [
-    { src: p.image, label: p.name.split(' (')[0], title: p.shortDesc }
-  ];
+  var imgs = (p.images && p.images.length > 0) ? p.images : (
+    p.image ? [{ src: p.image, label: p.name.split(' (')[0], title: p.shortDesc }] : []
+  );
 
   // Set default main preview
-  selectModalThumb(imgs[0].src, imgs[0].label || 'Tính năng', imgs[0].title || p.name, null);
+  if (imgs.length > 0) {
+    selectModalThumb(imgs[0].src, imgs[0].label || 'Tính năng', imgs[0].title || p.name, null);
+  } else {
+    selectModalThumb('', 'Chờ Cập Nhật', p.name, null);
+  }
 
   // Render thumbnail list
   var thumbsHeader = document.getElementById('mThumbsHeader');
@@ -1717,18 +1786,30 @@ function selectModalPlan(idx, rowEl) {
 
 function selectModalThumb(imgSrc, label, title, thumbEl) {
   var mainImg = document.getElementById('mPreviewImg');
+  var emptyEl = document.getElementById('mPreviewEmpty');
+  var zoomBtn = document.getElementById('mZoomBtn');
   var badgeEl = document.getElementById('mPreviewBadge');
   var titleEl = document.getElementById('mPreviewTitle');
 
-  if (mainImg) {
-    mainImg.style.opacity = '0.35';
-    setTimeout(function() {
-      mainImg.src = imgSrc;
-      mainImg.style.opacity = '1';
-    }, 120);
+  if (imgSrc) {
+    if (mainImg) {
+      mainImg.style.display = 'block';
+      mainImg.style.opacity = '0.35';
+      setTimeout(function() {
+        mainImg.src = imgSrc;
+        mainImg.style.opacity = '1';
+      }, 120);
+    }
+    if (emptyEl) emptyEl.style.display = 'none';
+    if (zoomBtn) zoomBtn.style.display = 'inline-flex';
+  } else {
+    if (mainImg) mainImg.style.display = 'none';
+    if (emptyEl) emptyEl.style.display = 'flex';
+    if (zoomBtn) zoomBtn.style.display = 'none';
   }
-  if (badgeEl) badgeEl.textContent = label;
-  if (titleEl) titleEl.textContent = title;
+
+  if (badgeEl) badgeEl.textContent = label || (imgSrc ? 'Tính năng' : 'Chờ Cập Nhật');
+  if (titleEl) titleEl.textContent = title || '';
 
   if (thumbEl) {
     document.querySelectorAll('.m-thumb-item').forEach(function(t) {
@@ -1740,7 +1821,7 @@ function selectModalThumb(imgSrc, label, title, thumbEl) {
 
 function zoomCurrentPreview() {
   var img = document.getElementById('mPreviewImg');
-  if (img && img.src) {
+  if (img && img.src && img.style.display !== 'none' && !img.src.endsWith('/')) {
     openLB(img.src);
   }
 }
