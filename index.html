@@ -8,6 +8,9 @@
 <meta name="keywords" content="trollmodz, sx2, proxy ios, novax, delta, aimlock forget, forget hex, migul, panel android, shop đại phú ff">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#171a1f">
+<link rel="icon" type="image/png" href="assets/uploads/logos/aizen-logo.png">
+<link rel="shortcut icon" href="assets/uploads/logos/aizen-logo.png">
+<link rel="apple-touch-icon" href="assets/uploads/logos/aizen-logo.png">
 <!-- Font Awesome 6.5.2 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <!-- Google Fonts: Inter -->
@@ -134,7 +137,7 @@
   margin-left: 6px;
 }
 
-/* Modal Perfectly Centered & Backdrop */
+/* ══ MODAL BASE & BACKDROP ══ */
 .modal {
   position: fixed !important;
   inset: 0 !important;
@@ -156,13 +159,15 @@
 .modal-backdrop {
   position: fixed !important;
   inset: 0 !important;
-  background: rgba(15,18,22,.68) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  background: rgba(8,11,22,.76) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
+
+/* Default Modal Card (e.g. Login) */
 .modal-card {
   position: relative !important;
-  width: min(540px, calc(100% - 24px)) !important;
+  width: min(480px, calc(100% - 24px)) !important;
   max-height: 88vh !important;
   margin: auto !important;
   background: #ffffff !important;
@@ -178,65 +183,509 @@
   transform: none !important;
 }
 
-/* Plan selector chips in modal */
-.plan-chips {
+/* ══ CHECKOUT MODAL (DARK THEME FINTECH MATCHING VIPGONOPRO & SCREENSHOT) ══ */
+.modal-card.checkout-modal {
+  width: min(920px, calc(100% - 24px)) !important;
+  max-width: 920px !important;
+  max-height: 90vh !important;
+  background: #0d1020 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 22px !important;
+  padding: 26px !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.15) !important;
+  color: #f1f5f9 !important;
+}
+
+.checkout-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-  gap: 10px;
-  margin: 12px 0 16px;
-  padding-top: 4px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 26px;
+  align-items: start;
 }
-.plan-chip {
-  background: #f6f7f8;
-  border: 1.5px solid var(--line);
-  border-radius: 10px;
-  padding: 9px 10px;
-  text-align: left;
+@media(max-width: 840px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.m-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
   cursor: pointer;
-  transition: all .16s ease;
+  transition: all .2s ease;
+  z-index: 20;
+}
+.m-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+/* Left Column - Gallery Preview */
+.m-gallery-col {
+  display: flex;
+  flex-direction: column;
+}
+.m-preview-card {
   position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #080b16;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.plan-chip:hover {
-  background: #edf0f3;
-  border-color: #cbd1d8;
-}
-.plan-chip.active {
-  background: #171a1f;
-  border-color: #171a1f;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(23,26,31,.2);
-}
-.plan-chip-title {
-  font-size: 11px;
-  font-weight: 700;
+.m-preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  padding-right: 44px;
+  transition: opacity .2s ease;
+}
+.m-preview-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(6, 182, 212, 0.22);
+  border: 1px solid #06b6d4;
+  color: #22d3ee;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  backdrop-filter: blur(8px);
+  z-index: 2;
+}
+.m-preview-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 12px 10px;
+  background: linear-gradient(to top, rgba(10,13,26,0.94) 0%, rgba(10,13,26,0.6) 65%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  z-index: 2;
+}
+.m-preview-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.plan-chip-price {
-  font-size: 13px;
-  font-weight: 850;
-  margin-top: 2px;
+.m-preview-zoom-btn {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f1f5f9;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all .16s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.m-preview-zoom-btn:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Feature Thumbnails */
+.m-thumbs-header {
+  font-size: 11px;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 14px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.m-thumbs-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.m-thumb-item {
+  background: #12162a;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .18s ease;
+  padding: 3px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.m-thumb-item:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+  transform: translateY(-2px);
+}
+.m-thumb-item.active {
+  border: 2px solid #06b6d4;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.45);
+  background: rgba(6, 182, 212, 0.12);
+}
+.m-thumb-img {
+  width: 100%;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 5px;
   display: block;
 }
-.plan-chip.active .plan-chip-price {
-  color: #38bdf8;
+.m-thumb-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
 }
-.plan-chip-badge {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  background: #ef4444;
-  color: #fff;
-  font-size: 8px;
+.m-thumb-item.active .m-thumb-title {
+  color: #22d3ee;
   font-weight: 800;
-  padding: 2px 5px;
-  border-radius: 4px;
+}
+
+/* Right Column - Info & Plans */
+.m-info-col {
+  display: flex;
+  flex-direction: column;
+}
+.m-prod-title {
+  font-size: 23px !important;
+  font-weight: 850 !important;
+  color: #ffffff !important;
+  margin: 0 0 4px !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.3px !important;
+}
+.m-prod-sub {
+  font-size: 12px !important;
+  color: #94a3b8 !important;
+  margin-bottom: 16px !important;
+  line-height: 1.4 !important;
+}
+.m-step-header {
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .06em !important;
+  margin-bottom: 10px !important;
+}
+.modal-card::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.modal-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+.modal-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.m-plans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.m-plan-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: #13172c;
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: all .16s ease;
+  user-select: none;
+}
+.m-plan-row:hover {
+  background: #181d38;
+  border-color: rgba(139, 92, 246, 0.35);
+}
+.m-plan-row.active {
+  background: #1c183a;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 1px #8b5cf6, 0 4px 20px rgba(139, 92, 246, 0.25);
+}
+.m-plan-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.m-plan-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.m-plan-badge {
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: .3px;
-  line-height: 1;
+  line-height: 1.2;
+}
+.m-badge-save { background: #059669; color: #fff; }
+.m-badge-popular { background: #0891b2; color: #fff; }
+.m-badge-recom { background: #0d9488; color: #fff; }
+.m-badge-vip { background: #10b981; color: #fff; }
+.m-badge-hot { background: #e11d48; color: #fff; }
+.m-badge-super { background: #f59e0b; color: #000; }
+
+.m-plan-price {
+  font-size: 15px;
+  font-weight: 800;
+  color: #8b5cf6;
+  transition: color .16s ease;
+  white-space: nowrap;
+}
+.m-plan-row.active .m-plan-price {
+  color: #a78bfa;
+}
+
+.btn-proceed {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all .2s ease;
+}
+.btn-proceed:hover {
+  box-shadow: 0 6px 25px rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+}
+.m-lock-note {
+  font-size: 11px;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Step 2 QR Payment Styling */
+.btn-step-back {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .16s ease;
+}
+.btn-step-back:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+.m-step2-badge {
+  background: rgba(139, 92, 246, 0.18);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #c4b5fd;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.m-selected-summary {
+  background: #14182f;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+.m-summary-plan {
+  font-size: 12px;
+  color: #cbd5e1;
+}
+.m-summary-price {
+  font-size: 13px;
+  font-weight: 800;
+  color: #a78bfa;
+}
+.m-qr-box {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.m-qr-box img {
+  width: 175px;
+  height: 175px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+.m-qr-hint {
+  font-size: 10.5px;
+  color: #64748b;
+  margin-top: 6px;
+}
+.m-bank-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.m-bank-item {
+  background: #13172c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.m-bank-item small {
+  font-size: 9px;
+  font-weight: 700;
+  color: #94a3b8;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.m-bank-item strong {
+  font-size: 13px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+.m-bank-memo {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.35);
+}
+.m-copy-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all .16s ease;
+}
+.m-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+.m-copy-memo {
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+.m-bot-box {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+.m-bot-title {
+  color: #4ade80;
+  font-size: 11.5px;
+  font-weight: 800;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.m-bot-desc {
+  color: #86efac;
+  font-size: 11px;
+  line-height: 1.45;
+  margin: 0;
+}
+.m-code {
+  background: rgba(34, 197, 94, 0.2);
+  color: #bbf7d0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 800;
+}
+.btn-paid-done {
+  background: #10b981;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: all .16s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-paid-done:hover {
+  background: #059669;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+  transform: translateY(-1px);
 }
 
 /* Feedback Grid Section */
@@ -479,7 +928,7 @@
 <header class="topbar">
   <div class="shell topbar-inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark"><img class="website-logo" src="assets/uploads/logos/5c844996b35a54cc48e1fa13dd5e385a.jpg" alt="Logo Đại Phú FF"></span>
+      <span class="brand-mark"><img class="website-logo" src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" style="border-radius:50%;object-fit:cover;"></span>
       <span><b>SHOP ĐẠI PHÚ FF</b><small>SẢN PHẨM SỐ</small></span>
     </a>
     <nav class="desktop-nav" aria-label="Điều hướng chính">
@@ -585,9 +1034,12 @@
 <!-- ══ FOOTER ══ -->
 <footer class="footer">
   <div class="shell footer-inner">
-    <div>
-      <b>SHOP ĐẠI PHÚ FF</b>
-      <p>Sản phẩm số • Kéo tâm đỉnh cao • Thanh toán nhanh • Hỗ trợ khi cần</p>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--line);">
+      <div>
+        <b>SHOP ĐẠI PHÚ FF</b>
+        <p>Sản phẩm số • Kéo tâm đỉnh cao • Thanh toán nhanh • Hỗ trợ khi cần</p>
+      </div>
     </div>
     <a href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i> Liên hệ Zalo hỗ trợ</a>
   </div>
@@ -601,73 +1053,122 @@
   <a href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i><span>Hỗ trợ</span></a>
 </nav>
 
-<!-- ══ BUY & PAYMENT MODAL (CHỌN GÓI + VIETQR + BOT ZALO) ══ -->
+<!-- ══ BUY & PAYMENT MODAL (CHỌN GÓI + XEM ẢNH TÍNH NĂNG + VIETQR) ══ -->
 <div id="buyModal" class="modal">
   <div class="modal-backdrop" onclick="closeBuyModal()"></div>
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeBuyModal()"><i class="fa-solid fa-xmark"></i></button>
-    
-    <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
-      <img id="mProductImg" src="" style="width:68px;height:68px;border-radius:12px;object-fit:cover;border:1px solid var(--line);">
-      <div>
-        <span id="mProductCat" class="status success" style="font-size:10px;font-weight:700;">CONFIG</span>
-        <h3 id="mProductTitle" style="margin:2px 0 0;font-size:15px;font-weight:800;">Tên Sản Phẩm</h3>
-        <div id="mProductPrice" style="font-size:18px;font-weight:800;color:var(--text);margin-top:2px;">20.000đ</div>
-      </div>
-    </div>
+  <div class="modal-card checkout-modal">
+    <button class="m-close-btn" onclick="closeBuyModal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
 
-    <!-- Plan selector in Modal -->
-    <div style="margin-bottom:14px;">
-      <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;"><i class="fa-solid fa-layer-group"></i> Chọn gói / phiên bản:</div>
-      <div class="plan-chips" id="mPlanChips"></div>
-    </div>
-    
-    <div style="background:#f6f7f8;border-radius:12px;padding:12px;margin-bottom:16px;border:1px solid var(--line);">
-      <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;"><i class="fa-solid fa-circle-info"></i> Mô tả siêu phẩm:</div>
-      <div id="mProductDesc" style="font-size:11px;color:var(--muted);line-height:1.55;white-space:pre-line;"></div>
-    </div>
+    <div class="checkout-grid">
+      <!-- CỘT TRÁI: PREVIEW & ẢNH TÍNH NĂNG -->
+      <div class="m-gallery-col">
+        <div class="m-preview-card">
+          <span class="m-preview-badge" id="mPreviewBadge">ESP Ghim Đầu</span>
+          <img id="mPreviewImg" src="proxy-ios.png" alt="Preview tính năng">
+          <div class="m-preview-bottom">
+            <div class="m-preview-title" id="mPreviewTitle">ESP AIMCHECK R8 - Định Vị Ghim Đầu</div>
+            <button type="button" class="m-preview-zoom-btn" onclick="zoomCurrentPreview()">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> Phóng to
+            </button>
+          </div>
+        </div>
 
-    <!-- VietQR payment section -->
-    <div style="border-top:1px solid var(--line);padding-top:14px;">
-      <div style="font-size:12px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
-        <i class="fa-solid fa-qrcode" style="color:var(--blue)"></i> Quét mã VietQR chuyển khoản nhanh:
-      </div>
-      
-      <div style="text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px;">
-        <img id="mQrCode" src="" alt="VietQR MBBank" style="width:190px;height:190px;object-fit:contain;border-radius:10px;margin-bottom:6px;">
-        <div style="font-size:11px;color:var(--muted);">Quét qua App ngân hàng bất kỳ (MBBank, Vietcombank, Momo...)</div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="transfer-note">
-          <div><small>NGÂN HÀNG THỤ HƯỞNG</small><strong>MB BANK (Quân Đội)</strong></div>
-          <button class="copy-btn" onclick="copyText('MBBANK', this)"><i class="fa-solid fa-copy"></i></button>
+        <div class="m-thumbs-header" id="mThumbsHeader">
+          <i class="fa-solid fa-camera"></i> ẢNH TÍNH NĂNG (CHẠM ĐỂ XEM):
         </div>
-        <div class="transfer-note">
-          <div><small>SỐ TÀI KHOẢN</small><strong>0941414448</strong></div>
-          <button class="copy-btn" onclick="copyText('0941414448', this)"><i class="fa-solid fa-copy"></i></button>
-        </div>
-        <div class="transfer-note">
-          <div><small>CHỦ TÀI KHOẢN</small><strong>BUI VAN CAO</strong></div>
-        </div>
-        <div class="transfer-note">
-          <div><small>SỐ TIỀN CẦN THANH TOÁN</small><strong id="mPayAmount" style="color:#b42318;">20.000 đ</strong></div>
-          <button class="copy-btn" onclick="copyText(window.currentPayAmountRaw, this)"><i class="fa-solid fa-copy"></i></button>
-        </div>
-        <div class="transfer-note" style="background:#fef2f2;border-color:#fecaca;">
-          <div><small style="color:#991b1b;">NỘI DUNG CHUYỂN KHOẢN (BẮT BUỘC CHÍNH XÁC)</small><strong id="mOrderMemo" style="color:#dc2626;font-family:monospace;font-size:14px;">DP...</strong></div>
-          <button class="copy-btn" style="border-color:#fca5a5;color:#b91c1c;" onclick="copyText(window.currentOrderMemo, this)"><i class="fa-solid fa-copy"></i></button>
+        <div class="m-thumbs-grid" id="mThumbsGrid">
+          <!-- Injected thumbnails -->
         </div>
       </div>
 
-      <div style="margin-top:14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px;">
-        <div style="font-size:11.5px;font-weight:700;color:#166534;margin-bottom:3px;"><i class="fa-solid fa-robot"></i> Kích hoạt key tự động qua Bot Zalo:</div>
-        <p style="margin:0;font-size:11px;color:#15803d;line-height:1.45;">
-          Sau khi chuyển khoản, nhắn lệnh <code style="background:#dcfce7;padding:2px 6px;border-radius:5px;font-weight:700;">!done <span id="mBotCode">DP...</span></code> cho <b>Bot Zalo: 0964976083</b> hoặc gửi bill đến Zalo <b>0588500524 (Anh Phú)</b> để nhận file & hướng dẫn cài đặt ngay lập tức!
-        </p>
-      </div>
+      <!-- CỘT PHẢI: CHỌN GÓI (BƯỚC 1) HOẶC QUÉT QR (BƯỚC 2) -->
+      <div class="m-info-col">
+        <!-- BƯỚC 1: CHỌN GÓI THỜI HẠN -->
+        <div id="mStep1">
+          <h2 class="m-prod-title" id="mProdTitle">Proxy Aim iOS</h2>
+          <div class="m-prod-sub" id="mProdSub">Proxy Aim · iOS · Đã bán 2.3k+ · Chọn gói phù hợp với bạn</div>
 
-      <button class="btn btn-primary btn-block" style="margin-top:14px;" onclick="confirmPaid()"><i class="fa-solid fa-circle-check"></i> Tôi đã chuyển khoản thành công</button>
+          <div class="m-step-header">BƯỚC 1: CHỌN GÓI THỜI HẠN</div>
+
+          <!-- Danh sách các gói dạng hàng dọc chuẩn hình ảnh -->
+          <div class="m-plans-list" id="mPlansList">
+            <!-- Injected plan rows -->
+          </div>
+
+          <!-- Nút chuyển sang thanh toán QR -->
+          <button type="button" class="btn-proceed" onclick="proceedToPayment()">
+            👉 Tiếp Tục Thanh Toán (Quét QR)
+          </button>
+          <div class="m-lock-note">
+            <i class="fa-solid fa-lock" style="color:#eab308;"></i> Chọn gói xong bấm tiếp tục để tạo mã QR thanh toán
+          </div>
+        </div>
+
+        <!-- BƯỚC 2: QUÉT MÃ QR THANH TOÁN -->
+        <div id="mStep2" style="display:none;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-right:38px;">
+            <button type="button" class="btn-step-back" onclick="goToStep(1)">
+              <i class="fa-solid fa-arrow-left"></i> Quay lại chọn gói khác
+            </button>
+            <span class="m-step2-badge">BƯỚC 2 / 2</span>
+          </div>
+
+          <div class="m-step-header" style="color:#a78bfa;font-size:12px;margin-bottom:10px;">
+            <i class="fa-solid fa-qrcode"></i> QUÉT MÃ QR THANH TOÁN TỰ ĐỘNG
+          </div>
+
+          <!-- Tóm tắt gói đã chọn -->
+          <div class="m-selected-summary">
+            <div style="font-weight:800;color:#fff;font-size:13.5px;" id="mStep2ProdName">Proxy Aim iOS</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:2px;">
+              <span class="m-summary-plan" id="mStep2PlanName">Key 1 ngày</span>
+              <span class="m-summary-price" id="mStep2Price">20.000đ</span>
+            </div>
+          </div>
+
+          <!-- Khung VietQR -->
+          <div class="m-qr-box">
+            <img id="mQrCode" src="" alt="VietQR MBBank">
+            <div class="m-qr-hint">Mở App ngân hàng bất kỳ (MBBank, Vietcombank, Momo...) quét để thanh toán tự động</div>
+          </div>
+
+          <!-- Chi tiết tài khoản ngân hàng -->
+          <div class="m-bank-rows">
+            <div class="m-bank-item">
+              <div><small>NGÂN HÀNG THỤ HƯỞNG</small><strong>MB BANK (Quân Đội)</strong></div>
+              <button class="m-copy-btn" onclick="copyText('MBBANK', this)"><i class="fa-solid fa-copy"></i> Sao chép</button>
+            </div>
+            <div class="m-bank-item">
+              <div><small>SỐ TÀI KHOẢN</small><strong>0941414448</strong></div>
+              <button class="m-copy-btn" onclick="copyText('0941414448', this)"><i class="fa-solid fa-copy"></i> Sao chép</button>
+            </div>
+            <div class="m-bank-item">
+              <div><small>CHỦ TÀI KHOẢN</small><strong>BUI VAN CAO</strong></div>
+            </div>
+            <div class="m-bank-item">
+              <div><small>SỐ TIỀN CẦN THANH TOÁN</small><strong id="mPayAmount" style="color:#f87171;font-size:15px;">20.000 đ</strong></div>
+              <button class="m-copy-btn" onclick="copyText(window.currentPayAmountRaw, this)"><i class="fa-solid fa-copy"></i></button>
+            </div>
+            <div class="m-bank-item m-bank-memo">
+              <div><small style="color:#f87171;">NỘI DUNG CHUYỂN KHOẢN (BẮT BUỘC CHÍNH XÁC)</small><strong id="mOrderMemo" style="color:#f87171;font-family:monospace;font-size:15px;letter-spacing:1px;">DP...</strong></div>
+              <button class="m-copy-btn m-copy-memo" onclick="copyText(window.currentOrderMemo, this)"><i class="fa-solid fa-copy"></i></button>
+            </div>
+          </div>
+
+          <!-- Hướng dẫn Bot Zalo -->
+          <div class="m-bot-box">
+            <div class="m-bot-title"><i class="fa-solid fa-robot"></i> Kích hoạt key tự động qua Bot Zalo:</div>
+            <p class="m-bot-desc">
+              Sau khi chuyển khoản, nhắn lệnh <code class="m-code">!done <span id="mBotCode">DP...</span></code> cho <b>Bot Zalo: 0964976083</b> hoặc gửi bill đến Zalo <b>0588500524 (Anh Phú)</b> để nhận file & hướng dẫn cài đặt ngay lập tức!
+            </p>
+          </div>
+
+          <!-- Nút xác nhận -->
+          <button type="button" class="btn-paid-done" onclick="confirmPaid()">
+            <i class="fa-solid fa-circle-check"></i> Tôi đã chuyển khoản thành công
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -713,6 +1214,7 @@ var PRODUCTS = [
   {
     id: 'trollmodz',
     category: 'Menu & Mod',
+    plat: 'Adr · iOS · PC',
     buyers: '2450 Người Mua',
     name: 'TrollModz (Adr · iOS · PC)',
     shortDesc: 'Ngưng đọng thời gian, nhảy dù nhanh, định vị gắn đầu, Aimbot.',
@@ -720,6 +1222,9 @@ var PRODUCTS = [
     priceMin: 10000,
     priceFormatted: 'Từ 10.000đ',
     image: 'trollmodz.png',
+    images: [
+      { src: 'trollmodz.png', label: 'TrollModz', title: 'TrollModz - Menu Siêu Cấp Adr · iOS · PC' }
+    ],
     plans: [
       { name: 'Key 1 Giờ (Test)', price: 10000 },
       { name: 'Key 1 Ngày', price: 25000 },
@@ -731,6 +1236,7 @@ var PRODUCTS = [
   {
     id: 'sx2-dinhvi',
     category: 'SX2 & Panel',
+    plat: 'Android No Root',
     buyers: '1980 Người Mua',
     name: 'Sx2 Team External No root v1.0',
     shortDesc: 'Radar định vị, ESP xuyên tường, Freeze Player, Aim Lag, No Root 100%.',
@@ -738,6 +1244,9 @@ var PRODUCTS = [
     priceMin: 30000,
     priceFormatted: 'Từ 30.000đ',
     image: 'assets/uploads/products/sx2-external.jpg',
+    images: [
+      { src: 'assets/uploads/products/sx2-external.jpg', label: 'Radar Enemy', title: 'Sx2 External - Radar Định Vị & ESP Xuyên Tường' }
+    ],
     plans: [
       { name: 'Gói 1 Ngày', price: 30000 },
       { name: 'Gói 7 Ngày (1 Tuần)', price: 80000, badge: 'Khuyên dùng' },
@@ -748,6 +1257,7 @@ var PRODUCTS = [
   {
     id: 'proxy-ios-novax',
     category: 'Proxy iOS',
+    plat: 'iPhone · iPad',
     buyers: '2150 Người Mua',
     name: 'Proxy iOS - Nova X',
     shortDesc: 'Aimdrag, Aim cổ, Aimbody, Aim Magic, ESP Ghim đầu nhẹ tâm iOS.',
@@ -755,32 +1265,48 @@ var PRODUCTS = [
     priceMin: 20000,
     priceFormatted: 'Từ 20.000đ',
     image: 'assets/uploads/products/novax.jpg',
+    images: [
+      { src: 'assets/uploads/products/novax.jpg', label: 'Nova X VIP', title: 'Proxy iOS Nova X - Đỉnh Cao Kéo Tâm iPhone & iPad' },
+      { src: 'proxy-ios.png', label: 'ESP Ghim Đầu', title: 'ESP AIMCHECK R8 - Định Vị Ghim Đầu' },
+      { src: 'proxy-ios-aimdrag.png', label: 'Aim Drag', title: 'Aim Drag - Kéo Tâm Chuẩn Xác' },
+      { src: 'proxy-ios-magic.png', label: 'Aim Magic', title: 'Aim Magic - Đạn Ma Thuật' },
+      { src: 'proxy-ios-co.png', label: 'Aim Cổ', title: 'Aim Cổ - Khóa Góc Cổ Địch' }
+    ],
     plans: [
       { name: 'Key 1 Ngày', price: 20000 },
-      { name: 'Key 7 Ngày', price: 50000, badge: 'Tiết kiệm' },
-      { name: 'Key 30 Ngày', price: 100000, badge: 'Phổ biến' },
+      { name: 'Key 7 Ngày (1 Tuần)', price: 50000, badge: 'Tiết kiệm' },
+      { name: 'Key 30 Ngày (1 Tháng)', price: 100000, badge: 'Phổ biến' },
       { name: 'Key Vĩnh Viễn', price: 200000, badge: 'VIP' }
     ]
   },
   {
     id: 'proxy-ios-delta',
     category: 'Proxy iOS',
-    buyers: '1720 Người Mua',
-    name: 'Proxy iOS - Delta',
-    shortDesc: 'Proxy kéo tâm siêu nhạy iOS, đạn gom chặt vào đầu địch.',
+    plat: 'iOS',
+    buyers: '2.3k+ Người Mua',
+    name: 'Proxy Aim iOS - Delta',
+    shortDesc: 'Aimdrag, Aim cổ, Aimbody, Aim Magic, ESP Aimcheck R8 định vị ghim đầu.',
     fullDesc: 'Proxy iOS Delta - Bản kéo tâm tối ưu đường truyền mượt mà.\nTính năng: Hỗ trợ kéo tâm không giật lag, tự động ôm đầu, ổn định cho mọi phiên bản iOS (Không hỗ trợ gói vĩnh viễn).',
     priceMin: 20000,
     priceFormatted: 'Từ 20.000đ',
     image: 'proxy-ios.png',
+    images: [
+      { src: 'proxy-ios.png', label: 'ESP Ghim Đầu', title: 'ESP AIMCHECK R8 - Định Vị Ghim Đầu' },
+      { src: 'proxy-ios-aimdrag.png', label: 'Aim Drag', title: 'Aim Drag - Kéo Tâm Chuẩn Xác' },
+      { src: 'proxy-ios-magic.png', label: 'Aim Magic', title: 'Aim Magic - Đạn Ma Thuật' },
+      { src: 'proxy-ios-co.png', label: 'Aim Cổ', title: 'Aim Cổ - Khóa Góc Cổ Địch' },
+      { src: 'proxy-ios-body.png', label: 'AimBody', title: 'AimBody - Bám Thân Trúng Đạn 100%' }
+    ],
     plans: [
       { name: 'Key 1 Ngày', price: 20000 },
-      { name: 'Key 7 Ngày', price: 50000, badge: 'Tiết kiệm' },
-      { name: 'Key 30 Ngày', price: 100000, badge: 'Phổ biến' }
+      { name: 'Key 1 Tuần (7 Ngày)', price: 50000, badge: 'Tiết kiệm' },
+      { name: 'Key 1 Tháng (30 Ngày)', price: 100000, badge: 'Phổ biến' }
     ]
   },
   {
     id: 'aimlock-forget',
     category: 'AimLock',
+    plat: 'Adr · iOS',
     buyers: '3100 Người Mua',
     name: 'AimLock Forget (Adr · iOS)',
     shortDesc: '1.0 khắc phục lố rung lạc đạn delay. 2.0 & 3.0 bám đầu cực đỉnh, buff FPS.',
@@ -788,6 +1314,9 @@ var PRODUCTS = [
     priceMin: 50000,
     priceFormatted: 'Từ 50.000đ',
     image: 'assets/uploads/products/aimlock-forget.jpg',
+    images: [
+      { src: 'assets/uploads/products/aimlock-forget.jpg', label: 'AimLock 3D', title: 'AimLock Forget 1.0 - 2.0 - 3.0 Full Khắc Phục Lỗi' }
+    ],
     plans: [
       { name: 'AimLock Forget 1.0', price: 50000 },
       { name: 'AimLock Forget 2.0', price: 200000, badge: 'Bán chạy' },
@@ -797,6 +1326,7 @@ var PRODUCTS = [
   {
     id: 'forget-hex',
     category: 'Forget Hex',
+    plat: 'Adr · iOS',
     buyers: '2890 Người Mua',
     name: 'Forget Hex VIP (V1 - V5)',
     shortDesc: 'Forget Hex V1 đến V5 hỗ trợ iOS & Android, bám dính đầu 100%.',
@@ -804,6 +1334,9 @@ var PRODUCTS = [
     priceMin: 49000,
     priceFormatted: 'Từ 49.000đ',
     image: 'assets/uploads/products/20260906-8b7858a3baf68a65ea54.jpg',
+    images: [
+      { src: 'assets/uploads/products/20260906-8b7858a3baf68a65ea54.jpg', label: 'Forget Hex', title: 'Forget Hex VIP V1 - V5 Bản Quyền' }
+    ],
     plans: [
       { name: '49K Cơ Bản - Forget Hex V1 🇻🇳', price: 49000 },
       { name: '99K Nâng Cấp - Forget Hex V2 🇻🇳', price: 99000 },
@@ -815,6 +1348,7 @@ var PRODUCTS = [
   {
     id: 'panel-adr',
     category: 'SX2 & Panel',
+    plat: 'Android',
     buyers: '1680 Người Mua',
     name: 'Panel External (Android)',
     shortDesc: 'Panel định vị radar, ESP, kéo tâm mượt không rung giật lag.',
@@ -822,14 +1356,18 @@ var PRODUCTS = [
     priceMin: 150000,
     priceFormatted: 'Từ 150.000đ',
     image: 'assets/uploads/products/sx2-external.jpg',
+    images: [
+      { src: 'assets/uploads/products/sx2-external.jpg', label: 'Panel SX2', title: 'Panel External Android No Root' }
+    ],
     plans: [
-      { name: 'Gói 7 Ngày', price: 150000, badge: 'Tiết kiệm' },
+      { name: 'Gói 7 Ngày (1 Tuần)', price: 150000, badge: 'Tiết kiệm' },
       { name: 'Gói 30 Ngày (1 Tháng)', price: 450000, badge: 'Phổ biến' }
     ]
   },
   {
     id: 'migul-lite',
     category: 'Menu & Mod',
+    plat: 'iOS',
     buyers: '1450 Người Mua',
     name: 'Menu Migul Lite (iOS)',
     shortDesc: 'Nhẹ, mượt, Aimbot, Visuals ESP, chống khóa acc cực tốt.',
@@ -837,6 +1375,9 @@ var PRODUCTS = [
     priceMin: 50000,
     priceFormatted: 'Từ 50.000đ',
     image: 'menu-lite.png',
+    images: [
+      { src: 'menu-lite.png', label: 'Migul Lite', title: 'Menu Migul Lite Siêu Nhẹ Cho iOS' }
+    ],
     plans: [
       { name: 'Key 1 Ngày', price: 50000 },
       { name: 'Key 7 Ngày (1 Tuần)', price: 150000, badge: 'Tiết kiệm' },
@@ -846,6 +1387,7 @@ var PRODUCTS = [
   {
     id: 'migul-pro',
     category: 'Menu & Mod',
+    plat: 'iOS',
     buyers: '2280 Người Mua',
     name: 'Menu Migul Pro (iOS)',
     shortDesc: 'Bản Pro cao cấp nhất, full tính năng bá đạo, bypass an toàn.',
@@ -853,6 +1395,9 @@ var PRODUCTS = [
     priceMin: 10000,
     priceFormatted: 'Từ 10.000đ',
     image: 'assets/uploads/products/20260906-56b63a9832a84cb87343.jpg',
+    images: [
+      { src: 'assets/uploads/products/20260906-56b63a9832a84cb87343.jpg', label: 'Migul Pro', title: 'Menu Migul Pro Full Tính Năng Vip iOS' }
+    ],
     plans: [
       { name: 'Key 1 Giờ (Test)', price: 10000 },
       { name: 'Key 1 Ngày', price: 70000 },
@@ -1034,50 +1579,106 @@ if (resetBtn) {
   });
 }
 
-/* ═══════ MODAL BUY & PLAN SELECTOR & VIETQR ═══════ */
+/* ═══════ BADGE CLASS HELPER ═══════ */
+function getBadgeClass(badge) {
+  if (!badge) return '';
+  var b = badge.toLowerCase();
+  if (b.includes('tiết kiệm')) return 'm-badge-save';
+  if (b.includes('phổ biến')) return 'm-badge-popular';
+  if (b.includes('khuyên dùng')) return 'm-badge-recom';
+  if (b.includes('vip')) return 'm-badge-vip';
+  if (b.includes('bán chạy') || b.includes('đề xuất')) return 'm-badge-hot';
+  if (b.includes('cực phẩm')) return 'm-badge-super';
+  return 'm-badge-popular';
+}
+
+/* ═══════ MODAL BUY & GALLERY & VIETQR ═══════ */
 function openBuyModalById(id) {
   var p = PRODUCTS.find(function(item) { return item.id === id; });
   if (!p) return;
   currentProduct = p;
 
-  // Lock background scroll
-  document.body.style.overflow = 'hidden';
+  // Reset to step 1
+  goToStep(1);
 
   // Generate unique order ID
   var orderId = 'DP' + Math.floor(100000 + Math.random() * 900000);
   window.currentOrderMemo = orderId;
+  var orderMemoEl = document.getElementById('mOrderMemo');
+  var botCodeEl = document.getElementById('mBotCode');
+  if (orderMemoEl) orderMemoEl.textContent = orderId;
+  if (botCodeEl) botCodeEl.textContent = orderId;
 
-  document.getElementById('mProductImg').src = p.image;
-  document.getElementById('mProductCat').textContent = p.category;
-  document.getElementById('mProductTitle').textContent = p.name;
-  document.getElementById('mProductDesc').textContent = p.fullDesc;
-  document.getElementById('mOrderMemo').textContent = orderId;
-  document.getElementById('mBotCode').textContent = orderId;
+  // Populate title & subtitle
+  var titleEl = document.getElementById('mProdTitle');
+  var subEl = document.getElementById('mProdSub');
+  if (titleEl) titleEl.textContent = p.name;
+  if (subEl) {
+    var rawName = p.name.split(' (')[0];
+    subEl.textContent = rawName + ' · ' + (p.plat || 'iOS & Adr') + ' · Đã bán ' + p.buyers.replace(' Người Mua', '') + ' · Chọn gói phù hợp với bạn';
+  }
 
-  // Get currently selected plan from card, or default to 0
+  // Populate gallery & thumbnails
+  var imgs = (p.images && p.images.length > 0) ? p.images : [
+    { src: p.image, label: p.name.split(' (')[0], title: p.shortDesc }
+  ];
+
+  // Set default main preview
+  selectModalThumb(imgs[0].src, imgs[0].label || 'Tính năng', imgs[0].title || p.name, null);
+
+  // Render thumbnail list
+  var thumbsHeader = document.getElementById('mThumbsHeader');
+  var thumbsGrid = document.getElementById('mThumbsGrid');
+  if (thumbsGrid) {
+    if (imgs.length > 1) {
+      if (thumbsHeader) thumbsHeader.style.display = 'flex';
+      thumbsGrid.style.display = 'grid';
+      var thumbsHtml = '';
+      imgs.forEach(function(imgItem, i) {
+        var isAct = i === 0 ? ' active' : '';
+        thumbsHtml += '<div class="m-thumb-item' + isAct + '" onclick="selectModalThumb(\'' + imgItem.src + '\', \'' + (imgItem.label || '').replace(/'/g, "\\'") + '\', \'' + (imgItem.title || '').replace(/'/g, "\\'") + '\', this)">'
+          + '<img class="m-thumb-img" src="' + imgItem.src + '" alt="' + (imgItem.label || '') + '">'
+          + '<span class="m-thumb-title">' + (imgItem.label || '') + '</span>'
+        + '</div>';
+      });
+      thumbsGrid.innerHTML = thumbsHtml;
+    } else {
+      if (thumbsHeader) thumbsHeader.style.display = 'none';
+      thumbsGrid.style.display = 'none';
+      thumbsGrid.innerHTML = '';
+    }
+  }
+
+  // Populate vertical plans list
   var selIdx = cardSelectedPlan[p.id] || 0;
   if (!p.plans[selIdx]) selIdx = 0;
 
-  // Render plan chips in modal
-  var chipsContainer = document.getElementById('mPlanChips');
-  var chipsHtml = '';
-  p.plans.forEach(function(plan, idx) {
-    var isAct = idx === selIdx ? ' active' : '';
-    chipsHtml += '<div class="plan-chip' + isAct + '" onclick="selectPlan(' + idx + ', this)">'
-      + (plan.badge ? '<span class="plan-chip-badge">' + plan.badge + '</span>' : '')
-      + '<span class="plan-chip-title">' + plan.name + '</span>'
-      + '<span class="plan-chip-price">' + formatVND(plan.price) + '</span>'
-    + '</div>';
-  });
-  chipsContainer.innerHTML = chipsHtml;
+  var plansContainer = document.getElementById('mPlansList');
+  if (plansContainer) {
+    var plansHtml = '';
+    p.plans.forEach(function(plan, idx) {
+      var isAct = idx === selIdx ? ' active' : '';
+      var badgeHtml = plan.badge ? '<span class="m-plan-badge ' + getBadgeClass(plan.badge) + '">' + plan.badge + '</span>' : '';
+      plansHtml += '<div class="m-plan-row' + isAct + '" onclick="selectModalPlan(' + idx + ', this)">'
+        + '<div class="m-plan-left">'
+          + '<span class="m-plan-name">' + plan.name + '</span>'
+          + badgeHtml
+        + '</div>'
+        + '<span class="m-plan-price">' + formatVND(plan.price) + '</span>'
+      + '</div>';
+    });
+    plansContainer.innerHTML = plansHtml;
+  }
 
-  // Select the plan
-  selectPlan(selIdx);
+  // Select initial plan
+  selectModalPlan(selIdx);
 
+  // Open modal & lock scroll
   document.getElementById('buyModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
-function selectPlan(idx, chipEl) {
+function selectModalPlan(idx, rowEl) {
   if (!currentProduct || !currentProduct.plans[idx]) return;
   var plan = currentProduct.plans[idx];
   currentPlan = plan;
@@ -1092,23 +1693,79 @@ function selectPlan(idx, chipEl) {
   var cardChips = document.querySelectorAll('.card-plan-chip[data-pid="' + currentProduct.id + '"]');
   cardChips.forEach(function(c, i) { c.classList.toggle('active', i === idx); });
 
-  // Update modal chip active classes
-  if (chipEl) {
-    document.querySelectorAll('.plan-chip').forEach(function(c) { c.classList.remove('active'); });
-    chipEl.classList.add('active');
-  }
+  // Update modal row active class
+  var rows = document.querySelectorAll('.m-plan-row');
+  rows.forEach(function(r, i) {
+    r.classList.toggle('active', i === idx);
+  });
 
-  // Update price in modal header & amount
-  document.getElementById('mProductPrice').textContent = formatVND(plan.price);
-  document.getElementById('mPayAmount').textContent = formatVND(plan.price);
+  // Pre-fill Step 2 values
+  var s2Prod = document.getElementById('mStep2ProdName');
+  var s2Plan = document.getElementById('mStep2PlanName');
+  var s2Price = document.getElementById('mStep2Price');
+  var payAmt = document.getElementById('mPayAmount');
+  if (s2Prod) s2Prod.textContent = currentProduct.name;
+  if (s2Plan) s2Plan.textContent = plan.name;
+  if (s2Price) s2Price.textContent = formatVND(plan.price);
+  if (payAmt) payAmt.textContent = formatVND(plan.price);
 
-  // Update VietQR: MB Bank, STK: 0941414448, Account Name: BUI VAN CAO
+  // Pre-generate VietQR
   var qrUrl = 'https://img.vietqr.io/image/MB-0941414448-compact2.png?amount=' + plan.price + '&addInfo=' + encodeURIComponent(window.currentOrderMemo) + '&accountName=BUI%20VAN%20CAO';
-  document.getElementById('mQrCode').src = qrUrl;
+  var qrEl = document.getElementById('mQrCode');
+  if (qrEl) qrEl.src = qrUrl;
+}
+
+function selectModalThumb(imgSrc, label, title, thumbEl) {
+  var mainImg = document.getElementById('mPreviewImg');
+  var badgeEl = document.getElementById('mPreviewBadge');
+  var titleEl = document.getElementById('mPreviewTitle');
+
+  if (mainImg) {
+    mainImg.style.opacity = '0.35';
+    setTimeout(function() {
+      mainImg.src = imgSrc;
+      mainImg.style.opacity = '1';
+    }, 120);
+  }
+  if (badgeEl) badgeEl.textContent = label;
+  if (titleEl) titleEl.textContent = title;
+
+  if (thumbEl) {
+    document.querySelectorAll('.m-thumb-item').forEach(function(t) {
+      t.classList.remove('active');
+    });
+    thumbEl.classList.add('active');
+  }
+}
+
+function zoomCurrentPreview() {
+  var img = document.getElementById('mPreviewImg');
+  if (img && img.src) {
+    openLB(img.src);
+  }
+}
+
+function proceedToPayment() {
+  if (!currentPlan) return;
+  goToStep(2);
+}
+
+function goToStep(step) {
+  var s1 = document.getElementById('mStep1');
+  var s2 = document.getElementById('mStep2');
+  if (!s1 || !s2) return;
+  if (step === 1) {
+    s1.style.display = 'block';
+    s2.style.display = 'none';
+  } else if (step === 2) {
+    s1.style.display = 'none';
+    s2.style.display = 'block';
+  }
 }
 
 function closeBuyModal() {
-  document.getElementById('buyModal').classList.remove('open');
+  var m = document.getElementById('buyModal');
+  if (m) m.classList.remove('open');
   document.body.style.overflow = '';
 }
 
