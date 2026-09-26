@@ -743,6 +743,236 @@
   transform: translateY(-1px);
 }
 
+/* ══ PAID CONFIRMATION MODAL (MÃ XÁC NHẬN ĐƠN HÀNG) ══ */
+.paid-modal-card {
+  position: relative !important;
+  width: min(490px, calc(100% - 24px)) !important;
+  max-width: 490px !important;
+  max-height: 94vh !important;
+  margin: auto !important;
+  background: #0c1020 !important;
+  border: 1px solid #1e2540 !important;
+  border-radius: 20px !important;
+  padding: 24px 20px 20px !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 35px rgba(139, 92, 246, 0.15) !important;
+  overflow-y: auto !important;
+  z-index: 10 !important;
+  color: #f1f5f9 !important;
+  transform: translateY(14px) scale(.98) !important;
+  transition: transform .22s ease !important;
+}
+.modal.open .paid-modal-card {
+  transform: none !important;
+}
+
+.paid-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all .18s ease;
+  z-index: 20;
+}
+.paid-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Header Box */
+.paid-header-box {
+  background: linear-gradient(180deg, rgba(6, 78, 59, 0.22) 0%, rgba(4, 47, 46, 0.28) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 14px;
+  padding: 22px 14px 18px;
+  text-align: center;
+}
+.paid-header-icon {
+  font-size: 38px;
+  line-height: 1;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+.paid-header-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: #10b981;
+  margin-bottom: 6px;
+  letter-spacing: .2px;
+}
+.paid-header-sub {
+  font-size: 12.5px;
+  color: #94a3b8;
+  line-height: 1.45;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* Syntax Box */
+.paid-syntax-box {
+  margin-top: 14px;
+  background: rgba(139, 92, 246, 0.05);
+  border: 1.5px dashed #8b5cf6;
+  border-radius: 14px;
+  padding: 15px 14px 12px;
+  text-align: center;
+}
+.paid-syntax-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #c084fc;
+  letter-spacing: .5px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.paid-cmd-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.paid-cmd-pill {
+  background: #081a29;
+  border: 1.5px solid #0891b2;
+  border-radius: 9px;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all .2s;
+  user-select: all;
+}
+.paid-cmd-pill:hover {
+  border-color: #00f0ff;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
+  transform: translateY(-1px);
+}
+.paid-cmd-prefix {
+  color: #00f0ff;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 16px;
+  font-weight: 700;
+}
+.paid-cmd-code {
+  color: #00f0ff;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+.paid-copy-btn {
+  background: rgba(8, 145, 178, 0.15);
+  border: 1.5px solid #0891b2;
+  border-radius: 9px;
+  padding: 8px 14px;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .2s;
+}
+.paid-copy-btn:hover {
+  background: #0891b2;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(8, 145, 178, 0.5);
+}
+.paid-syntax-hint {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Order Details Box */
+.paid-details-box {
+  margin-top: 14px;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 6px 18px;
+}
+.paid-detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 12px;
+}
+.paid-detail-row:last-child {
+  border-bottom: none;
+}
+.paid-label {
+  color: #94a3b8;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.paid-val {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-align: right;
+  word-break: break-word;
+}
+.paid-val.paid-code {
+  color: #00f0ff;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 15px;
+  font-weight: 800;
+}
+.paid-val.paid-price {
+  color: #10b981;
+  font-size: 15px;
+  font-weight: 800;
+}
+.paid-val.paid-status {
+  color: #f59e0b;
+  font-weight: 700;
+  font-size: 12.5px;
+}
+
+/* Fraud Alert Box */
+.paid-fraud-box {
+  margin-top: 14px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 12px;
+  padding: 11px 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.paid-fraud-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.paid-fraud-text {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #cbd5e1;
+}
+.paid-fraud-text strong {
+  color: #f87171;
+  font-weight: 800;
+}
+
 /* Feedback Grid Section */
 .fb-grid {
   display: grid;
@@ -1228,6 +1458,79 @@
             <i class="fa-solid fa-circle-check"></i> Tôi đã chuyển khoản thành công
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAID SUCCESS CONFIRMATION MODAL (MÃ XÁC NHẬN ĐƠN HÀNG) ══ -->
+<div id="paidModal" class="modal">
+  <div class="modal-backdrop" onclick="closePaidModal()"></div>
+  <div class="paid-modal-card">
+    <button type="button" class="paid-close-btn" onclick="closePaidModal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+
+    <!-- Block 1: Receipt Header -->
+    <div class="paid-header-box">
+      <div class="paid-header-icon">🧾</div>
+      <div class="paid-header-title">Mã Xác Nhận Đơn Hàng</div>
+      <div class="paid-header-sub">Gửi mã đơn cho Bot Zalo để tự động đối soát ngân hàng MB Bank &amp; nhận file</div>
+    </div>
+
+    <!-- Block 2: Syntax Box -->
+    <div class="paid-syntax-box">
+      <div class="paid-syntax-title">🤖 CÚ PHÁP GỬI BOT ZALO:</div>
+      <div class="paid-cmd-wrapper">
+        <div class="paid-cmd-pill" id="paidCmdPill" onclick="copyPaidSyntax()" title="Bấm để sao chép cú pháp">
+          <span class="paid-cmd-prefix">!done</span>
+          <span class="paid-cmd-code" id="paidConfirmCode">DP487340</span>
+        </div>
+        <button type="button" class="paid-copy-btn" id="paidCopyBtn" onclick="copyPaidSyntax()">
+          <span class="paid-copy-icon">📑</span>
+          <span class="paid-copy-text" id="paidCopyText">Sao chép</span>
+        </button>
+      </div>
+      <div class="paid-syntax-hint">Chạm vào hộp hoặc bấm nút Sao chép để copy nhanh</div>
+    </div>
+
+    <!-- Block 3: Order Details Box -->
+    <div class="paid-details-box">
+      <div class="paid-detail-row">
+        <span class="paid-label">Mã đơn hàng:</span>
+        <span class="paid-val paid-code" id="paidDetailCode">DP487340</span>
+      </div>
+      <div class="paid-detail-row">
+        <span class="paid-label">Sản phẩm:</span>
+        <span class="paid-val" id="paidDetailProd">AimLock iOS</span>
+      </div>
+      <div class="paid-detail-row">
+        <span class="paid-label">Gói thời hạn:</span>
+        <span class="paid-val" id="paidDetailPlan">Gói 1 tháng</span>
+      </div>
+      <div class="paid-detail-row">
+        <span class="paid-label">Số tiền:</span>
+        <span class="paid-val paid-price" id="paidDetailPrice">50.000đ</span>
+      </div>
+      <div class="paid-detail-row">
+        <span class="paid-label">Trạng thái:</span>
+        <span class="paid-val paid-status">⏳ Chờ Bot Zalo đối soát MB Bank</span>
+      </div>
+      <div class="paid-detail-row">
+        <span class="paid-label">Thời gian:</span>
+        <span class="paid-val" id="paidDetailTime">23:10:45 26/9/2026</span>
+      </div>
+    </div>
+
+    <!-- Block 4: Fraud Warning Box -->
+    <div class="paid-fraud-box">
+      <div class="paid-fraud-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5V11.5C4 16.5 7.5 20.9 12 22C16.5 20.9 20 16.5 20 11.5V5L12 2Z" fill="#38BDF8" fill-opacity="0.25" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 8V12" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="15.5" r="1" fill="#38BDF8"/>
+        </svg>
+      </div>
+      <div class="paid-fraud-text">
+        <strong>Chống gian lận:</strong> Bot Zalo chỉ duyệt gửi file khi ngân hàng đã ghi nhận tiền thực tế khớp mã đơn &amp; số tiền. Mọi lệnh ảo sẽ bị từ chối tự động.
       </div>
     </div>
   </div>
@@ -1852,7 +2155,68 @@ function closeBuyModal() {
 
 function confirmPaid() {
   closeBuyModal();
-  toast('✅', 'Đã ghi nhận thanh toán! Vui lòng gửi lệnh !done ' + window.currentOrderMemo + ' cho Bot Zalo hoặc gửi bill đến Zalo 0588500524 (Anh Phú).');
+  openPaidModal();
+}
+
+function openPaidModal() {
+  var memo = window.currentOrderMemo || ('DP' + Math.floor(100000 + Math.random() * 900000));
+  window.currentOrderMemo = memo;
+
+  var confirmCodeEl = document.getElementById('paidConfirmCode');
+  var detailCodeEl = document.getElementById('paidDetailCode');
+  var detailProdEl = document.getElementById('paidDetailProd');
+  var detailPlanEl = document.getElementById('paidDetailPlan');
+  var detailPriceEl = document.getElementById('paidDetailPrice');
+  var detailTimeEl = document.getElementById('paidDetailTime');
+
+  if (confirmCodeEl) confirmCodeEl.textContent = memo;
+  if (detailCodeEl) detailCodeEl.textContent = memo;
+  if (detailProdEl) detailProdEl.textContent = currentProduct ? currentProduct.name : 'AimLock iOS';
+  if (detailPlanEl) detailPlanEl.textContent = currentPlan ? currentPlan.name : 'Gói 1 tháng';
+  if (detailPriceEl) detailPriceEl.textContent = currentPlan ? formatVND(currentPlan.price) : '50.000đ';
+  if (detailTimeEl) detailTimeEl.textContent = formatCurrentDateTime();
+
+  var m = document.getElementById('paidModal');
+  if (m) m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePaidModal() {
+  var m = document.getElementById('paidModal');
+  if (m) m.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function copyPaidSyntax() {
+  var memo = window.currentOrderMemo || (document.getElementById('paidConfirmCode') ? document.getElementById('paidConfirmCode').textContent.trim() : 'DP487340');
+  var cmd = '!done ' + memo;
+  
+  if (!navigator.clipboard) {
+    var ta = document.createElement('textarea');
+    ta.value = cmd;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  } else {
+    navigator.clipboard.writeText(cmd);
+  }
+
+  var copyBtnText = document.getElementById('paidCopyText');
+  if (copyBtnText) {
+    var oldText = copyBtnText.textContent;
+    copyBtnText.textContent = 'Đã chép!';
+    setTimeout(function() {
+      copyBtnText.textContent = oldText;
+    }, 2000);
+  }
+  toast('📋', 'Đã sao chép: ' + cmd + ' (Gửi cho Bot Zalo)');
+}
+
+function formatCurrentDateTime() {
+  var now = new Date();
+  var pad = function(n) { return n < 10 ? '0' + n : n; };
+  return pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()) + ' ' + now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
 }
 
 /* ═══════ COPY TEXT FUNCTION ═══════ */
