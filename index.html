@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SHOP ĐẠI PHÚ FF • CỬA HÀNG SIÊU PHẨM KÉO TÂM</title>
-<meta name="description" content="Shop Đại Phú FF — Sản phẩm số chất lượng, siêu phẩm kéo tâm đỉnh cao, thanh toán nhanh và hỗ trợ thuận tiện.">
-<meta name="keywords" content="sản phẩm số, config, key, kéo tâm free fire, đại phú ff, goget x, goget plus">
+<meta name="description" content="Shop Đại Phú FF — Chuyên cung cấp TrollModz, SX2 Định Vị, Proxy iOS Novax/Delta, AimLock Forget, Forget Hex V1-V5, Menu Migul, Panel Android.">
+<meta name="keywords" content="trollmodz, sx2, proxy ios, aimlock forget, forget hex, migul, panel android, shop đại phú ff">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#171a1f">
 <!-- Font Awesome 6.5.2 -->
@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="assets/theme.css">
 
 <style>
-/* Custom overrides to enhance Đại Phú FF brand */
 :root {
   --accent: #171a1f;
   --brand: #171a1f;
@@ -37,7 +36,7 @@
   --image-fit: cover;
 }
 
-/* Ensure 4 columns desktop layout */
+/* 4 columns desktop layout */
 .product-grid {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
@@ -75,6 +74,64 @@
 }
 .product:hover .product-thumb img.js-product-image {
   transform: scale(1.05) !important;
+}
+
+/* Plan selector chips in modal */
+.plan-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+.plan-chip {
+  background: #f6f7f8;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: all .16s ease;
+  position: relative;
+}
+.plan-chip:hover {
+  background: #edf0f3;
+  border-color: #cbd1d8;
+}
+.plan-chip.active {
+  background: #171a1f;
+  border-color: #171a1f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(23,26,31,.2);
+}
+.plan-chip-title {
+  font-size: 11px;
+  font-weight: 700;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.plan-chip-price {
+  font-size: 13px;
+  font-weight: 850;
+  margin-top: 2px;
+  display: block;
+}
+.plan-chip.active .plan-chip-price {
+  color: #38bdf8;
+}
+.plan-chip-badge {
+  position: absolute;
+  top: -6px;
+  right: 6px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
 }
 
 /* Feedback Grid Section */
@@ -360,7 +417,7 @@
     <div class="section-head">
       <div>
         <h2>Sản phẩm</h2>
-        <p>Bấm vào sản phẩm để xem đầy đủ thông tin.</p>
+        <p>Bấm vào sản phẩm để chọn gói thời hạn và xem chi tiết.</p>
       </div>
       <div class="product-tools">
         <label class="search-box">
@@ -381,11 +438,13 @@
     <div class="filters-wrap">
       <div class="filters">
         <button class="filter-btn active" data-category-filter="all">Tất cả</button>
-        <button class="filter-btn" data-category-filter="CONFIG">CONFIG</button>
-        <button class="filter-btn" data-category-filter="Config">Config</button>
-        <button class="filter-btn" data-category-filter="Conffig">Conffig</button>
+        <button class="filter-btn" data-category-filter="AimLock">AimLock</button>
+        <button class="filter-btn" data-category-filter="Forget Hex">Forget Hex</button>
+        <button class="filter-btn" data-category-filter="Proxy iOS">Proxy iOS</button>
+        <button class="filter-btn" data-category-filter="SX2 & Panel">SX2 & Panel</button>
+        <button class="filter-btn" data-category-filter="Menu & Mod">Menu & Mod</button>
       </div>
-      <span id="product-count" class="result-count">7 sản phẩm</span>
+      <span id="product-count" class="result-count">9 sản phẩm</span>
     </div>
 
     <!-- Product Grid (Exact 4 columns matching vipgonopro.shop) -->
@@ -437,19 +496,25 @@
   <a href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i><span>Hỗ trợ</span></a>
 </nav>
 
-<!-- ══ BUY & PAYMENT MODAL (VIETQR + BOT ZALO) ══ -->
+<!-- ══ BUY & PAYMENT MODAL (CHỌN GÓI + VIETQR + BOT ZALO) ══ -->
 <div id="buyModal" class="modal">
   <div class="modal-backdrop" onclick="closeBuyModal()"></div>
   <div class="modal-card" style="width:min(520px,100%);max-height:90vh;overflow-y:auto;">
     <button class="modal-close" onclick="closeBuyModal()"><i class="fa-solid fa-xmark"></i></button>
     
-    <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px;">
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
       <img id="mProductImg" src="" style="width:68px;height:68px;border-radius:12px;object-fit:cover;border:1px solid var(--line);">
       <div>
         <span id="mProductCat" class="status success" style="font-size:10px;font-weight:700;">CONFIG</span>
-        <h3 id="mProductTitle" style="margin:2px 0 0;font-size:15px;font-weight:800;">Siêu Phẩm GoGet X</h3>
-        <div id="mProductPrice" style="font-size:18px;font-weight:800;color:var(--text);margin-top:2px;">250.000đ</div>
+        <h3 id="mProductTitle" style="margin:2px 0 0;font-size:15px;font-weight:800;">Tên Sản Phẩm</h3>
+        <div id="mProductPrice" style="font-size:18px;font-weight:800;color:var(--text);margin-top:2px;">20.000đ</div>
       </div>
+    </div>
+
+    <!-- Plan selector -->
+    <div style="margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px;"><i class="fa-solid fa-layer-group"></i> Chọn gói / phiên bản:</div>
+      <div class="plan-chips" id="mPlanChips"></div>
     </div>
     
     <div style="background:#f6f7f8;border-radius:12px;padding:12px;margin-bottom:16px;border:1px solid var(--line);">
@@ -481,7 +546,7 @@
           <div><small>CHỦ TÀI KHOẢN</small><strong>BUI VAN CAO</strong></div>
         </div>
         <div class="transfer-note">
-          <div><small>SỐ TIỀN CẦN THANH TOÁN</small><strong id="mPayAmount" style="color:#b42318;">250.000 đ</strong></div>
+          <div><small>SỐ TIỀN CẦN THANH TOÁN</small><strong id="mPayAmount" style="color:#b42318;">20.000 đ</strong></div>
           <button class="copy-btn" onclick="copyText(window.currentPayAmountRaw, this)"><i class="fa-solid fa-copy"></i></button>
         </div>
         <div class="transfer-note" style="background:#fef2f2;border-color:#fecaca;">
@@ -538,84 +603,157 @@
 
 <!-- ══ APP SCRIPTS ══ -->
 <script>
-/* ═══════ PRODUCT DATABASE (CLONED EXACTLY FROM VIPGONOPRO.SHOP) ═══════ */
+/* ═══════ REAL PRODUCTS DATA (SHOP ĐẠI PHÚ FF) ═══════ */
 var PRODUCTS = [
   {
-    id: 'vip-config',
-    category: 'CONFIG',
-    buyers: '1839 Người Mua',
-    name: 'Siêu Phẩm GoGet X',
-    shortDesc: 'SIÊU PHẨM GOGET X',
-    fullDesc: 'Siêu phẩm GoGet X\nKhắc phục : Tình Trạng & Rung Tâm & Lố & Đầu Hút\nƯu Điểm : Tâm Súng Bám, Tâm Súng Đầm, Ôm Chặt Đầu!\nLưu Ý: Siêu Phẩm GoGet Chỉ Sử Dụng Một Duy Nhất 1 Thiết Bị, Nếu Chia Sẻ Qua Thiết Bị Khác Mất Tác Dụng Bên GO Không Chịu Trách Nhiệm ✅',
-    price: 250000,
-    priceFormatted: '250.000đ',
-    image: 'assets/uploads/products/20260906-1f01a5ca57a390f2ade7.jpg'
+    id: 'trollmodz',
+    category: 'Menu & Mod',
+    buyers: '2450 Người Mua',
+    name: 'TrollModz (Adr · iOS · PC)',
+    shortDesc: 'Ngưng đọng thời gian, nhảy dù nhanh, định vị gắn đầu, Aimbot.',
+    fullDesc: 'TrollModz bản quyền chính hãng hỗ trợ Android, iOS và PC.\nTính năng: Ngưng đọng thời gian, nhảy dù đáp đất tức thì, định vị gắn đầu, Aimbot tự động ghim, bypass an toàn tuyệt đối.',
+    priceMin: 10000,
+    priceFormatted: 'Từ 10.000đ',
+    image: 'trollmodz.png',
+    plans: [
+      { name: 'Key 1 Giờ (Test)', price: 10000 },
+      { name: 'Key 1 Ngày', price: 25000 },
+      { name: 'Key 7 Ngày (1 Tuần)', price: 100000, badge: 'Tiết kiệm' },
+      { name: 'Key 15 Ngày', price: 150000 },
+      { name: 'Key 30 Ngày (1 Tháng)', price: 250000, badge: 'Phổ biến' }
+    ]
   },
   {
-    id: 'config-super',
-    category: 'Config',
-    buyers: '1219 Người Mua',
-    name: 'Siêu Phẩm GoGet PLus',
-    shortDesc: 'SIÊU PHẨM GOGET USD',
-    fullDesc: 'Siêu phẩm GoGet Plus nâng cấp vượt trội, hỗ trợ kéo tâm cực êm, fix rung tâm, ghim đầu bám dính đạn, hỗ trợ cả Android và iOS không cần root máy.',
-    price: 299999,
-    priceFormatted: '299.999đ',
-    image: 'assets/uploads/products/20260906-8b7858a3baf68a65ea54.jpg'
+    id: 'sx2-dinhvi',
+    category: 'SX2 & Panel',
+    buyers: '1980 Người Mua',
+    name: 'SX2 Định Vị (Android)',
+    shortDesc: 'Radar overlay, ESP overlay, định vị gắn đầu, ESP Calibration.',
+    fullDesc: 'SX2 External - Siêu phẩm định vị độc quyền dành cho Android.\nTính năng: Radar overlay, ESP overlay định vị địch qua tường, Moco packet processing, ESP Calibration gom tâm mượt mà.',
+    priceMin: 30000,
+    priceFormatted: 'Từ 30.000đ',
+    image: 'assets/uploads/products/sx2-external.jpg',
+    plans: [
+      { name: 'Gói 1 Ngày', price: 30000 },
+      { name: 'Gói 7 Ngày (1 Tuần)', price: 80000, badge: 'Khuyên dùng' },
+      { name: 'Gói 30 Ngày (1 Tháng)', price: 200000, badge: 'Phổ biến' },
+      { name: 'Gói Vĩnh Viễn', price: 400000, badge: 'VIP' }
+    ]
   },
   {
-    id: 'proxy-pro',
-    category: 'Config',
-    buyers: '937 Người Mua',
-    name: 'Siêu Phẩm GoGet 2.5',
-    shortDesc: 'Tối ưu đường truyền và giảm giật lag.',
-    fullDesc: 'Tối ưu đường truyền, giảm giật lag, tăng độ mượt mà thao tác khi kéo tâm. Cân bằng độ nhạy súng giúp đạn gom chặt vào đầu địch.',
-    price: 450000,
-    priceFormatted: '450.000đ',
-    image: 'assets/uploads/products/20260906-56b63a9832a84cb87343.jpg'
+    id: 'proxy-ios-novax',
+    category: 'Proxy iOS',
+    buyers: '2150 Người Mua',
+    name: 'Proxy iOS - Novax',
+    shortDesc: 'Aimdrag, Aim cổ, Aimbody, Aim Magic, ESP Ghim đầu nhẹ tâm iOS.',
+    fullDesc: 'Proxy iOS Novax - Công nghệ kéo tâm cao cấp nhất cho iPhone / iPad.\nTính năng: Aimdrag, Aim cổ, Aimbody, Aim Magic (đạn ma thuật), ESP Aimcheck định vị ghim đầu, kéo tâm cực nhẹ và mượt mà.',
+    priceMin: 20000,
+    priceFormatted: 'Từ 20.000đ',
+    image: 'proxy-ios.png',
+    plans: [
+      { name: 'Key 1 Ngày', price: 20000 },
+      { name: 'Key 7 Ngày', price: 50000, badge: 'Tiết kiệm' },
+      { name: 'Key 30 Ngày', price: 100000, badge: 'Phổ biến' },
+      { name: 'Key Vĩnh Viễn', price: 200000, badge: 'VIP' }
+    ]
   },
   {
-    id: 'config-standard',
-    category: 'Config',
-    buyers: '418 Người Mua',
-    name: 'Siêu Phẩm GoGet Make Riêng Thiết Bị V1',
-    shortDesc: 'SIÊU PHẨM MAKE MÁY V1',
-    fullDesc: 'Bản make riêng theo thông số máy cá nhân V1, tương thích tuyệt đối phần cứng, kéo tâm siêu chuẩn theo từng dòng máy từ đời thấp đến cao.',
-    price: 1200000,
-    priceFormatted: '1.200.000đ',
-    image: 'assets/uploads/products/20260906-37006c0b38a2a76901bb.jpg'
+    id: 'proxy-ios-delta',
+    category: 'Proxy iOS',
+    buyers: '1720 Người Mua',
+    name: 'Proxy iOS - Delta',
+    shortDesc: 'Proxy kéo tâm siêu nhạy iOS, đạn gom chặt vào đầu địch.',
+    fullDesc: 'Proxy iOS Delta - Bản kéo tâm tối ưu đường truyền mượt mà.\nTính năng: Hỗ trợ kéo tâm không giật lag, tự động ôm đầu, ổn định cho mọi phiên bản iOS (Không hỗ trợ gói vĩnh viễn).',
+    priceMin: 20000,
+    priceFormatted: 'Từ 20.000đ',
+    image: 'proxy-ios-magic.png',
+    plans: [
+      { name: 'Key 1 Ngày', price: 20000 },
+      { name: 'Key 7 Ngày', price: 50000, badge: 'Tiết kiệm' },
+      { name: 'Key 30 Ngày', price: 100000, badge: 'Phổ biến' }
+    ]
   },
   {
-    id: 'blind-49',
-    category: 'Config',
-    buyers: '231 Người Mua',
-    name: 'Siêu Phẩm GoGet Make Thiết Bị V2',
-    shortDesc: 'Siêu Phẩm Make Riêng Máy v2',
-    fullDesc: 'Bản make cao cấp V2 cho từng dòng máy đặc thù, hỗ trợ full setting nhạy tâm đỉnh cao, fix hoàn toàn tình trạng trượt đầu, khựng khung hình.',
-    price: 2200000,
-    priceFormatted: '2.200.000đ',
-    image: 'assets/uploads/products/20260906-d1555dd787db5a0a72e3.jpg'
+    id: 'aimlock-forget',
+    category: 'AimLock',
+    buyers: '3100 Người Mua',
+    name: 'AimLock Forget (Adr · iOS)',
+    shortDesc: 'Aimlock Forget bản 1.0, 2.0, 3.0 kéo tâm tự động cực đỉnh.',
+    fullDesc: 'Siêu phẩm AimLock Forget dành cho cả Android và iOS.\n- Bản 1.0 (50k): Kéo tâm cơ bản, mượt mà.\n- Bản 2.0 (200k): Cân bằng độ nhạy súng, fix trượt đầu.\n- Bản 3.0 (500k): Ghim đầu tối thượng, ôm chặt đầu không rung lắc.',
+    priceMin: 50000,
+    priceFormatted: 'Từ 50.000đ',
+    image: 'assets/uploads/products/20260906-1f01a5ca57a390f2ade7.jpg',
+    plans: [
+      { name: 'AimLock Forget 1.0', price: 50000 },
+      { name: 'AimLock Forget 2.0', price: 200000, badge: 'Bán chạy' },
+      { name: 'AimLock Forget 3.0', price: 500000, badge: 'VIP' }
+    ]
   },
   {
-    id: 'blind-149',
-    category: 'Conffig',
-    buyers: '838 Người Mua',
-    name: 'Siêu Phẩm Goeeirx',
-    shortDesc: 'Siêu Phẩm Goeerix',
-    fullDesc: 'Bản config Goeeirx đặc biệt, ghim tâm mượt mà, tốc độ vuốt cực nhạy, thích hợp cho anh em đi rank và leo cúp tốc độ cao.',
-    price: 350000,
-    priceFormatted: '350.000đ',
-    image: 'assets/uploads/products/20260906-30035ea8c96490014055.jpg'
+    id: 'forget-hex',
+    category: 'Forget Hex',
+    buyers: '2890 Người Mua',
+    name: 'Forget Hex VIP (V1 - V5)',
+    shortDesc: 'Forget Hex V1 đến V5 hỗ trợ iOS & Android, bám dính đầu 100%.',
+    fullDesc: 'Hệ thống Forget Hex độc quyền hỗ trợ Android & iOS:\n- 49K cơ bản: Forget Hex V1 🇻🇳\n- 99K nâng cấp: Forget Hex V2 🇻🇳\n- 199K đầy đủ: Forget Hex V3 🇻🇳\n- 399K Pro: Forget Hex V4 🇻🇳\n- 799K+ combo riêng: Forget Pro V5 🇻🇳',
+    priceMin: 49000,
+    priceFormatted: 'Từ 49.000đ',
+    image: 'assets/uploads/products/20260906-8b7858a3baf68a65ea54.jpg',
+    plans: [
+      { name: '49K Cơ Bản - Forget Hex V1 🇻🇳', price: 49000 },
+      { name: '99K Nâng Cấp - Forget Hex V2 🇻🇳', price: 99000 },
+      { name: '199K Đầy Đủ - Forget Hex V3 🇻🇳', price: 199000, badge: 'Đề xuất' },
+      { name: '399K Pro - Forget Hex V4 🇻🇳', price: 399000, badge: 'VIP' },
+      { name: '799K Combo Riêng - Forget Pro V5 🇻🇳', price: 799000, badge: 'Cực Phẩm' }
+    ]
   },
   {
-    id: 'fluorite-1',
-    category: 'Config',
-    buyers: '757 Người Mua',
-    name: 'Siêu Phẩm GoGet 5.5',
-    shortDesc: 'SIÊU PHẨM GOGET 5.5 USD',
-    fullDesc: 'Bản GoGet 5.5 mạnh mẽ, nâng cao tốc độ vuốt tâm, bám đầu tuyệt đối, hoạt động 100% ổn định vĩnh viễn không lo khóa tài khoản.',
-    price: 550000,
-    priceFormatted: '550.000đ',
-    image: 'assets/uploads/products/20260906-b0396559e613c6dac847.jpg'
+    id: 'migul-lite',
+    category: 'Menu & Mod',
+    buyers: '1450 Người Mua',
+    name: 'Menu Migul Lite (iOS)',
+    shortDesc: 'Nhẹ, mượt, Aimbot, Visuals ESP, chống khóa acc cực tốt.',
+    fullDesc: 'Menu Migul Lite dành riêng cho iOS:\n- Dung lượng siêu nhẹ, không tụt FPS.\n- Aimbot tự động ghim, Visuals ESP định vị chuẩn xác.\n- Chống khóa tài khoản, an toàn khi leo rank.',
+    priceMin: 50000,
+    priceFormatted: 'Từ 50.000đ',
+    image: 'menu-lite.png',
+    plans: [
+      { name: 'Key 1 Ngày', price: 50000 },
+      { name: 'Key 7 Ngày (1 Tuần)', price: 150000, badge: 'Tiết kiệm' },
+      { name: 'Key 30 Ngày (1 Tháng)', price: 350000, badge: 'Phổ biến' }
+    ]
+  },
+  {
+    id: 'migul-pro',
+    category: 'Menu & Mod',
+    buyers: '2280 Người Mua',
+    name: 'Menu Migul Pro (iOS)',
+    shortDesc: 'Bản Pro cao cấp nhất, full tính năng bá đạo, bypass an toàn.',
+    fullDesc: 'Menu Migul Pro cao cấp nhất cho iOS:\n- Đầy đủ tính năng: Aimbot 360 độ, ESP name/box/line, Teleport, Auto Kill.\n- Hệ thống Bypass bảo vệ chống quét 100% an toàn.',
+    priceMin: 10000,
+    priceFormatted: 'Từ 10.000đ',
+    image: 'assets/uploads/products/20260906-56b63a9832a84cb87343.jpg',
+    plans: [
+      { name: 'Key 1 Giờ (Test)', price: 10000 },
+      { name: 'Key 1 Ngày', price: 70000 },
+      { name: 'Key 7 Ngày (1 Tuần)', price: 215000, badge: 'Tiết kiệm' },
+      { name: 'Key 30 Ngày (1 Tháng)', price: 450000, badge: 'VIP' }
+    ]
+  },
+  {
+    id: 'panel-adr',
+    category: 'SX2 & Panel',
+    buyers: '1680 Người Mua',
+    name: 'Panel External (Android)',
+    shortDesc: 'Panel định vị radar, ESP, kéo tâm mượt không rung giật lag.',
+    fullDesc: 'Panel External cao cấp dành cho thiết bị Android:\n- Radar overlay, ESP gắn đầu, hiển thị khoảng cách địch.\n- Tối ưu độ nhạy màn hình cảm ứng, kéo tâm bám đầu tức thì.',
+    priceMin: 150000,
+    priceFormatted: 'Từ 150.000đ',
+    image: 'assets/uploads/products/sx2-external.jpg',
+    plans: [
+      { name: 'Gói 7 Ngày', price: 150000, badge: 'Tiết kiệm' },
+      { name: 'Gói 30 Ngày (1 Tháng)', price: 450000, badge: 'Phổ biến' }
+    ]
   }
 ];
 
@@ -624,8 +762,14 @@ var activeCategory = 'all';
 var searchQuery = '';
 var sortOrder = 'default';
 var currentProduct = null;
+var currentPlan = null;
 var currentOrderMemo = '';
 var currentPayAmountRaw = 0;
+
+/* ═══════ HELPERS ═══════ */
+function formatVND(n) {
+  return n.toLocaleString('vi-VN') + 'đ';
+}
 
 /* ═══════ RENDER PRODUCTS ═══════ */
 function renderProducts() {
@@ -642,9 +786,9 @@ function renderProducts() {
   });
 
   if (sortOrder === 'price-asc') {
-    filtered.sort(function(a, b) { return a.price - b.price; });
+    filtered.sort(function(a, b) { return a.priceMin - b.priceMin; });
   } else if (sortOrder === 'price-desc') {
-    filtered.sort(function(a, b) { return b.price - a.price; });
+    filtered.sort(function(a, b) { return b.priceMin - a.priceMin; });
   } else if (sortOrder === 'name') {
     filtered.sort(function(a, b) { return a.name.localeCompare(b.name); });
   }
@@ -659,8 +803,8 @@ function renderProducts() {
   empty.classList.add('hidden');
 
   var html = '';
-  filtered.forEach(function(p, idx) {
-    html += '<article class="product product-clickable" data-category="' + p.category + '" data-price="' + p.price + '" data-name="' + p.name.toLowerCase() + '" onclick="openBuyModalById(\'' + p.id + '\')">'
+  filtered.forEach(function(p) {
+    html += '<article class="product product-clickable" data-category="' + p.category + '" data-price="' + p.priceMin + '" data-name="' + p.name.toLowerCase() + '" onclick="openBuyModalById(\'' + p.id + '\')">'
       + '<div class="product-thumb">'
         + '<span class="tag">' + p.buyers + '</span>'
         + '<img class="js-product-image" src="' + p.image + '" alt="' + p.name + '" loading="lazy">'
@@ -741,12 +885,11 @@ if (resetBtn) {
   });
 }
 
-/* ═══════ MODAL BUY & VIETQR ═══════ */
+/* ═══════ MODAL BUY & PLAN SELECTOR & VIETQR ═══════ */
 function openBuyModalById(id) {
   var p = PRODUCTS.find(function(item) { return item.id === id; });
   if (!p) return;
   currentProduct = p;
-  window.currentPayAmountRaw = p.price;
 
   // Generate unique order ID
   var orderId = 'DP' + Math.floor(100000 + Math.random() * 900000);
@@ -755,17 +898,48 @@ function openBuyModalById(id) {
   document.getElementById('mProductImg').src = p.image;
   document.getElementById('mProductCat').textContent = p.category;
   document.getElementById('mProductTitle').textContent = p.name;
-  document.getElementById('mProductPrice').textContent = p.priceFormatted;
   document.getElementById('mProductDesc').textContent = p.fullDesc;
-  document.getElementById('mPayAmount').textContent = p.priceFormatted;
   document.getElementById('mOrderMemo').textContent = orderId;
   document.getElementById('mBotCode').textContent = orderId;
 
-  // Generate VietQR URL: MB Bank, STK: 0941414448, Account Name: BUI VAN CAO
-  var qrUrl = 'https://img.vietqr.io/image/MB-0941414448-compact2.png?amount=' + p.price + '&addInfo=' + encodeURIComponent(orderId) + '&accountName=BUI%20VAN%20CAO';
-  document.getElementById('mQrCode').src = qrUrl;
+  // Render plan chips
+  var chipsContainer = document.getElementById('mPlanChips');
+  var chipsHtml = '';
+  p.plans.forEach(function(plan, idx) {
+    var isAct = idx === 0 ? ' active' : '';
+    chipsHtml += '<div class="plan-chip' + isAct + '" onclick="selectPlan(' + idx + ', this)">'
+      + (plan.badge ? '<span class="plan-chip-badge">' + plan.badge + '</span>' : '')
+      + '<span class="plan-chip-title">' + plan.name + '</span>'
+      + '<span class="plan-chip-price">' + formatVND(plan.price) + '</span>'
+    + '</div>';
+  });
+  chipsContainer.innerHTML = chipsHtml;
+
+  // Select first plan by default
+  selectPlan(0);
 
   document.getElementById('buyModal').classList.add('open');
+}
+
+function selectPlan(idx, chipEl) {
+  if (!currentProduct || !currentProduct.plans[idx]) return;
+  var plan = currentProduct.plans[idx];
+  currentPlan = plan;
+  window.currentPayAmountRaw = plan.price;
+
+  // Update chip active classes
+  if (chipEl) {
+    document.querySelectorAll('.plan-chip').forEach(function(c) { c.classList.remove('active'); });
+    chipEl.classList.add('active');
+  }
+
+  // Update price in modal header & amount
+  document.getElementById('mProductPrice').textContent = formatVND(plan.price);
+  document.getElementById('mPayAmount').textContent = formatVND(plan.price);
+
+  // Update VietQR: MB Bank, STK: 0941414448, Account Name: BUI VAN CAO
+  var qrUrl = 'https://img.vietqr.io/image/MB-0941414448-compact2.png?amount=' + plan.price + '&addInfo=' + encodeURIComponent(window.currentOrderMemo) + '&accountName=BUI%20VAN%20CAO';
+  document.getElementById('mQrCode').src = qrUrl;
 }
 
 function closeBuyModal() {
