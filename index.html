@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SHOP ĐẠI PHÚ FF • CỬA HÀNG SIÊU PHẨM KÉO TÂM</title>
-<meta name="description" content="Shop Đại Phú FF — Chuyên cung cấp siêu phẩm kéo tâm AimLock, AuraLock VIP, Proxy Aim iOS, TrollModz bản quyền chính hãng.">
-<meta name="keywords" content="aimlock, auralock, proxy aim, kéo tâm free fire, đại phú vn, trollmodz">
+<meta name="description" content="Shop Đại Phú FF — Sản phẩm số chất lượng, siêu phẩm kéo tâm đỉnh cao, thanh toán nhanh và hỗ trợ thuận tiện.">
+<meta name="keywords" content="sản phẩm số, config, key, kéo tâm free fire, đại phú ff, goget x, goget plus">
+<meta name="robots" content="index,follow">
 <meta name="theme-color" content="#171a1f">
 <!-- Font Awesome 6.5.2 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -13,931 +14,361 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- VipGoNoPro Core Styles -->
+<link rel="stylesheet" href="assets/app.css">
+<link rel="stylesheet" href="assets/theme.css">
 
 <style>
-:root{
-  --bg:#f5f6f8;
-  --surface:#ffffff;
-  --surface-2:#f0f2f5;
-  --text:#171a1f;
-  --muted:#69707a;
-  --line:#e1e4e8;
-  --brand:#171a1f;
-  --brand-2:#2e333a;
-  --accent:#171a1f;
-  --on-accent:#ffffff;
-  --success:#15803d;
-  --danger:#b42318;
-  --warning:#a16207;
-  --blue:#2563eb;
-  --radius:20px;
-  --radius-sm:11px;
-  --shadow:0 12px 34px rgba(20,24,31,.08);
-  --shadow-lg:0 24px 70px rgba(18,22,28,.14);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  min-height:100vh;
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  font-size:14px;
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-  padding-bottom:60px;
-}
-button,input,select,textarea{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-.shell{width:min(1180px,calc(100% - 32px));margin:auto}
-.hidden{display:none!important}
-
-/* Background gradient subtleness */
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-2;
-  background:radial-gradient(circle at 8% 0%,rgba(0,0,0,.035),transparent 30%),radial-gradient(circle at 95% 10%,rgba(37,99,235,.035),transparent 28%);
+/* Custom overrides to enhance Đại Phú FF brand */
+:root {
+  --accent: #171a1f;
+  --brand: #171a1f;
+  --brand-2: #171a1f;
+  --on-accent: #ffffff;
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f5f6f8;
+  --text: #171a1f;
+  --muted: #69707a;
+  --line: #e1e4e8;
+  --radius: 24px;
+  --radius-sm: 11px;
+  --product-columns: 4;
+  --image-fit: cover;
 }
 
-/* ══ ANNOUNCEMENT BAR ══ */
-.announcement-bar{
-  background:#171a1f;
-  color:#fff;
-  font-size:11px;
-  font-weight:700;
-  padding:7px 0;
-  text-align:center;
-  letter-spacing:.3px;
+/* Ensure 4 columns desktop layout */
+.product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 14px !important;
 }
-.announcement-bar .shell{display:flex;align-items:center;justify-content:center;gap:8px}
-.announcement-bar i{color:#f59e0b}
-
-/* ══ TOPBAR ══ */
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:70;
-  background:rgba(255,255,255,.88);
-  border-bottom:1px solid rgba(225,228,232,.92);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  transition:box-shadow .2s ease,background .2s ease;
+@media(max-width: 1000px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }
-.topbar.scrolled{
-  box-shadow:0 8px 28px rgba(20,24,31,.07);
-  background:rgba(255,255,255,.96);
-}
-.topbar-inner{
-  height:70px;
-  display:flex;
-  align-items:center;
-  gap:24px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:var(--text);
-  text-decoration:none;
-  min-width:max-content;
-}
-.brand-mark{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:#171a1f;
-  color:#fff;
-  overflow:hidden;
-  box-shadow:0 6px 16px rgba(23,26,31,.16);
-}
-.brand-mark img{width:100%;height:100%;object-fit:cover}
-.brand b{display:block;font-size:14px;letter-spacing:-.2px;font-weight:800}
-.brand small{display:block;color:#8a9098;font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-top:1px}
-
-.desktop-nav{
-  display:flex;
-  align-items:center;
-  gap:4px;
-  margin:auto;
-}
-.desktop-nav a{
-  color:#5b6169;
-  text-decoration:none;
-  padding:8px 13px;
-  border-radius:9px;
-  font-size:12px;
-  font-weight:650;
-  transition:.18s ease;
-}
-.desktop-nav a:hover{background:#f1f3f5;color:#171a1f}
-.desktop-nav a.active{background:#171a1f;color:#fff}
-
-.top-actions{display:flex;align-items:center;gap:10px}
-.btn-live-status{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:5px 10px;
-  border-radius:999px;
-  background:#edfdf2;
-  border:1px solid #bbf7d0;
-  color:#15803d;
-  font-size:11px;
-  font-weight:700;
-}
-.btn-live-dot{width:7px;height:7px;border-radius:50%;background:#16a34a;box-shadow:0 0 8px #22c55e;animation:pulse 1.8s infinite}
-
-/* ══ BUTTONS ══ */
-.btn{
-  position:relative;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  min-height:40px;
-  padding:9px 15px;
-  border-radius:10px;
-  border:1px solid transparent;
-  text-decoration:none;
-  cursor:pointer;
-  font-size:12px;
-  font-weight:700;
-  transition:transform .16s ease,box-shadow .16s ease,background .16s ease,border-color .16s ease;
-  user-select:none;
-}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(0) scale(.985)}
-.btn-primary{background:#171a1f;border-color:#171a1f;color:#fff}
-.btn-primary:hover{background:#08090b;box-shadow:0 8px 18px rgba(20,24,31,.16)}
-.btn-ghost{background:#fff;border-color:var(--line);color:#22262c}
-.btn-ghost:hover{background:#f7f8f9;border-color:#d2d6db}
-.btn-buy{justify-content:space-between;background:#f6f7f8;color:#20242a;border-color:#e1e4e7}
-.btn-buy:hover{background:#171a1f;color:#fff;border-color:#171a1f}
-.btn-block{width:100%}
-
-/* ══ STORE HERO ══ */
-.page-wrap{padding:28px 0 60px}
-.store-hero{
-  position:relative;
-  overflow:hidden;
-  display:grid;
-  grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);
-  gap:32px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:38px 40px;
-  box-shadow:0 10px 36px rgba(20,24,31,.045);
-}
-.store-hero:after{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  right:-120px;
-  top:-140px;
-  background:rgba(37,99,235,.06);
-  filter:blur(1px);
-}
-.hero-copy{position:relative;z-index:1}
-.store-kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  color:#5b6169;
-  font-size:11px;
-  font-weight:750;
-  letter-spacing:.3px;
-  margin-bottom:12px;
-  text-transform:uppercase;
-}
-.store-kicker i{color:var(--success);font-size:11px}
-.store-hero h1{
-  font-size:38px;
-  line-height:1.15;
-  letter-spacing:-1.2px;
-  max-width:760px;
-  margin:0 0 14px;
-  font-weight:800;
-  color:var(--text);
-}
-.hero-copy p{
-  max-width:680px;
-  margin:0;
-  color:var(--muted);
-  font-size:13.5px;
-  line-height:1.6;
-}
-.hero-actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:22px;
-  flex-wrap:wrap;
-}
-.hero-points{
-  display:flex;
-  gap:16px;
-  flex-wrap:wrap;
-  margin-top:24px;
-  color:#69707a;
-  font-size:11px;
-  font-weight:600;
-}
-.hero-points span{display:flex;align-items:center;gap:6px}
-.hero-points i{color:#171a1f}
-
-/* Wallet summary card on hero */
-.wallet-summary{
-  position:relative;
-  z-index:1;
-  border-left:1px solid var(--line);
-  padding-left:32px;
-  align-self:stretch;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-.wallet-icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:#f1f3f5;
-  border:1px solid #e3e6e9;
-  margin-bottom:16px;
-  color:#252a30;
-  font-size:18px;
-}
-.wallet-summary .label{
-  font-size:11px;
-  font-weight:750;
-  color:#69707a;
-  text-transform:uppercase;
-  letter-spacing:.4px;
-  margin-bottom:4px;
-}
-.wallet-summary>strong{
-  font-size:24px;
-  letter-spacing:-.6px;
-  line-height:1.25;
-  color:var(--text);
-}
-.wallet-summary p{
-  color:var(--muted);
-  font-size:11.5px;
-  margin:8px 0 0;
-  line-height:1.5;
-}
-.wallet-summary .btn{margin-top:18px}
-
-/* ══ SECTION HEAD & PRODUCTS ══ */
-.products-section{margin-top:34px}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:18px;
-  margin:32px 0 16px;
-}
-.section-head h2{
-  font-size:24px;
-  letter-spacing:-.5px;
-  margin:0;
-  font-weight:800;
-  color:var(--text);
-}
-.section-head p{margin:4px 0 0;color:var(--muted);font-size:11.5px}
-
-.product-tools{display:flex;gap:8px;align-items:center}
-.search-box{
-  height:40px;
-  min-width:240px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:0 12px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:10px;
-  transition:.18s;
-}
-.search-box:focus-within{
-  border-color:#aeb4bb;
-  box-shadow:0 0 0 4px rgba(23,26,31,.04);
-}
-.search-box i{font-size:12px;color:#8a9098}
-.search-box input{border:0;outline:0;background:transparent;width:100%;color:var(--text);font-size:11.5px}
-.search-box kbd{
-  font-size:9px;
-  border:1px solid #d9dde1;
-  background:#f7f8f9;
-  border-radius:5px;
-  padding:2px 5px;
-  color:#8a9098;
-}
-.select{
-  height:40px;
-  padding:0 30px 0 12px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#fff;
-  color:#3e444b;
-  outline:none;
-  font-size:11.5px;
-  cursor:pointer;
+@media(max-width: 720px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
 }
 
-.filters-wrap{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:16px;
+/* Product thumb & images */
+.product-thumb {
+  position: relative !important;
+  width: 100% !important;
+  height: 142px !important;
+  border-radius: var(--radius-sm) !important;
+  overflow: hidden !important;
+  background: var(--bg) !important;
 }
-.filters{display:flex;gap:6px;overflow-x:auto;padding:2px 0}
-.filter-btn{
-  white-space:nowrap;
-  background:#fff;
-  border:1px solid var(--line);
-  color:#5b6169;
-  padding:7px 13px;
-  border-radius:9px;
-  font-weight:650;
-  cursor:pointer;
-  font-size:11.5px;
-  transition:.16s;
+.product-thumb img.js-product-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-sm) !important;
+  transition: transform .3s ease !important;
 }
-.filter-btn:hover{background:#f3f4f6}
-.filter-btn.active{background:#171a1f;color:#fff;border-color:#171a1f}
-.result-count{font-size:11px;color:#8a9098;white-space:nowrap}
-
-/* Product Grid */
-.product-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-.product{
-  position:relative;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:14px;
-  display:flex;
-  flex-direction:column;
-  min-height:340px;
-  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
-  cursor:pointer;
-}
-.product:hover{
-  transform:translateY(-4px);
-  border-color:#d2d6db;
-  box-shadow:0 16px 36px rgba(20,24,31,.08);
-}
-.product-thumb{
-  height:160px;
-  border-radius:12px;
-  background:linear-gradient(145deg,#eef0f2,#e6e9ec);
-  display:grid;
-  place-items:center;
-  position:relative;
-  overflow:hidden;
-  margin-bottom:12px;
-}
-.product-thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .3s ease;
-}
-.product:hover .product-thumb img{transform:scale(1.04)}
-.tag{
-  position:absolute;
-  z-index:2;
-  left:10px;
-  top:10px;
-  font-size:9.5px;
-  font-weight:750;
-  padding:4px 8px;
-  border-radius:6px;
-  background:rgba(255,255,255,.94);
-  color:#171a1f;
-  border:1px solid rgba(214,218,223,.9);
-  text-transform:uppercase;
-  letter-spacing:.3px;
-  backdrop-filter:blur(6px);
-}
-.product-meta{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  color:#8a9098;
-  font-size:10px;
-  font-weight:600;
-  margin-bottom:6px;
-}
-.product-meta i{font-size:3px}
-.product-meta .status-ok{color:#15803d;font-weight:700}
-.product h3{
-  font-size:14px;
-  line-height:1.4;
-  margin:0 0 6px;
-  font-weight:800;
-  color:var(--text);
-}
-.product p{
-  color:var(--muted);
-  font-size:11.5px;
-  line-height:1.5;
-  margin:0 0 12px;
-  flex:1;
-}
-.price-row{
-  display:flex;
-  align-items:baseline;
-  gap:7px;
-  margin-bottom:12px;
-}
-.price{
-  font-size:17px;
-  font-weight:800;
-  color:#171a1f;
-  letter-spacing:-.3px;
+.product:hover .product-thumb img.js-product-image {
+  transform: scale(1.05) !important;
 }
 
-/* ══ FEEDBACK GALLERY SECTION (14 ẢNH THỰC TẾ) ══ */
-.feedback-section{
-  margin-top:48px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:36px;
-  box-shadow:0 8px 32px rgba(20,24,31,.04);
+/* Feedback Grid Section */
+.fb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 14px;
 }
-.feedback-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:14px;
-  margin-top:20px;
+@media(max-width: 1000px) {
+  .fb-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-.fb-card{
-  background:#f9fafb;
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:all .22s ease;
-  display:flex;
-  flex-direction:column;
+@media(max-width: 720px) {
+  .fb-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
 }
-.fb-card:hover{
-  transform:translateY(-4px);
-  border-color:#171a1f;
-  box-shadow:0 12px 28px rgba(20,24,31,.08);
+.fb-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
 }
-.fb-card-img-wrap{
-  position:relative;
-  width:100%;
-  height:240px;
-  background:#eef0f2;
-  overflow:hidden;
+.fb-card:hover {
+  transform: translateY(-4px);
+  border-color: #d2d6db;
+  box-shadow: 0 16px 36px rgba(20,24,31,.09);
 }
-.fb-card-img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:top;
-  transition:transform .3s ease;
+.fb-card-thumb {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  background: #f1f3f5;
+  overflow: hidden;
 }
-.fb-card:hover .fb-card-img{transform:scale(1.05)}
-.fb-card-zoom{
-  position:absolute;
-  bottom:8px;
-  right:8px;
-  background:rgba(23,26,31,.85);
-  color:#fff;
-  font-size:10px;
-  font-weight:700;
-  padding:3px 8px;
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  gap:4px;
-  backdrop-filter:blur(4px);
+.fb-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform .3s ease;
 }
-.fb-card-info{
-  padding:10px 12px;
-  display:flex;
-  flex-direction:column;
-  gap:3px;
+.fb-card:hover .fb-card-thumb img {
+  transform: scale(1.05);
 }
-.fb-card-top{display:flex;justify-content:space-between;align-items:center}
-.fb-card-ver{font-size:10px;font-weight:700;color:var(--success)}
-.fb-card-stars{font-size:10px;color:#f59e0b}
-.fb-card-title{font-size:12px;font-weight:750;color:#171a1f;margin-top:2px}
-.fb-card-sub{font-size:10.5px;color:var(--muted)}
-
-/* ══ HOW IT WORKS (QUY TRÌNH MUA HÀNG) ══ */
-.how-section{margin-top:40px}
-.how-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-top:18px;
+.fb-card-body {
+  padding: 10px 12px 12px;
 }
-.how-card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:22px;
-  box-shadow:0 6px 20px rgba(20,24,31,.03);
-  display:flex;
-  gap:14px;
-  align-items:flex-start;
+.fb-badge {
+  font-size: 10px;
+  font-weight: 750;
+  color: #15803d;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-.how-num{
-  width:36px;
-  height:36px;
-  border-radius:10px;
-  background:#171a1f;
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-size:14px;
-  font-weight:800;
-  flex-shrink:0;
+.fb-stars {
+  color: #f59e0b;
+  font-size: 10px;
+  margin-top: 3px;
 }
-.how-body h4{margin:0 0 5px;font-size:13px;font-weight:800}
-.how-body p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.5}
-
-/* ══ MODAL MUA HÀNG & THANH TOÁN ══ */
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  z-index:900;
-  background:rgba(23,26,31,.65);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .22s ease;
+.fb-title {
+  font-size: 12px;
+  font-weight: 750;
+  color: var(--text);
+  margin-top: 4px;
 }
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal-box{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:20px;
-  width:100%;
-  max-width:520px;
-  max-height:92vh;
-  overflow-y:auto;
-  padding:28px 24px;
-  box-shadow:var(--shadow-lg);
-  position:relative;
-  transform:scale(.95) translateY(10px);
-  transition:transform .22s cubic-bezier(.34,1.56,.64,1);
-}
-.modal-overlay.open .modal-box{transform:none}
-.modal-close{
-  position:absolute;
-  top:16px;
-  right:16px;
-  width:32px;
-  height:32px;
-  border-radius:8px;
-  border:1px solid var(--line);
-  background:#fff;
-  cursor:pointer;
-  display:grid;
-  place-items:center;
-  color:#69707a;
-  font-size:14px;
-  transition:.15s;
-}
-.modal-close:hover{background:#f1f3f5;color:#171a1f}
-
-.m-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.m-thumb{width:64px;height:64px;border-radius:12px;background:#f0f2f5;object-fit:cover;border:1px solid var(--line)}
-.m-title{font-size:16px;font-weight:800;margin:0 0 4px}
-.m-cat{font-size:10px;font-weight:700;color:#69707a;text-transform:uppercase}
-
-.plan-title{font-size:11px;font-weight:750;color:#596069;text-transform:uppercase;margin:16px 0 8px}
-.plan-list{display:flex;flex-direction:column;gap:8px}
-.plan-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:11px 14px;
-  border:1.5px solid var(--line);
-  border-radius:12px;
-  cursor:pointer;
-  background:#fff;
-  transition:.15s;
-}
-.plan-item:hover{border-color:#aeb4bb}
-.plan-item.selected{border-color:#171a1f;background:#f8f9fa;box-shadow:0 0 0 1px #171a1f}
-.plan-name{font-weight:750;font-size:12.5px}
-.plan-price{font-weight:800;font-size:13px;color:#171a1f}
-
-/* QR Frame Wrap */
-.qr-card{
-  margin-top:18px;
-  background:#f8f9fa;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:16px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-.qr-frame{
-  width:180px;
-  height:180px;
-  border-radius:12px;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:8px;
-  display:grid;
-  place-items:center;
-  margin-bottom:12px;
-}
-.qr-frame img{width:100%;height:100%;object-fit:contain}
-.bank-meta{width:100%;display:grid;gap:6px;font-size:11.5px;margin-bottom:12px}
-.bm-row{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:4px}
-.bm-label{color:var(--muted)}
-.bm-val{font-weight:750;color:#171a1f}
-.copy-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:#fff;
-  border:1px solid #d1d5db;
-  padding:3px 8px;
-  border-radius:6px;
-  font-size:11px;
-  cursor:pointer;
-  font-weight:700;
-}
-.copy-pill:hover{background:#f1f3f5}
-
-/* ══ SUCCESS ORDER MODAL ══ */
-.success-card{text-align:center;padding:12px 0}
-.sc-icon{font-size:42px;margin-bottom:10px}
-.sc-title{font-size:18px;font-weight:800;margin:0 0 4px}
-.sc-sub{font-size:11.5px;color:var(--muted);margin-bottom:16px}
-.bot-box{
-  background:#f1f5f9;
-  border:1.5px dashed #0284c7;
-  border-radius:12px;
-  padding:14px;
-  margin:14px 0;
-  text-align:center;
-  cursor:pointer;
-}
-.bot-code{
-  font-family:monospace;
-  font-size:16px;
-  font-weight:900;
-  color:#0369a1;
-  background:#fff;
-  padding:6px 14px;
-  border-radius:8px;
-  display:inline-block;
-  margin:6px 0;
-  border:1px solid #bae6fd;
-}
-
-/* ══ FOOTER ══ */
-.footer{
-  background:#fff;
-  border-top:1px solid var(--line);
-  padding:28px 0;
-  margin-top:60px;
-}
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
-.footer-inner b{display:block;font-size:14px}
-.footer-inner p{margin:3px 0 0;color:var(--muted);font-size:11.5px}
-.footer-inner a{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  text-decoration:none;
-  color:#171a1f;
-  font-weight:750;
-  padding:8px 14px;
-  border-radius:9px;
-  border:1px solid var(--line);
-}
-.footer-inner a:hover{background:#f1f3f5}
-
-/* ══ MOBILE BOTTOM NAVIGATION (GIỐNG Y CHANG VIPGONOPRO) ══ */
-.mobile-nav{
-  display:none;
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:60px;
-  background:rgba(255,255,255,.95);
-  border-top:1px solid var(--line);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  z-index:80;
-  justify-content:space-around;
-  align-items:center;
-}
-.mobile-nav a{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:3px;
-  color:#69707a;
-  text-decoration:none;
-  font-size:9.5px;
-  font-weight:700;
-  transition:.15s;
-}
-.mobile-nav a i{font-size:16px}
-.mobile-nav a.active,.mobile-nav a:hover{color:#171a1f}
-
-/* ══ 3D FLOATING NEON TOAST NOTIFICATIONS ══ */
-.toasts{
-  position:fixed;
-  bottom:75px;
-  right:20px;
-  z-index:9999;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  pointer-events:none;
-}
-.toast{
-  position:relative;
-  background:linear-gradient(135deg,rgba(22,29,49,.97) 0%,rgba(12,16,30,.98) 100%);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  border:1.5px solid rgba(56,189,248,.65);
-  border-radius:16px;
-  padding:14px 16px 14px 14px;
-  display:flex;
-  align-items:center;
-  gap:13px;
-  box-shadow:0 20px 48px -10px rgba(0,0,0,.85),0 0 25px rgba(6,182,212,.35),inset 0 1px 1px rgba(255,255,255,.3);
-  pointer-events:all;
-  cursor:pointer;
-  min-width:260px;
-  max-width:390px;
-  overflow:hidden;
-  animation:tIn .38s cubic-bezier(.34,1.56,.64,1) both;
-  transition:all .25s ease;
-}
-.toast:hover{transform:translateY(-3px) scale(1.02);border-color:rgba(56,189,248,.85)}
-.toast.out{animation:tOut .25s ease both}
-@keyframes tIn{0%{opacity:0;transform:translateY(24px) scale(.92)}100%{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes tOut{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(16px) scale(.92)}}
-.t-accent{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#38bdf8,#8b5cf6);box-shadow:0 0 10px #38bdf8}
-.t-ico-box{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,rgba(56,189,248,.2),rgba(139,92,246,.25));border:1px solid rgba(56,189,248,.45);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-.t-content{flex:1;min-width:0}
-.t-msg{font-size:.86rem;font-weight:700;color:#ffffff;line-height:1.4}
-.t-close{background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.7);font-size:.78rem;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
-.t-progress{position:absolute;bottom:0;left:0;height:2.5px;width:100%;background:linear-gradient(90deg,#38bdf8,#a855f7);animation:tProg 3.6s linear forwards}
-@keyframes tProg{from{width:100%}to{width:0%}}
 
 /* Lightbox Modal */
-.lb-bg{position:fixed;inset:0;z-index:950;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
-.lb-bg.open{opacity:1;pointer-events:all}
-.lb-wrap{max-width:92vw;max-height:92vh;position:relative}
-.lb-wrap img{max-width:100%;max-height:90vh;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.7);object-fit:contain}
-.lb-close{position:absolute;top:-12px;right:-12px;width:34px;height:34px;border-radius:50%;background:#fff;border:none;color:#171a1f;font-weight:800;font-size:15px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.lb-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(15,18,22,.88);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.lb-modal.open {
+  display: flex;
+}
+.lb-wrap {
+  position: relative;
+  max-width: 92vw;
+  max-height: 92vh;
+}
+.lb-wrap img {
+  max-width: 100%;
+  max-height: 88vh;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0,0,0,.6);
+  object-fit: contain;
+}
+.lb-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: #171a1f;
+  font-size: 16px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
+}
 
-/* Responsive */
-@media(max-width:980px){
-  .store-hero{grid-template-columns:1fr;padding:28px 24px}
-  .wallet-summary{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:24px}
-  .product-grid{grid-template-columns:repeat(2,1fr)}
-  .how-grid{grid-template-columns:1fr}
+/* 3D Floating Neon Toast */
+.toasts {
+  position: fixed;
+  bottom: 75px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
 }
-@media(max-width:768px){
-  .desktop-nav{display:none}
-  .mobile-nav{display:flex}
-  .store-hero h1{font-size:28px;letter-spacing:-.8px}
-  .product-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .product{min-height:300px;padding:10px}
-  .product-thumb{height:130px}
-  .price{font-size:15px}
-  .section-head{flex-direction:column;align-items:flex-start}
-  .product-tools{width:100%}
-  .search-box{flex:1;min-width:0}
-  .feedback-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .fb-card-img-wrap{height:190px}
-  .toasts{bottom:70px;right:10px;max-width:calc(100vw - 20px)}
+.toast-item {
+  position: relative;
+  background: linear-gradient(135deg, rgba(22,29,49,.97) 0%, rgba(12,16,30,.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(56,189,248,.65);
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  box-shadow: 0 20px 48px -10px rgba(0,0,0,.85), 0 0 25px rgba(6,182,212,.35), inset 0 1px 1px rgba(255,255,255,.3);
+  pointer-events: all;
+  cursor: pointer;
+  min-width: 270px;
+  max-width: 390px;
+  overflow: hidden;
+  animation: tIn .38s cubic-bezier(.34,1.56,.64,1) both;
+  transition: all .25s ease;
 }
-@media(max-width:420px){
-  .product-grid{grid-template-columns:1fr}
-  .product-thumb{height:160px}
+.toast-item:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(56,189,248,.85);
+}
+.toast-item.out {
+  animation: tOut .25s ease both;
+}
+@keyframes tIn {
+  0% { opacity: 0; transform: translateY(24px) scale(.92); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes tOut {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(16px) scale(.92); }
+}
+.t-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #38bdf8, #8b5cf6);
+  box-shadow: 0 0 10px #38bdf8;
+}
+.t-ico-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, rgba(56,189,248,.2), rgba(139,92,246,.25));
+  border: 1px solid rgba(56,189,248,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.t-content {
+  flex: 1;
+  min-width: 0;
+}
+.t-msg {
+  font-size: .84rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.4;
+}
+.t-close-btn {
+  background: rgba(255,255,255,.1);
+  border: none;
+  color: rgba(255,255,255,.7);
+  font-size: .78rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.t-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2.5px;
+  width: 100%;
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  animation: tProg 3.6s linear forwards;
+}
+@keyframes tProg {
+  from { width: 100%; }
+  to { width: 0%; }
 }
 </style>
 </head>
+
 <body class="storefront">
+<a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
+<div id="nav-progress" class="nav-progress"></div>
+<div id="toast" class="toast"></div>
 
 <!-- ══ ANNOUNCEMENT BAR ══ -->
 <div class="announcement-bar">
   <div class="shell">
-    <i class="fa-solid fa-bullhorn"></i>
-    <span>🔥 ĐẠI PHÚ FF — CỬA HÀNG SIÊU PHẨM KÉO TÂM CHÍNH HÃNG HOẠT ĐỘNG 24/7</span>
+    <i class="fa-solid fa-bullhorn"></i> Hoạt động 24/7 • Kích hoạt tự động qua Bot Zalo • Hỗ trợ cài đặt 1:1
   </div>
 </div>
 
-<!-- ══ TOPBAR (GIỐNG VIPGONOPRO) ══ -->
+<!-- ══ TOPBAR ══ -->
 <header class="topbar">
   <div class="shell topbar-inner">
-    <a class="brand" href="#">
-      <span class="brand-mark"><img src="trollmodz.png" alt="Logo Đại Phú"></span>
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><img class="website-logo" src="assets/uploads/logos/5c844996b35a54cc48e1fa13dd5e385a.jpg" alt="Logo Đại Phú FF"></span>
       <span><b>SHOP ĐẠI PHÚ FF</b><small>SẢN PHẨM SỐ</small></span>
     </a>
     <nav class="desktop-nav" aria-label="Điều hướng chính">
-      <a class="active" href="#products">Cửa hàng</a>
-      <a href="#feedback">Feedback (14 ảnh)</a>
-      <a href="#how">Cách mua</a>
-      <a href="javascript:void(0)" onclick="openOrderHistory()">Lịch sử đơn</a>
-      <a href="https://zalo.me/0588500524" target="_blank"><i class="fa-solid fa-headset"></i> Zalo Anh Phú</a>
+      <a class="active" href="index.html">Cửa hàng</a>
+      <a href="#products">Sản phẩm</a>
+      <a href="#feedback">Đánh giá</a>
+      <a href="https://zalo.me/0588500524" target="_blank" rel="noopener">Hỗ trợ Zalo</a>
     </nav>
     <div class="top-actions">
-      <span class="btn-live-status"><span class="btn-live-dot"></span> 128 online</span>
-      <button class="btn btn-ghost" id="topAuthBtn" onclick="openLogin()">Đăng nhập</button>
+      <a class="btn btn-ghost" href="javascript:void(0)" onclick="openLogin()" id="topAuthBtn">Đăng nhập</a>
     </div>
   </div>
 </header>
 
 <!-- ══ MAIN CONTENT ══ -->
-<main id="main-content" class="shell page-wrap">
+<main id="main-content" class="shell page-wrap" tabindex="-1">
 
   <!-- ══ STORE HERO ══ -->
-  <section class="store-hero">
+  <section class="store-hero reveal">
     <div class="hero-copy">
       <span class="store-kicker"><i class="fa-solid fa-circle-check"></i> CỬA HÀNG SIÊU PHẨM KÉO TÂM</span>
       <h1>Chọn sản phẩm phù hợp với nhu cầu của bạn.</h1>
-      <p>
-        Những Siêu Phẩm Bên ĐẠI PHÚ FF Tạo Ra Hoàn Toàn Là Hỗ Trợ Kéo Tâm, Không Liên Quan Đến PMT3 Và Sử Dụng Vĩnh Viễn ✅<br><br>
-        <strong>ZALO CSKH: 0588500524 (Anh Phú) · BOT ZALO DUYỆT ĐƠN: 0964976083</strong>
-      </p>
+      <p>Những Siêu Phẩm Bên ĐẠI PHÚ FF Tạo Ra Hoàn Toàn Là Hỗ Trợ Kéo Tâm, Không Liên Quan Đến PMT3 Và Sử Dụng Vĩnh Viễn ✅<br><br><b>ZALO: 0588500524 (Anh Phú) • BOT CSKH: 0964976083</b></p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#products"><i class="fa-solid fa-bag-shopping"></i> Xem sản phẩm</a>
-        <a class="btn btn-ghost" href="#feedback"><i class="fa-solid fa-comments"></i> 14+ Feedback thực tế</a>
-        <a class="btn btn-ghost" href="https://zalo.me/0588500524" target="_blank"><i class="fa-solid fa-headset"></i> Hỗ trợ Zalo</a>
-      </div>
-      <div class="hero-points">
-        <span><i class="fa-solid fa-shield-halved"></i> Bảo hành an toàn 100%</span>
-        <span><i class="fa-solid fa-bolt"></i> Nhận đơn 30 giây</span>
-        <span><i class="fa-solid fa-mobile-screen"></i> Hỗ trợ iOS &amp; Android</span>
-        <span><i class="fa-solid fa-rotate-left"></i> Hỗ trợ cài đặt 1:1</span>
+        <a class="btn btn-ghost" href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i> Liên hệ Zalo</a>
       </div>
     </div>
-
-    <!-- Right Side Wallet / Guest Summary -->
-    <aside class="wallet-summary">
+    <aside class="wallet-summary guest-summary">
       <div class="wallet-icon"><i class="fa-solid fa-user-lock"></i></div>
       <span class="label">Tài khoản thành viên</span>
       <strong id="sideUserTitle">Đăng nhập để mua hàng</strong>
-      <p id="sideUserSub">Đăng nhập hoặc chọn sản phẩm để thanh toán qua MB Bank và nhận file &amp; key tự động.</p>
-      <button class="btn btn-primary btn-block" id="sideAuthBtn" onclick="openLogin()">Đăng nhập / Đăng ký</button>
+      <p id="sideUserSub">Đăng nhập hoặc tạo tài khoản để thanh toán và nhận sản phẩm sau khi mua.</p>
+      <a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="openLogin()" id="sideAuthBtn">Đăng nhập / Đăng ký</a>
     </aside>
   </section>
 
   <!-- ══ PRODUCTS SECTION ══ -->
-  <section id="products" class="products-section">
+  <section id="products" class="products-section reveal">
     <div class="section-head">
       <div>
         <h2>Sản phẩm</h2>
-        <p>Bấm vào sản phẩm để chọn gói và thanh toán nhận đơn ngay.</p>
+        <p>Bấm vào sản phẩm để xem đầy đủ thông tin.</p>
       </div>
       <div class="product-tools">
         <label class="search-box">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="product-search" type="search" placeholder="Tìm sản phẩm..." autocomplete="off" oninput="doSearch(this.value)">
+          <input id="product-search" type="search" placeholder="Tìm sản phẩm..." autocomplete="off">
           <kbd>/</kbd>
         </label>
-        <select id="product-sort" class="select" onchange="doSort(this.value)">
+        <select id="product-sort" class="select">
           <option value="default">Mặc định</option>
           <option value="price-asc">Giá thấp → cao</option>
           <option value="price-desc">Giá cao → thấp</option>
@@ -946,67 +377,42 @@ body:before{
       </div>
     </div>
 
-    <!-- Category Filters -->
+    <!-- Filters -->
     <div class="filters-wrap">
       <div class="filters">
-        <button class="filter-btn active" onclick="filterCat('all',this)">Tất cả</button>
-        <button class="filter-btn" onclick="filterCat('al',this)">AimLock</button>
-        <button class="filter-btn" onclick="filterCat('au',this)">AuraLock VIP</button>
-        <button class="filter-btn" onclick="filterCat('px',this)">Proxy Aim iOS</button>
-        <button class="filter-btn" onclick="filterCat('tm',this)">TrollModz</button>
+        <button class="filter-btn active" data-category-filter="all">Tất cả</button>
+        <button class="filter-btn" data-category-filter="CONFIG">CONFIG</button>
+        <button class="filter-btn" data-category-filter="Config">Config</button>
+        <button class="filter-btn" data-category-filter="Conffig">Conffig</button>
       </div>
-      <span id="product-count" class="result-count">6 sản phẩm</span>
+      <span id="product-count" class="result-count">7 sản phẩm</span>
     </div>
 
-    <!-- Product Grid -->
+    <!-- Product Grid (Exact 4 columns matching vipgonopro.shop) -->
     <div class="product-grid" id="product-grid">
-      <!-- Injected by JavaScript -->
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <div id="product-empty" class="empty-state hidden">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <h3>Không tìm thấy sản phẩm</h3>
+      <p>Thử từ khóa khác hoặc chọn lại danh mục.</p>
+      <button class="btn btn-ghost" id="reset-products">Xóa bộ lọc</button>
     </div>
   </section>
 
-  <!-- ══ CUSTOMER FEEDBACK SHOWCASE (14 ẢNH THỰC TẾ) ══ -->
-  <section id="feedback" class="feedback-section">
-    <div class="section-head" style="margin-top:0">
-      <div>
-        <h2>⭐ 14+ Feedback Khách Hàng Thực Tế</h2>
-        <p>Hơn 5.000+ game thủ đã tin dùng và leo rank Thách Đấu. Chạm vào bất kỳ ảnh nào để phóng to xem tin nhắn &amp; bill!</p>
-      </div>
-    </div>
-    <div class="feedback-grid" id="feedback-grid">
-      <!-- 14 Cards Generated by JS -->
-    </div>
-  </section>
-
-  <!-- ══ HOW IT WORKS ══ -->
-  <section id="how" class="how-section">
+  <!-- ══ CUSTOMER FEEDBACK SECTION (14 ẢNH THẬT) ══ -->
+  <section id="feedback" class="products-section reveal" style="margin-top: 50px;">
     <div class="section-head">
       <div>
-        <h2>📖 Quy Trình Mua Hàng &amp; Nhận Key</h2>
-        <p>Chỉ 3 bước đơn giản, nhận file và key kích hoạt trong 30 giây.</p>
+        <h2>Đánh giá từ khách hàng</h2>
+        <p>Bấm vào ảnh để xem toàn màn hình phản hồi thực tế từ cộng đồng game thủ.</p>
       </div>
+      <span class="result-count"><i class="fa-solid fa-certificate" style="color:var(--success)"></i> 100% Khách Hàng Hài Lòng</span>
     </div>
-    <div class="how-grid">
-      <div class="how-card">
-        <div class="how-num">1</div>
-        <div class="how-body">
-          <h4>Chọn Sản Phẩm &amp; Gói</h4>
-          <p>Xem danh sách AimLock, AuraLock, Proxy Aim và chọn gói thời hạn phù hợp với nhu cầu.</p>
-        </div>
-      </div>
-      <div class="how-card">
-        <div class="how-num">2</div>
-        <div class="how-body">
-          <h4>Quét Mã VietQR MB Bank</h4>
-          <p>Chuyển khoản chính xác số tiền &amp; nội dung mã đơn hàng tới tài khoản BÙI VĂN CAO (0941414448).</p>
-        </div>
-      </div>
-      <div class="how-card">
-        <div class="how-num">3</div>
-        <div class="how-body">
-          <h4>Gửi !done Qua Bot Zalo</h4>
-          <p>Gửi lệnh <code>!done DPxxxxxx</code> tới Bot Zalo 0964976083 để nhận link tải và key tự động.</p>
-        </div>
-      </div>
+
+    <div class="fb-grid" id="fb-grid">
+      <!-- 14 Real Feedback Cards -->
     </div>
   </section>
 
@@ -1017,551 +423,451 @@ body:before{
   <div class="shell footer-inner">
     <div>
       <b>SHOP ĐẠI PHÚ FF</b>
-      <p>Sản phẩm số • Thanh toán nhanh • Hỗ trợ nhiệt tình khi cần 24/7</p>
+      <p>Sản phẩm số • Kéo tâm đỉnh cao • Thanh toán nhanh • Hỗ trợ khi cần</p>
     </div>
-    <a href="https://zalo.me/0588500524" target="_blank" rel="noopener">
-      <i class="fa-solid fa-headset"></i> Liên hệ Zalo Anh Phú (0588500524)
-    </a>
+    <a href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i> Liên hệ Zalo hỗ trợ</a>
   </div>
 </footer>
 
 <!-- ══ MOBILE BOTTOM NAVIGATION ══ -->
-<nav class="mobile-nav" aria-label="Điều hướng điện thoại">
-  <a class="active" href="#products"><i class="fa-solid fa-store"></i><span>Cửa hàng</span></a>
-  <a href="#feedback"><i class="fa-solid fa-comments"></i><span>Feedback</span></a>
-  <a href="javascript:void(0)" onclick="openOrderHistory()"><i class="fa-solid fa-clock-rotate-left"></i><span>Lịch sử</span></a>
-  <a href="https://zalo.me/0588500524" target="_blank"><i class="fa-solid fa-user"></i><span>Tài khoản</span></a>
+<nav class="mobile-nav" aria-label="Điều hướng trên điện thoại">
+  <a class="active" href="index.html"><i class="fa-solid fa-store"></i><span>Cửa hàng</span></a>
+  <a href="#products"><i class="fa-solid fa-fire"></i><span>Sản phẩm</span></a>
+  <a href="#feedback"><i class="fa-solid fa-comments"></i><span>Đánh giá</span></a>
+  <a href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i><span>Hỗ trợ</span></a>
 </nav>
 
-<!-- ══ MODAL MUA HÀNG & CHỌN GÓI ══ -->
-<div class="modal-overlay" id="buyModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeBuyModal()">✕</button>
-    <div class="m-header">
-      <img id="mThumb" class="m-thumb" src="" alt="Sản phẩm">
+<!-- ══ BUY & PAYMENT MODAL (VIETQR + BOT ZALO) ══ -->
+<div id="buyModal" class="modal">
+  <div class="modal-backdrop" onclick="closeBuyModal()"></div>
+  <div class="modal-card" style="width:min(520px,100%);max-height:90vh;overflow-y:auto;">
+    <button class="modal-close" onclick="closeBuyModal()"><i class="fa-solid fa-xmark"></i></button>
+    
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px;">
+      <img id="mProductImg" src="" style="width:68px;height:68px;border-radius:12px;object-fit:cover;border:1px solid var(--line);">
       <div>
-        <span class="m-cat" id="mCat">DANH MỤC</span>
-        <h3 class="m-title" id="mTitle">Tên sản phẩm</h3>
-        <span style="font-size:11px;color:var(--success);font-weight:700">● Đang hoạt động</span>
+        <span id="mProductCat" class="status success" style="font-size:10px;font-weight:700;">CONFIG</span>
+        <h3 id="mProductTitle" style="margin:2px 0 0;font-size:15px;font-weight:800;">Siêu Phẩm GoGet X</h3>
+        <div id="mProductPrice" style="font-size:18px;font-weight:800;color:var(--text);margin-top:2px;">250.000đ</div>
       </div>
     </div>
-
-    <!-- Chọn gói thời hạn -->
-    <div class="plan-title">Chọn gói thời hạn:</div>
-    <div class="plan-list" id="mPlanList"></div>
-
-    <!-- Khung QR Thanh toán -->
-    <div class="qr-card" id="mQrCard">
-      <div class="qr-frame">
-        <img id="mQrImg" src="" alt="Mã QR MB Bank">
-      </div>
-      <div class="bank-meta">
-        <div class="bm-row">
-          <span class="bm-label">Ngân hàng:</span>
-          <span class="bm-val">MB Bank (Quân Đội)</span>
-        </div>
-        <div class="bm-row">
-          <span class="bm-label">Chủ tài khoản:</span>
-          <span class="bm-val">BUI VAN CAO</span>
-        </div>
-        <div class="bm-row">
-          <span class="bm-label">Số tài khoản:</span>
-          <span class="bm-val">0941414448 <button class="copy-pill" onclick="copyText('0941414448')">Copy</button></span>
-        </div>
-        <div class="bm-row">
-          <span class="bm-label">Số tiền:</span>
-          <span class="bm-val" id="mPriceVal" style="color:var(--success)">0đ</span>
-        </div>
-        <div class="bm-row">
-          <span class="bm-label">Nội dung CK:</span>
-          <span class="bm-val"><strong id="mOidVal" style="color:#0284c7">DP000000</strong> <button class="copy-pill" onclick="copyOid()">Copy</button></span>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-block" style="padding:12px;font-size:13px" onclick="confirmPayment()">
-        ⚡ Tôi đã chuyển khoản xong (Lấy mã Bot Zalo)
-      </button>
-      <div style="font-size:10.5px;color:var(--muted);margin-top:8px">
-        🔒 Bot Zalo tự động đối soát ngân hàng MB Bank trước khi gửi file &amp; key.
-      </div>
+    
+    <div style="background:#f6f7f8;border-radius:12px;padding:12px;margin-bottom:16px;border:1px solid var(--line);">
+      <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;"><i class="fa-solid fa-circle-info"></i> Mô tả siêu phẩm:</div>
+      <div id="mProductDesc" style="font-size:11px;color:var(--muted);line-height:1.55;white-space:pre-line;"></div>
     </div>
-  </div>
-</div>
 
-<!-- ══ MODAL XÁC NHẬN ĐƠN & CÚ PHÁP BOT ZALO ══ -->
-<div class="modal-overlay" id="successModal">
-  <div class="modal-box" style="max-width:460px">
-    <button class="modal-close" onclick="closeSuccessModal()">✕</button>
-    <div class="success-card">
-      <div class="sc-icon">🧾</div>
-      <h3 class="sc-title">Mã Xác Nhận Đơn Hàng</h3>
-      <p class="sc-sub">Gửi mã này cho Bot Zalo để đối soát chuyển khoản MB Bank &amp; nhận link file!</p>
+    <!-- VietQR payment section -->
+    <div style="border-top:1px solid var(--line);padding-top:14px;">
+      <div style="font-size:12px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+        <i class="fa-solid fa-qrcode" style="color:var(--blue)"></i> Quét mã VietQR chuyển khoản nhanh:
+      </div>
       
-      <div class="bot-box" onclick="copyBotCmd()">
-        <div style="font-size:11px;font-weight:800;color:#0369a1;text-transform:uppercase">🤖 CÚ PHÁP GỬI BOT ZALO:</div>
-        <div class="bot-code" id="sBotCmd">!done DP000000</div>
-        <div style="font-size:10.5px;color:#64748b">Chạm vào hộp để sao chép cú pháp</div>
+      <div style="text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px;">
+        <img id="mQrCode" src="" alt="VietQR MBBank" style="width:190px;height:190px;object-fit:contain;border-radius:10px;margin-bottom:6px;">
+        <div style="font-size:11px;color:var(--muted);">Quét qua App ngân hàng bất kỳ (MBBank, Vietcombank, Momo...)</div>
       </div>
 
-      <div style="background:#f8f9fa;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:11.5px;text-align:left;display:grid;gap:6px">
-        <div><strong>Mã đơn:</strong> <span id="sOidText" style="color:#0284c7;font-family:monospace">DP000000</span></div>
-        <div><strong>Sản phẩm:</strong> <span id="sProdText">—</span></div>
-        <div><strong>Gói:</strong> <span id="sPlanText">—</span></div>
-        <div><strong>Số tiền:</strong> <span id="sAmtText" style="color:var(--success);font-weight:700">—</span></div>
-        <div><strong>Trạng thái:</strong> <span style="color:#a16207;font-weight:700">⏳ Chờ Bot Zalo đối soát MB Bank</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="transfer-note">
+          <div><small>NGÂN HÀNG THỤ HƯỞNG</small><strong>MB BANK (Quân Đội)</strong></div>
+          <button class="copy-btn" onclick="copyText('MBBANK', this)"><i class="fa-solid fa-copy"></i></button>
+        </div>
+        <div class="transfer-note">
+          <div><small>SỐ TÀI KHOẢN</small><strong>0941414448</strong></div>
+          <button class="copy-btn" onclick="copyText('0941414448', this)"><i class="fa-solid fa-copy"></i></button>
+        </div>
+        <div class="transfer-note">
+          <div><small>CHỦ TÀI KHOẢN</small><strong>BUI VAN CAO</strong></div>
+        </div>
+        <div class="transfer-note">
+          <div><small>SỐ TIỀN CẦN THANH TOÁN</small><strong id="mPayAmount" style="color:#b42318;">250.000 đ</strong></div>
+          <button class="copy-btn" onclick="copyText(window.currentPayAmountRaw, this)"><i class="fa-solid fa-copy"></i></button>
+        </div>
+        <div class="transfer-note" style="background:#fef2f2;border-color:#fecaca;">
+          <div><small style="color:#991b1b;">NỘI DUNG CHUYỂN KHOẢN (BẮT BUỘC CHÍNH XÁC)</small><strong id="mOrderMemo" style="color:#dc2626;font-family:monospace;font-size:14px;">DP...</strong></div>
+          <button class="copy-btn" style="border-color:#fca5a5;color:#b91c1c;" onclick="copyText(window.currentOrderMemo, this)"><i class="fa-solid fa-copy"></i></button>
+        </div>
       </div>
 
-      <a id="sZaloLink" href="https://zalo.me/0964976083" target="_blank" class="btn btn-primary btn-block" style="margin-top:16px;text-decoration:none">
-        <i class="fa-solid fa-paper-plane"></i> Mở Zalo Gửi Cho Bot (0964976083)
-      </a>
+      <div style="margin-top:14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px;">
+        <div style="font-size:11.5px;font-weight:700;color:#166534;margin-bottom:3px;"><i class="fa-solid fa-robot"></i> Kích hoạt key tự động qua Bot Zalo:</div>
+        <p style="margin:0;font-size:11px;color:#15803d;line-height:1.45;">
+          Sau khi chuyển khoản, nhắn lệnh <code style="background:#dcfce7;padding:2px 6px;border-radius:5px;font-weight:700;">!done <span id="mBotCode">DP...</span></code> cho <b>Bot Zalo: 0964976083</b> hoặc gửi bill đến Zalo <b>0588500524 (Anh Phú)</b> để nhận file & hướng dẫn cài đặt ngay lập tức!
+        </p>
+      </div>
+
+      <button class="btn btn-primary btn-block" style="margin-top:14px;" onclick="confirmPaid()"><i class="fa-solid fa-circle-check"></i> Tôi đã chuyển khoản thành công</button>
     </div>
   </div>
 </div>
 
-<!-- ══ MODAL LỊCH SỬ ĐƠN HÀNG ══ -->
-<div class="modal-overlay" id="historyModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeHistoryModal()">✕</button>
-    <h3 style="margin-top:0">📦 Lịch Sử Đơn Hàng</h3>
-    <div id="historyList" style="display:grid;gap:8px;max-height:360px;overflow-y:auto"></div>
-  </div>
-</div>
-
-<!-- ══ MODAL ĐĂNG NHẬP ══ -->
-<div class="modal-overlay" id="loginModal">
-  <div class="modal-box" style="max-width:400px">
-    <button class="modal-close" onclick="closeLoginModal()">✕</button>
-    <div style="text-align:center;margin-bottom:18px">
-      <div class="brand-mark" style="margin:0 auto 10px"><img src="trollmodz.png" alt="Logo"></div>
-      <h3 style="margin:0">Đăng Nhập Thành Viên</h3>
-      <p style="font-size:11.5px;color:var(--muted);margin:4px 0 0">Đăng nhập để lưu đơn hàng và nhận quà VIP</p>
+<!-- ══ LOGIN MODAL ══ -->
+<div id="loginModal" class="modal">
+  <div class="modal-backdrop" onclick="closeLoginModal()"></div>
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeLoginModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div style="text-align:center;margin-bottom:18px;">
+      <h3 style="margin:0 0 6px;font-size:18px;font-weight:800;">Đăng Nhập Thành Viên</h3>
+      <p style="margin:0;font-size:11px;color:var(--muted);">Đăng nhập tài khoản để nhận ưu đãi và quản lý key đã mua.</p>
     </div>
-    <form onsubmit="handleLoginSubmit(event)" style="display:grid;gap:12px">
-      <input type="text" id="loginUser" placeholder="Tên đăng nhập hoặc Zalo..." required class="select" style="width:100%;height:42px">
-      <input type="password" id="loginPass" placeholder="Mật khẩu..." required class="select" style="width:100%;height:42px">
-      <button type="submit" class="btn btn-primary btn-block" style="height:42px">Đăng Nhập Ngay</button>
+    <form onsubmit="handleLoginSubmit(event)">
+      <div class="form-group">
+        <label class="label">Tên tài khoản hoặc Email</label>
+        <input type="text" id="loginUser" class="input" placeholder="Nhập tài khoản của bạn..." required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label class="label">Mật khẩu</label>
+        <input type="password" id="loginPass" class="input" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:18px;">Đăng nhập ngay</button>
     </form>
   </div>
 </div>
 
-<!-- ══ LIGHTBOX XEM ẢNH FEEDBACK TOÀN MÀN HÌNH ══ -->
-<div class="lb-bg" id="lbBg" onclick="closeLB()">
+<!-- ══ LIGHTBOX MODAL ══ -->
+<div id="lbModal" class="lb-modal" onclick="closeLB()">
   <div class="lb-wrap" onclick="event.stopPropagation()">
     <button class="lb-close" onclick="closeLB()">✕</button>
-    <img id="lbImg" src="" alt="Ảnh phóng to">
+    <img id="lbImg" src="" alt="Feedback chi tiết">
   </div>
 </div>
 
-<!-- ══ TOAST NOTIFICATIONS ══ -->
-<div class="toasts" id="tc"></div>
+<!-- ══ TOAST CONTAINER ══ -->
+<div id="tc" class="toasts"></div>
 
+<!-- ══ APP SCRIPTS ══ -->
 <script>
-/* ═══════ CONFIG ═══════ */
-var BANK_ACC = '0941414448';
-var BANK_NAME = 'BUI VAN CAO';
-var BANK_BIN = '970422'; // MB Bank
-var ZALO_CS = '0588500524'; // Anh Phú
-var ZALO_BOT = '0964976083'; // Bot Zalo
-
-/* ═══════ PRODUCTS DATA ═══════ */
+/* ═══════ PRODUCT DATABASE (CLONED EXACTLY FROM VIPGONOPRO.SHOP) ═══════ */
 var PRODUCTS = [
   {
-    id: 1,
-    name: 'AimLock Android',
-    category: 'al',
-    catName: 'AimLock',
-    tag: '1839 Người Mua',
-    desc: 'Hỗ trợ kéo tâm tự động Android, không cần root máy, cập nhật liên tục.',
-    priceText: '50.000đ – 500.000đ',
-    img: 'https://placehold.co/600x338/111827/8b5cf6?text=AIMLOCK+ANDROID',
-    plans: [
-      { label: 'Gói 1 tháng', price: 50000 },
-      { label: 'Gói 3 tháng', price: 250000, badge: 'Phổ biến' },
-      { label: 'Gói Vĩnh Viễn', price: 500000, badge: 'VIP' }
-    ]
+    id: 'vip-config',
+    category: 'CONFIG',
+    buyers: '1839 Người Mua',
+    name: 'Siêu Phẩm GoGet X',
+    shortDesc: 'SIÊU PHẨM GOGET X',
+    fullDesc: 'Siêu phẩm GoGet X\nKhắc phục : Tình Trạng & Rung Tâm & Lố & Đầu Hút\nƯu Điểm : Tâm Súng Bám, Tâm Súng Đầm, Ôm Chặt Đầu!\nLưu Ý: Siêu Phẩm GoGet Chỉ Sử Dụng Một Duy Nhất 1 Thiết Bị, Nếu Chia Sẻ Qua Thiết Bị Khác Mất Tác Dụng Bên GO Không Chịu Trách Nhiệm ✅',
+    price: 250000,
+    priceFormatted: '250.000đ',
+    image: 'assets/uploads/products/20260906-1f01a5ca57a390f2ade7.jpg'
   },
   {
-    id: 2,
-    name: 'AimLock iOS',
-    category: 'al',
-    catName: 'AimLock',
-    tag: '1219 Người Mua',
-    desc: 'Phiên bản iPhone / iPad kéo tâm cực chuẩn, không cần jailbreak máy.',
-    priceText: '50.000đ – 500.000đ',
-    img: 'https://placehold.co/600x338/111827/06b6d4?text=AIMLOCK+IOS',
-    plans: [
-      { label: 'Gói 1 tháng', price: 50000 },
-      { label: 'Gói 3 tháng', price: 250000, badge: 'Phổ biến' },
-      { label: 'Gói Vĩnh Viễn', price: 500000, badge: 'VIP' }
-    ]
+    id: 'config-super',
+    category: 'Config',
+    buyers: '1219 Người Mua',
+    name: 'Siêu Phẩm GoGet PLus',
+    shortDesc: 'SIÊU PHẨM GOGET USD',
+    fullDesc: 'Siêu phẩm GoGet Plus nâng cấp vượt trội, hỗ trợ kéo tâm cực êm, fix rung tâm, ghim đầu bám dính đạn, hỗ trợ cả Android và iOS không cần root máy.',
+    price: 299999,
+    priceFormatted: '299.999đ',
+    image: 'assets/uploads/products/20260906-8b7858a3baf68a65ea54.jpg'
   },
   {
-    id: 3,
-    name: 'AuraLock VIP iOS',
-    category: 'au',
-    catName: 'AuraLock VIP',
-    tag: 'VIP BÁN CHẠY',
-    desc: 'Phiên bản VIP cao cấp nhất dành cho iOS, ghim đầu đạn dính tâm.',
-    priceText: '100.000đ – 1.000.000đ',
-    img: 'https://placehold.co/600x338/111827/ec4899?text=AURALOCK+IOS',
-    plans: [
-      { label: 'Gói 100K', price: 100000 },
-      { label: 'Gói 300K', price: 300000 },
-      { label: 'Gói 500K', price: 500000, badge: 'Hot' },
-      { label: 'Gói VIP 1 Triệu', price: 1000000, badge: 'Tối Thượng' }
-    ]
+    id: 'proxy-pro',
+    category: 'Config',
+    buyers: '937 Người Mua',
+    name: 'Siêu Phẩm GoGet 2.5',
+    shortDesc: 'Tối ưu đường truyền và giảm giật lag.',
+    fullDesc: 'Tối ưu đường truyền, giảm giật lag, tăng độ mượt mà thao tác khi kéo tâm. Cân bằng độ nhạy súng giúp đạn gom chặt vào đầu địch.',
+    price: 450000,
+    priceFormatted: '450.000đ',
+    image: 'assets/uploads/products/20260906-56b63a9832a84cb87343.jpg'
   },
   {
-    id: 4,
-    name: 'AuraLock VIP Android',
-    category: 'au',
-    catName: 'AuraLock VIP',
-    tag: 'VIP TỐI THƯỢNG',
-    desc: 'Bản VIP tối thượng dành cho Android, kéo tâm mượt không rung lắc.',
-    priceText: '100.000đ – 1.000.000đ',
-    img: 'https://placehold.co/600x338/111827/10b981?text=AURALOCK+ANDROID',
-    plans: [
-      { label: 'Gói 100K', price: 100000 },
-      { label: 'Gói 300K', price: 300000 },
-      { label: 'Gói 500K', price: 500000, badge: 'Hot' },
-      { label: 'Gói VIP 1 Triệu', price: 1000000, badge: 'Tối Thượng' }
-    ]
+    id: 'config-standard',
+    category: 'Config',
+    buyers: '418 Người Mua',
+    name: 'Siêu Phẩm GoGet Make Riêng Thiết Bị V1',
+    shortDesc: 'SIÊU PHẨM MAKE MÁY V1',
+    fullDesc: 'Bản make riêng theo thông số máy cá nhân V1, tương thích tuyệt đối phần cứng, kéo tâm siêu chuẩn theo từng dòng máy từ đời thấp đến cao.',
+    price: 1200000,
+    priceFormatted: '1.200.000đ',
+    image: 'assets/uploads/products/20260906-37006c0b38a2a76901bb.jpg'
   },
   {
-    id: 5,
-    name: 'Proxy Aim iOS',
-    category: 'px',
-    catName: 'Proxy Aim iOS',
-    tag: '2300+ ĐÃ MUA',
-    desc: 'Aimdrag, Aim cổ, Aimbody, Aim Magic, ESP Ghim đầu nhẹ tâm iOS.',
-    priceText: '20.000đ – 400.000đ',
-    img: 'proxy-ios.png',
-    plans: [
-      { label: '1 Ngày (Dùng thử)', price: 20000 },
-      { label: '1 Tuần (7 ngày)', price: 60000 },
-      { label: '1 Tháng (30 ngày)', price: 180000, badge: 'Phổ biến' },
-      { label: 'Vĩnh Viễn Full Tính Năng', price: 400000, badge: 'VIP' }
-    ]
+    id: 'blind-49',
+    category: 'Config',
+    buyers: '231 Người Mua',
+    name: 'Siêu Phẩm GoGet Make Thiết Bị V2',
+    shortDesc: 'Siêu Phẩm Make Riêng Máy v2',
+    fullDesc: 'Bản make cao cấp V2 cho từng dòng máy đặc thù, hỗ trợ full setting nhạy tâm đỉnh cao, fix hoàn toàn tình trạng trượt đầu, khựng khung hình.',
+    price: 2200000,
+    priceFormatted: '2.200.000đ',
+    image: 'assets/uploads/products/20260906-d1555dd787db5a0a72e3.jpg'
   },
   {
-    id: 6,
-    name: 'TrollModz (Official)',
-    category: 'tm',
-    catName: 'TrollModz',
-    tag: 'HOT TREND',
-    desc: 'Bản TrollModz kéo tâm độc quyền cực hot, cập nhật liên tục.',
-    priceText: '40.000đ – 350.000đ',
-    img: 'trollmodz.png',
-    plans: [
-      { label: '1 Tuần', price: 40000 },
-      { label: '1 Tháng', price: 120000, badge: 'Phổ biến' },
-      { label: 'Vĩnh Viễn', price: 350000, badge: 'Hot' }
-    ]
+    id: 'blind-149',
+    category: 'Conffig',
+    buyers: '838 Người Mua',
+    name: 'Siêu Phẩm Goeeirx',
+    shortDesc: 'Siêu Phẩm Goeerix',
+    fullDesc: 'Bản config Goeeirx đặc biệt, ghim tâm mượt mà, tốc độ vuốt cực nhạy, thích hợp cho anh em đi rank và leo cúp tốc độ cao.',
+    price: 350000,
+    priceFormatted: '350.000đ',
+    image: 'assets/uploads/products/20260906-30035ea8c96490014055.jpg'
+  },
+  {
+    id: 'fluorite-1',
+    category: 'Config',
+    buyers: '757 Người Mua',
+    name: 'Siêu Phẩm GoGet 5.5',
+    shortDesc: 'SIÊU PHẨM GOGET 5.5 USD',
+    fullDesc: 'Bản GoGet 5.5 mạnh mẽ, nâng cao tốc độ vuốt tâm, bám đầu tuyệt đối, hoạt động 100% ổn định vĩnh viễn không lo khóa tài khoản.',
+    price: 550000,
+    priceFormatted: '550.000đ',
+    image: 'assets/uploads/products/20260906-b0396559e613c6dac847.jpg'
   }
-];
-
-/* ═══════ 14 FEEDBACK ITEMS ═══════ */
-var FEEDBACKS = [
-  { img: 'feedback-1.jpg', title: 'AimLock Kéo Tâm Cực Mượt', sub: 'Ghim đầu 100% · Nhận đơn 30s' },
-  { img: 'feedback-2.jpg', title: 'Proxy Aim iOS Quá Phê', sub: 'Chơi ổn định không văng · Cực êm' },
-  { img: 'feedback-3.jpg', title: 'Bill MB Bank Nhận File Ngay', sub: 'Giao dịch tự động 30s · Uy tín' },
-  { img: 'feedback-4.jpg', title: 'Khách Lên Thách Đấu', sub: 'Chuỗi thắng liên tục · Đạn dính đầu' },
-  { img: 'feedback-5.jpg', title: 'AuraLock VIP Siêu Nhẹ Tay', sub: 'Kéo tâm nhẹ là headshot chuẩn' },
-  { img: 'feedback-6.jpg', title: 'Review Không Rung Tâm', sub: 'Tâm cố định ghim đầu · Khách khen' },
-  { img: 'feedback-7.jpg', title: 'Giao Dịch Nhanh Chóng', sub: 'MB Bank Bùi Văn Cao · Chuẩn 100%' },
-  { img: 'feedback-8.jpg', title: 'Khách Mua Gói Vĩnh Viễn', sub: 'Ủng hộ shop dài lâu · Cực tin tưởng' },
-  { img: 'feedback-9.jpg', title: 'Test Kéo Tâm Cực Bén', sub: 'Vào trận đạn chuẩn từng viên' },
-  { img: 'feedback-10.jpg', title: 'Bản Quyền Chính Hãng', sub: 'Key kích hoạt tự động · Ổn định' },
-  { img: 'feedback-11.jpg', title: 'CSKH Nhiệt Tình 10/10', sub: 'Anh Phú hướng dẫn chi tiết tận tình' },
-  { img: 'feedback-12.jpg', title: 'Chuỗi Trận Thắng Đỉnh Cao', sub: 'Top 1 đều đặn · Leo rank cực nhàn' },
-  { img: 'feedback-13.jpg', title: 'Proxy Aim Khách Mua Dùng Ngay', sub: 'Bản iOS chuẩn kéo tâm không lỗi' },
-  { img: 'feedback-14.jpg', title: 'Giới Thiệu Bạn Bè Cùng Mua', sub: 'Uy tín chất lượng 5 sao từ anh Phú' }
 ];
 
 /* ═══════ STATE ═══════ */
-var CURRENT_CAT = 'all';
-var CURRENT_PROD = null;
-var CURRENT_PLAN = null;
-var CURRENT_OID = '';
-
-function fp(n){ return Number(n||0).toLocaleString('vi-VN') + 'đ'; }
-function gid(){ return 'DP' + Math.floor(100000 + Math.random() * 900000); }
+var activeCategory = 'all';
+var searchQuery = '';
+var sortOrder = 'default';
+var currentProduct = null;
+var currentOrderMemo = '';
+var currentPayAmountRaw = 0;
 
 /* ═══════ RENDER PRODUCTS ═══════ */
-function renderProducts(list){
-  list = list || PRODUCTS;
+function renderProducts() {
   var grid = document.getElementById('product-grid');
-  if(!grid) return;
-  
-  if(list.length === 0){
-    grid.innerHTML = '<div style="grid-column:1/-1;padding:40px;text-align:center;color:var(--muted)">Không tìm thấy sản phẩm phù hợp.</div>';
-    document.getElementById('product-count').textContent = '0 sản phẩm';
+  var empty = document.getElementById('product-empty');
+  var countEl = document.getElementById('product-count');
+  if (!grid) return;
+
+  var filtered = PRODUCTS.filter(function(p) {
+    var matchCat = (activeCategory === 'all' || p.category === activeCategory);
+    var q = searchQuery.toLowerCase().trim();
+    var matchSearch = !q || p.name.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+
+  if (sortOrder === 'price-asc') {
+    filtered.sort(function(a, b) { return a.price - b.price; });
+  } else if (sortOrder === 'price-desc') {
+    filtered.sort(function(a, b) { return b.price - a.price; });
+  } else if (sortOrder === 'name') {
+    filtered.sort(function(a, b) { return a.name.localeCompare(b.name); });
+  }
+
+  countEl.textContent = filtered.length + ' sản phẩm';
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.classList.remove('hidden');
     return;
   }
-  
-  document.getElementById('product-count').textContent = list.length + ' sản phẩm';
-  grid.innerHTML = list.map(function(p){
-    return '<article class="product" onclick="openBuyModal(' + p.id + ')">'
+  empty.classList.add('hidden');
+
+  var html = '';
+  filtered.forEach(function(p, idx) {
+    html += '<article class="product product-clickable" data-category="' + p.category + '" data-price="' + p.price + '" data-name="' + p.name.toLowerCase() + '" onclick="openBuyModalById(\'' + p.id + '\')">'
       + '<div class="product-thumb">'
-      +   '<span class="tag">' + p.tag + '</span>'
-      +   '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy">'
+        + '<span class="tag">' + p.buyers + '</span>'
+        + '<img class="js-product-image" src="' + p.image + '" alt="' + p.name + '" loading="lazy">'
+        + '<i class="fa-solid fa-crown image-fallback"></i>'
       + '</div>'
-      + '<div class="product-meta">'
-      +   '<span>' + p.catName + '</span><i>●</i><span class="status-ok">Có thể mua</span>'
-      + '</div>'
+      + '<div class="product-meta"><span>' + p.category + '</span><i class="fa-solid fa-circle"></i><span>Có thể mua</span></div>'
       + '<h3>' + p.name + '</h3>'
-      + '<p>' + p.desc + '</p>'
-      + '<div class="price-row">'
-      +   '<span class="price">' + p.priceText + '</span>'
-      + '</div>'
-      + '<button class="btn btn-buy btn-block" onclick="event.stopPropagation();openBuyModal(' + p.id + ')">'
-      +   '<span>Mua ngay</span><i class="fa-solid fa-arrow-right"></i>'
-      + '</button>'
-      + '</article>';
-  }).join('');
-}
-
-/* ═══════ RENDER FEEDBACK ═══════ */
-function renderFeedback(){
-  var grid = document.getElementById('feedback-grid');
-  if(!grid) return;
-  grid.innerHTML = FEEDBACKS.map(function(f, i){
-    return '<div class="fb-card" onclick="openLB(\'' + f.img + '\')">'
-      + '<div class="fb-card-img-wrap">'
-      +   '<img src="' + f.img + '" class="fb-card-img" alt="Feedback ' + (i+1) + '" loading="lazy">'
-      +   '<div class="fb-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> Phóng to</div>'
-      + '</div>'
-      + '<div class="fb-card-info">'
-      +   '<div class="fb-card-top"><span class="fb-card-ver">✅ Đã mua hàng</span><span class="fb-card-stars">⭐⭐⭐⭐⭐</span></div>'
-      +   '<div class="fb-card-title">' + f.title + '</div>'
-      +   '<div class="fb-card-sub">' + f.sub + '</div>'
-      + '</div>'
-      + '</div>';
-  }).join('');
-}
-
-/* ═══════ FILTERS & SEARCH ═══════ */
-function filterCat(cat, btn){
-  CURRENT_CAT = cat;
-  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
-  if(btn) btn.classList.add('active');
-  applyFilters();
-}
-
-function doSearch(q){
-  applyFilters();
-}
-
-function doSort(type){
-  applyFilters();
-}
-
-function applyFilters(){
-  var q = (document.getElementById('product-search').value || '').trim().toLowerCase();
-  var sort = document.getElementById('product-sort').value;
-  
-  var filtered = PRODUCTS.filter(function(p){
-    var matchCat = (CURRENT_CAT === 'all') || (p.category === CURRENT_CAT);
-    var matchText = !q || p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
-    return matchCat && matchText;
+      + '<p>' + p.shortDesc + '</p>'
+      + '<div class="price-row"><span class="price">' + p.priceFormatted + '</span></div>'
+      + '<a class="btn btn-buy btn-block" href="javascript:void(0)" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\')">'
+        + '<span>Xem sản phẩm</span><i class="fa-solid fa-arrow-right"></i>'
+      + '</a>'
+    + '</article>';
   });
-  
-  if(sort === 'price-asc'){
-    filtered.sort(function(a,b){ return (a.plans[0].price) - (b.plans[0].price); });
-  } else if(sort === 'price-desc'){
-    filtered.sort(function(a,b){ return (b.plans[0].price) - (a.plans[0].price); });
-  } else if(sort === 'name'){
-    filtered.sort(function(a,b){ return a.name.localeCompare(b.name, 'vi'); });
-  }
-  
-  renderProducts(filtered);
+
+  grid.innerHTML = html;
 }
 
-/* ═══════ MODAL BUY LOGIC ═══════ */
-function openBuyModal(prodId){
-  CURRENT_PROD = PRODUCTS.find(function(p){ return p.id === prodId; });
-  if(!CURRENT_PROD) return;
-  
-  CURRENT_PLAN = CURRENT_PROD.plans[0];
-  CURRENT_OID = gid();
-  
-  document.getElementById('mThumb').src = CURRENT_PROD.img;
-  document.getElementById('mTitle').textContent = CURRENT_PROD.name;
-  document.getElementById('mCat').textContent = CURRENT_PROD.catName;
-  
-  renderPlanList();
-  updateQrCode();
-  
+/* ═══════ 14 REAL CUSTOMER FEEDBACK ═══════ */
+function renderFeedback() {
+  var grid = document.getElementById('fb-grid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 1; i <= 14; i++) {
+    var imgSrc = 'feedback-' + i + '.jpg';
+    html += '<div class="fb-card" onclick="openLB(\'' + imgSrc + '\')">'
+      + '<div class="fb-card-thumb">'
+        + '<img src="' + imgSrc + '" alt="Khách hàng feedback ' + i + '" loading="lazy">'
+      + '</div>'
+      + '<div class="fb-card-body">'
+        + '<div class="fb-badge"><i class="fa-solid fa-circle-check"></i> Đã Mua & Sử Dụng Tốt</div>'
+        + '<div class="fb-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>'
+        + '<div class="fb-title">Feedback Khách Hàng #' + i + '</div>'
+      + '</div>'
+    + '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+/* ═══════ FILTER & SEARCH EVENTS ═══════ */
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    activeCategory = btn.getAttribute('data-category-filter');
+    renderProducts();
+  });
+});
+
+var searchInput = document.getElementById('product-search');
+if (searchInput) {
+  searchInput.addEventListener('input', function(e) {
+    searchQuery = e.target.value;
+    renderProducts();
+  });
+}
+
+var sortSelect = document.getElementById('product-sort');
+if (sortSelect) {
+  sortSelect.addEventListener('change', function(e) {
+    sortOrder = e.target.value;
+    renderProducts();
+  });
+}
+
+var resetBtn = document.getElementById('reset-products');
+if (resetBtn) {
+  resetBtn.addEventListener('click', function() {
+    activeCategory = 'all';
+    searchQuery = '';
+    sortOrder = 'default';
+    if (searchInput) searchInput.value = '';
+    if (sortSelect) sortSelect.value = 'default';
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-category-filter') === 'all');
+    });
+    renderProducts();
+  });
+}
+
+/* ═══════ MODAL BUY & VIETQR ═══════ */
+function openBuyModalById(id) {
+  var p = PRODUCTS.find(function(item) { return item.id === id; });
+  if (!p) return;
+  currentProduct = p;
+  window.currentPayAmountRaw = p.price;
+
+  // Generate unique order ID
+  var orderId = 'DP' + Math.floor(100000 + Math.random() * 900000);
+  window.currentOrderMemo = orderId;
+
+  document.getElementById('mProductImg').src = p.image;
+  document.getElementById('mProductCat').textContent = p.category;
+  document.getElementById('mProductTitle').textContent = p.name;
+  document.getElementById('mProductPrice').textContent = p.priceFormatted;
+  document.getElementById('mProductDesc').textContent = p.fullDesc;
+  document.getElementById('mPayAmount').textContent = p.priceFormatted;
+  document.getElementById('mOrderMemo').textContent = orderId;
+  document.getElementById('mBotCode').textContent = orderId;
+
+  // Generate VietQR URL: MB Bank, STK: 0941414448, Account Name: BUI VAN CAO
+  var qrUrl = 'https://img.vietqr.io/image/MB-0941414448-compact2.png?amount=' + p.price + '&addInfo=' + encodeURIComponent(orderId) + '&accountName=BUI%20VAN%20CAO';
+  document.getElementById('mQrCode').src = qrUrl;
+
   document.getElementById('buyModal').classList.add('open');
 }
 
-function closeBuyModal(){
+function closeBuyModal() {
   document.getElementById('buyModal').classList.remove('open');
 }
 
-function renderPlanList(){
-  var list = document.getElementById('mPlanList');
-  list.innerHTML = CURRENT_PROD.plans.map(function(pl, i){
-    var sel = (pl.label === CURRENT_PLAN.label) ? 'selected' : '';
-    return '<div class="plan-item ' + sel + '" onclick="selectPlan(' + i + ')">'
-      + '<div><span class="plan-name">' + pl.label + '</span>' + (pl.badge ? ' <small style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">' + pl.badge + '</small>' : '') + '</div>'
-      + '<span class="plan-price">' + fp(pl.price) + '</span>'
-      + '</div>';
-  }).join('');
-}
-
-function selectPlan(idx){
-  CURRENT_PLAN = CURRENT_PROD.plans[idx];
-  renderPlanList();
-  updateQrCode();
-}
-
-function updateQrCode(){
-  if(!CURRENT_PLAN) return;
-  var amt = CURRENT_PLAN.price;
-  document.getElementById('mPriceVal').textContent = fp(amt);
-  document.getElementById('mOidVal').textContent = CURRENT_OID;
-  
-  var qrUrl = 'https://img.vietqr.io/image/' + BANK_BIN + '-' + BANK_ACC + '-compact2.png'
-    + '?amount=' + amt
-    + '&addInfo=' + encodeURIComponent(CURRENT_OID)
-    + '&accountName=' + encodeURIComponent(BANK_NAME);
-  document.getElementById('mQrImg').src = qrUrl;
-}
-
-function copyText(str){
-  navigator.clipboard.writeText(str).then(function(){
-    toast('📋', 'Đã sao chép: ' + str);
-  });
-}
-
-function copyOid(){
-  copyText(CURRENT_OID);
-}
-
-function confirmPayment(){
-  saveOrderToHistory(CURRENT_OID, CURRENT_PROD.name, CURRENT_PLAN.label, CURRENT_PLAN.price);
+function confirmPaid() {
   closeBuyModal();
-  openSuccessModal();
+  toast('✅', 'Đã ghi nhận thanh toán! Vui lòng gửi lệnh !done ' + window.currentOrderMemo + ' cho Bot Zalo hoặc gửi bill đến Zalo 0588500524 (Anh Phú).');
 }
 
-/* ═══════ SUCCESS MODAL ═══════ */
-function openSuccessModal(){
-  var cmd = '!done ' + CURRENT_OID;
-  document.getElementById('sBotCmd').textContent = cmd;
-  document.getElementById('sOidText').textContent = CURRENT_OID;
-  document.getElementById('sProdText').textContent = CURRENT_PROD.name;
-  document.getElementById('sPlanText').textContent = CURRENT_PLAN.label;
-  document.getElementById('sAmtText').textContent = fp(CURRENT_PLAN.price);
-  document.getElementById('sZaloLink').href = 'https://zalo.me/' + ZALO_BOT;
-  
-  document.getElementById('successModal').classList.add('open');
-}
-
-function closeSuccessModal(){
-  document.getElementById('successModal').classList.remove('open');
-}
-
-function copyBotCmd(){
-  var cmd = '!done ' + CURRENT_OID;
-  copyText(cmd);
-}
-
-/* ═══════ ORDER HISTORY ═══════ */
-function saveOrderToHistory(oid, prod, plan, price){
-  try {
-    var orders = JSON.parse(localStorage.getItem('dp_orders') || '[]');
-    orders.unshift({ oid: oid, prod: prod, plan: plan, price: price, time: new Date().toLocaleString('vi-VN') });
-    localStorage.setItem('dp_orders', JSON.stringify(orders.slice(0, 30)));
-  } catch(e){}
-}
-
-function openOrderHistory(){
-  var orders = [];
-  try { orders = JSON.parse(localStorage.getItem('dp_orders') || '[]'); } catch(e){}
-  var list = document.getElementById('historyList');
-  if(orders.length === 0){
-    list.innerHTML = '<div style="padding:20px;text-align:center;color:var(--muted)">Chưa có đơn hàng nào. Hãy chọn mua sản phẩm!</div>';
+/* ═══════ COPY TEXT FUNCTION ═══════ */
+function copyText(str, btn) {
+  if (!navigator.clipboard) {
+    var ta = document.createElement('textarea');
+    ta.value = str;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
   } else {
-    list.innerHTML = orders.map(function(o){
-      return '<div style="background:#f8f9fa;border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center">'
-        + '<div><strong style="color:#0284c7;font-family:monospace">' + o.oid + '</strong> · ' + o.prod + ' (' + o.plan + ')<div style="font-size:10.5px;color:var(--muted)">' + o.time + '</div></div>'
-        + '<div style="text-align:right"><strong style="color:var(--success)">' + fp(o.price) + '</strong><br><button class="copy-pill" onclick="copyText(\'!done ' + o.oid + '\')">Copy !done</button></div>'
-        + '</div>';
-    }).join('');
+    navigator.clipboard.writeText(str);
   }
-  document.getElementById('historyModal').classList.add('open');
+  toast('📋', 'Đã sao chép: ' + str);
+  if (btn) {
+    var oldHtml = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+    setTimeout(function() { btn.innerHTML = oldHtml; }, 1500);
+  }
 }
 
-function closeHistoryModal(){
-  document.getElementById('historyModal').classList.remove('open');
-}
-
-/* ═══════ LOGIN SIMULATION ═══════ */
-function openLogin(){
+/* ═══════ LOGIN MODAL ═══════ */
+function openLogin() {
   document.getElementById('loginModal').classList.add('open');
 }
-function closeLoginModal(){
+function closeLoginModal() {
   document.getElementById('loginModal').classList.remove('open');
 }
-function handleLoginSubmit(e){
+function handleLoginSubmit(e) {
   e.preventDefault();
   var u = document.getElementById('loginUser').value;
   closeLoginModal();
   document.getElementById('topAuthBtn').textContent = u;
   document.getElementById('sideUserTitle').textContent = 'Chào, ' + u + ' ⭐';
-  document.getElementById('sideUserSub').textContent = 'Tài khoản VIP đã sẵn sàng mua hàng và nhận chiết khấu.';
+  document.getElementById('sideUserSub').textContent = 'Tài khoản thành viên VIP đã sẵn sàng mua hàng & nhận chiết khấu.';
   document.getElementById('sideAuthBtn').textContent = 'Thông tin tài khoản';
-  toast('🎉', 'Đăng nhập thành công! Chào ' + u);
+  toast('🎉', 'Đăng nhập thành công! Chào mừng ' + u);
 }
 
 /* ═══════ LIGHTBOX ═══════ */
-function openLB(src){
+function openLB(src) {
   document.getElementById('lbImg').src = src;
-  document.getElementById('lbBg').classList.add('open');
+  document.getElementById('lbModal').classList.add('open');
 }
-function closeLB(){
-  document.getElementById('lbBg').classList.remove('open');
+function closeLB() {
+  document.getElementById('lbModal').classList.remove('open');
 }
 
-/* ═══════ 3D FLOATING NEON TOAST NOTIFICATIONS ═══════ */
-function toast(ico, msg){
+/* ═══════ 3D FLOATING NEON TOAST ═══════ */
+function toast(ico, msg) {
   var c = document.getElementById('tc');
-  if(!c) return;
+  if (!c) return;
   var t = document.createElement('div');
-  t.className = 'toast';
+  t.className = 'toast-item';
   t.innerHTML =
     '<div class="t-accent"></div>'
     + '<div class="t-ico-box">' + ico + '</div>'
     + '<div class="t-content"><div class="t-msg">' + msg + '</div></div>'
-    + '<button class="t-close" onclick="event.stopPropagation();this.closest(\'.toast\').remove();">✕</button>'
+    + '<button class="t-close-btn" onclick="event.stopPropagation();this.closest(\'.toast-item\').remove();">✕</button>'
     + '<div class="t-progress"></div>';
-  t.onclick = function(){ t.classList.add('out'); setTimeout(function(){ t.remove(); }, 250); };
+  t.onclick = function() { t.classList.add('out'); setTimeout(function(){ t.remove(); }, 250); };
   c.appendChild(t);
-  setTimeout(function(){ if(t.parentNode){ t.classList.add('out'); setTimeout(function(){ t.remove(); }, 250); } }, 3600);
+  setTimeout(function() {
+    if (t.parentNode) {
+      t.classList.add('out');
+      setTimeout(function(){ t.remove(); }, 250);
+    }
+  }, 3600);
 }
 
 /* ═══════ ANTI-INSPECT SECURITY ═══════ */
-document.addEventListener('contextmenu', function(e){
+document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
-  toast('🔒', 'Hệ thống đã kích hoạt chế độ bảo vệ chống sao chép & gian lận.');
+  toast('🔒', 'Hệ thống kích hoạt chế độ bảo mật bản quyền & chống sao chép.');
 });
-document.addEventListener('keydown', function(e){
-  if(e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))){
+document.addEventListener('keydown', function(e) {
+  if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
     e.preventDefault();
-    toast('🔒', 'Chế độ bảo mật bản quyền & chống gian lận thanh toán đang bật.');
+    toast('🔒', 'Chế độ bảo mật chống gian lận & sao chép đang bật.');
     return false;
   }
-  if(e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){
+  if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
     e.preventDefault();
     var s = document.getElementById('product-search');
-    if(s) s.focus();
+    if (s) s.focus();
   }
 });
 
 /* ═══════ SCROLL LISTENER ═══════ */
-window.addEventListener('scroll', function(){
+window.addEventListener('scroll', function() {
   var topbar = document.querySelector('.topbar');
-  if(topbar) topbar.classList.toggle('scrolled', window.scrollY > 10);
+  if (topbar) topbar.classList.toggle('scrolled', window.scrollY > 10);
 }, { passive: true });
 
 /* ═══════ INIT ═══════ */
