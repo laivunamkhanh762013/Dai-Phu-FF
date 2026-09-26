@@ -1701,11 +1701,11 @@ var PRODUCTS = [
       { src: 'assets/uploads/products/forget-hex.jpg', label: 'Forget Hex V1-V5', title: 'Forget Hex VIP V1 - V5 - Make URL Code Xịn Nhất VN' }
     ],
     plans: [
-      { name: '49K Cơ Bản - Forget Hex V1 🇻🇳', price: 49000 },
-      { name: '99K Nâng Cấp - Forget Hex V2 🇻🇳', price: 99000 },
-      { name: '199K Đầy Đủ - Forget Hex V3 🇻🇳', price: 199000, badge: 'Đề xuất' },
-      { name: '399K Pro - Forget Hex V4 🇻🇳', price: 399000, badge: 'VIP' },
-      { name: '799K Combo Riêng - Forget Pro V5 🇻🇳', price: 799000, badge: 'Cực Phẩm' }
+      { name: 'V1 Cơ Bản', price: 49000 },
+      { name: 'V2 Nâng Cấp', price: 99000 },
+      { name: 'V3 Đầy Đủ', price: 199000, badge: 'Đề xuất' },
+      { name: 'V4 Pro', price: 399000, badge: 'VIP' },
+      { name: 'V5 Combo Riêng', price: 799000, badge: 'Cực Phẩm' }
     ]
   },
   {
@@ -1798,7 +1798,7 @@ function selectCardPlan(pId, planIdx) {
   var priceEl = document.getElementById('card-price-' + pId);
   var labelEl = document.getElementById('card-label-' + pId);
   if (priceEl) priceEl.textContent = formatVND(plan.price);
-  if (labelEl) labelEl.textContent = '• ' + plan.name;
+  if (labelEl) labelEl.textContent = '• ' + cleanPlanLabel(plan.name);
 
   // Update active chip on card
   var chips = document.querySelectorAll('.card-plan-chip[data-pid="' + pId + '"]');
@@ -1843,7 +1843,7 @@ function renderProducts() {
     var selIdx = cardSelectedPlan[p.id] || 0;
     var currentPlanObj = p.plans[selIdx] || p.plans[0];
     var currentDisplayPrice = formatVND(currentPlanObj.price);
-    var currentDisplayLabel = '• ' + currentPlanObj.name;
+    var currentDisplayLabel = '• ' + cleanPlanLabel(currentPlanObj.name);
 
     // Build mini plan chips for the card
     var chipsHtml = '<div class="card-plans">';
