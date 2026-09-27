@@ -54,16 +54,18 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const { memo, orderId, price } = req.query;
+  const { memo, orderId, price, user } = req.query;
 
   // Strix Security Guard: Clean & validate tokens
   const cleanMemo = cleanToken(memo);
   const cleanOrderId = cleanToken(orderId);
+  const cleanUser = cleanToken(user);
 
   // Phải có ít nhất 1 mã hợp lệ (độ dài tối thiểu 3 ký tự)
   const validKeys = [];
   if (cleanMemo.length >= 3) validKeys.push(cleanMemo);
   if (cleanOrderId.length >= 3 && !validKeys.includes(cleanOrderId)) validKeys.push(cleanOrderId);
+  if (cleanUser.length >= 3 && !validKeys.includes(cleanUser)) validKeys.push(cleanUser);
 
   if (validKeys.length === 0) {
     return res.status(400).json({
