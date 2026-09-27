@@ -463,7 +463,7 @@ function checkSePay(orderId, price, btnEl) {
   const order = allOrders.find(function(o) { return o.id === orderId; });
   const memoToCheck = (order && order.user && order.user !== 'Khách vãng lai') ? order.user : orderId;
 
-  fetch('/api/check-payment?memo=' + encodeURIComponent(memoToCheck) + '&price=' + encodeURIComponent(price || 0))
+  fetch('/api/check-payment?memo=' + encodeURIComponent(memoToCheck) + '&orderId=' + encodeURIComponent(orderId) + '&price=' + encodeURIComponent(price || 0))
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (btnEl) { btnEl.disabled = false; btnEl.innerHTML = '<i class="fa-solid fa-magnifying-glass-dollar"></i> SePay'; }
