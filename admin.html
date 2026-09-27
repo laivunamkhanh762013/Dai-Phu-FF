@@ -654,9 +654,7 @@
       <button type="submit" class="btn-login">
         <i class="fa-solid fa-key"></i> XÃ¡c thá»±c báº£o máº­t &amp; VÃ o trang
       </button>
-      <div class="login-hint">
-        <i class="fa-solid fa-lock"></i> Chá»‰ dÃ nh cho Báº¡n &amp; Anh PhÃº. Máº·c Ä‘á»‹nh: <code style="color:#00f0ff;">daiphu2026</code>
-      </div>
+      <div class="login-hint"><i class="fa-solid fa-lock"></i> Chỉ dành cho Bạn &amp; Anh Phú.</div>
     </form>
   </div>
 </div>
@@ -945,7 +943,7 @@ function checkSePay(orderId, price, btnEl) {
 
 function showLoadingState() {
   const tbody = document.getElementById('ordersTableBody');
-  if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:#64748b;"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;"></i><br><br>Äang táº£i Ä‘Æ¡n hÃ ng tá»« Cloud...</td></tr>';
+  if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:#64748b;"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;"></i><br><br>Äang táº£i Ä‘Æ¡n hÃ ng tá»« Cloud...</td></tr>';
 }
 
 /* â•â•â•â•â•â•â• RENDER DASHBOARD & ORDERS â•â•â•â•â•â•â• */
@@ -989,7 +987,7 @@ function renderDashboard() {
 
   const tbody = document.getElementById('ordersTableBody');
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:30px;color:#64748b;">ChÆ°a cÃ³ Ä‘Æ¡n hÃ ng nÃ o khá»›p vá»›i tÃ¬m kiáº¿m.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:30px;color:#64748b;">ChÆ°a cÃ³ Ä‘Æ¡n hÃ ng nÃ o khá»›p vá»›i tÃ¬m kiáº¿m.</td></tr>`;
     return;
   }
 
