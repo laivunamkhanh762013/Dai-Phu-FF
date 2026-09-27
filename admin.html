@@ -314,6 +314,7 @@
         </div>
         <button type="button" class="btn-nav" onclick="refreshOrders()" title="Làm mới"><i class="fa-solid fa-rotate-right"></i></button>
         <button type="button" class="btn-nav" onclick="exportOrdersJSON()" title="Xuất dữ liệu"><i class="fa-solid fa-file-export"></i></button>
+        <button type="button" class="btn-nav" style="background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.35);color:#f87171;" onclick="clearAllOrders()" title="Xóa tất cả đơn"><i class="fa-solid fa-trash-can"></i> Reset</button>
       </div>
     </div>
 
@@ -611,6 +612,24 @@ function exportOrdersJSON() {
   a.download = 'daiphu_orders_' + Date.now() + '.json';
   a.click();
   showToast('💾 Đã xuất file backup đơn hàng!');
+}
+
+function clearAllOrders() {
+  if (!confirm('⚠️ Bạn có chắc muốn XÓA TOÀN BỘ đơn hàng?\n\nHành động này sẽ xóa sạch tất cả đơn trên Cloud + Local.\nKhông thể hoàn tác!')) return;
+
+  // Xóa local
+  saveStoredOrders([]);
+  allOrders = [];
+  renderDashboard();
+
+  // Xóa cloud Gist qua API
+  fetch('/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ _reset: true, id: 'RESET_ALL' })
+  }).catch(function(){});
+
+  showToast('🗑️ Đã xóa toàn bộ đơn hàng. Hệ thống bắt đầu mới!');
 }
 
 /* ═══════ STRIX SCAN ═══════ */

@@ -26,6 +26,12 @@ module.exports = async function handler(req, res) {
         try { body = JSON.parse(body); } catch(e) {}
       }
 
+      // ── RESET ALL ORDERS ──
+      if (body && body._reset === true) {
+        await updateGist({ orders: [] });
+        return res.status(200).json({ success: true, message: 'All orders cleared.' });
+      }
+
       if (!body || !body.id) {
         return res.status(400).json({ success: false, error: 'Thiếu mã đơn hàng' });
       }
