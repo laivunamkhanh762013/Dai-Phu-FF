@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>BẢNG QUẢN TRỊ ADMIN · SHOP ĐẠI PHÚ FF &amp; STRIX SECURITY</title>
+  <title>Báº¢NG QUáº¢N TRá»Š ADMIN Â· SHOP Äáº I PHÃš FF &amp; STRIX SECURITY</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="assets/uploads/logos/aizen-logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +57,7 @@
       z-index: 1;
     }
 
-    /* ══ LOGIN SCREEN ══ */
+    /* â•â• LOGIN SCREEN â•â• */
     .login-overlay {
       position: fixed;
       inset: 0;
@@ -158,7 +158,7 @@
       margin-top: 14px;
     }
 
-    /* ══ ADMIN HEADER ══ */
+    /* â•â• ADMIN HEADER â•â• */
     .admin-header {
       display: flex;
       align-items: center;
@@ -242,7 +242,7 @@
       color: #fff;
     }
 
-    /* ══ STRIX SECURITY MONITOR BANNER ══ */
+    /* â•â• STRIX SECURITY MONITOR BANNER â•â• */
     .strix-banner {
       background: linear-gradient(135deg, rgba(17, 22, 43, 0.95), rgba(15, 23, 42, 0.98));
       border: 1px solid rgba(139, 92, 246, 0.35);
@@ -331,7 +331,7 @@
       box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
     }
 
-    /* ══ STATS CARDS ══ */
+    /* â•â• STATS CARDS â•â• */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -385,7 +385,7 @@
     .stat-wait .stat-icon { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
     .stat-done .stat-icon { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
 
-    /* ══ ORDERS SECTION ══ */
+    /* â•â• ORDERS SECTION â•â• */
     .orders-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -449,7 +449,7 @@
       border-color: var(--primary);
     }
 
-    /* ══ TABLE ══ */
+    /* â•â• TABLE â•â• */
     .table-wrap {
       overflow-x: auto;
       border-radius: 12px;
@@ -557,7 +557,7 @@
       color: #fff;
     }
 
-    /* ══ SECURITY MODAL / SCAN LOG ══ */
+    /* â•â• SECURITY MODAL / SCAN LOG â•â• */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -609,7 +609,7 @@
     .scan-terminal .log-ok { color: #4ade80; }
     .scan-terminal .log-info { color: #c4b5fd; }
 
-    /* ══ TOAST NOTIFICATION ══ */
+    /* â•â• TOAST NOTIFICATION â•â• */
     .admin-toast {
       position: fixed;
       bottom: 24px;
@@ -639,44 +639,44 @@
 
 <div class="ambient-glow"></div>
 
-<!-- ══ LOGIN OVERLAY (ADMIN AUTH GATE) ══ -->
+<!-- â•â• LOGIN OVERLAY (ADMIN AUTH GATE) â•â• -->
 <div class="login-overlay" id="loginOverlay">
   <div class="login-card">
     <div class="login-badge"><i class="fa-solid fa-shield-halved"></i> Strix Security Gateway</div>
-    <h2 class="login-title">Đăng Nhập Quản Trị Viên</h2>
-    <p class="login-sub">Cổng kiểm tra &amp; đối soát đơn hàng Shop Đại Phú FF</p>
+    <h2 class="login-title">ÄÄƒng Nháº­p Quáº£n Trá»‹ ViÃªn</h2>
+    <p class="login-sub">Cá»•ng kiá»ƒm tra &amp; Ä‘á»‘i soÃ¡t Ä‘Æ¡n hÃ ng Shop Äáº¡i PhÃº FF</p>
     
     <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
       <div class="login-input-wrap">
-        <label class="login-label">Mật khẩu Quản Trị (Admin Pass)</label>
-        <input type="password" id="adminPassword" class="login-input" placeholder="Nhập mã bảo vệ Admin..." required autofocus>
+        <label class="login-label">Máº­t kháº©u Quáº£n Trá»‹ (Admin Pass)</label>
+        <input type="password" id="adminPassword" class="login-input" placeholder="Nháº­p mÃ£ báº£o vá»‡ Admin..." required autofocus>
       </div>
       <button type="submit" class="btn-login">
-        <i class="fa-solid fa-key"></i> Xác thực bảo mật &amp; Vào trang
+        <i class="fa-solid fa-key"></i> XÃ¡c thá»±c báº£o máº­t &amp; VÃ o trang
       </button>
       <div class="login-hint">
-        <i class="fa-solid fa-lock"></i> Chỉ dành cho Bạn &amp; Anh Phú. Mặc định: <code style="color:#00f0ff;">daiphu2026</code>
+        <i class="fa-solid fa-lock"></i> Chá»‰ dÃ nh cho Báº¡n &amp; Anh PhÃº. Máº·c Ä‘á»‹nh: <code style="color:#00f0ff;">daiphu2026</code>
       </div>
     </form>
   </div>
 </div>
 
-<!-- ══ MAIN DASHBOARD CONTAINER ══ -->
+<!-- â•â• MAIN DASHBOARD CONTAINER â•â• -->
 <div class="container" id="adminContent" style="display:none;">
 
   <!-- Header -->
   <header class="admin-header">
     <div class="brand-group">
-      <img src="assets/uploads/logos/aizen-logo.png" alt="Shop Đại Phú FF" class="brand-logo">
+      <img src="assets/uploads/logos/aizen-logo.png" alt="Shop Äáº¡i PhÃº FF" class="brand-logo">
       <div class="brand-info">
-        <h1>BẢNG QUẢN TRỊ ADMIN <span style="font-size:11px;background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.3);padding:2px 8px;border-radius:100px;">v2.0 PRO</span></h1>
-        <p>Đối soát đơn hàng • Kiểm duyệt thanh toán MB Bank • Bàn giao key</p>
+        <h1>Báº¢NG QUáº¢N TRá»Š ADMIN <span style="font-size:11px;background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.3);padding:2px 8px;border-radius:100px;">v2.0 PRO</span></h1>
+        <p>Äá»‘i soÃ¡t Ä‘Æ¡n hÃ ng â€¢ Kiá»ƒm duyá»‡t thanh toÃ¡n MB Bank â€¢ BÃ n giao key</p>
       </div>
     </div>
     <div class="header-actions">
-      <a href="index.html" class="btn-nav"><i class="fa-solid fa-store"></i> Xem Cửa Hàng</a>
-      <a href="https://zalo.me/0588500524" target="_blank" rel="noopener" class="btn-nav btn-nav-primary"><i class="fa-solid fa-headset"></i> Zalo Anh Phú</a>
-      <button type="button" class="btn-nav btn-logout" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+      <a href="index.html" class="btn-nav"><i class="fa-solid fa-store"></i> Xem Cá»­a HÃ ng</a>
+      <a href="https://zalo.me/0588500524" target="_blank" rel="noopener" class="btn-nav btn-nav-primary"><i class="fa-solid fa-headset"></i> Zalo Anh PhÃº</a>
+      <button type="button" class="btn-nav btn-logout" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> ÄÄƒng xuáº¥t</button>
     </div>
   </header>
 
@@ -685,14 +685,14 @@
     <div class="strix-info">
       <div class="strix-icon"><i class="fa-solid fa-shield-virus"></i></div>
       <div class="strix-text">
-        <h3>STRIX AI SECURITY MONITOR <span style="color:#4ade80;font-size:11px;">● HOẠT ĐỘNG 24/7</span></h3>
-        <p>Bảo vệ chống gian lận đơn ảo, chặn spam click và giám sát luồng thanh toán VietQR</p>
+        <h3>STRIX AI SECURITY MONITOR <span style="color:#4ade80;font-size:11px;">â— HOáº T Äá»˜NG 24/7</span></h3>
+        <p>Báº£o vá»‡ chá»‘ng gian láº­n Ä‘Æ¡n áº£o, cháº·n spam click vÃ  giÃ¡m sÃ¡t luá»“ng thanh toÃ¡n VietQR</p>
       </div>
     </div>
     <div class="strix-status-pills">
-      <span class="strix-pill shield"><i class="fa-solid fa-shield-check"></i> Chống Sửa Giá: BẬT</span>
-      <span class="strix-pill guard"><i class="fa-solid fa-lock"></i> Checksum Đơn Hàng: AN TOÀN</span>
-      <button type="button" class="btn-scan" onclick="runStrixSecurityScan()"><i class="fa-solid fa-radar"></i> Quét Lỗ Hổng (Scan)</button>
+      <span class="strix-pill shield"><i class="fa-solid fa-shield-check"></i> Chá»‘ng Sá»­a GiÃ¡: Báº¬T</span>
+      <span class="strix-pill guard"><i class="fa-solid fa-lock"></i> Checksum ÄÆ¡n HÃ ng: AN TOÃ€N</span>
+      <button type="button" class="btn-scan" onclick="runStrixSecurityScan()"><i class="fa-solid fa-radar"></i> QuÃ©t Lá»— Há»•ng (Scan)</button>
     </div>
   </section>
 
@@ -700,28 +700,28 @@
   <section class="stats-grid">
     <div class="stat-card stat-total">
       <div class="stat-data">
-        <small>Tổng Số Đơn Hàng</small>
+        <small>Tá»•ng Sá»‘ ÄÆ¡n HÃ ng</small>
         <strong id="statTotalOrders">0</strong>
       </div>
       <div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div>
     </div>
     <div class="stat-card stat-rev">
       <div class="stat-data">
-        <small>Doanh Thu Đã Duyệt</small>
-        <strong id="statTotalRevenue">0đ</strong>
+        <small>Doanh Thu ÄÃ£ Duyá»‡t</small>
+        <strong id="statTotalRevenue">0Ä‘</strong>
       </div>
       <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
     </div>
     <div class="stat-card stat-wait">
       <div class="stat-data">
-        <small>Đơn Đang Chờ Duyệt</small>
+        <small>ÄÆ¡n Äang Chá» Duyá»‡t</small>
         <strong id="statPendingOrders" style="color:#fbbf24;">0</strong>
       </div>
       <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
     </div>
     <div class="stat-card stat-done">
       <div class="stat-data">
-        <small>Đơn Đã Giao File</small>
+        <small>ÄÆ¡n ÄÃ£ Giao File</small>
         <strong id="statApprovedOrders" style="color:#34d399;">0</strong>
       </div>
       <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
@@ -732,19 +732,19 @@
   <section class="orders-card">
     <div class="orders-toolbar">
       <div class="toolbar-left">
-        <button type="button" class="filter-pill active" data-filter="all" onclick="setFilter('all')">Tất cả đơn (<span id="countAll">0</span>)</button>
-        <button type="button" class="filter-pill" data-filter="pending" onclick="setFilter('pending')">⏳ Chờ duyệt (<span id="countPending">0</span>)</button>
-        <button type="button" class="filter-pill" data-filter="approved" onclick="setFilter('approved')">✅ Đã gửi file (<span id="countApproved">0</span>)</button>
-        <button type="button" class="filter-pill" data-filter="rejected" onclick="setFilter('rejected')">❌ Báo sai (<span id="countRejected">0</span>)</button>
+        <button type="button" class="filter-pill active" data-filter="all" onclick="setFilter('all')">Táº¥t cáº£ Ä‘Æ¡n (<span id="countAll">0</span>)</button>
+        <button type="button" class="filter-pill" data-filter="pending" onclick="setFilter('pending')">â³ Chá» duyá»‡t (<span id="countPending">0</span>)</button>
+        <button type="button" class="filter-pill" data-filter="approved" onclick="setFilter('approved')">âœ… ÄÃ£ gá»­i file (<span id="countApproved">0</span>)</button>
+        <button type="button" class="filter-pill" data-filter="rejected" onclick="setFilter('rejected')">âŒ BÃ¡o sai (<span id="countRejected">0</span>)</button>
       </div>
 
       <div style="display:flex;align-items:center;gap:10px;">
         <div class="search-input-wrap">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" id="orderSearch" class="search-input" placeholder="Tìm mã DP, SĐT, tên khách..." oninput="handleSearch(this.value)">
+          <input type="text" id="orderSearch" class="search-input" placeholder="TÃ¬m mÃ£ DP, SÄT, tÃªn khÃ¡ch..." oninput="handleSearch(this.value)">
         </div>
-        <button type="button" class="btn-nav" onclick="refreshOrders()" title="Làm mới"><i class="fa-solid fa-rotate-right"></i></button>
-        <button type="button" class="btn-nav" onclick="exportOrdersJSON()" title="Xuất dữ liệu"><i class="fa-solid fa-file-export"></i></button>
+        <button type="button" class="btn-nav" onclick="refreshOrders()" title="LÃ m má»›i"><i class="fa-solid fa-rotate-right"></i></button>
+        <button type="button" class="btn-nav" onclick="exportOrdersJSON()" title="Xuáº¥t dá»¯ liá»‡u"><i class="fa-solid fa-file-export"></i></button>
       </div>
     </div>
 
@@ -753,13 +753,13 @@
       <table>
         <thead>
           <tr>
-            <th>Mã Đơn</th>
-            <th>Thời Gian</th>
-            <th>Khách Hàng / SĐT</th>
-            <th>Sản Phẩm &amp; Phiên Bản</th>
-            <th>Số Tiền</th>
-            <th>Trạng Thái</th>
-            <th style="text-align:right;">Thao Tác Admin</th>
+            <th>MÃ£ ÄÆ¡n</th>
+            <th>Thá»i Gian</th>
+            <th>KhÃ¡ch HÃ ng / SÄT</th>
+            <th>Sáº£n Pháº©m &amp; PhiÃªn Báº£n</th>
+            <th>Sá»‘ Tiá»n</th>
+            <th>Tráº¡ng ThÃ¡i</th>
+            <th style="text-align:right;">Thao TÃ¡c Admin</th>
           </tr>
         </thead>
         <tbody id="ordersTableBody">
@@ -771,33 +771,35 @@
 
 </div>
 
-<!-- ══ STRIX SCAN MODAL ══ -->
+<!-- â•â• STRIX SCAN MODAL â•â• -->
 <div class="modal-overlay" id="strixModal">
   <div class="scan-card">
     <h3 class="scan-title"><i class="fa-solid fa-shield-halved" style="color:#a78bfa;"></i> STRIX AI PENETRATION TEST</h3>
-    <p class="scan-sub">Kiểm tra bảo mật toàn diện Shop Đại Phú FF theo tiêu chuẩn Strix Engine</p>
+    <p class="scan-sub">Kiá»ƒm tra báº£o máº­t toÃ n diá»‡n Shop Äáº¡i PhÃº FF theo tiÃªu chuáº©n Strix Engine</p>
     
     <div class="scan-terminal" id="scanTerminal">
-      <div>[INIT] Khởi động Strix Security Core v1.4...</div>
+      <div>[INIT] Khá»Ÿi Ä‘á»™ng Strix Security Core v1.4...</div>
     </div>
 
     <div style="margin-top:16px;text-align:right;">
-      <button type="button" class="btn-nav" onclick="closeStrixModal()">Đóng cửa sổ</button>
+      <button type="button" class="btn-nav" onclick="closeStrixModal()">ÄÃ³ng cá»­a sá»•</button>
     </div>
   </div>
 </div>
 
-<!-- ══ TOAST NOTIFICATION ══ -->
+<!-- â•â• TOAST NOTIFICATION â•â• -->
 <div class="admin-toast" id="adminToast">
   <i class="fa-solid fa-circle-check" style="color:#00f0ff;"></i>
-  <span id="toastMsg">Thao tác thành công!</span>
+  <span id="toastMsg">Thao tÃ¡c thÃ nh cÃ´ng!</span>
 </div>
 
 <script>
-/* ═══════ CONFIG & AUTH ═══════ */
+/* â•â•â•â•â•â•â• CONFIG & AUTH â•â•â•â•â•â•â• */
 const ADMIN_SECRET = 'daiphu2026';
 let currentFilter = 'all';
 let searchQuery = '';
+let allOrders = []; // merged tá»« localStorage + cloud
+let autoRefreshTimer = null;
 
 function checkAuth() {
   const isAuth = sessionStorage.getItem('daiphu_admin_auth');
@@ -806,10 +808,12 @@ function checkAuth() {
   if (isAuth === 'true') {
     loginOverlay.style.display = 'none';
     adminContent.style.display = 'block';
-    renderDashboard();
+    loadAllOrders();
+    startAutoRefresh();
   } else {
     loginOverlay.style.display = 'flex';
     adminContent.style.display = 'none';
+    stopAutoRefresh();
   }
 }
 
@@ -818,10 +822,10 @@ function handleAdminLogin(e) {
   const pass = document.getElementById('adminPassword').value.trim();
   if (pass === ADMIN_SECRET) {
     sessionStorage.setItem('daiphu_admin_auth', 'true');
-    showToast('🎉 Xác thực Admin thành công! Chào mừng bạn & Anh Phú.');
+    showToast('ðŸŽ‰ XÃ¡c thá»±c Admin thÃ nh cÃ´ng! ChÃ o má»«ng Anh PhÃº.');
     checkAuth();
   } else {
-    showToast('❌ Mật khẩu Admin không chính xác. Vui lòng thử lại!');
+    showToast('âŒ Máº­t kháº©u Admin khÃ´ng chÃ­nh xÃ¡c. Vui lÃ²ng thá»­ láº¡i!');
     document.getElementById('adminPassword').value = '';
     document.getElementById('adminPassword').focus();
   }
@@ -829,64 +833,142 @@ function handleAdminLogin(e) {
 
 function adminLogout() {
   sessionStorage.removeItem('daiphu_admin_auth');
-  showToast('👋 Đã đăng xuất khỏi trang quản trị.');
+  stopAutoRefresh();
+  showToast('ðŸ‘‹ ÄÃ£ Ä‘Äƒng xuáº¥t khá»i trang quáº£n trá»‹.');
   checkAuth();
 }
 
-/* ═══════ DATA HELPERS ═══════ */
+/* â•â•â•â•â•â•â• AUTO REFRESH â•â•â•â•â•â•â• */
+function startAutoRefresh() {
+  stopAutoRefresh();
+  autoRefreshTimer = setInterval(function() {
+    loadAllOrders(true); // silent refresh
+  }, 30000); // 30 giÃ¢y
+}
+function stopAutoRefresh() {
+  if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
+}
+
+/* â•â•â•â•â•â•â• DATA HELPERS â•â•â•â•â•â•â• */
 function formatVND(n) {
   if (typeof n !== 'number') n = Number(n) || 0;
-  return n.toLocaleString('vi-VN') + 'đ';
+  return n.toLocaleString('vi-VN') + 'Ä‘';
 }
 
 function getStoredOrders() {
   try {
     const raw = localStorage.getItem('daiphu_orders');
     return raw ? JSON.parse(raw) : [];
-  } catch(e) {
-    return [];
-  }
+  } catch(e) { return []; }
 }
 
 function saveStoredOrders(orders) {
-  try {
-    localStorage.setItem('daiphu_orders', JSON.stringify(orders));
-  } catch(e) {}
+  try { localStorage.setItem('daiphu_orders', JSON.stringify(orders)); } catch(e) {}
 }
 
-/* ═══════ RENDER DASHBOARD & ORDERS ═══════ */
+/* â•â•â•â•â•â•â• LOAD Táº¤T Cáº¢ ÄÆ N (localStorage + Cloud) â•â•â•â•â•â•â• */
+function loadAllOrders(silent) {
+  if (!silent) showLoadingState();
+
+  fetch('/api/orders')
+    .then(r => r.json())
+    .then(data => {
+      const cloudOrders = (data && data.orders) ? data.orders : [];
+      const localOrders = getStoredOrders();
+
+      // Merge: cloud lÃ  nguá»“n chÃ­nh, local bá»• sung náº¿u thiáº¿u
+      const merged = [...cloudOrders];
+      localOrders.forEach(lo => {
+        if (!merged.find(co => co.id === lo.id)) {
+          merged.push(lo);
+        } else {
+          // Náº¿u cloud cÃ³ nhÆ°ng status khÃ¡c â†’ Æ°u tiÃªn cloud
+        }
+      });
+
+      // Sáº¯p xáº¿p má»›i nháº¥t lÃªn trÃªn
+      merged.sort((a, b) => {
+        const ta = new Date(a.time || 0).getTime();
+        const tb = new Date(b.time || 0).getTime();
+        return tb - ta;
+      });
+
+      allOrders = merged;
+      renderDashboard();
+      if (!silent) showToast('â˜ï¸ ÄÃ£ táº£i ' + merged.length + ' Ä‘Æ¡n tá»« Cloud + Local!');
+    })
+    .catch(err => {
+      console.warn('Cloud fetch failed, dÃ¹ng localStorage:', err);
+      allOrders = getStoredOrders();
+      renderDashboard();
+      if (!silent) showToast('âš ï¸ KhÃ´ng káº¿t ná»‘i Ä‘Æ°á»£c Cloud, hiá»ƒn thá»‹ dá»¯ liá»‡u Local.');
+    });
+}
+
+/* â•â•â•â•â•â•â• CHECK SEPAY CHO 1 ÄÆ N â•â•â•â•â•â•â• */
+function checkSePay(orderId, price, btnEl) {
+  if (btnEl) { btnEl.disabled = true; btnEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>'; }
+  const memo = orderId; // SePay match theo username hoáº·c orderId
+
+  // TÃ¬m username cá»§a Ä‘Æ¡n Ä‘á»ƒ match
+  const order = allOrders.find(o => o.id === orderId);
+  const memoToCheck = (order && order.user && order.user !== 'KhÃ¡ch vÃ£ng lai') ? order.user : orderId;
+
+  fetch('/api/check-payment?memo=' + encodeURIComponent(memoToCheck) + '&price=' + encodeURIComponent(price || 0))
+    .then(r => r.json())
+    .then(data => {
+      if (btnEl) { btnEl.disabled = false; btnEl.innerHTML = '<i class="fa-solid fa-magnifying-glass-dollar"></i> SePay'; }
+
+      const resultEl = document.getElementById('sepay-result-' + orderId);
+      if (data && data.paid) {
+        const tx = data.transaction;
+        if (resultEl) {
+          resultEl.innerHTML = '<span style="color:#34d399;font-weight:700;font-size:11px;">âœ… TIá»€N VÃ€O! +' + formatVND(tx.amount) + ' | Ref: ' + (tx.reference || tx.id) + '</span>';
+          resultEl.style.display = 'block';
+        }
+        showToast('âœ… SePay xÃ¡c nháº­n: ÄÆ¡n ' + orderId + ' Ä‘Ã£ nháº­n Ä‘á»§ tiá»n ' + formatVND(tx.amount) + '!');
+        // Tá»± Ä‘á»™ng Ä‘Ã¡nh dáº¥u approved
+        updateOrderStatus(orderId, 'approved', tx.reference || tx.id);
+      } else {
+        if (resultEl) {
+          resultEl.innerHTML = '<span style="color:#f87171;font-size:11px;">â³ SePay chÆ°a ghi nháº­n tiá»n vÃ o. KhÃ¡ch chÆ°a CK hoáº·c Ä‘ang chá».</span>';
+          resultEl.style.display = 'block';
+        }
+        showToast('â³ ChÆ°a nháº­n Ä‘Æ°á»£c tiá»n cho Ä‘Æ¡n ' + orderId);
+      }
+    })
+    .catch(err => {
+      if (btnEl) { btnEl.disabled = false; btnEl.innerHTML = '<i class="fa-solid fa-magnifying-glass-dollar"></i> SePay'; }
+      showToast('âŒ Lá»—i káº¿t ná»‘i SePay API. Kiá»ƒm tra láº¡i server.');
+    });
+}
+
+function showLoadingState() {
+  const tbody = document.getElementById('ordersTableBody');
+  if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:#64748b;"><i class="fa-solid fa-spinner fa-spin" style="font-size:24px;"></i><br><br>Äang táº£i Ä‘Æ¡n hÃ ng tá»« Cloud...</td></tr>';
+}
+
+/* â•â•â•â•â•â•â• RENDER DASHBOARD & ORDERS â•â•â•â•â•â•â• */
 function renderDashboard() {
-  const orders = getStoredOrders();
+  const orders = allOrders;
 
-  // Statistics
   const total = orders.length;
-  let revenue = 0;
-  let pending = 0;
-  let approved = 0;
-  let rejected = 0;
-
+  let revenue = 0, pending = 0, approved = 0, rejected = 0;
   orders.forEach(o => {
-    if (o.status === 'approved') {
-      revenue += (Number(o.price) || 0);
-      approved++;
-    } else if (o.status === 'rejected') {
-      rejected++;
-    } else {
-      pending++;
-    }
+    if (o.status === 'approved') { revenue += (Number(o.price) || 0); approved++; }
+    else if (o.status === 'rejected') { rejected++; }
+    else { pending++; }
   });
 
   document.getElementById('statTotalOrders').textContent = total;
   document.getElementById('statTotalRevenue').textContent = formatVND(revenue);
   document.getElementById('statPendingOrders').textContent = pending;
   document.getElementById('statApprovedOrders').textContent = approved;
-
   document.getElementById('countAll').textContent = total;
   document.getElementById('countPending').textContent = pending;
   document.getElementById('countApproved').textContent = approved;
   document.getElementById('countRejected').textContent = rejected;
 
-  // Filter & Search
   let filtered = orders.filter(o => {
     if (currentFilter === 'pending') return o.status === 'pending' || !o.status;
     if (currentFilter === 'approved') return o.status === 'approved';
@@ -896,7 +978,7 @@ function renderDashboard() {
 
   if (searchQuery) {
     const q = searchQuery.toLowerCase();
-    filtered = filtered.filter(o => 
+    filtered = filtered.filter(o =>
       (o.id && o.id.toLowerCase().includes(q)) ||
       (o.user && o.user.toLowerCase().includes(q)) ||
       (o.phone && o.phone.toLowerCase().includes(q)) ||
@@ -905,10 +987,9 @@ function renderDashboard() {
     );
   }
 
-  // Render Table Rows
   const tbody = document.getElementById('ordersTableBody');
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:30px;color:#64748b;">Chưa có đơn hàng nào khớp với tìm kiếm.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:30px;color:#64748b;">ChÆ°a cÃ³ Ä‘Æ¡n hÃ ng nÃ o khá»›p vá»›i tÃ¬m kiáº¿m.</td></tr>`;
     return;
   }
 
@@ -916,47 +997,53 @@ function renderDashboard() {
   filtered.forEach(o => {
     let statusBadge = '';
     if (o.status === 'approved') {
-      statusBadge = `<span class="status-badge approved"><i class="fa-solid fa-circle-check"></i> ĐÃ GỬI FILE</span>`;
+      statusBadge = `<span class="status-badge approved"><i class="fa-solid fa-circle-check"></i> ÄÃƒ Gá»¬I FILE</span>`;
     } else if (o.status === 'rejected') {
-      statusBadge = `<span class="status-badge rejected"><i class="fa-solid fa-circle-xmark"></i> BÁO SAI TIỀN</span>`;
+      statusBadge = `<span class="status-badge rejected"><i class="fa-solid fa-circle-xmark"></i> BÃO SAI TIá»€N</span>`;
     } else {
-      statusBadge = `<span class="status-badge pending"><i class="fa-solid fa-clock"></i> CHỜ DUYỆT</span>`;
+      statusBadge = `<span class="status-badge pending"><i class="fa-solid fa-clock"></i> CHá»œ DUYá»†T</span>`;
     }
 
     const zaloPhone = o.phone ? o.phone.replace(/[^0-9]/g, '') : '0588500524';
+    const txInfo = o.txId ? `<div style="font-size:10px;color:#34d399;margin-top:2px;">Ref: ${o.txId}</div>` : '';
 
     html += `
       <tr>
-        <td><span class="order-code-badge">${o.id}</span></td>
-        <td style="color:#94a3b8;font-size:11.5px;">${o.time || 'Vừa xong'}</td>
+        <td><span class="order-code-badge">${o.id}</span>${txInfo}</td>
+        <td style="color:#94a3b8;font-size:11.5px;">${o.time || 'Vá»«a xong'}</td>
         <td>
-          <strong style="color:#fff;">${o.user || 'Khách vãng lai'}</strong>
+          <strong style="color:#fff;">${o.user || 'KhÃ¡ch vÃ£ng lai'}</strong>
           ${o.phone ? `<div style="font-size:11px;color:#f59e0b;"><i class="fa-solid fa-phone"></i> ${o.phone}</div>` : ''}
         </td>
         <td>
-          <span style="color:#ffffff;font-weight:700;">${o.productName}</span>
-          <div style="font-size:11px;color:#c4b5fd;">${o.planName}</div>
+          <span style="color:#ffffff;font-weight:700;">${o.productName || o.product || 'â€”'}</span>
+          <div style="font-size:11px;color:#c4b5fd;">${o.planName || o.plan || ''}</div>
         </td>
         <td><strong style="color:#10b981;font-size:13.5px;">${formatVND(o.price)}</strong></td>
         <td>${statusBadge}</td>
         <td style="text-align:right;">
-          <div class="actions-group" style="justify-content:flex-end;">
-            <button type="button" class="btn-action approve" onclick="updateOrderStatus('${o.id}', 'approved')" title="Xác nhận đúng tiền & Đã gửi file">
-              <i class="fa-solid fa-check"></i> Đúng
+          <div class="actions-group" style="justify-content:flex-end;flex-wrap:wrap;gap:4px;">
+            <button type="button" class="btn-action" style="background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.3);"
+              onclick="checkSePay('${o.id}', ${o.price || 0}, this)" title="Kiá»ƒm tra tiá»n qua SePay API">
+              <i class="fa-solid fa-magnifying-glass-dollar"></i> SePay
             </button>
-            <button type="button" class="btn-action reject" onclick="updateOrderStatus('${o.id}', 'rejected')" title="Đánh dấu sai tiền / chưa nhận được">
+            <button type="button" class="btn-action approve" onclick="updateOrderStatus('${o.id}', 'approved')" title="XÃ¡c nháº­n Ä‘Ãºng tiá»n & ÄÃ£ gá»­i file">
+              <i class="fa-solid fa-check"></i> ÄÃºng
+            </button>
+            <button type="button" class="btn-action reject" onclick="updateOrderStatus('${o.id}', 'rejected')" title="ÄÃ¡nh dáº¥u sai tiá»n">
               <i class="fa-solid fa-xmark"></i> Sai
             </button>
-            <button type="button" class="btn-action" onclick="copyCustomerReply('${o.id}')" title="Sao chép tin nhắn Zalo gửi khách">
-              <i class="fa-solid fa-copy"></i> Mẫu tin
+            <button type="button" class="btn-action" onclick="copyCustomerReply('${o.id}')" title="Sao chÃ©p máº«u tin Zalo">
+              <i class="fa-solid fa-copy"></i> Máº«u tin
             </button>
-            <a href="https://zalo.me/${zaloPhone}" target="_blank" rel="noopener" class="btn-action zalo" title="Mở Zalo khách">
+            <a href="https://zalo.me/${zaloPhone}" target="_blank" rel="noopener" class="btn-action zalo">
               <i class="fa-solid fa-comment-dots"></i> Zalo
             </a>
-            <button type="button" class="btn-action" style="color:#f87171;" onclick="deleteOrder('${o.id}')" title="Xóa đơn">
+            <button type="button" class="btn-action" style="color:#f87171;" onclick="deleteOrder('${o.id}')">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
+          <div id="sepay-result-${o.id}" style="display:none;margin-top:6px;padding:5px 8px;border-radius:6px;background:rgba(0,0,0,0.3);"></div>
         </td>
       </tr>
     `;
@@ -979,82 +1066,83 @@ function handleSearch(val) {
 }
 
 function refreshOrders() {
-  renderDashboard();
-  showToast('🔄 Đã làm mới danh sách đơn hàng!');
+  loadAllOrders();
 }
 
-function updateOrderStatus(id, newStatus) {
-  const orders = getStoredOrders();
-  const order = orders.find(o => o.id === id);
+function updateOrderStatus(id, newStatus, txId) {
+  // Cáº­p nháº­t trong allOrders
+  const order = allOrders.find(o => o.id === id);
   if (!order) return;
-
   order.status = newStatus;
-  saveStoredOrders(orders);
-  renderDashboard();
+  if (txId) order.txId = txId;
 
-  if (newStatus === 'approved') {
-    showToast(`✅ Đã duyệt đơn ${id}: Đúng tiền & Đã bàn giao file!`);
-  } else {
-    showToast(`❌ Đã đánh dấu đơn ${id}: Báo sai tiền / Lỗi giao dịch.`);
-  }
+  // LÆ°u localStorage
+  const localOrders = getStoredOrders();
+  const lo = localOrders.find(o => o.id === id);
+  if (lo) { lo.status = newStatus; if (txId) lo.txId = txId; }
+  else { localOrders.push(order); }
+  saveStoredOrders(localOrders);
+
+  // Sync lÃªn cloud
+  fetch('/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(order)
+  }).catch(() => {});
+
+  renderDashboard();
+  if (newStatus === 'approved') showToast(`âœ… ÄÃ£ duyá»‡t Ä‘Æ¡n ${id}: ÄÃºng tiá»n & ÄÃ£ bÃ n giao file!`);
+  else showToast(`âŒ ÄÃ£ Ä‘Ã¡nh dáº¥u Ä‘Æ¡n ${id}: BÃ¡o sai tiá»n / Lá»—i giao dá»‹ch.`);
 }
 
 function deleteOrder(id) {
-  if (confirm(`Bạn có chắc muốn xóa đơn hàng ${id}?`)) {
-    let orders = getStoredOrders();
-    orders = orders.filter(o => o.id !== id);
-    saveStoredOrders(orders);
+  if (confirm(`Báº¡n cÃ³ cháº¯c muá»‘n xÃ³a Ä‘Æ¡n hÃ ng ${id}?`)) {
+    allOrders = allOrders.filter(o => o.id !== id);
+    const localOrders = getStoredOrders().filter(o => o.id !== id);
+    saveStoredOrders(localOrders);
     renderDashboard();
-    showToast(`🗑️ Đã xóa đơn ${id}`);
+    showToast(`ðŸ—‘ï¸ ÄÃ£ xÃ³a Ä‘Æ¡n ${id}`);
   }
 }
 
 function copyCustomerReply(id) {
-  const orders = getStoredOrders();
-  const order = orders.find(o => o.id === id);
+  const order = allOrders.find(o => o.id === id);
   if (!order) return;
-
   let msg = '';
   if (order.status === 'approved') {
-    msg = `[SHOP ĐẠI PHÚ FF] Xác nhận đơn hàng ${order.id} của bạn thành công! Đã nhận đủ ${formatVND(order.price)} cho gói ${order.productName} (${order.planName}). Dưới đây là link tải và hướng dẫn cài đặt của bạn: https://zalo.me/0588500524 . Cảm ơn bạn đã ủng hộ shop!`;
+    msg = `[SHOP Äáº I PHÃš FF] XÃ¡c nháº­n Ä‘Æ¡n hÃ ng ${order.id} cá»§a báº¡n thÃ nh cÃ´ng! ÄÃ£ nháº­n Ä‘á»§ ${formatVND(order.price)} cho gÃ³i ${order.productName} (${order.planName}). DÆ°á»›i Ä‘Ã¢y lÃ  link táº£i vÃ  hÆ°á»›ng dáº«n cÃ i Ä‘áº·t cá»§a báº¡n: https://zalo.me/0588500524 . Cáº£m Æ¡n báº¡n Ä‘Ã£ á»§ng há»™ shop!`;
   } else if (order.status === 'rejected') {
-    msg = `[SHOP ĐẠI PHÚ FF] Thông báo đơn hàng ${order.id}: Hệ thống chưa nhận được số tiền ${formatVND(order.price)} hoặc sai nội dung chuyển khoản. Bạn vui lòng chụp lại biên lai giao dịch gửi qua Zalo 0588500524 (Anh Phú) để được đối soát ngay nhé!`;
+    msg = `[SHOP Äáº I PHÃš FF] ThÃ´ng bÃ¡o Ä‘Æ¡n hÃ ng ${order.id}: Há»‡ thá»‘ng chÆ°a nháº­n Ä‘Æ°á»£c sá»‘ tiá»n ${formatVND(order.price)} hoáº·c sai ná»™i dung chuyá»ƒn khoáº£n. Báº¡n vui lÃ²ng chá»¥p láº¡i biÃªn lai giao dá»‹ch gá»­i qua Zalo 0588500524 (Anh PhÃº) Ä‘á»ƒ Ä‘Æ°á»£c Ä‘á»‘i soÃ¡t ngay nhÃ©!`;
   } else {
-    msg = `[SHOP ĐẠI PHÚ FF] Đã nhận yêu cầu đơn hàng ${order.id} (${order.productName} - ${formatVND(order.price)}). Admin đang kiểm tra đối soát MB Bank và sẽ gửi file trong vài phút!`;
+    msg = `[SHOP Äáº I PHÃš FF] ÄÃ£ nháº­n yÃªu cáº§u Ä‘Æ¡n hÃ ng ${order.id} (${order.productName} - ${formatVND(order.price)}). Admin Ä‘ang kiá»ƒm tra Ä‘á»‘i soÃ¡t MB Bank vÃ  sáº½ gá»­i file trong vÃ i phÃºt!`;
   }
-
-  navigator.clipboard.writeText(msg).then(() => {
-    showToast('📋 Đã sao chép mẫu tin nhắn Zalo gửi cho khách!');
-  });
+  navigator.clipboard.writeText(msg).then(() => showToast('ðŸ“‹ ÄÃ£ sao chÃ©p máº«u tin nháº¯n Zalo gá»­i cho khÃ¡ch!'));
 }
 
 function exportOrdersJSON() {
-  const orders = getStoredOrders();
-  const blob = new Blob([JSON.stringify(orders, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(allOrders, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = `daiphu_orders_${Date.now()}.json`;
   a.click();
-  showToast('💾 Đã xuất file sao lưu đơn hàng!');
+  showToast('ðŸ’¾ ÄÃ£ xuáº¥t file sao lÆ°u Ä‘Æ¡n hÃ ng!');
 }
 
-/* ═══════ STRIX SECURITY ENGINE SIMULATION ═══════ */
+/* â•â•â•â•â•â•â• STRIX SECURITY ENGINE SIMULATION â•â•â•â•â•â•â• */
 function runStrixSecurityScan() {
   const modal = document.getElementById('strixModal');
   const term = document.getElementById('scanTerminal');
   modal.classList.add('open');
-  term.innerHTML = '<div>[START] Khởi chạy quét bảo mật Strix Security Scanner v1.4...</div>';
-
+  term.innerHTML = '<div>[START] Khá»Ÿi cháº¡y quÃ©t báº£o máº­t Strix Security Scanner v1.4...</div>';
   const steps = [
-    { delay: 400, text: '• [AUDIT] Kiểm tra giao thức bảo mật SSL/TLS Vercel: <span class="log-ok">100% Valid HTTPS</span>' },
-    { delay: 800, text: '• [PEN-TEST] Rà soát Client-Side Tampering (Gian lận sửa giá gói): <span class="log-ok">Protected (Validated)</span>' },
-    { delay: 1200, text: '• [ANTI-INSPECT] Kiểm tra chế độ chống F12 &amp; sao chép mã nguồn: <span class="log-ok">Active &amp; Guarded</span>' },
-    { delay: 1600, text: '• [XSS & INJECTION] Kiểm tra form đầu vào (Đăng ký, Đăng nhập, Check đơn): <span class="log-ok">Sanitized (Safe)</span>' },
-    { delay: 2000, text: '• [VIETQR INTEGRITY] Đối soát mã checksum đơn hàng DP...: <span class="log-ok">100% Unique &amp; Verified</span>' },
-    { delay: 2400, text: '<span class="log-info">[KẾT LUẬN STRIX]: HỆ THỐNG AN TOÀN TUYỆT ĐỐI. KHÔNG PHÁT HIỆN LỖ HỔNG!</span>' }
+    { delay: 400, text: 'â€¢ [AUDIT] Kiá»ƒm tra giao thá»©c báº£o máº­t SSL/TLS Vercel: <span class="log-ok">100% Valid HTTPS</span>' },
+    { delay: 800, text: 'â€¢ [PEN-TEST] RÃ  soÃ¡t Client-Side Tampering (Gian láº­n sá»­a giÃ¡ gÃ³i): <span class="log-ok">Protected (Validated)</span>' },
+    { delay: 1200, text: 'â€¢ [ANTI-INSPECT] Kiá»ƒm tra cháº¿ Ä‘á»™ chá»‘ng F12 & sao chÃ©p mÃ£ nguá»“n: <span class="log-ok">Active & Guarded</span>' },
+    { delay: 1600, text: 'â€¢ [XSS & INJECTION] Kiá»ƒm tra form Ä‘áº§u vÃ o (ÄÄƒng kÃ½, ÄÄƒng nháº­p, Check Ä‘Æ¡n): <span class="log-ok">Sanitized (Safe)</span>' },
+    { delay: 2000, text: 'â€¢ [VIETQR INTEGRITY] Äá»‘i soÃ¡t mÃ£ checksum Ä‘Æ¡n hÃ ng DP...: <span class="log-ok">100% Unique & Verified</span>' },
+    { delay: 2400, text: '<span class="log-info">[Káº¾T LUáº¬N STRIX]: Há»† THá»NG AN TOÃ€N TUYá»†T Äá»I. KHÃ”NG PHÃT HIá»†N Lá»– Há»”NG!</span>' }
   ];
-
   steps.forEach(s => {
     setTimeout(() => {
       const line = document.createElement('div');
@@ -1069,20 +1157,20 @@ function closeStrixModal() {
   document.getElementById('strixModal').classList.remove('open');
 }
 
-/* ═══════ TOAST HELPER ═══════ */
+/* â•â•â•â•â•â•â• TOAST HELPER â•â•â•â•â•â•â• */
 function showToast(msg) {
   const toast = document.getElementById('adminToast');
   const msgEl = document.getElementById('toastMsg');
   if (!toast || !msgEl) return;
   msgEl.textContent = msg;
   toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 3200);
+  setTimeout(() => toast.classList.remove('show'), 3200);
 }
 
 // Init
 checkAuth();
 </script>
+
 </body>
 </html>
+
