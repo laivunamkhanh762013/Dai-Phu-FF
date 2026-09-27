@@ -3486,7 +3486,7 @@ function renderProducts() {
     var chipsHtml = '<div class="card-plans">';
     p.plans.forEach(function(plan, idx) {
       var badgeCls = plan.badge ? ' ' + getBadgeClass(plan.badge) : '';
-      chipsHtml += '<span class="card-plan-chip' + badgeCls + '" data-pid="' + p.id + '" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\', ' + idx + ')">'
+      chipsHtml += '<span class="card-plan-chip" data-pid="' + p.id + '" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\', ' + idx + ')">'
         + cleanPlanLabel(plan.name) + ' · ' + formatVND(plan.price)
       + '</span>';
     });
@@ -3692,7 +3692,7 @@ function renderModalVersionBlocks(p, activeIdx) {
     + '</button>';
 
     // Version Block Card
-    var badgeHtml = plan.badge ? '<span class="vb-badge-pill ' + getBadgeClass(plan.badge) + '">' + plan.badge + '</span>' : '';
+    var badgeHtml = '';
     
     // Specs items
     var specsHtml = '';
