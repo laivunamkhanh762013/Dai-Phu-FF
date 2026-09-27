@@ -164,6 +164,15 @@
     .stat-wait .stat-icon { background: rgba(245,158,11,0.15); color: #fbbf24; }
     .stat-done .stat-icon { background: rgba(139,92,246,0.15); color: #a78bfa; }
 
+    /* REVENUE PERIOD BREAKDOWN */
+    .revenue-period-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+    @media(max-width:850px) { .revenue-period-grid { grid-template-columns: 1fr; } }
+    .rev-period-card {
+      border-radius: 16px; padding: 18px 20px;
+      transition: transform .2s, border-color .2s;
+    }
+    .rev-period-card:hover { transform: translateY(-3px); }
+
     /* ORDERS */
     .orders-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 22px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
     .orders-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
@@ -285,7 +294,7 @@
       <div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div>
     </div>
     <div class="stat-card stat-rev">
-      <div class="stat-data"><small>Doanh Thu Đã Duyệt</small><strong id="statTotalRevenue">0đ</strong></div>
+      <div class="stat-data"><small>Tổng Doanh Thu (Tất Cả)</small><strong id="statTotalRevenue">0đ</strong></div>
       <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
     </div>
     <div class="stat-card stat-wait">
@@ -295,6 +304,42 @@
     <div class="stat-card stat-done">
       <div class="stat-data"><small>Đơn Đã Giao File</small><strong id="statApprovedOrders" style="color:#34d399;">0</strong></div>
       <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+    </div>
+  </section>
+
+  <!-- Chi Tiết Doanh Thu Đã Duyệt: 1 Ngày / 1 Tháng / 1 Năm -->
+  <section class="revenue-period-grid">
+    <div class="rev-period-card" style="background:linear-gradient(135deg,rgba(16,185,129,0.14),rgba(15,23,42,0.95));border:1px solid rgba(16,185,129,0.4);box-shadow:0 10px 28px rgba(0,0,0,0.4);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:12px;font-weight:800;color:#34d399;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-calendar-day"></i> ĐÃ DUYỆT 1 NGÀY (HÔM NAY)
+        </span>
+        <span id="badgeDayOrders" style="font-size:11px;font-weight:800;background:rgba(16,185,129,0.22);color:#4ade80;padding:2px 8px;border-radius:6px;border:1px solid rgba(16,185,129,0.4);">0 đơn</span>
+      </div>
+      <strong id="statRevDay" style="font-size:26px;font-weight:900;color:#fff;display:block;">0đ</strong>
+      <small style="font-size:11.5px;color:#94a3b8;margin-top:6px;display:block;">Doanh thu được duyệt từ 00:00 hôm nay</small>
+    </div>
+
+    <div class="rev-period-card" style="background:linear-gradient(135deg,rgba(56,189,248,0.14),rgba(15,23,42,0.95));border:1px solid rgba(56,189,248,0.4);box-shadow:0 10px 28px rgba(0,0,0,0.4);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:12px;font-weight:800;color:#38bdf8;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-calendar-week"></i> ĐÃ DUYỆT 1 THÁNG (THÁNG NÀY)
+        </span>
+        <span id="badgeMonthOrders" style="font-size:11px;font-weight:800;background:rgba(56,189,248,0.22);color:#38bdf8;padding:2px 8px;border-radius:6px;border:1px solid rgba(56,189,248,0.4);">0 đơn</span>
+      </div>
+      <strong id="statRevMonth" style="font-size:26px;font-weight:900;color:#fff;display:block;">0đ</strong>
+      <small style="font-size:11.5px;color:#94a3b8;margin-top:6px;display:block;" id="labelThisMonth">Doanh thu được duyệt trong tháng này</small>
+    </div>
+
+    <div class="rev-period-card" style="background:linear-gradient(135deg,rgba(168,85,247,0.14),rgba(15,23,42,0.95));border:1px solid rgba(168,85,247,0.4);box-shadow:0 10px 28px rgba(0,0,0,0.4);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:12px;font-weight:800;color:#c084fc;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-calendar-check"></i> ĐÃ DUYỆT 1 NĂM (NĂM NAY)
+        </span>
+        <span id="badgeYearOrders" style="font-size:11px;font-weight:800;background:rgba(168,85,247,0.22);color:#c084fc;padding:2px 8px;border-radius:6px;border:1px solid rgba(168,85,247,0.4);">0 đơn</span>
+      </div>
+      <strong id="statRevYear" style="font-size:26px;font-weight:900;color:#fff;display:block;">0đ</strong>
+      <small style="font-size:11.5px;color:#94a3b8;margin-top:6px;display:block;" id="labelThisYear">Doanh thu được duyệt trong năm nay</small>
     </div>
   </section>
 
@@ -484,17 +529,90 @@ function checkSePay(orderId, price, btnEl) {
     });
 }
 
+function parseOrderDate(timeStr) {
+  if (!timeStr) return null;
+  const d = new Date(timeStr);
+  if (!isNaN(d.getTime()) && (String(timeStr).includes('-') || String(timeStr).includes('T'))) return d;
+
+  const parts = String(timeStr).trim().split(' ');
+  let timePart = '00:00:00';
+  let datePart = '';
+  for (let p of parts) {
+    if (p.includes('/')) datePart = p;
+    else if (p.includes(':')) timePart = p;
+  }
+  if (datePart) {
+    const dmY = datePart.split('/');
+    if (dmY.length === 3) {
+      const day = parseInt(dmY[0], 10);
+      const month = parseInt(dmY[1], 10) - 1;
+      const year = parseInt(dmY[2], 10);
+      const hms = timePart.split(':');
+      const h = parseInt(hms[0] || '0', 10);
+      const m = parseInt(hms[1] || '0', 10);
+      const s = parseInt(hms[2] || '0', 10);
+      return new Date(year, month, day, h, m, s);
+    }
+  }
+  return isNaN(d.getTime()) ? null : d;
+}
+
 /* ═══════ RENDER DASHBOARD ═══════ */
 function renderDashboard() {
   const orders = allOrders;
-  let revenue = 0, pending = 0, approved = 0, rejected = 0;
+  const now = new Date();
+  const currentDay = now.getDate();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  let revTotal = 0, revDay = 0, revMonth = 0, revYear = 0;
+  let countDay = 0, countMonth = 0, countYear = 0;
+  let pending = 0, approved = 0, rejected = 0;
+
   orders.forEach(function(o) {
-    if (o.status === 'approved') { revenue += (Number(o.price) || 0); approved++; }
+    if (o.status === 'approved') {
+      const price = (Number(o.price) || 0);
+      revTotal += price;
+      approved++;
+
+      const d = parseOrderDate(o.time);
+      if (d) {
+        if (d.getDate() === currentDay && d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+          revDay += price;
+          countDay++;
+        }
+        if (d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+          revMonth += price;
+          countMonth++;
+        }
+        if (d.getFullYear() === currentYear) {
+          revYear += price;
+          countYear++;
+        }
+      } else {
+        revDay += price; countDay++;
+        revMonth += price; countMonth++;
+        revYear += price; countYear++;
+      }
+    }
     else if (o.status === 'rejected') { rejected++; }
     else { pending++; }
   });
+
   document.getElementById('statTotalOrders').textContent = orders.length;
-  document.getElementById('statTotalRevenue').textContent = formatVND(revenue);
+  document.getElementById('statTotalRevenue').textContent = formatVND(revTotal);
+  document.getElementById('statRevDay').textContent = formatVND(revDay);
+  document.getElementById('statRevMonth').textContent = formatVND(revMonth);
+  document.getElementById('statRevYear').textContent = formatVND(revYear);
+  document.getElementById('badgeDayOrders').textContent = countDay + ' đơn';
+  document.getElementById('badgeMonthOrders').textContent = countMonth + ' đơn';
+  document.getElementById('badgeYearOrders').textContent = countYear + ' đơn';
+
+  const lblMonth = document.getElementById('labelThisMonth');
+  if (lblMonth) lblMonth.textContent = 'Doanh thu được duyệt trong Tháng ' + (currentMonth + 1) + '/' + currentYear;
+  const lblYear = document.getElementById('labelThisYear');
+  if (lblYear) lblYear.textContent = 'Doanh thu được duyệt trong Năm ' + currentYear;
+
   document.getElementById('statPendingOrders').textContent = pending;
   document.getElementById('statApprovedOrders').textContent = approved;
   document.getElementById('countAll').textContent = orders.length;
