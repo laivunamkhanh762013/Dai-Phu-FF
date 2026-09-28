@@ -2457,7 +2457,6 @@
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <a href="admin.html" style="color:#64748b;font-size:12px;text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-weight:700;"><i class="fa-solid fa-lock"></i> Cổng Quản Trị Admin</a>
       <a href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i> Liên hệ Zalo hỗ trợ</a>
     </div>
   </div>
@@ -3559,8 +3558,8 @@ function handleLoginSubmit(e) {
   .then(function(data) {
     if (btn) { btn.disabled = false; btn.innerHTML = oldBtn; }
     if (data && data.success) {
-      var userObj = data.user || { username: u, phone: '' };
-      localStorage.setItem('daiphu_user', JSON.stringify(userObj));
+      var userObj = data.user || { username: u };
+      localStorage.setItem('daiphu_user', JSON.stringify({ username: userObj.username }));
       if (data.token) {
         localStorage.setItem('daiphu_user_token', data.token);
       }
@@ -3605,8 +3604,8 @@ function handleRegisterSubmit(e) {
   .then(function(data) {
     if (btn) { btn.disabled = false; btn.innerHTML = oldBtn; }
     if (data && data.success) {
-      var userObj = data.user || { username: u, phone: phone };
-      localStorage.setItem('daiphu_user', JSON.stringify(userObj));
+      var userObj = data.user || { username: u };
+      localStorage.setItem('daiphu_user', JSON.stringify({ username: userObj.username }));
       if (data.token) {
         localStorage.setItem('daiphu_user_token', data.token);
       }
@@ -3674,7 +3673,6 @@ function renderProducts() {
     // Build mini plan chips for the card
     var chipsHtml = '<div class="card-plans">';
     p.plans.forEach(function(plan, idx) {
-      var badgeCls = plan.badge ? ' ' + getBadgeClass(plan.badge) : '';
       chipsHtml += '<span class="card-plan-chip" data-pid="' + p.id + '" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\', ' + idx + ')">'
         + cleanPlanLabel(plan.name) + ' · ' + formatVND(plan.price)
       + '</span>';
@@ -3882,7 +3880,6 @@ function renderModalVersionBlocks(p, activeIdx) {
     + '</button>';
 
     // Version Block Card
-    var badgeHtml = '';
     
     // Specs items
     var specsHtml = '';
@@ -3929,7 +3926,6 @@ function renderModalVersionBlocks(p, activeIdx) {
           + '<h3 class="vb-title">' + plan.name + '</h3>'
           + '<div class="vb-meta-row">'
             + '<span class="vb-plat-badge"><i class="fa-solid fa-microchip"></i> ' + (p.plat || 'iOS & Android') + '</span>'
-            + badgeHtml
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'
