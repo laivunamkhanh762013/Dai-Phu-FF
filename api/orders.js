@@ -177,7 +177,7 @@ module.exports = async function handler(req, res) {
         const username = userPayload ? userPayload.user : (sanitizeText(body.user, 40) || 'Khách vãng lai');
         const phone = sanitizeText(body.phone, 15);
 
-        const memoCode = 'NT' + Math.floor(100000 + Math.random() * 900000);
+        const memoCode = 'NT' + Math.random().toString(36).substring(2, 8).toUpperCase();
           const newOrder = {
           id: newId,
           memo: memoCode,
