@@ -160,10 +160,10 @@ async function parseBody(req) {
     try { return JSON.parse(req.body); } catch(e) { return {}; }
   }
   return new Promise(resolve => {
-    let d = '';
-    req.on('data', chunk => d += chunk);
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
     req.on('end', () => {
-      try { resolve(JSON.parse(d)); } catch(e) { resolve({}); }
+      try { resolve(JSON.parse(Buffer.concat(chunks).toString('utf8'))); } catch(e) { resolve({}); }
     });
     req.on('error', () => resolve({}));
   });
@@ -239,4 +239,5 @@ module.exports = {
   parseBody,
   validateOrderId
 };
+
 

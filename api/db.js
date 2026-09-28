@@ -1,4 +1,4 @@
-const https = require('https');
+﻿const https = require('https');
 
 const GIST_ID = '4311a1439c30bbaf7f3b75a0d7ae75d8';
 const kParts = ['g', 'h', 'o', '_', 'e2UmkS', 'PAANOjbe', 'QOKBIKK', 'voFxypJo', '343dx0j'];
@@ -16,9 +16,10 @@ function getGist() {
         'User-Agent': 'DaiPhuFF-DB'
       }
     }, res => {
-      let body = '';
-      res.on('data', chunk => body += chunk);
+      const chunks = [];
+      res.on('data', chunk => chunks.push(chunk));
       res.on('end', () => {
+        let body = Buffer.concat(chunks).toString('utf8');
         try {
           const json = JSON.parse(body);
           const orders = JSON.parse(json.files && json.files['orders.json'] ? json.files['orders.json'].content : '[]');
@@ -57,9 +58,10 @@ function updateGist(updates) {
         'Content-Length': Buffer.byteLength(payload)
       }
     }, res => {
-      let body = '';
-      res.on('data', chunk => body += chunk);
+      const chunks = [];
+      res.on('data', chunk => chunks.push(chunk));
       res.on('end', () => {
+        let body = Buffer.concat(chunks).toString('utf8');
         resolve(res.statusCode === 200);
       });
     });
@@ -70,3 +72,4 @@ function updateGist(updates) {
 }
 
 module.exports = { getGist, updateGist };
+
