@@ -56,7 +56,7 @@ module.exports = async function handler(req, res) {
       const userParam = String(query.user || '').trim();
 
       // Nếu khách yêu cầu lấy lịch sử đơn của chính mình
-      if (userParam || (queryId && !queryId.startsWith('DP'))) {
+      if (userParam || (queryId && !queryId.startsWith('DP') && !queryId.startsWith('NT'))) {
         const targetUsername = userParam || queryId;
         // Bắt buộc xác thực tài khoản qua User Token nếu muốn xem danh sách đơn theo user
         if (!userPayload || userPayload.user.toLowerCase() !== targetUsername.toLowerCase()) {
@@ -88,7 +88,7 @@ module.exports = async function handler(req, res) {
         });
       }
 
-      const found = all.find(o => o.id && o.id.toUpperCase() === queryId);
+      const found = all.find(o => (o.id && o.id.toUpperCase() === queryId) || (o.memo && o.memo.toUpperCase() === queryId));
       if (!found) {
         return res.status(404).json({ success: false, error: 'Không tìm thấy đơn hàng: ' + queryId });
       }
@@ -177,8 +177,10 @@ module.exports = async function handler(req, res) {
         const username = userPayload ? userPayload.user : (sanitizeText(body.user, 40) || 'Khách vãng lai');
         const phone = sanitizeText(body.phone, 15);
 
-        const newOrder = {
+        const memoCode = 'NT' + Math.floor(100000 + Math.random() * 900000);
+          const newOrder = {
           id: newId,
+          memo: memoCode,
           product: prodKey,
           plan: planName,
           price: canonicalPrice,
@@ -196,7 +198,7 @@ module.exports = async function handler(req, res) {
         await updateGist({ orders: trimmed });
 
         // Tạo link VietQR chuẩn xác với nội dung chuyển khoản là MÃ ĐƠN HÀNG
-        const qrUrl = 'https://img.vietqr.io/image/MB-0941414448-compact2.png?amount=' + canonicalPrice + '&addInfo=' + encodeURIComponent(newId) + '&accountName=BUI%20VAN%20CAO';
+        const qrUrl = 'https://img.vietqr.io/image/MB-0941414448-compact2.png?amount=' + canonicalPrice + '&addInfo=' + encodeURIComponent(memoCode) + '&accountName=BUI%20VAN%20CAO';
 
         return res.status(200).json({
           success: true,

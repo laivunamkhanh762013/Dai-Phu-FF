@@ -75,10 +75,10 @@ module.exports = async function handler(req, res) {
       if (expectedPrice > 0 && amount < expectedPrice) return false; // Không duyệt nếu chuyển thiếu tiền!
 
       const oId = cleanToken(o.id || '');
-      const uName = cleanToken(o.user || '');
-      // CHỈ khớp chính xác theo mã đơn DP... (không dùng username để tránh bị hijack)
-      const matchId = oId && oId.length >= 6 && cleanContent.includes(oId);
-      return matchId;
+        const oMemo = cleanToken(o.memo || '');
+        const matchId = oId && oId.length >= 6 && cleanContent.includes(oId);
+        const matchMemo = oMemo && oMemo.length >= 6 && cleanContent.includes(oMemo);
+        return matchId || matchMemo;
     });
 
     if (matchedOrder) {

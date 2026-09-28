@@ -4058,13 +4058,13 @@ function startPaymentForPlan(p, plan) {
 
     var order = res.order;
     window.currentOrderId = order.id;
-    window.currentOrderMemo = order.id;
-
-    if (memoEl) memoEl.textContent = order.id;
-    if (adminCodeEl) adminCodeEl.textContent = order.id;
-
-    var cardMemoEl = document.getElementById('mCardOrderMemo');
-    if (cardMemoEl) cardMemoEl.textContent = order.id;
+      window.currentOrderMemo = order.memo || order.id;
+      
+      if (memoEl) memoEl.textContent = window.currentOrderMemo;
+      if (adminCodeEl) adminCodeEl.textContent = window.currentOrderMemo;
+      
+      var cardMemoEl = document.getElementById('mCardOrderMemo');
+      if (cardMemoEl) cardMemoEl.textContent = window.currentOrderMemo;
 
     // Cập nhật ảnh VietQR chứa mã đơn duy nhất trong nội dung chuyển khoản
     var qrEl = document.getElementById('mQrCode');
@@ -4074,7 +4074,7 @@ function startPaymentForPlan(p, plan) {
     saveOrder(order);
 
     // Bắt đầu lắng nghe trạng thái đơn từ server
-    startPaymentWatcher(order.id, order.price);
+    startPaymentWatcher(window.currentOrderMemo, order.price);
     toast('🛒', 'Đã khởi tạo đơn hàng: ' + order.id + '. Vui lòng chuyển khoản đúng nội dung.');
   })
   .catch(function(err) {
@@ -4282,8 +4282,7 @@ function goToStep(step) {
     s2.style.display = 'none';
   } else if (step === 2) {
     s1.style.display = 'none';
-    s2.style.display = 'block';
-    startPaymentWatcher(window.currentOrderMemo, window.currentPayAmountRaw);
+      s2.style.display = 'block';
   }
 }
 
