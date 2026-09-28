@@ -1,20 +1,6 @@
 ﻿<!doctype html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SHOP ĐẠI PHÚ FF • CỬA HÀNG SIÊU PHẨM KÉO TÂM</title>
-<meta name="description" content="Shop Đại Phú FF — Chuyên cung cấp TrollModz, SX2 Team External, Proxy iOS Nova X / Delta, AimLock Forget, Forget Hex V1-V5, Menu Migul, Panel Android.">
-<meta name="keywords" content="trollmodz, sx2, proxy ios, novax, delta, aimlock forget, forget hex, migul, panel android, shop đại phú ff">
-<meta name="robots" content="index,follow">
-<meta name="theme-color" content="#171a1f">
-<link rel="icon" type="image/png" href="assets/uploads/logos/aizen-logo.png">
-<link rel="shortcut icon" href="assets/uploads/logos/aizen-logo.png">
-<link rel="apple-touch-icon" href="assets/uploads/logos/aizen-logo.png">
-<!-- Font Awesome 6.5.2 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<!-- Google Fonts: Inter -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!-- VipGoNoPro Core Styles -->
@@ -4337,7 +4323,7 @@ function openPaidModal(order) {
   if (detailProdEl) detailProdEl.textContent = (order && order.product) || (currentProduct ? currentProduct.name : 'AimLock iOS');
   if (detailPlanEl) detailPlanEl.textContent = (order && order.plan) || (currentPlan ? currentPlan.name : 'Gói phần mềm');
   if (detailPriceEl) detailPriceEl.textContent = formatVND((order && order.price) || (currentPlan ? currentPlan.price : 50000));
-  if (detailTimeEl) detailTimeEl.textContent = (order && order.time) || formatCurrentDateTime();
+  if (detailTimeEl) detailTimeEl.textContent = (order && order.time) || '';
 
   var statusEl = document.querySelector('.paid-status');
 
@@ -4458,25 +4444,8 @@ function saveOrder(order) {
     localStorage.setItem('daiphu_orders', JSON.stringify(list));
   } catch(e) {}
 
-  // Lưu đồng bộ lên Cloud Database
-  fetch('/api/orders', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      id: order.id,
-      product: order.productName || order.product || 'AimLock FF',
-      plan: order.planName || order.plan || '1 tháng',
-      price: order.price || 0,
-      user: order.user || 'Khách',
-      phone: order.phone || '',
-      time: order.time || formatCurrentDateTime(),
-      status: order.status || 'pending',
-      txId: order.txId || ''
-    })
-  }).catch(function(err) {
-    console.warn('Sync order cloud error:', err);
-  });
 }
+
 
 function openOrderCheckModal(presetCode) {
   var m = document.getElementById('orderCheckModal');
@@ -4778,9 +4747,10 @@ function toast(ico, msg) {
   t.innerHTML =
     '<div class="t-accent"></div>'
     + '<div class="t-ico-box">' + ico + '</div>'
-    + '<div class="t-content"><div class="t-msg">' + msg + '</div></div>'
-    + '<button class="t-close-btn" onclick="event.stopPropagation();this.closest(\'.toast-item\').remove();">✕</button>'
+    + '<div class="t-content"><div class="t-msg"></div></div>'
+    + '<button class="t-close-btn" onclick="event.stopPropagation();this.closest(\'.toast-item\').remove();">×</button>'
     + '<div class="t-progress"></div>';
+  t.querySelector('.t-msg').textContent = msg;
   t.onclick = function() { t.classList.add('out'); setTimeout(function(){ t.remove(); }, 250); };
   c.appendChild(t);
   setTimeout(function() {
@@ -4813,5 +4783,9 @@ renderFeedback();
 </script>
 </body>
 </html>
+
+
+
+
 
 
