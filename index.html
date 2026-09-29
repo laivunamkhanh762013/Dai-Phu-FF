@@ -4069,7 +4069,7 @@ function startPaymentForPlan(p, plan) {
     saveOrder(order);
 
     // Bắt đầu lắng nghe trạng thái đơn từ server
-    startPaymentWatcher(window.currentOrderMemo, order.price);
+    startPaymentWatcher(order.id, window.currentOrderMemo, order.price);
     toast('🛒', 'Đã khởi tạo đơn hàng: ' + order.id + '. Vui lòng chuyển khoản đúng nội dung.');
   })
   .catch(function(err) {
@@ -4083,12 +4083,12 @@ function startPaymentForPlan(p, plan) {
 var paymentPollTimer = null;
 var isCheckingPayment = false;
 
-function startPaymentWatcher(orderId, price) {
+function startPaymentWatcher(orderId, displayMemo, price) {
   stopPaymentWatcher();
   isCheckingPayment = false;
   var memoEl = document.getElementById('mPlsMemo');
-  if (memoEl) memoEl.textContent = orderId;
-  updateLiveStatus('waiting', 'HỆ THỐNG ĐANG TỰ ĐỘNG CHỜ TIỀN VÀO MBBANK...', 'Sau khi chuyển khoản với nội dung <b>' + orderId + '</b>, hệ thống SePay sẽ tự động nhận diện và hoàn tất mua hàng trong 3 giây!');
+  if (memoEl) memoEl.textContent = displayMemo;
+  updateLiveStatus('waiting', 'HỆ THỐNG ĐANG TỰ ĐỘNG CHỜ TIỀN VÀO MBBANK...', 'Sau khi chuyển khoản với nội dung <b>' + displayMemo + '</b>, hệ thống SePay sẽ tự động nhận diện và hoàn tất mua hàng trong 3 giây!');
 
   // Tự động kiểm tra trạng thái đơn qua máy chủ mỗi 3 giây
   paymentPollTimer = setInterval(function() {
@@ -4823,6 +4823,7 @@ initScrollReveal();
 </script>
 </body>
 </html>
+
 
 
 

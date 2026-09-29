@@ -215,8 +215,8 @@ function verifyUserToken(req) {
 }
 
 function generateSecureOrderId() {
-  const num = crypto.randomInt(100000, 999999);
-  return 'DP' + num;
+  const num = require('crypto').randomInt(1000, 9999);
+  return 'DPVN' + num;
 }
 
 function validateOrderId(id) {

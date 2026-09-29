@@ -76,8 +76,8 @@ module.exports = async function handler(req, res) {
 
       const oId = cleanToken(o.id || '');
         const oMemo = cleanToken(o.memo || '');
-        const matchId = oId && oId.length >= 6 && cleanContent.includes(oId);
-        const matchMemo = oMemo && oMemo.length >= 6 && cleanContent.includes(oMemo);
+        const matchId = oId && oId.length >= 4 && cleanContent.includes(oId);
+        const matchMemo = oMemo && oMemo.length >= 4 && cleanContent.includes(oMemo);
         return matchId || matchMemo;
     });
 

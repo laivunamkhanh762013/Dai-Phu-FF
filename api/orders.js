@@ -56,7 +56,7 @@ module.exports = async function handler(req, res) {
       const userParam = String(query.user || '').trim();
 
       // Nếu khách yêu cầu lấy lịch sử đơn của chính mình
-      if (userParam || (queryId && !queryId.startsWith('DP') && !queryId.startsWith('NT'))) {
+      if (userParam || (queryId && !queryId.startsWith('DP'))) {
         const targetUsername = userParam || queryId;
         // Bắt buộc xác thực tài khoản qua User Token nếu muốn xem danh sách đơn theo user
         if (!userPayload || userPayload.user.toLowerCase() !== targetUsername.toLowerCase()) {
@@ -177,22 +177,25 @@ module.exports = async function handler(req, res) {
         const username = userPayload ? userPayload.user : (sanitizeText(body.user, 40) || 'Khách vãng lai');
         const phone = sanitizeText(body.phone, 15);
 
-        const memoCode = 'NT' + Math.random().toString(36).substring(2, 8).toUpperCase();
-          const newOrder = {
-          id: newId,
-          memo: memoCode,
-          product: prodKey,
-          plan: planName,
-          price: canonicalPrice,
-          user: username,
-          phone: phone,
-          time: new Date().toLocaleString('vi-VN'),
-          status: 'pending',
-          txId: ''
-        };
-
         const { orders } = await getGist();
-        const existingOrders = orders || [];
+          const existingOrders = orders || [];
+          let memoCode = '';
+          for (let i = 0; i < 50; i++) {
+            memoCode = 'DP' + Math.floor(10000 + Math.random() * 90000);
+            if (!existingOrders.some(o => o.memo === memoCode && o.status === 'pending')) break;
+          }
+          const newOrder = {
+            id: newId,
+            memo: memoCode,
+            product: prodKey,
+            plan: planName,
+            price: canonicalPrice,
+            user: username,
+            phone: phone,
+            time: new Date().toLocaleString('vi-VN'),
+            status: 'pending',
+            txId: ''
+          };
         existingOrders.unshift(newOrder);
         const trimmed = existingOrders.slice(0, 300);
         await updateGist({ orders: trimmed });
@@ -287,6 +290,7 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ success: false, error: err.message });
   }
 };
+
 
 
 

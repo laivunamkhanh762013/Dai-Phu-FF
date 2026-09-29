@@ -718,7 +718,8 @@ function autoScanPendingOrders(silent) {
       pendingOrders.forEach(function(o) {
         const price = Number(o.price) || 0;
         const cleanOId = cleanToken(o.id || '');
-        const cleanUName = cleanToken(o.user || '');
+          const cleanMemo = cleanToken(o.memo || '');
+          const cleanUName = cleanToken(o.user || '');
 
         const matchedTx = txs.find(function(t) {
           const ref = String(t.reference_number || t.id || '').trim().toUpperCase();
@@ -733,10 +734,10 @@ function autoScanPendingOrders(silent) {
 
           const rawContent = (t.transaction_content || '');
           const content = cleanToken(rawContent);
-          const matchId = cleanOId && cleanOId.length >= 4 && content.includes(cleanOId);
-          const matchUser = cleanUName && cleanUName.length >= 3 && cleanUName !== 'KHACHVANGLAI' && content.includes(cleanUName);
-
-          return matchId || matchUser;
+          const matchMemo = cleanMemo && cleanMemo.length >= 4 && content.includes(cleanMemo);
+            const matchId = cleanOId && cleanOId.length >= 4 && content.includes(cleanOId);
+            const matchUser = cleanUName && cleanUName.length >= 3 && cleanUName !== 'KHACHVANGLAI' && content.includes(cleanUName);
+            return matchMemo || matchId || matchUser;
         });
 
         if (matchedTx) {
@@ -777,7 +778,7 @@ function checkSePay(orderId, price, btnEl) {
   }
 
   if (btnEl) { btnEl.disabled = true; btnEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>'; }
-  const memoToCheck = (order && order.user && order.user !== 'Khách vãng lai') ? order.user : orderId;
+  const memoToCheck = (order && order.memo) ? order.memo : (order && order.user && order.user !== 'Khách vãng lai') ? order.user : orderId;
   const userToCheck = (order && order.user) ? order.user : '';
 
   fetch('/api/check-payment?memo=' + encodeURIComponent(memoToCheck) + '&orderId=' + encodeURIComponent(orderId) + '&user=' + encodeURIComponent(userToCheck) + '&price=' + encodeURIComponent(price || 0), {
