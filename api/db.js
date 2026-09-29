@@ -1,3 +1,11 @@
+
+function parseViTime(str) {
+  if (!str) return 0;
+  const m = str.match(/(\d{1,2}):(\d{1,2}):(\d{1,2})[^\d]+(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if (m) return new Date(m[6], m[5]-1, m[4], m[1], m[2], m[3]).getTime();
+  return 0;
+}
+
 ﻿const https = require('https');
 
 const GIST_ID = '4311a1439c30bbaf7f3b75a0d7ae75d8';
@@ -22,8 +30,27 @@ function getGist() {
         let body = Buffer.concat(chunks).toString('utf8');
         try {
           const json = JSON.parse(body);
-          const orders = JSON.parse(json.files && json.files['orders.json'] ? json.files['orders.json'].content : '[]');
+          let orders = JSON.parse(json.files && json.files['orders.json'] ? json.files['orders.json'].content : '[]');
           const users = JSON.parse(json.files && json.files['users.json'] ? json.files['users.json'].content : '[]');
+
+          // AUTO PRUNE PENDING ORDERS OLDER THAN 1 HOUR
+          const now = Date.now();
+          let isPruned = false;
+          orders = orders.filter(o => {
+            if (o.status === 'pending') {
+              const ts = o.createdAt || parseViTime(o.time);
+              if (ts > 0 && now - ts > 3600000) {
+                isPruned = true;
+                return false;
+              }
+            }
+            return true;
+          });
+          
+          if (isPruned) {
+            updateGist({ orders }).catch(err => console.error('Prune error', err));
+          }
+
           resolve({ orders, users });
         } catch(e) {
           resolve({ orders: [], users: [] });

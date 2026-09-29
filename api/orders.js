@@ -193,6 +193,7 @@ module.exports = async function handler(req, res) {
             user: username,
             phone: phone,
             time: new Date().toLocaleString('vi-VN'),
+              createdAt: Date.now(),
             status: 'pending',
             txId: ''
           };
