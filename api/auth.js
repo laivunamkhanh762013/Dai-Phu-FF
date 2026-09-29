@@ -61,7 +61,10 @@ module.exports = async function handler(req, res) {
       const existing = users.find(u => u.username.toLowerCase() === username.toLowerCase());
 
       if (action === 'register') {
-        if (existing) {
+          if (!phone || phone.replace(/[^0-9+]/g, '').length < 9) {
+            return res.status(400).json({ success: false, error: 'Bắt buộc nhập đúng Số điện thoại/Zalo để nhận hỗ trợ (tối thiểu 9 số)!' });
+          }
+          if (existing) {
           return res.status(400).json({ success: false, error: 'Tên tài khoản này đã có người sử dụng!' });
         }
 
