@@ -253,8 +253,8 @@ module.exports = async function handler(req, res) {
 
       // Tra cứu bảng giá chuẩn từ Server (Chống Price Tampering)
       const productName = sanitizeText(body.product, 60) || 'AimLock FF';
-      const planName = sanitizeText(body.plan, 40) || '1 tháng';
-      const canonicalPrice = getCanonicalPrice(productName, planName);
+      const updatePlanName = sanitizeText(body.plan, 40) || '1 tháng';
+      const canonicalPrice = getCanonicalPrice(productName, updatePlanName);
       let finalPrice = typeof body.price === 'number' ? Math.max(0, body.price) : (parseFloat(body.price) || 0);
       if (canonicalPrice && canonicalPrice > 0) {
         finalPrice = canonicalPrice;
@@ -263,7 +263,7 @@ module.exports = async function handler(req, res) {
       const orderItem = {
         id: cleanId,
         product: productName,
-        plan: planName,
+        plan: updatePlanName,
         price: finalPrice,
         user: sanitizeText(body.user, 40) || 'Khách vãng lai',
         phone: sanitizeText(body.phone, 15) || '',

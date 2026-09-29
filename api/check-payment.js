@@ -1,5 +1,6 @@
 const https = require('https');
 const { getGist, updateGist } = require('./db');
+const { verifyAdminToken } = require('./_security');
 
 // Danh sách từ cấm / từ thông dụng trong ngân hàng không được dùng làm từ khóa đối soát
 const STOP_WORDS = new Set([
@@ -61,6 +62,10 @@ module.exports = async function handler(req, res) {
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  if (!verifyAdminToken(req)) {
+    return res.status(401).json({ paid: false, error: 'Unauthorized: Chỉ admin mới được dùng tính năng này.' });
   }
 
   let query = req.query || {};

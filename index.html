@@ -2609,7 +2609,7 @@
               </div>
               <div class="m-bank-item m-bank-memo">
                 <div><small style="color:#f87171;font-weight:800;">NỘI DUNG CHUYỂN KHOẢN (BẮT BUỘC CHÍNH XÁC)</small><strong id="mOrderMemo" style="color:#f87171;font-family:monospace;font-size:16px;letter-spacing:1px;">Tài khoản web của bạn</strong></div>
-                <button class="m-copy-btn m-copy-memo" onclick="copyText(window.currentOrderMemoFull || window.currentOrderMemo, this)"><i class="fa-solid fa-copy"></i></button>
+                <button class="m-copy-btn m-copy-memo" onclick="copyText(window.currentOrderMemo, this)"><i class="fa-solid fa-copy"></i></button>
               </div>
             </div>
 
@@ -4323,8 +4323,8 @@ function sendOrderToPhu() {
 
 function openPaidModal(order) {
   var memo = (order && order.id) || window.currentOrderId || 'DP000000';
-  window.currentOrderId = memo;
-  window.currentOrderMemo = memo;
+  window.currentOrderId = (order && order.id) || memo;
+  window.currentOrderMemo = (order && order.memo) || window.currentOrderMemo;
 
   var confirmCodeEl = document.getElementById('paidConfirmCode');
   var detailCodeEl = document.getElementById('paidDetailCode');
