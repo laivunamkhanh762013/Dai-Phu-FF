@@ -2,6 +2,12 @@
 // Ngăn chặn tuyệt đối hành vi giả mạo giá tiền (Price Tampering) từ phía trình duyệt
 
 const CATALOG = {
+  "forget-lix": {
+    "name": "Forget Lix 3.5 (iOS)",
+    "plans": {
+      "Forget Lix 3.5 (Giảm từ 350k)": 150000
+    }
+  },
   "aimlock-forget": {
     "name": "AimLock Forget (Adr · iOS)",
     "plans": {
