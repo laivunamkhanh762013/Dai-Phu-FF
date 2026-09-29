@@ -85,7 +85,7 @@ module.exports = async function handler(req, res) {
 
   // Phải có ít nhất 1 mã hợp lệ (độ dài >= 3 và không nằm trong STOP_WORDS)
   const validKeys = [];
-  [cleanMemo, cleanOrderId, cleanUser].forEach(k => {
+  [cleanMemo, cleanOrderId].forEach(k => {
     if (k && k.length >= 3 && !STOP_WORDS.has(k) && !validKeys.includes(k)) {
       validKeys.push(k);
     }
@@ -136,7 +136,7 @@ module.exports = async function handler(req, res) {
       const amountIn = parseFloat(t.amount_in || 0);
 
       // Số tiền thực nhận phải >= 100% giá gói (nếu có giá), tối thiểu >= 10.000đ để tránh spam 1đ
-      const hasValidAmount = (minAmount > 0) ? (amountIn >= minAmount) : (amountIn >= 10000);
+      const hasValidAmount = (minAmount > 0) ? (amountIn === minAmount) : (amountIn >= 10000);
       if (!hasValidAmount) return false;
 
       // Khớp một trong các mã hợp lệ (Username hoặc Mã DP...)
