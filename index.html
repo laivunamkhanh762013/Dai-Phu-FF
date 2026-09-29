@@ -3732,8 +3732,9 @@ function renderProducts() {
     }
 
     // Khoảng giá từ thấp đến cao (50.000đ → 500.000đ)
-    var priceRangeHtml = '<div class="card-price-range">'
-      + '<div class="card-price-val">' + formatVND(p.priceMin) + ' <span class="card-price-arrow">→</span> ' + formatVND(p.priceMax) + '</div>'
+    var priceDisplay = (p.priceMin === p.priceMax) ? formatVND(p.priceMin) + ' <span class="old-price" style="font-size:10px;text-decoration:line-through;color:#f87171;margin-left:5px;font-weight:normal;">350.000đ</span>' : formatVND(p.priceMin) + ' <span class="card-price-arrow">→</span> ' + formatVND(p.priceMax);
+      var priceRangeHtml = '<div class="card-price-range">'
+      + '<div class="card-price-val">' + priceDisplay + '</div>'
       + '<div class="card-price-sub">' + p.plans.length + ' phiên bản lựa chọn</div>'
     + '</div>';
 
@@ -3852,7 +3853,7 @@ function openBuyModalById(id, targetPlanIdx) {
   // Populate Range Banner
   var rangePriceEl = document.getElementById('mRangePrice');
   var rangeCountEl = document.getElementById('mRangeCount');
-  if (rangePriceEl) rangePriceEl.textContent = formatVND(p.priceMin) + ' → ' + formatVND(p.priceMax);
+  if (rangePriceEl) rangePriceEl.innerHTML = (p.priceMin === p.priceMax) ? formatVND(p.priceMin) + ' <span style="font-size:10px;text-decoration:line-through;color:#f87171;margin-left:6px;font-weight:normal;">350.000đ</span>' : formatVND(p.priceMin) + ' → ' + formatVND(p.priceMax);
   if (rangeCountEl) rangeCountEl.textContent = p.plans.length + ' phiên bản riêng biệt';
 
   // Render Version Blocks & Quick Nav Pills
