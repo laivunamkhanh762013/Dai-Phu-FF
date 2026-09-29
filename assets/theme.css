@@ -44,31 +44,7 @@
    🔥 LANDING PAGE EFFECTS (ADDED BY CLAUDE)
    ========================================= */
 
-/* 1. PRODUCT HOVER (Scale up & Neon glow) */
-.storefront .product {
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
-}
-.storefront .product:hover {
-  transform: translateY(-5px) scale(1.02) !important;
-  box-shadow: 0 12px 24px rgba(0, 240, 255, 0.15) !important;
-  border-color: rgba(0, 240, 255, 0.4) !important;
-}
-
-/* 2. SCROLL REVEAL (Slide up & fade in) */
-.storefront .product:not(.reveal-in) {
-  opacity: 0 !important;
-  transform: translateY(30px) !important;
-}
-.storefront .product.reveal-in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
-}
-.storefront .product.reveal-in:hover {
-  transform: translateY(-5px) scale(1.02) !important;
-}
-
-/* 3. HERO BANNER (Animated Gradient Text & Glow Background) */
+/* 1. HERO BANNER (Animated Gradient Text & Glow Background) */
 .store-hero {
   position: relative;
   overflow: hidden;
@@ -80,7 +56,8 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(0,240,255,0.06) 0%, transparent 60%);
+  /* CHANGED: Neon Pink/Magenta to Gold/Orange gradient glow */
+  background: radial-gradient(circle at center, rgba(255, 0, 127, 0.15) 0%, transparent 60%);
   animation: heroRotatePulse 12s linear infinite;
   pointer-events: none;
   z-index: 0;
@@ -96,13 +73,31 @@
 }
 
 .hero-copy h1 {
-  background: linear-gradient(90deg, #ffffff, #00f0ff, #ffffff);
-  background-size: 200% auto;
+  background: linear-gradient(90deg, #ffffff, #ff007f, #ffaa00, #ffffff);
+  background-size: 300% auto;
   color: transparent !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   animation: heroTextShine 4s linear infinite;
 }
 @keyframes heroTextShine {
-  to { background-position: 200% center; }
+  to { background-position: 300% center; }
+}
+
+/* 2. SCROLL REVEAL (Slide up & fade in) */
+.storefront .product:not(.reveal-in) {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.storefront .product.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* 3. PRODUCT HOVER (Scale up & Neon glow) */
+.storefront .product.reveal-in:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(255, 0, 127, 0.25);
+  border-color: rgba(255, 0, 127, 0.6);
 }
