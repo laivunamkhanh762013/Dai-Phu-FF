@@ -2967,7 +2967,7 @@ var PRODUCTS = [
       id: 'forget-lix',
       category: 'Regedit & Panel',
       plat: 'iOS',
-      buyers: '500+ Người mua',
+      buyers: '50+ Người mua',
       name: 'Forget Lix 3.5 (iOS)',
       shortDesc: 'Tối ưu trải nghiệm, bứt phá hiệu suất. Fix rung, fix lố, tăng độ nhạy, giảm delay.',
       fullDesc: 'Forget Lix 3.5 - Siêu phẩm hỗ trợ tối ưu cho anh em iOS.\nKhông cần phần mềm can thiệp.\nTính năng: Fix rung ổn định aim, fix lố tăng độ nhạy, tăng FPS mượt hơn, giảm delay phản hồi nhanh.',
@@ -4058,6 +4058,10 @@ function startPaymentForPlan(p, plan) {
   if (payAmt) payAmt.textContent = formatVND(plan.price);
 
   if (memoEl) memoEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang khởi tạo mã đơn...';
+    var qrHint = document.querySelector('.m-qr-hint');
+    var qrEl = document.getElementById('mQrCode');
+    if (qrHint) qrHint.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang tải mã QR...';
+    if (qrEl) qrEl.style.opacity = '0.1';
   if (adminCodeEl) adminCodeEl.textContent = 'Đang khởi tạo...';
 
   switchPayMethod('bank');
@@ -4101,7 +4105,14 @@ function startPaymentForPlan(p, plan) {
 
     // Cập nhật ảnh VietQR chứa mã đơn duy nhất trong nội dung chuyển khoản
     var qrEl = document.getElementById('mQrCode');
-    if (qrEl) qrEl.src = res.qrUrl;
+    if (qrEl) {
+        qrEl.src = res.qrUrl;
+        qrEl.onload = function() {
+            qrEl.style.opacity = '1';
+            var qrHint = document.querySelector('.m-qr-hint');
+            if (qrHint) qrHint.innerHTML = 'Mở App ngân hàng bất kỳ (MBBank, Vietcombank, Momo...) quét để thanh toán tự động';
+        };
+    }
 
     // Lưu đơn pending vào cache của khách
     saveOrder(order);
