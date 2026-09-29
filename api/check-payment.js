@@ -151,7 +151,7 @@ module.exports = async function handler(req, res) {
           let updated = false;
           existingOrders.forEach(o => {
             const isMatch = (cleanOrderId && cleanToken(o.id) === cleanOrderId) ||
-                            (cleanMemo && (cleanToken(o.id) === cleanMemo || cleanToken(o.user) === cleanMemo)) ||
+                            (cleanMemo && (cleanToken(o.id) === cleanMemo || cleanToken(o.memo) === cleanMemo || cleanToken(o.user) === cleanMemo)) ||
                             (cleanUser && cleanToken(o.user) === cleanUser);
             if (isMatch && o.status !== 'approved') {
               o.status = 'approved';
