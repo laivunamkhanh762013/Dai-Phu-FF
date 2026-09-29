@@ -729,15 +729,14 @@ function autoScanPendingOrders(silent) {
 
           const amountIn = parseFloat(t.amount_in || 0);
           // Yêu cầu chuyển khoản đủ 100% giá trị đơn hàng
-          if (price > 0 && amountIn < price) return false;
+          if (price > 0 && amountIn !== price) return false;
           if (amountIn < 10000) return false;
 
           const rawContent = (t.transaction_content || '');
           const content = cleanToken(rawContent);
           const matchMemo = cleanMemo && cleanMemo.length >= 4 && content.includes(cleanMemo);
             const matchId = cleanOId && cleanOId.length >= 4 && content.includes(cleanOId);
-            const matchUser = cleanUName && cleanUName.length >= 3 && cleanUName !== 'KHACHVANGLAI' && content.includes(cleanUName);
-            return matchMemo || matchId || matchUser;
+            return matchMemo || matchId;
         });
 
         if (matchedTx) {
@@ -1262,7 +1261,7 @@ async function runStrixSecurityScan() {
   if (isError) {
       appendLog('<br><span style="color:#ef4444;font-weight:800;">[CẢNH BÁO STRIX]: PHÁT HIỆN LỖI BẢO MẬT. VUI LÒNG KIỂM TRA LẠI CÁC MỤC MÀU ĐỎ!</span>');
   } else {
-      appendLog('<br><span class="log-ok" style="font-weight:800;">[KẾT LUẬN STRIX]: HỆ THỐNG ĐÃ ĐƯỢC BẢO VỆ TOÀN DIỆN 100%!</span>');
+      appendLog('<br><span class="log-ok" style="font-weight:800;">[KẾT LUẬN STRIX]: AUDIT HOÀN TẤT. Một số kiểm tra bảo mật phía client/server đã PASS.!</span>');
   }
 }
 

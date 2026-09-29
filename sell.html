@@ -1,10 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>SHOP ĐẠI PHÚ FF - Gaming Store</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHOP ĐẠI PHÚ FF • CỬA HÀNG SIÊU PHẨM KÉO TÂM</title>
+<meta name="description" content="Shop Đại Phú FF — Chuyên cung cấp TrollModz, SX2 Team External, Proxy iOS Nova X / Delta, AimLock Forget, Forget Hex V1-V5, Menu Migul, Panel Android.">
+<meta name="keywords" content="trollmodz, sx2, proxy ios, novax, delta, aimlock forget, forget hex, migul, panel android, shop đại phú ff">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#171a1f">
+<link rel="icon" type="image/png" href="assets/uploads/logos/aizen-logo.png">
+<link rel="shortcut icon" href="assets/uploads/logos/aizen-logo.png">
+<link rel="apple-touch-icon" href="assets/uploads/logos/aizen-logo.png">
+<!-- Font Awesome 6.5.2 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!-- VipGoNoPro Core Styles -->
@@ -2098,32 +2108,6 @@
   0% { opacity: 0.4; }
   100% { opacity: 1; }
 }
-
-/* ═══ HIỆU ỨNG MỚI ═══ */
-@keyframes cardRiseIn {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.product.reveal-in {
-  animation: cardRiseIn .45s cubic-bezier(.16,1,.3,1) both;
-}
-
-@keyframes qrPulseGlow {
-  0%, 100% { box-shadow: 0 0 0 rgba(0,240,255,0); }
-  50% { box-shadow: 0 0 22px rgba(0,240,255,0.35); }
-}
-.m-qr-box { animation: qrPulseGlow 2.4s ease-in-out infinite; }
-
-.btn-version-buy:active { transform: scale(.97); }
-
-@keyframes checkPop {
-  0% { transform: scale(0.6); opacity: 0; }
-  60% { transform: scale(1.08); opacity: 1; }
-  100% { transform: scale(1); }
-}
-.paid-header-icon { animation: checkPop .5s cubic-bezier(.34,1.56,.64,1) both; }
-
-.nt-timeline-node { transition: background .3s ease, border-color .3s ease, box-shadow .3s ease; }
 </style>
 </head>
 
@@ -2328,7 +2312,6 @@
     }
   }, 2000);
 })();
-
 </script>
 
 <a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
@@ -2474,12 +2457,13 @@
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <a href="admin.html" style="color:#64748b;font-size:12px;text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-weight:700;"><i class="fa-solid fa-lock"></i> Cổng Quản Trị Admin</a>
       <a href="https://zalo.me/0588500524" target="_blank" rel="noopener"><i class="fa-solid fa-headset"></i> Liên hệ Zalo hỗ trợ</a>
     </div>
   </div>
   <div class="shell" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);text-align:center;">
     <p style="font-size:13.5px;font-weight:800;color:#ef4444;margin:0;letter-spacing:0.3px;">
-      Bản quyền thuộc về Đại Phú ( ADMIN )
+      Sản phẩm của Đại Phú ( ADMIN ) và Dev Khánhh (0964976083)
     </p>
   </div>
 </footer>
@@ -2613,7 +2597,7 @@
               </div>
               <div class="m-bank-item m-bank-memo">
                 <div><small style="color:#f87171;font-weight:800;">NỘI DUNG CHUYỂN KHOẢN (BẮT BUỘC CHÍNH XÁC)</small><strong id="mOrderMemo" style="color:#f87171;font-family:monospace;font-size:16px;letter-spacing:1px;">Tài khoản web của bạn</strong></div>
-                <button class="m-copy-btn m-copy-memo" onclick="copyText(window.currentOrderMemo, this)"><i class="fa-solid fa-copy"></i></button>
+                <button class="m-copy-btn m-copy-memo" onclick="copyText(window.currentOrderMemoFull || window.currentOrderMemo, this)"><i class="fa-solid fa-copy"></i></button>
               </div>
             </div>
 
@@ -2717,11 +2701,16 @@
 
     <!-- Block Key Delivery (Tự động kích hoạt khi SePay xác nhận có tiền) -->
     <div id="paidKeyDeliveryBox" style="display:none;background:linear-gradient(135deg,rgba(16,185,129,0.18) 0%,rgba(6,182,212,0.18) 100%);border:1.5px solid #10b981;border-radius:14px;padding:16px;margin-bottom:14px;text-align:center;box-shadow:0 4px 20px rgba(16,185,129,0.25);">
-      <div style="font-size:12px;font-weight:800;color:#34d399;text-transform:uppercase;letter-spacing:.5px;"><i class="fa-solid fa-fingerprint"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ADMIN):</div>
-      <div style="font-family:monospace;font-size:18px;font-weight:900;color:#ffffff;letter-spacing:1px;margin:10px 0;background:#090c1a;padding:10px 14px;border-radius:10px;border:1.5px dashed #34d399;" id="paidOrderCode">DP...</div>
-      <button type="button" class="btn btn-primary" onclick="copyGeneratedKey(this)" style="width:100%;font-size:12.5px;padding:10px;display:flex;align-items:center;justify-content:center;gap:8px;">
-          <i class="fa-solid fa-copy"></i> Sao chép Mã Đơn
+      <div style="font-size:12px;font-weight:800;color:#34d399;text-transform:uppercase;letter-spacing:.5px;"><i class="fa-solid fa-key"></i> MÃ KEY BẢN QUYỀN ĐÃ KÍCH HOẠT:</div>
+      <div style="font-family:monospace;font-size:18px;font-weight:900;color:#ffffff;letter-spacing:1px;margin:10px 0;background:#090c1a;padding:10px 14px;border-radius:10px;border:1.5px dashed #34d399;" id="paidGeneratedKey">KEY-XXXX-YYYY-ZZZZ</div>
+      <div style="display:flex;gap:8px;">
+        <button type="button" class="btn btn-primary" onclick="copyGeneratedKey(this)" style="flex:1;font-size:12.5px;padding:10px;">
+          <i class="fa-solid fa-copy"></i> Sao chép Key
         </button>
+        <a href="https://zalo.me/0588500524" target="_blank" rel="noopener" class="btn btn-ghost" style="flex:1;font-size:12.5px;padding:10px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;">
+          <i class="fa-solid fa-download"></i> Tải File &amp; HD
+        </a>
+      </div>
     </div>
 
     <!-- NameThatUI Component 1: Order Processing Timeline -->
@@ -3570,8 +3559,8 @@ function handleLoginSubmit(e) {
   .then(function(data) {
     if (btn) { btn.disabled = false; btn.innerHTML = oldBtn; }
     if (data && data.success) {
-      var userObj = data.user || { username: u };
-      localStorage.setItem('daiphu_user', JSON.stringify({ username: userObj.username, phone: userObj.phone || phone || '' }));
+      var userObj = data.user || { username: u, phone: '' };
+      localStorage.setItem('daiphu_user', JSON.stringify(userObj));
       if (data.token) {
         localStorage.setItem('daiphu_user_token', data.token);
       }
@@ -3601,11 +3590,7 @@ function handleRegisterSubmit(e) {
   var u = document.getElementById('regUser').value.trim();
   var p = document.getElementById('regPass') ? document.getElementById('regPass').value.trim() : '';
   var phone = document.getElementById('regPhone').value.trim();
-    if (!u) return;
-    if (phone.replace(/[^0-9+]/g, '').length < 9) {
-      toast('📞', 'Vui lòng nhập đúng SĐT/Zalo (tối thiểu 9 số) để được hỗ trợ!');
-      return;
-    }
+  if (!u) return;
 
   var btn = e.target.querySelector('button[type="submit"]');
   var oldBtn = btn ? btn.innerHTML : '';
@@ -3620,8 +3605,8 @@ function handleRegisterSubmit(e) {
   .then(function(data) {
     if (btn) { btn.disabled = false; btn.innerHTML = oldBtn; }
     if (data && data.success) {
-      var userObj = data.user || { username: u };
-      localStorage.setItem('daiphu_user', JSON.stringify({ username: userObj.username, phone: userObj.phone || phone || '' }));
+      var userObj = data.user || { username: u, phone: phone };
+      localStorage.setItem('daiphu_user', JSON.stringify(userObj));
       if (data.token) {
         localStorage.setItem('daiphu_user_token', data.token);
       }
@@ -3689,6 +3674,7 @@ function renderProducts() {
     // Build mini plan chips for the card
     var chipsHtml = '<div class="card-plans">';
     p.plans.forEach(function(plan, idx) {
+      var badgeCls = plan.badge ? ' ' + getBadgeClass(plan.badge) : '';
       chipsHtml += '<span class="card-plan-chip" data-pid="' + p.id + '" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\', ' + idx + ')">'
         + cleanPlanLabel(plan.name) + ' · ' + formatVND(plan.price)
       + '</span>';
@@ -3896,6 +3882,7 @@ function renderModalVersionBlocks(p, activeIdx) {
     + '</button>';
 
     // Version Block Card
+    var badgeHtml = '';
     
     // Specs items
     var specsHtml = '';
@@ -3942,6 +3929,7 @@ function renderModalVersionBlocks(p, activeIdx) {
           + '<h3 class="vb-title">' + plan.name + '</h3>'
           + '<div class="vb-meta-row">'
             + '<span class="vb-plat-badge"><i class="fa-solid fa-microchip"></i> ' + (p.plat || 'iOS & Android') + '</span>'
+            + badgeHtml
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'
@@ -4061,13 +4049,13 @@ function startPaymentForPlan(p, plan) {
 
     var order = res.order;
     window.currentOrderId = order.id;
-      window.currentOrderMemo = order.memo || order.id;
-      
-      if (memoEl) memoEl.textContent = window.currentOrderMemo;
-      if (adminCodeEl) adminCodeEl.textContent = window.currentOrderMemo;
-      
-      var cardMemoEl = document.getElementById('mCardOrderMemo');
-      if (cardMemoEl) cardMemoEl.textContent = window.currentOrderMemo;
+    window.currentOrderMemo = order.id;
+
+    if (memoEl) memoEl.textContent = order.id;
+    if (adminCodeEl) adminCodeEl.textContent = order.id;
+
+    var cardMemoEl = document.getElementById('mCardOrderMemo');
+    if (cardMemoEl) cardMemoEl.textContent = order.id;
 
     // Cập nhật ảnh VietQR chứa mã đơn duy nhất trong nội dung chuyển khoản
     var qrEl = document.getElementById('mQrCode');
@@ -4077,7 +4065,7 @@ function startPaymentForPlan(p, plan) {
     saveOrder(order);
 
     // Bắt đầu lắng nghe trạng thái đơn từ server
-    startPaymentWatcher(order.id, window.currentOrderMemo, order.price);
+    startPaymentWatcher(order.id, order.price);
     toast('🛒', 'Đã khởi tạo đơn hàng: ' + order.id + '. Vui lòng chuyển khoản đúng nội dung.');
   })
   .catch(function(err) {
@@ -4091,12 +4079,12 @@ function startPaymentForPlan(p, plan) {
 var paymentPollTimer = null;
 var isCheckingPayment = false;
 
-function startPaymentWatcher(orderId, displayMemo, price) {
+function startPaymentWatcher(orderId, price) {
   stopPaymentWatcher();
   isCheckingPayment = false;
   var memoEl = document.getElementById('mPlsMemo');
-  if (memoEl) memoEl.textContent = displayMemo;
-  updateLiveStatus('waiting', 'HỆ THỐNG ĐANG TỰ ĐỘNG CHỜ TIỀN VÀO MBBANK...', 'Sau khi chuyển khoản với nội dung <b>' + displayMemo + '</b>, hệ thống SePay sẽ tự động nhận diện và hoàn tất mua hàng trong 3 giây!');
+  if (memoEl) memoEl.textContent = orderId;
+  updateLiveStatus('waiting', 'HỆ THỐNG ĐANG TỰ ĐỘNG CHỜ TIỀN VÀO MBBANK...', 'Sau khi chuyển khoản với nội dung <b>' + orderId + '</b>, hệ thống SePay sẽ tự động nhận diện và hoàn tất mua hàng trong 3 giây!');
 
   // Tự động kiểm tra trạng thái đơn qua máy chủ mỗi 3 giây
   paymentPollTimer = setInterval(function() {
@@ -4148,12 +4136,7 @@ function checkPaymentApi(orderId, price, isManual) {
   isCheckingPayment = true;
 
   // Hỏi trực tiếp máy chủ xem đơn hàng này đã được Webhook SePay duyệt chưa
-  var _ut = localStorage.getItem('daiphu_user_token');
-    var _hd = {};
-    if (_ut) _hd['x-user-token'] = _ut;
-    fetch('/api/orders?id=' + encodeURIComponent(orderId), {
-      headers: _hd
-    })
+  fetch('/api/orders?id=' + encodeURIComponent(orderId))
     .then(function(res) {
       if (!res.ok) throw new Error('API status ' + res.status);
       return res.json();
@@ -4290,15 +4273,13 @@ function goToStep(step) {
     s2.style.display = 'none';
   } else if (step === 2) {
     s1.style.display = 'none';
-      s2.style.display = 'block';
+    s2.style.display = 'block';
+    startPaymentWatcher(window.currentOrderMemo, window.currentPayAmountRaw);
   }
 }
 
 function closeBuyModal() {
   stopPaymentWatcher();
-  window.currentOrderId = null;
-  window.currentOrderMemo = '';
-  window.currentPayAmountRaw = 0;
   var m = document.getElementById('buyModal');
   if (m) m.classList.remove('open');
   document.body.style.overflow = '';
@@ -4339,8 +4320,8 @@ function sendOrderToPhu() {
 
 function openPaidModal(order) {
   var memo = (order && order.id) || window.currentOrderId || 'DP000000';
-  window.currentOrderId = (order && order.id) || memo;
-  window.currentOrderMemo = (order && order.memo) || window.currentOrderMemo;
+  window.currentOrderId = memo;
+  window.currentOrderMemo = memo;
 
   var confirmCodeEl = document.getElementById('paidConfirmCode');
   var detailCodeEl = document.getElementById('paidDetailCode');
@@ -4353,14 +4334,14 @@ function openPaidModal(order) {
   var headerTitle = document.getElementById('paidHeaderTitle');
   var headerSub = document.getElementById('paidHeaderSub');
   var keyBox = document.getElementById('paidKeyDeliveryBox');
-  var keyEl = document.getElementById('paidOrderCode');
+  var keyEl = document.getElementById('paidGeneratedKey');
 
   if (confirmCodeEl) confirmCodeEl.textContent = memo;
   if (detailCodeEl) detailCodeEl.textContent = memo;
   if (detailProdEl) detailProdEl.textContent = (order && order.product) || (currentProduct ? currentProduct.name : 'AimLock iOS');
   if (detailPlanEl) detailPlanEl.textContent = (order && order.plan) || (currentPlan ? currentPlan.name : 'Gói phần mềm');
   if (detailPriceEl) detailPriceEl.textContent = formatVND((order && order.price) || (currentPlan ? currentPlan.price : 50000));
-  if (detailTimeEl) detailTimeEl.textContent = (order && order.time) || '';
+  if (detailTimeEl) detailTimeEl.textContent = (order && order.time) || formatCurrentDateTime();
 
   var statusEl = document.querySelector('.paid-status');
 
@@ -4383,7 +4364,7 @@ function openPaidModal(order) {
     statusEl.innerHTML = '✅ <span style="color:#34d399;font-weight:800;">ĐÃ THANH TOÁN THÀNH CÔNG (MBBank #' + escapeHTML(refText) + ')</span>';
   }
   if (keyBox) keyBox.style.display = 'block';
-  if (keyEl) keyEl.textContent = memo;
+  if (keyEl) keyEl.textContent = 'MÃ ĐƠN: ' + memo + ' (Bản quyền xác thực)';
 
   // Timeline: Step 2 Done, Step 3 Done
   if (tlStep2) { tlStep2.className = 'nt-timeline-item done'; }
@@ -4400,7 +4381,7 @@ function openPaidModal(order) {
 }
 
 function copyGeneratedKey(btn) {
-  var keyEl = document.getElementById('paidOrderCode');
+  var keyEl = document.getElementById('paidGeneratedKey');
   var key = keyEl ? keyEl.textContent.trim() : '';
   if (!key) return;
 
@@ -4452,6 +4433,12 @@ function copyPaidSyntax() {
   toast('📋', 'Đã sao chép mã đơn: ' + memo + ' (Gửi qua Zalo 0588500524 để nhận file)');
 }
 
+function formatCurrentDateTime() {
+  var now = new Date();
+  var pad = function(n) { return n < 10 ? '0' + n : n; };
+  return pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()) + ' ' + now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
+}
+
 /* ═══════ ORDERS STORAGE & ADMIN CHECK LOGIC ═══════ */
 function getOrders() {
   try {
@@ -4475,8 +4462,25 @@ function saveOrder(order) {
     localStorage.setItem('daiphu_orders', JSON.stringify(list));
   } catch(e) {}
 
+  // Lưu đồng bộ lên Cloud Database
+  fetch('/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      id: order.id,
+      product: order.productName || order.product || 'AimLock FF',
+      plan: order.planName || order.plan || '1 tháng',
+      price: order.price || 0,
+      user: order.user || 'Khách',
+      phone: order.phone || '',
+      time: order.time || formatCurrentDateTime(),
+      status: order.status || 'pending',
+      txId: order.txId || ''
+    })
+  }).catch(function(err) {
+    console.warn('Sync order cloud error:', err);
+  });
 }
-
 
 function openOrderCheckModal(presetCode) {
   var m = document.getElementById('orderCheckModal');
@@ -4515,7 +4519,7 @@ function lookupOrderCode(manualCode) {
 
   var list = getOrders();
   var order = list.find(function(o) {
-    return o.id && o.id.toUpperCase() === code;
+    return (o.id && o.id.toUpperCase() === code) || (o.user && o.user.toUpperCase() === code);
   });
 
   resultBox.style.display = 'block';
@@ -4778,10 +4782,9 @@ function toast(ico, msg) {
   t.innerHTML =
     '<div class="t-accent"></div>'
     + '<div class="t-ico-box">' + ico + '</div>'
-    + '<div class="t-content"><div class="t-msg"></div></div>'
-    + '<button class="t-close-btn" onclick="event.stopPropagation();this.closest(\'.toast-item\').remove();">×</button>'
+    + '<div class="t-content"><div class="t-msg">' + msg + '</div></div>'
+    + '<button class="t-close-btn" onclick="event.stopPropagation();this.closest(\'.toast-item\').remove();">✕</button>'
     + '<div class="t-progress"></div>';
-  t.querySelector('.t-msg').textContent = msg;
   t.onclick = function() { t.classList.add('out'); setTimeout(function(){ t.remove(); }, 250); };
   c.appendChild(t);
   setTimeout(function() {
@@ -4811,39 +4814,6 @@ window.addEventListener('scroll', function() {
 updateAuthUI();
 renderProducts();
 renderFeedback();
-
-/* ═══ REVEAL ANIMATION ON SCROLL ═══ */
-function initScrollReveal() {
-  const cards = document.querySelectorAll('.product:not(.reveal-in)');
-  if (!('IntersectionObserver' in window)) {
-    cards.forEach(function(c) { c.classList.add('reveal-in'); });
-    return;
-  }
-  const io = new IntersectionObserver(function(entries, obs) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('reveal-in');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  cards.forEach(function(c) { io.observe(c); });
-}
-
-const _origRenderProducts = renderProducts;
-renderProducts = function() {
-  _origRenderProducts();
-  setTimeout(initScrollReveal, 30);
-};
-initScrollReveal();
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
