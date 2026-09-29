@@ -192,7 +192,7 @@ module.exports = async function handler(req, res) {
             price: canonicalPrice,
             user: username,
             phone: phone,
-            time: new Date().toLocaleString('vi-VN'),
+            time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
               createdAt: Date.now(),
             status: 'pending',
             txId: ''
@@ -268,7 +268,7 @@ module.exports = async function handler(req, res) {
         price: finalPrice,
         user: sanitizeText(body.user, 40) || 'Khách vãng lai',
         phone: sanitizeText(body.phone, 15) || '',
-        time: body.time ? sanitizeText(body.time, 35) : new Date().toLocaleString('vi-VN'),
+        time: body.time ? sanitizeText(body.time, 35) : new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
         status: status,
         txId: cleanTxId || (existingIdx >= 0 ? existingOrders[existingIdx].txId : '')
       };

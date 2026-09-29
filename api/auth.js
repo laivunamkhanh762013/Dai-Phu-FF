@@ -72,7 +72,7 @@ module.exports = async function handler(req, res) {
           username: username,
           password: password,
           phone: phone,
-          createdAt: new Date().toLocaleString('vi-VN')
+          createdAt: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })
         };
         users.unshift(newUser);
         const trimmedUsers = users.slice(0, 500);
