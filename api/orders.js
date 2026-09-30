@@ -1,6 +1,6 @@
 ﻿const { getGist, updateGist } = require('./db');
 const { verifyAdminToken, verifyUserToken, generateSecureOrderId, parseCookies, parseBody, checkApiDdos, validateOrderId } = require('./_security');
-const { getCanonicalPrice } = require('./_catalog');
+const { CATALOG, getCanonicalPrice } = require('./_catalog');
 const createLimits = new Map();
 
 function sanitizeText(str, maxLen) {
@@ -167,6 +167,10 @@ module.exports = async function handler(req, res) {
           return res.status(429).json({ success: false, error: 'Bạn tạo đơn quá nhanh. Vui lòng chờ 1 phút.' });
         }
         const prodKey = sanitizeText(body.productId || body.product, 60);
+          let realProductName = prodKey;
+          if (CATALOG && CATALOG[prodKey] && CATALOG[prodKey].name) {
+            realProductName = CATALOG[prodKey].name;
+          }
         const planName = sanitizeText(body.planName || body.plan, 40);
         const canonicalPrice = getCanonicalPrice(prodKey, planName);
         if (!canonicalPrice || canonicalPrice <= 0) {
@@ -187,8 +191,8 @@ module.exports = async function handler(req, res) {
           const newOrder = {
             id: newId,
             memo: memoCode,
-            product: prodKey,
-            plan: planName,
+            product: realProductName,
+              plan: planName,
             price: canonicalPrice,
             user: username,
             phone: phone,
@@ -253,7 +257,10 @@ module.exports = async function handler(req, res) {
       }
 
       // Tra cứu bảng giá chuẩn từ Server (Chống Price Tampering)
-      const productName = sanitizeText(body.product, 60) || 'AimLock FF';
+      let productName = sanitizeText(body.product, 60) || 'AimLock FF';
+        if (CATALOG && CATALOG[productName] && CATALOG[productName].name) {
+          productName = CATALOG[productName].name;
+        }
       const updatePlanName = sanitizeText(body.plan, 40) || '1 tháng';
       const canonicalPrice = getCanonicalPrice(productName, updatePlanName);
       let finalPrice = typeof body.price === 'number' ? Math.max(0, body.price) : (parseFloat(body.price) || 0);
