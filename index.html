@@ -4191,15 +4191,17 @@ function updateLiveStatus(state, title, desc) {
 }
 
 function checkPaymentApi(orderId, price, isManual) {
-  if (!orderId || isCheckingPayment) return;
+  if (!orderId) return;
+  if (isCheckingPayment && !isManual) return;
   isCheckingPayment = true;
 
   // Hỏi trực tiếp máy chủ xem đơn hàng này đã được Webhook SePay duyệt chưa
   var _ut = localStorage.getItem('daiphu_user_token');
     var _hd = {};
     if (_ut) _hd['x-user-token'] = _ut;
-    fetch('/api/orders?id=' + encodeURIComponent(orderId), {
-      headers: _hd
+    fetch('/api/orders?id=' + encodeURIComponent(orderId) + '&_t=' + Date.now(), {
+      headers: _hd,
+      cache: 'no-store'
     })
     .then(function(res) {
       if (!res.ok) throw new Error('API status ' + res.status);
