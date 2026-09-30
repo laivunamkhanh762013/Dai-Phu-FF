@@ -2978,6 +2978,7 @@ var PRODUCTS = [
       fullDesc: 'Forget Lix 3.5 - Siêu phẩm hỗ trợ tối ưu cho anh em iOS.\nKhông cần phần mềm can thiệp.\nTính năng: Fix rung ổn định aim, fix lố tăng độ nhạy, tăng FPS mượt hơn, giảm delay phản hồi nhanh.',
       priceMin: 150000,
       priceMax: 150000,
+      oldPrice: 350000,
       image: 'assets/uploads/products/forget-lix.jpg',
       images: [
         { src: 'assets/uploads/products/forget-lix.jpg', label: 'Forget Lix', title: 'Forget Lix 3.5 - Siêu Phẩm Tối Ưu iOS' }
@@ -3606,7 +3607,7 @@ function handleLoginSubmit(e) {
     if (btn) { btn.disabled = false; btn.innerHTML = oldBtn; }
     if (data && data.success) {
       var userObj = data.user || { username: u };
-      localStorage.setItem('daiphu_user', JSON.stringify({ username: userObj.username, phone: userObj.phone || phone || '' }));
+      localStorage.setItem('daiphu_user', JSON.stringify({ username: userObj.username, phone: userObj.phone || '' }));
       if (data.token) {
         localStorage.setItem('daiphu_user_token', data.token);
       }
@@ -3738,7 +3739,8 @@ function renderProducts() {
     }
 
     // Khoảng giá từ thấp đến cao (50.000đ → 500.000đ)
-    var priceDisplay = (p.priceMin === p.priceMax) ? formatVND(p.priceMin) + ' <span class="old-price" style="font-size:10px;text-decoration:line-through;color:#f87171;margin-left:5px;font-weight:normal;">350.000đ</span>' : formatVND(p.priceMin) + ' <span class="card-price-arrow">→</span> ' + formatVND(p.priceMax);
+    var oldPriceHtml = p.oldPrice ? ' <span class="old-price" style="font-size:10px;text-decoration:line-through;color:#f87171;margin-left:5px;font-weight:normal;">' + formatVND(p.oldPrice) + '</span>' : '';
+      var priceDisplay = (p.priceMin === p.priceMax) ? (formatVND(p.priceMin) + oldPriceHtml) : (formatVND(p.priceMin) + ' <span class="card-price-arrow">→</span> ' + formatVND(p.priceMax));
       var priceRangeHtml = '<div class="card-price-range">'
       + '<div class="card-price-val">' + priceDisplay + '</div>'
       + '<div class="card-price-sub">' + p.plans.length + ' phiên bản lựa chọn</div>'
@@ -3859,7 +3861,8 @@ function openBuyModalById(id, targetPlanIdx) {
   // Populate Range Banner
   var rangePriceEl = document.getElementById('mRangePrice');
   var rangeCountEl = document.getElementById('mRangeCount');
-  if (rangePriceEl) rangePriceEl.innerHTML = (p.priceMin === p.priceMax) ? formatVND(p.priceMin) + ' <span style="font-size:10px;text-decoration:line-through;color:#f87171;margin-left:6px;font-weight:normal;">350.000đ</span>' : formatVND(p.priceMin) + ' → ' + formatVND(p.priceMax);
+  var modalOldPriceHtml = p.oldPrice ? ' <span style="font-size:10px;text-decoration:line-through;color:#f87171;margin-left:6px;font-weight:normal;">' + formatVND(p.oldPrice) + '</span>' : '';
+    if (rangePriceEl) rangePriceEl.innerHTML = (p.priceMin === p.priceMax) ? (formatVND(p.priceMin) + modalOldPriceHtml) : (formatVND(p.priceMin) + ' → ' + formatVND(p.priceMax));
   if (rangeCountEl) rangeCountEl.textContent = p.plans.length + ' phiên bản riêng biệt';
 
   // Render Version Blocks & Quick Nav Pills
