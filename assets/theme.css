@@ -162,8 +162,10 @@
 
 /* 5. UIVERSE CYBERPUNK BADGE GLOW */
 .storefront .tag, .m-badge-save, .m-badge-popular {
-  position: relative;
   overflow: hidden;
+}
+.m-badge-save, .m-badge-popular {
+  position: relative;
 }
 .storefront .tag::before, .m-badge-save::before, .m-badge-popular::before {
   content: '';
