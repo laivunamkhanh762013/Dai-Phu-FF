@@ -118,3 +118,65 @@
   transform: translateY(0);
   transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+/* 4. UIVERSE SHINY BUTTON EFFECT */
+.storefront .btn-primary, 
+.storefront .btn-buy, 
+.storefront .btn-block {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  z-index: 1;
+}
+
+.storefront .btn-primary::after, 
+.storefront .btn-buy::after,
+.storefront .btn-block::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.4) 30%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.4) 70%, transparent);
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: -1;
+  transform: skewX(-20deg);
+}
+
+.storefront .btn-primary:hover::after, 
+.storefront .btn-buy:hover::after,
+.storefront .btn-block:hover::after {
+  left: 100%;
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.storefront .btn-primary:hover, 
+.storefront .btn-buy:hover,
+.storefront .btn-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 240, 255, 0.5);
+  filter: brightness(1.15);
+}
+
+/* 5. UIVERSE CYBERPUNK BADGE GLOW */
+.storefront .tag, .m-badge-save, .m-badge-popular {
+  position: relative;
+  overflow: hidden;
+}
+.storefront .tag::before, .m-badge-save::before, .m-badge-popular::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  animation: shineBadge 3s infinite linear;
+}
+@keyframes shineBadge {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
+}
