@@ -46,11 +46,11 @@ const CATALOG = {
     }
   },
   "proxy-ios-novax": {
-    "name": "Proxy iOS - Nova X",
+    "name": "NovaX (Android & iOS)",
     "plans": {
       "Key 1 Ngày": 20000,
-      "Key 7 Ngày (1 Tuần)": 50000,
-      "Key 30 Ngày (1 Tháng)": 100000,
+      "Key 7 Ngày": 50000,
+      "Key 30 Ngày": 100000,
       "Key Vĩnh Viễn": 200000
     }
   },
