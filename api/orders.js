@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   // Anti-DDoS API Rate Limit (60 req / 1 min)
-  const ddosCheck = checkApiDdos(req, 60, 60000);
+  const ddosCheck = checkApiDdos(req, 120, 60000);
   if (!ddosCheck.allowed) {
     return res.status(429).json({ success: false, error: 'Too Many Requests (DDoS Protection). Vui lòng thử lại sau ' + ddosCheck.retryAfter + 's.' });
   }
@@ -176,6 +176,10 @@ module.exports = async function handler(req, res) {
             realProductName = CATALOG[prodKey].name;
           }
         const planName = sanitizeText(body.planName || body.plan, 40);
+        let prodObj = CATALOG && (CATALOG[prodKey] || Object.values(CATALOG).find(p => p.name.toLowerCase() === String(prodKey).toLowerCase()));
+        if (prodObj && prodObj.soldOut) {
+          return res.status(400).json({ success: false, error: 'Sản phẩm này hiện đang CHÁY HÀNG (Tạm hết)! Vui lòng liên hệ Admin để đặt trước.' });
+        }
         const canonicalPrice = getCanonicalPrice(prodKey, planName);
         if (!canonicalPrice || canonicalPrice <= 0) {
           return res.status(400).json({ success: false, error: 'Sản phẩm hoặc gói bạn chọn không hợp lệ trong hệ thống!' });
