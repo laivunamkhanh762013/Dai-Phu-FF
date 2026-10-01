@@ -45,9 +45,8 @@ const CATALOG = {
       "Gói Vĩnh Viễn": 400000
     }
   },
-  "proxy-ios-novax": {
-    "soldOut": true,
-    "name": "NovaX (Android & iOS)",
+    "proxy-ios-novax": {
+    "name": "NovaX (iOS)",
     "plans": {
       "Key 1 Ngày": 20000,
       "Key 7 Ngày": 50000,
@@ -55,6 +54,17 @@ const CATALOG = {
       "Key Vĩnh Viễn": 200000
     }
   },
+  "novax-android": {
+    "name": "NovaX (Android)",
+    "soldOut": true,
+    "plans": {
+      "Key 1 Ngày": 20000,
+      "Key 7 Ngày": 50000,
+      "Key 30 Ngày": 100000,
+      "Key Vĩnh Viễn": 200000
+    }
+  },
+
   "proxy-ios-delta": {
     "name": "Proxy Aim iOS - Delta",
     "plans": {
