@@ -3008,7 +3008,7 @@ function stripVietnamese(str) {
 var PRODUCTS = [
     {
       id: 'forget-lix',
-      category: 'Regedit & Panel',
+      category: 'SX2 & Panel',
       plat: 'iOS',
       buyers: '50+ Người mua',
       name: 'Forget Lix 3.5 (iOS)',
@@ -3736,7 +3736,7 @@ function renderProducts() {
   if (!grid) return;
 
   var filtered = PRODUCTS.filter(function(p) {
-    var matchCat = (activeCategory === 'all' || p.category === activeCategory);
+    var matchCat = (activeCategory === 'all' || p.category === activeCategory || (activeCategory === 'SX2 & Panel' && (p.category === 'Regedit & Panel' || p.category === 'SX2 & Panel')));
     var q = searchQuery.toLowerCase().trim();
     var matchSearch = !q || p.name.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
     return matchCat && matchSearch;
@@ -4102,6 +4102,10 @@ function handleBuyVersionClick(pId, planIdx) {
 }
 
 function startPaymentForPlan(p, plan) {
+  if (p && p.soldOut) {
+    toast('🔥', 'Sản phẩm này hiện đang CHÁY HÀNG (Tạm Hết)! Vui lòng liên hệ Zalo Admin để đặt trước.');
+    return;
+  }
   currentProduct = p;
   currentPlan = plan;
   window.currentPayAmountRaw = plan.price;
@@ -4679,7 +4683,7 @@ function lookupOrderCode(manualCode) {
     displayOrderResult(order);
   } else {
     resultBox.innerHTML = '<div style="text-align:center;padding:12px;color:#94a3b8;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tìm mã ' + escapeHTML(code) + ' trên hệ thống máy chủ...</div>';
-    fetch('/api/orders?code=' + encodeURIComponent(code))
+    fetch('/api/orders?code=' + encodeURIComponent(code) + '&_t=' + Date.now(), { cache: 'no-store' })
       .then(function(res) { return res.json(); })
       .then(function(data) {
         if (data && data.success && data.order) {

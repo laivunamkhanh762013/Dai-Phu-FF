@@ -46,6 +46,7 @@ const CATALOG = {
     }
   },
   "proxy-ios-novax": {
+    "soldOut": true,
     "name": "NovaX (Android & iOS)",
     "plans": {
       "Key 1 Ngày": 20000,
