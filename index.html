@@ -156,6 +156,44 @@
   margin-left: 6px;
 }
 
+/* Sold Out / Chay Hang Styling */
+.product-soldout {
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fff7f7 100%) !important;
+}
+.product-soldout .product-thumb img {
+  filter: grayscale(35%) contrast(95%);
+  opacity: 0.85;
+}
+.tag-soldout {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  z-index: 3;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  color: #fff !important;
+  font-size: 9.5px !important;
+  font-weight: 900 !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+  letter-spacing: .4px !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.38) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-soldout {
+  background: #fef2f2 !important;
+  color: #ef4444 !important;
+  border-color: #fecaca !important;
+  font-weight: 800 !important;
+}
+.btn-soldout:hover {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border-color: #fca5a5 !important;
+}
+
 /* ══ MODAL BASE & BACKDROP ══ */
 .modal {
   position: fixed !important;
@@ -3208,6 +3246,7 @@ var PRODUCTS = [
   },
       {
       id: 'proxy-ios-novax',
+      soldOut: true,
       category: 'Proxy iOS',
       plat: 'Android & iOS',
       buyers: '200+ Người mua',
@@ -3746,9 +3785,20 @@ function renderProducts() {
       + '<div class="card-price-sub">' + p.plans.length + ' phiên bản lựa chọn</div>'
     + '</div>';
 
-    html += '<article class="product product-clickable" data-category="' + p.category + '" data-price="' + p.priceMin + '" data-name="' + p.name.toLowerCase() + '" onclick="openBuyModalById(\'' + p.id + '\')">'
+    var soldOutBadge = p.soldOut ? '<span class="tag-soldout"><i class="fa-solid fa-fire"></i> CHÁY HÀNG</span>' : '';
+    var cardClass = 'product product-clickable' + (p.soldOut ? ' product-soldout' : '');
+    var ctaBtn = p.soldOut 
+      ? '<a class="btn btn-buy btn-block btn-soldout" style="margin-top:10px;" href="javascript:void(0)" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\')">'
+        + '<span>🔥 Cháy Hàng (Tạm Hết)</span><i class="fa-solid fa-ban"></i>'
+        + '</a>'
+      : '<a class="btn btn-buy btn-block" style="margin-top:10px;" href="javascript:void(0)" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\')">'
+        + '<span>Xem chi tiết & Mua</span><i class="fa-solid fa-arrow-right"></i>'
+        + '</a>';
+
+    html += '<article class="' + cardClass + '" data-category="' + p.category + '" data-price="' + p.priceMin + '" data-name="' + p.name.toLowerCase() + '" onclick="openBuyModalById(\'' + p.id + '\')">'
       + '<div class="product-thumb">'
         + '<span class="tag">' + p.buyers + '</span>'
+        + soldOutBadge
         + thumbHtml
         + '<i class="fa-solid fa-crown image-fallback"></i>'
       + '</div>'
@@ -3757,9 +3807,7 @@ function renderProducts() {
       + '<p>' + p.shortDesc + '</p>'
       + chipsHtml
       + priceRangeHtml
-      + '<a class="btn btn-buy btn-block" style="margin-top:10px;" href="javascript:void(0)" onclick="event.stopPropagation();openBuyModalById(\'' + p.id + '\')">'
-        + '<span>Xem chi tiết & Mua</span><i class="fa-solid fa-arrow-right"></i>'
-      + '</a>'
+      + ctaBtn
     + '</article>';
   });
 
@@ -3991,9 +4039,13 @@ function renderModalVersionBlocks(p, activeIdx) {
       + '<div class="vb-specs">'
         + specsHtml
       + '</div>'
-      + '<button type="button" class="btn-version-buy" onclick="handleBuyVersionClick(\'' + p.id + '\', ' + idx + ')">'
-        + '<i class="fa-solid fa-cart-shopping"></i> Mua Ngay ' + cleanPlanLabel(plan.name) + ' · ' + formatVND(plan.price)
-      + '</button>'
+      + (p.soldOut 
+          ? '<button type="button" class="btn-version-buy" style="background:#ef4444;border-color:#dc2626;cursor:not-allowed;" onclick="handleBuyVersionClick(\'' + p.id + '\', ' + idx + ')">'
+              + '<i class="fa-solid fa-fire"></i> Tạm Cháy Hàng · ' + cleanPlanLabel(plan.name)
+            + '</button>'
+          : '<button type="button" class="btn-version-buy" onclick="handleBuyVersionClick(\'' + p.id + '\', ' + idx + ')">'
+              + '<i class="fa-solid fa-cart-shopping"></i> Mua Ngay ' + cleanPlanLabel(plan.name) + ' · ' + formatVND(plan.price)
+            + '</button>')
     + '</div>';
   });
 
@@ -4029,6 +4081,12 @@ function handleBuyVersionClick(pId, planIdx) {
   var p = PRODUCTS.find(function(item) { return item.id === pId; });
   if (!p || !p.plans[planIdx]) return;
   var plan = p.plans[planIdx];
+
+  // NẾU SẢN PHẨM ĐANG CHÁY HÀNG
+  if (p.soldOut) {
+    toast('🔥', 'Sản phẩm này hiện đang CHÁY HÀNG! Vui lòng liên hệ Zalo Anh Phú (0588500524) để đặt trước.');
+    return;
+  }
 
   // KIỂM TRA ĐĂNG NHẬP / ĐĂNG KÝ THEO YÊU CẦU ANH PHÚ
   if (!isLoggedIn()) {
