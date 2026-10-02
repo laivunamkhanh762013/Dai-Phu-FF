@@ -1064,7 +1064,14 @@ function setFilter(f) {
   document.querySelectorAll('.filter-pill').forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-filter') === f); });
   renderDashboard();
 }
-function handleSearch(v) { searchQuery = v.trim(); renderDashboard(); }
+var searchDebounceTimer = null;
+  function handleSearch(v) {
+    searchQuery = v.trim();
+    if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(function() {
+      renderDashboard();
+    }, 250);
+  }
 function refreshOrders() { loadAllOrders(); }
 
 /* ═══════ CẬP NHẬT TRẠNG THÁI ĐƠN (ĐỒNG BỘ MÁY CHỦ TRƯỚC KHI ĐỔI GIAO DIỆN) ═══════ */
