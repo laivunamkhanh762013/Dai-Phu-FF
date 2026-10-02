@@ -1,9 +1,28 @@
+const crypto = require('crypto');
 ﻿const { getGist, updateGist } = require('./db');
 const { signUserToken, parseBody, checkApiDdos } = require('./_security');
 
 function maskPhone(phone) {
   if (!phone || phone.length < 6) return '***';
   return phone.substring(0, 3) + '****' + phone.substring(phone.length - 3);
+}
+
+function hashPassword(plain) {
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.scryptSync(String(plain), salt, 32).toString('hex');
+  return salt + ':' + hash;
+}
+
+function verifyPassword(plain, stored) {
+  if (!stored) return false;
+  // If stored password has salt format: salt:hash
+  if (stored.includes(':')) {
+    const [salt, key] = stored.split(':');
+    const hash = crypto.scryptSync(String(plain), salt, 32).toString('hex');
+    return crypto.timingSafeEqual(Buffer.from(key, 'hex'), Buffer.from(hash, 'hex'));
+  }
+  // Backward compatibility with legacy plain-text passwords
+  return stored === plain;
 }
 
 function sanitizeText(str, maxLen) {
@@ -36,7 +55,11 @@ module.exports = async function handler(req, res) {
         phone: maskPhone(u.phone),
         createdAt: u.createdAt || ''
       }));
-      return res.status(200).json({ success: true, users: safeUsers });
+      if (existing && existing.password && !existing.password.includes(':')) {
+          existing.password = hashPassword(password);
+          updateGist({ users }).catch(() => {});
+        }
+        return res.status(200).json({ success: true, users: safeUsers });
     }
 
     if (req.method === 'POST') {
@@ -92,7 +115,7 @@ module.exports = async function handler(req, res) {
           return res.status(400).json({ success: false, error: 'Tài khoản chưa tồn tại! Vui lòng bấm Đăng Ký.' });
         }
 
-        if (existing.password && existing.password !== password) {
+        if (!existing.password || !verifyPassword(password, existing.password)) {
           return res.status(401).json({ success: false, error: 'Mật khẩu không chính xác!' });
         }
 
@@ -108,7 +131,8 @@ module.exports = async function handler(req, res) {
 
     return res.status(405).json({ error: 'Method Not Allowed' });
   } catch (err) {
-    return res.status(500).json({ success: false, error: err.message });
+    console.error('Auth API Error:', err);
+    return res.status(500).json({ success: false, error: 'Lỗi máy chủ xác thực.' });
   }
 };
 

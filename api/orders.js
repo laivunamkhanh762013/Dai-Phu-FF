@@ -1,7 +1,15 @@
 ﻿const { getGist, updateGist } = require('./db');
-const { verifyAdminToken, verifyUserToken, generateSecureOrderId, parseCookies, parseBody, checkApiDdos, validateOrderId } = require('./_security');
+const crypto = require('crypto');
+const { verifyAdminToken, verifyUserToken, generateSecureOrderId, parseCookies, parseBody, checkApiDdos, validateOrderId, getClientIp } = require('./_security');
 const { CATALOG, getCanonicalPrice } = require('./_catalog');
 const createLimits = new Map();
+function cleanCreateLimits() {
+  if (createLimits.size > 1000) { createLimits.clear(); return; }
+  const now = Date.now();
+  for (const [ip, entry] of createLimits.entries()) {
+    if (now > entry.resetAt) createLimits.delete(ip);
+  }
+}
 
 function sanitizeText(str, maxLen) {
   if (!str) return '';
@@ -161,7 +169,8 @@ module.exports = async function handler(req, res) {
 
       // 3. TẠO ĐƠN HÀNG MỚI TỪ SERVER (Chỉ sinh đơn pending, lấy giá từ Catalog)
             if (body._action === 'create' || body.action === 'create') {
-        const ip = req.headers['x-forwarded-for'] || '127.0.0.1';
+        cleanCreateLimits();
+        const ip = getClientIp ? getClientIp(req) : (req.headers['x-forwarded-for'] || '127.0.0.1');
         const now = Date.now();
         const entry = createLimits.get(ip) || { count: 0, resetAt: now + 60000 };
         if (now > entry.resetAt) { entry.count = 0; entry.resetAt = now + 60000; }
@@ -192,9 +201,10 @@ module.exports = async function handler(req, res) {
         const { orders } = await getGist();
           const existingOrders = orders || [];
           let memoCode = '';
+          const pendingMemos = new Set(existingOrders.filter(o => o.status === 'pending').map(o => o.memo));
           for (let i = 0; i < 50; i++) {
-            memoCode = 'DP' + Math.floor(10000 + Math.random() * 90000);
-            if (!existingOrders.some(o => o.memo === memoCode && o.status === 'pending')) break;
+            memoCode = 'DP' + crypto.randomInt(10000, 100000);
+            if (!pendingMemos.has(memoCode)) break;
           }
           const newOrder = {
             id: newId,
@@ -303,7 +313,8 @@ module.exports = async function handler(req, res) {
 
     return res.status(405).json({ error: 'Method Not Allowed' });
   } catch (err) {
-    return res.status(500).json({ success: false, error: err.message });
+    console.error('Orders API Internal Error:', err);
+    return res.status(500).json({ success: false, error: 'Lỗi hệ thống máy chủ. Vui lòng thử lại sau.' });
   }
 };
 
