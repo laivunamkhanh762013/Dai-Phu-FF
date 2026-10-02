@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 ﻿const { getGist, updateGist } = require('./db');
 const { parseBody } = require('./_security');
 
@@ -35,7 +36,13 @@ module.exports = async function handler(req, res) {
   const expectedAuth = 'Apikey ' + SEPAY_API_KEY;
   const expectedBearer = 'Bearer ' + SEPAY_API_KEY;
 
-  if (authHeader !== expectedAuth && authHeader !== expectedBearer && authHeader !== SEPAY_API_KEY) {
+  function safeCompare(a, b) {
+    if (!a || !b) return false;
+    const bufA = Buffer.from(String(a));
+    const bufB = Buffer.from(String(b));
+    return bufA.length === bufB.length && crypto.timingSafeEqual(bufA, bufB);
+  }
+  if (!safeCompare(authHeader, expectedAuth) && !safeCompare(authHeader, expectedBearer) && !safeCompare(authHeader, SEPAY_API_KEY)) {
     return res.status(401).json({ success: false, error: 'Unauthorized: Invalid SePay Webhook Signature' });
   }
 
@@ -97,7 +104,7 @@ module.exports = async function handler(req, res) {
     });
   } catch (err) {
     console.error('SePay Webhook Error:', err);
-    return res.status(500).json({ success: false, error: err.message });
+    return res.status(500).json({ success: false, error: 'Lỗi xử lý webhook.' });
   }
 };
 
