@@ -28,6 +28,7 @@
   }
   </script>
 
+<link rel="preload" as="image" href="assets/uploads/logos/aizen-logo.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -95,7 +96,7 @@ function skipIntro(e) {
 <header class="topbar">
   <div class="shell topbar-inner">
     <a class="brand" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;" title="Shop Đại Phú FF">
-      <span class="brand-mark"><img class="website-logo" src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" style="border-radius:50%;object-fit:cover;"></span>
+      <span class="brand-mark"><img class="website-logo" src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF"></span>
       <span><b>SHOP ĐẠI PHÚ FF</b><small>SẢN PHẨM SỐ</small></span>
     </a>
     <nav class="desktop-nav" aria-label="Điều hướng chính">
@@ -143,7 +144,7 @@ function skipIntro(e) {
       <strong id="sideUserTitle">Đăng nhập để mua hàng</strong>
       <p id="sideUserSub">Đăng nhập hoặc tạo tài khoản để thanh toán và nhận sản phẩm sau khi mua.</p>
       <button type="button" class="btn btn-primary btn-block" onclick="openLogin()" id="sideAuthBtn">Đăng nhập / Đăng ký</button>
-      <button type="button" class="btn btn-block" onclick="openMyOrderHistory()" id="sideOrderHistoryBtn" style="display:none;background:rgba(0,240,255,0.12);color:#00f0ff;border:1px solid rgba(0,240,255,0.3);margin-top:6px;font-size:12.5px;"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đơn hàng của tôi</button>
+      <button type="button" class="btn btn-block btn-order-history hidden" onclick="openMyOrderHistory()" id="sideOrderHistoryBtn"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đơn hàng của tôi</button>
     </aside>
   </section>
 
