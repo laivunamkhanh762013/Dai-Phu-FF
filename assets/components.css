@@ -2838,6 +2838,7 @@
 }
 
 /* Structural & Presentation Utilities for High Security CSP */
+.modal-card-sm { max-width: 540px !important; }
 .footer-brand-box { display: flex; align-items: center; gap: 12px; }
 .footer-actions-box { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .footer-bottom-bar { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; }
