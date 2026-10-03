@@ -625,7 +625,7 @@ function updateAuthUI() {
       sideBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Đăng xuất';
       sideBtn.onclick = handleLogout;
     }
-    if (sideHistoryBtn) sideHistoryBtn.style.display = 'inline-flex';
+    if (sideHistoryBtn) sideHistoryBtn.classList.remove('hidden');
   } else {
     closeUserDropdown();
     if (topBtn) {
@@ -643,7 +643,7 @@ function updateAuthUI() {
       sideBtn.innerHTML = 'Đăng nhập / Đăng ký';
       sideBtn.onclick = function() { openLogin(); };
     }
-    if (sideHistoryBtn) sideHistoryBtn.style.display = 'none';
+    if (sideHistoryBtn) sideHistoryBtn.classList.add('hidden');
   }
 }
 
