@@ -58,28 +58,7 @@
 
 
 
-<script>
-var introTimeoutId = null;
-function skipIntro(e) {
-  if (e) e.stopPropagation();
-  if (introTimeoutId) {
-    clearTimeout(introTimeoutId);
-    introTimeoutId = null;
-  }
-  var intro = document.getElementById('gamingIntro');
-  if (intro && intro.parentNode) {
-    document.body.style.overflow = '';
-    intro.parentNode.removeChild(intro);
-  }
-}
-(function() {
-  var intro = document.getElementById('gamingIntro');
-  if (!intro) return;
-  intro.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  introTimeoutId = setTimeout(skipIntro, 1800);
-})();
-</script>
+
 
 <a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
 <div id="nav-progress" class="nav-progress"></div>

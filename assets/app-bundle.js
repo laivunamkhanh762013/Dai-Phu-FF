@@ -9,6 +9,30 @@ function manageModalFocus(modalEl) {
 }
 "use strict";
 
+// ══ GAMING SPLASH SCREEN CONTROLLER ══
+var introTimeoutId = null;
+function skipIntro(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  if (introTimeoutId) {
+    clearTimeout(introTimeoutId);
+    introTimeoutId = null;
+  }
+  var intro = document.getElementById('gamingIntro');
+  if (intro && intro.parentNode) {
+    document.body.style.overflow = '';
+    intro.parentNode.removeChild(intro);
+  }
+}
+window.skipIntro = skipIntro;
+
+(function initSplash() {
+  var intro = document.getElementById('gamingIntro');
+  if (!intro) return;
+  intro.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  introTimeoutId = setTimeout(skipIntro, 1800);
+})();
+
 function stripVietnamese(str) {
   if (!str) return '';
   return str
