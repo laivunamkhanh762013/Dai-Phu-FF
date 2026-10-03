@@ -284,7 +284,7 @@ var PRODUCTS = [
   },
             {
       id: 'proxy-ios-novax',
-      category: 'Proxy iOS',
+      category: 'NovaX',
       plat: 'iOS',
       buyers: '200+ Người mua',
       name: 'NovaX (iOS)',
@@ -336,7 +336,7 @@ var PRODUCTS = [
     {
       id: 'novax-android',
       soldOut: true,
-      category: 'Proxy iOS',
+      category: 'NovaX',
       plat: 'Android',
       buyers: '150+ Người mua',
       name: 'NovaX (Android)',
@@ -828,7 +828,10 @@ function renderProducts() {
   if (!grid) return;
 
   var filtered = PRODUCTS.filter(function(p) {
-    var matchCat = (activeCategory === 'all' || p.category === activeCategory || (activeCategory === 'SX2 & Panel' && (p.category === 'Regedit & Panel' || p.category === 'SX2 & Panel')));
+    var matchCat = (activeCategory === 'all' || 
+      p.category === activeCategory || 
+      (activeCategory === 'Proxy iOS' && (p.category === 'Proxy iOS' || p.category === 'NovaX' || p.category === 'Proxy & NovaX')) ||
+      (activeCategory === 'SX2 & Panel' && (p.category === 'Regedit & Panel' || p.category === 'SX2 & Panel')));
     var q = searchQuery.toLowerCase().trim();
     var matchSearch = !q || p.name.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
     return matchCat && matchSearch;
