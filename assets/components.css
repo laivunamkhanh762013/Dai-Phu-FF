@@ -2822,3 +2822,17 @@
 .auth-switch-text { text-align: center; margin-top: 14px; font-size: 12px; color: var(--muted); }
 .auth-switch-link { color: #38bdf8; font-weight: 700; text-decoration: none; cursor: pointer; }
 .order-check-input { text-transform: uppercase; }
+.btn-link-auth {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-link-auth:hover {
+  color: #00f0ff;
+  text-decoration: underline;
+}
