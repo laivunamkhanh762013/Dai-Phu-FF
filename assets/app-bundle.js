@@ -33,9 +33,25 @@ window.skipIntro = skipIntro;
   introTimeoutId = setTimeout(skipIntro, 1800);
 })();
 
-// ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD) ══
+// ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD VỚI ÂN HẠN ĐƠN HÀNG) ══
 var isMaintenanceActive = false;
+var cachedMaintenanceData = null;
+
+function isCustomerInCheckout() {
+  // Kiểm tra xem khách có đang mở modal thanh toán hoặc đã khởi tạo đơn hàng
+  var buyModal = document.getElementById('buyModal');
+  var paidModal = document.getElementById('paidModal');
+  var isBuyModalOpen = buyModal && buyModal.classList.contains('open');
+  var isPaidModalOpen = paidModal && paidModal.classList.contains('open');
+  var hasActiveOrder = Boolean(window.currentOrderId || window.currentOrderMemo);
+  return (isBuyModalOpen || isPaidModalOpen || hasActiveOrder);
+}
+
 function renderMaintenanceScreen(msg, until) {
+  // Grace Period: Nếu khách đang mở quét QR chuyển khoản hoặc xem Key vừa mua, hoãn hiển thị bảo trì
+  if (isCustomerInCheckout()) {
+    return;
+  }
   if (document.getElementById('maintenanceOverlay')) return;
   var overlay = document.createElement('div');
   overlay.id = 'maintenanceOverlay';
@@ -73,6 +89,7 @@ function checkMaintenanceStatus() {
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data && data.success) {
+        cachedMaintenanceData = data;
         if (data.maintenance) {
           isMaintenanceActive = true;
           renderMaintenanceScreen(data.maintenanceMessage, data.maintenanceUntil);
@@ -1693,6 +1710,13 @@ function closeBuyModal() {
   var m = document.getElementById('buyModal');
   if (m) m.classList.remove('open');
   document.body.style.overflow = '';
+
+  // Nếu hệ thống đang trong chế độ bảo trì, kích hoạt màn hình bảo trì ngay sau khi khách đóng modal mua hàng
+  if (isMaintenanceActive && cachedMaintenanceData) {
+    setTimeout(function() {
+      renderMaintenanceScreen(cachedMaintenanceData.maintenanceMessage, cachedMaintenanceData.maintenanceUntil);
+    }, 200);
+  }
 }
 
 function confirmPaid() {
@@ -1813,6 +1837,13 @@ function closePaidModal() {
   var m = document.getElementById('paidModal');
   if (m) m.classList.remove('open');
   document.body.style.overflow = '';
+
+  // Kích hoạt màn hình bảo trì sau khi khách đã nhận key xong và đóng cửa sổ
+  if (isMaintenanceActive && cachedMaintenanceData) {
+    setTimeout(function() {
+      renderMaintenanceScreen(cachedMaintenanceData.maintenanceMessage, cachedMaintenanceData.maintenanceUntil);
+    }, 200);
+  }
 }
 
 function copyPaidSyntax() {
