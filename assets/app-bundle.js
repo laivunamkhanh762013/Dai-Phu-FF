@@ -31,6 +31,9 @@ window.skipIntro = skipIntro;
   intro.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   introTimeoutId = setTimeout(skipIntro, 1800);
+  intro.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === 'Escape') skipIntro(e);
+  });
 })();
 
 function stripVietnamese(str) {
@@ -2230,4 +2233,81 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-initScrollReveal();
+/* ═══════ DATA-ACTION EVENT DELEGATION & FORM BINDINGS ═══════ */
+document.addEventListener('click', function(e) {
+  var target = e.target.closest('[data-action]');
+  if (!target) return;
+  var action = target.getAttribute('data-action');
+  
+  if (action === 'skip-intro') {
+    skipIntro(e);
+  } else if (action === 'scroll-top') {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else if (action === 'toggle-user-dropdown') {
+    toggleUserDropdown(e);
+  } else if (action === 'menu-history') {
+    handleMenuHistory(e);
+  } else if (action === 'menu-logout') {
+    handleMenuLogout(e);
+  } else if (action === 'open-login') {
+    openLogin();
+  } else if (action === 'open-order-history') {
+    openMyOrderHistory();
+  } else if (action === 'close-buy-modal') {
+    closeBuyModal();
+  } else if (action === 'zoom-preview') {
+    zoomCurrentPreview();
+  } else if (action === 'step-back') {
+    goToStep(1);
+  } else if (action === 'pay-method') {
+    var method = target.getAttribute('data-method') || 'bank';
+    switchPayMethod(method);
+  } else if (action === 'check-paid') {
+    manualCheckPayment();
+  } else if (action === 'close-paid-modal') {
+    closePaidModal();
+  } else if (action === 'copy-paid-key') {
+    copyGeneratedKey(target);
+  } else if (action === 'copy-paid-syntax') {
+    copyPaidSyntax();
+  } else if (action === 'send-order-zalo') {
+    sendOrderToPhu();
+  } else if (action === 'close-order-check-modal') {
+    closeOrderCheckModal();
+  } else if (action === 'lookup-order') {
+    lookupOrderCode();
+  } else if (action === 'clear-order-history') {
+    clearOrdersHistory();
+  } else if (action === 'close-login-modal') {
+    closeLoginModal();
+  } else if (action === 'switch-auth-tab') {
+    var tab = target.getAttribute('data-tab') || 'login';
+    switchAuthTab(tab);
+  } else if (action === 'close-lb') {
+    closeLB();
+  } else if (action === 'copy-text') {
+    var val = target.getAttribute('data-copy') || '';
+    if (val) copyText(val, target);
+  }
+});
+
+// Bind Forms via addEventListener (No inline onsubmit)
+document.addEventListener('DOMContentLoaded', function() {
+  var formLog = document.getElementById('formLogin');
+  if (formLog) {
+    formLog.addEventListener('submit', function(e) { handleLoginSubmit(e); });
+  }
+  var formReg = document.getElementById('formRegister');
+  if (formReg) {
+    formReg.addEventListener('submit', function(e) { handleRegisterSubmit(e); });
+  }
+});
+
+// Direct binding in case DOMContentLoaded has already fired
+var fLog = document.getElementById('formLogin');
+if (fLog) fLog.addEventListener('submit', function(e) { handleLoginSubmit(e); });
+var fReg = document.getElementById('formRegister');
+if (fReg) fReg.addEventListener('submit', function(e) { handleRegisterSubmit(e); });
+
+initScrollReveal();
