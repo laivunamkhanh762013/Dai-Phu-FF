@@ -2836,3 +2836,26 @@
   color: #00f0ff;
   text-decoration: underline;
 }
+
+/* Structural & Presentation Utilities for High Security CSP */
+.footer-brand-box { display: flex; align-items: center; gap: 12px; }
+.footer-actions-box { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.footer-bottom-bar { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; }
+.qr-spinner { font-size: 34px; color: #3b82f6; margin-bottom: 12px; }
+.qr-status-text { color: #1e293b; font-size: 14px; font-weight: 700; }
+.qr-subtext { color: #64748b; font-size: 11px; margin-top: 4px; }
+.check-pay-feedback { margin-top: 10px; padding: 12px 14px; border-radius: 12px; font-size: 12px; text-align: left; line-height: 1.55; }
+.order-history-footer { border-top: 1px solid var(--line); padding-top: 14px; }
+.order-history-title-lbl { font-size: 12.5px; font-weight: 700; color: #cbd5e1; }
+.card-notice-callout { font-size: 12px; color: #fef3c7; line-height: 1.45; }
+.card-icon-amber { color: #fbbf24; font-size: 16px; flex-shrink: 0; }
+.card-icon-amber-top { color: #fbbf24; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.text-cyan { color: #38bdf8; }
+.text-cyan-icon { color: #38bdf8; margin-right: 4px; }
+.text-purple-icon { color: #a78bfa; margin-right: 4px; }
+.text-emerald-icon { color: #34d399; margin-right: 4px; }
+.text-divider { color: #64748b; }
+.icon-zalo-btn { font-size: 18px; }
+.card-switch-bank-wrap { text-align: center; margin-top: 12px; }
+.auth-switch-prompt { text-align: center; margin-top: 14px; font-size: 12px; color: var(--muted); }
+
