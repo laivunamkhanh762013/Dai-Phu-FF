@@ -853,13 +853,13 @@ function renderProducts() {
 
     var buyerTag = document.createElement('span');
     buyerTag.className = 'tag';
-    buyerTag.textContent = p.buyers;
+    buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
     thumbDiv.appendChild(buyerTag);
 
     if (p.soldOut) {
       var soldBadge = document.createElement('span');
       soldBadge.className = 'tag-soldout';
-      soldBadge.innerHTML = '<i class="fa-solid fa-fire"></i> CHÁY HÀNG';
+      soldBadge.innerHTML = '<i class="fa-solid fa-ban"></i> TẠM HẾT';
       thumbDiv.appendChild(soldBadge);
     }
 
@@ -886,7 +886,7 @@ function renderProducts() {
     // Meta row
     var metaDiv = document.createElement('div');
     metaDiv.className = 'product-meta';
-    metaDiv.innerHTML = '<span>' + escapeHTML(p.category) + '</span><i class="fa-solid fa-circle"></i><span>' + escapeHTML(p.plat || 'iOS & Adr') + '</span>';
+    metaDiv.innerHTML = '<span class="meta-cat">' + escapeHTML(p.category) + '</span><span class="meta-sep">•</span><span class="meta-plat">' + escapeHTML(p.plat || 'iOS & Android') + '</span>';
     article.appendChild(metaDiv);
 
     // Title
@@ -917,14 +917,30 @@ function renderProducts() {
     });
     article.appendChild(plansDiv);
 
-    // Price Range Box
-    var oldPriceHtml = p.oldPrice ? ' <span class="old-price" style="font-size:10px;text-decoration:line-through;color:#f87171;margin-left:5px;font-weight:normal;">' + formatVND(p.oldPrice) + '</span>' : '';
-    var priceDisplay = (p.priceMin === p.priceMax) ? (formatVND(p.priceMin) + oldPriceHtml) : (formatVND(p.priceMin) + ' <span class="card-price-arrow">→</span> ' + formatVND(p.priceMax));
-    
+    // Price Block (Crafted like top tier gaming storefront, zero awkward wrapping)
     var priceBox = document.createElement('div');
-    priceBox.className = 'card-price-range';
-    priceBox.innerHTML = '<div class="card-price-val">' + priceDisplay + '</div>'
-      + '<div class="card-price-sub">' + p.plans.length + ' phiên bản lựa chọn</div>';
+    priceBox.className = 'card-pricing-block';
+
+    var oldPriceHtml = p.oldPrice ? ' <del class="card-price-old">' + formatVND(p.oldPrice) + '</del>' : '';
+    var isSinglePrice = (p.priceMin === p.priceMax);
+    var tierBadgeText = p.plans.length > 1 ? (p.plans.length + ' phiên bản') : '1 phiên bản';
+
+    var priceHtml = '<div class="card-price-header">'
+      + '<div class="card-price-lead">'
+        + '<span class="card-price-from">' + (isSinglePrice ? 'Giá' : 'Chỉ từ') + '</span>'
+        + '<strong class="card-price-val">' + formatVND(p.priceMin) + '</strong>'
+        + oldPriceHtml
+      + '</div>'
+      + '<span class="card-tier-badge">' + tierBadgeText + '</span>'
+    + '</div>';
+
+    if (!isSinglePrice) {
+      priceHtml += '<div class="card-price-span">Khoảng giá: ' + formatVND(p.priceMin) + ' – ' + formatVND(p.priceMax) + '</div>';
+    } else {
+      priceHtml += '<div class="card-price-span">Đồng giá trọn gói • Kích hoạt ngay</div>';
+    }
+
+    priceBox.innerHTML = priceHtml;
     article.appendChild(priceBox);
 
     // CTA Button

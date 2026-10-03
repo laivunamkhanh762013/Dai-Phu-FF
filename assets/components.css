@@ -197,7 +197,15 @@
 }
 .product-soldout .card-price-val {
   color: #f87171;
-  text-shadow: 0 0 10px rgba(248, 113, 113, 0.3);
+  text-shadow: none;
+}
+.product-soldout .card-tier-badge {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+.product-soldout .card-price-span {
+  color: #991b1b;
 }
 .tag-soldout {
   position: absolute;
@@ -713,40 +721,71 @@
   transform: translateY(-2px);
 }
 
-/* ══ CARD PRICE RANGE DISPLAY ══ */
-.card-price-range {
+/* ══ HUMAN-CRAFTED CARD PRICING BLOCK (ANTI-AI SLOP) ══ */
+.card-pricing-block {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.card-price-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 6px;
+  gap: 8px;
   width: 100%;
 }
-.range-box {
+.card-price-lead {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: nowrap;
 }
-.range-title {
-  font-size: 10px;
-  font-weight: 800;
-  color: #94a3b8;
+.card-price-from {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #64748b;
   text-transform: uppercase;
   letter-spacing: .4px;
 }
-.range-val {
-  font-size: 15.5px;
-  font-weight: 900;
+.card-price-val {
+  font-size: 17.5px;
+  font-weight: 850;
   color: #10b981;
-  letter-spacing: -.2px;
+  letter-spacing: -.3px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
-.versions-pill {
+.card-price-old {
+  font-size: 11px;
+  color: #f87171;
+  text-decoration: line-through;
+  margin-left: 4px;
+  font-weight: normal;
+}
+.card-tier-badge {
   font-size: 10px;
-  font-weight: 800;
-  color: #8b5cf6;
+  font-weight: 750;
+  color: #c4b5fd;
   background: rgba(139, 92, 246, 0.12);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  padding: 3px 8px;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  padding: 2px 7px;
   border-radius: 6px;
   white-space: nowrap;
+  letter-spacing: .2px;
+}
+.card-price-span {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: .2px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ══ MODAL PRICE RANGE BANNER ══ */
