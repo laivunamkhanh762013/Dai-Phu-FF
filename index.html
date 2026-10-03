@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHOP ĐẠI PHÚ FF - Gaming Store</title>
+  <title>Shop Đại Phú FF - Hỗ Trợ Kéo Tâm Chuẩn Xác iOS &amp; Android</title>
   <meta name="description" content="Shop Đại Phú FF - Cung cấp phần mềm tiện ích, hỗ trợ kéo tâm chuẩn xác cho iOS và Android, uy tín 100%, bảo hành 24/7.">
   <meta name="theme-color" content="#0d1020">
   <meta property="og:title" content="SHOP ĐẠI PHÚ FF - Gaming Store">
@@ -24,7 +24,20 @@
     "image": "assets/uploads/logos/aizen-logo.png",
     "priceRange": "50.000đ - 500.000đ",
     "paymentAccepted": "VietQR, Chuyển khoản ngân hàng MBBank",
-    "url": "https://shopdaiphuff.com/"
+    "url": "https://shopdaiphuff.com/",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Sản phẩm hỗ trợ kéo tâm Gaming",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Hỗ trợ kéo tâm chuẩn xác iOS & Android"
+          }
+        }
+      ]
+    }
   }
   </script>
 
@@ -41,11 +54,11 @@
 
 <body class="storefront">
 <!-- ══ GAMING SPLASH SCREEN INTRO (2.0s CHUẨN: FADE-IN -> TRƯỢT TÂM -> PHÓNG TO XUYÊN THẤU) ══ -->
-<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro()">
+<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro()" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro()" tabindex="0" role="region" aria-label="Giới thiệu cửa hàng">
   <div class="dp-intro-center" id="dpIntroCenter">
     <!-- LOGO BÊN TRÁI -->
     <div class="dp-intro-logo-box" id="dpIntroLogoBox">
-      <img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img" onerror="this.onerror=null;this.src='logo.png';">
+      <img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">
     </div>
     <!-- CHỮ BÊN PHẢI -->
     <div class="dp-intro-text-box" id="dpIntroTextBox">
@@ -224,7 +237,7 @@
       <div class="m-gallery-col">
         <div class="m-preview-card">
           <span class="m-preview-badge" id="mPreviewBadge">ESP Ghim Đầu</span>
-          <img id="mPreviewImg" src="proxy-ios.png" alt="Preview tính năng">
+          <img id="mPreviewImg" src="proxy-ios.png" alt="Preview tính năng" loading="lazy" decoding="async">
           <div class="m-preview-empty" id="mPreviewEmpty" style="display:none;">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
             <span>Chờ Cập Nhật Banner Mới</span>
@@ -663,10 +676,10 @@
 </div>
 
 <!-- ══ LIGHTBOX MODAL ══ -->
-<div id="lbModal" class="lb-modal" role="dialog" aria-modal="true" aria-label="Phóng to ảnh feedback" onclick="closeLB()">
+<div id="lbModal" class="lb-modal" role="dialog" aria-modal="true" aria-label="Phóng to ảnh chi tiết" tabindex="-1" onclick="closeLB()">
   <div class="lb-wrap" onclick="event.stopPropagation()">
     <button class="lb-close" onclick="closeLB()" aria-label="Đóng ảnh phóng to">✕</button>
-    <img id="lbImg" src="" alt="Feedback chi tiết">
+    <img id="lbImg" src="" alt="Ảnh chi tiết phóng to" loading="lazy" decoding="async">
   </div>
 </div>
 
