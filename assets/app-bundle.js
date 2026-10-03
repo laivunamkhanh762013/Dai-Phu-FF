@@ -977,9 +977,13 @@ function renderProducts() {
       img.onerror = function() {
         if (!this.getAttribute('data-tried-uploads')) {
           this.setAttribute('data-tried-uploads', 'true');
-          var fileName = (p.image || '').split('/').pop();
-          this.src = 'assets/uploads/products/' + fileName;
-          return;
+          var rawName = (p.image || '').split('/').pop() || '';
+          // Chỉ cho phép ký tự tên file an toàn (chữ, số, gạch ngang, gạch dưới, chấm)
+          var safeName = rawName.replace(/[^a-zA-Z0-9_.-]/g, '');
+          if (safeName && !safeName.startsWith('javascript:')) {
+            this.src = 'assets/uploads/products/' + safeName;
+            return;
+          }
         }
         this.style.display = 'none';
         var fallbackPlaceholder = document.createElement('div');
