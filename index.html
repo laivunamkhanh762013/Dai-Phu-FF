@@ -46,15 +46,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<!-- VipGoNoPro Core Styles with SRI -->
-<link rel="stylesheet" href="assets/app.css" integrity="sha384-kAMeMbcBoswNVWGCLLwb+A2iLpJ/cu2ZTSFjdGizDxxrqgAafvA1PGvLS0vQzA3v" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/theme.css" integrity="sha384-tfw7AkjupfigelzvDEp4IKtE4/zbSm1ie8671gabUB+5sjUnDvULWI3iMLouXr9J" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/components.css" integrity="sha384-ftkVGj0yO2HF8lLp5UgWtJs7eclPUXZ+4FMo/H2nFa6kZqk1ngZKCsJwYxsJa/3T" crossorigin="anonymous">
+<!-- VipGoNoPro Core Styles -->
+<link rel="stylesheet" href="assets/app.css">
+<link rel="stylesheet" href="assets/theme.css">
+
+<link rel="stylesheet" href="assets/components.css">
 </head>
 
 <body class="storefront">
 <!-- ══ GAMING SPLASH SCREEN INTRO (2.0s CHUẨN: FADE-IN -> TRƯỢT TÂM -> PHÓNG TO XUYÊN THẤU) ══ -->
-<div id="gamingIntro" class="dp-intro-overlay" data-action="skip-intro" tabindex="0" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
+<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro()" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro()" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
   <div class="dp-intro-center" id="dpIntroCenter">
     <!-- LOGO BÊN TRÁI -->
     <div class="dp-intro-logo-box" id="dpIntroLogoBox">
@@ -66,7 +67,7 @@
       <div class="dp-intro-subline">GAMING STORE • MOD &amp; UTILITIES</div>
     </div>
   </div>
-  <button type="button" class="intro-skip-btn" data-action="skip-intro" aria-label="Bỏ qua giới thiệu">Bỏ qua ✕</button>
+  <button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ✕</button>
 </div>
 
 
@@ -87,26 +88,26 @@
 <!-- ══ TOPBAR ══ -->
 <header class="topbar">
   <div class="shell topbar-inner">
-    <a class="brand" href="#" data-action="scroll-top" title="Shop Đại Phú FF">
+    <a class="brand" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;" title="Shop Đại Phú FF">
       <span class="brand-mark"><img class="website-logo" src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF"></span>
       <span><b>SHOP ĐẠI PHÚ FF</b><small>SẢN PHẨM SỐ</small></span>
     </a>
     <nav class="desktop-nav" aria-label="Điều hướng chính">
-      <button type="button" class="nav-link-btn active" data-action="scroll-top">Cửa hàng</button>
+      <button type="button" class="nav-link-btn active" onclick="window.scrollTo({top:0,behavior:'smooth'})">Cửa hàng</button>
       <a href="#products">Sản phẩm</a>
       
       <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Hỗ trợ Zalo (Mở tab mới)">Hỗ trợ Zalo</a>
     </nav>
     <div class="top-actions">
       <div class="user-menu-wrapper" id="userMenuWrapper">
-        <button type="button" class="btn btn-ghost" data-action="toggle-user-dropdown" id="topAuthBtn" aria-haspopup="menu" aria-expanded="false">Đăng nhập</button>
+        <button type="button" class="btn btn-ghost" onclick="toggleUserDropdown(event)" id="topAuthBtn" aria-haspopup="menu" aria-expanded="false">Đăng nhập</button>
         <div class="user-dropdown-menu" id="userDropdownMenu" role="menu" aria-label="Tùy chọn tài khoản">
-          <button type="button" class="user-dropdown-item" role="menuitem" tabindex="0" data-action="menu-history">
+          <button type="button" class="user-dropdown-item" role="menuitem" tabindex="0" onclick="handleMenuHistory(event)">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <span>Lịch sử đơn hàng</span>
           </button>
           <div class="user-dropdown-divider"></div>
-          <button type="button" class="user-dropdown-item text-danger" role="menuitem" tabindex="0" data-action="menu-logout">
+          <button type="button" class="user-dropdown-item text-danger" role="menuitem" tabindex="0" onclick="handleMenuLogout(event)">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Đăng xuất</span>
           </button>
@@ -124,20 +125,20 @@
     <div class="hero-copy">
       <span class="store-kicker"><i class="fa-solid fa-circle-check"></i> CỬA HÀNG HỖ TRỢ KÉO TÂM CHUẨN XÁC</span>
       <h1>Chọn sản phẩm phù hợp với nhu cầu của bạn.</h1>
-      <p>Những sản phẩm bên ĐẠI PHÚ FF tạo ra hỗ trợ kéo tâm chuẩn xác, không can thiệp sâu PMT3 và hoạt động ổn định lâu dài ✅<br><br><b>ZALO ADMIN DUYỆT ĐƠN &amp; HỖ TRỢ: 0588500524 (Anh Phú)</b><br><span class="payment-badge-wrap"><span class="payment-badge-title"><i class="fa-solid fa-credit-card"></i> Phương thức thanh toán:</span> <span class="payment-badge-qr"><i class="fa-solid fa-qrcode"></i> Quét mã VietQR</span> <span class="text-divider">|</span> <span class="payment-badge-card"><i class="fa-solid fa-sim-card"></i> Thẻ cào / Card (Liên hệ riêng)</span></span></p>
+      <p>Những sản phẩm bên ĐẠI PHÚ FF tạo ra hỗ trợ kéo tâm chuẩn xác, không can thiệp sâu PMT3 và hoạt động ổn định lâu dài ✅<br><br><b>ZALO ADMIN DUYỆT ĐƠN &amp; HỖ TRỢ: 0588500524 (Anh Phú)</b><br><span class="payment-badge-wrap"><span class="payment-badge-title"><i class="fa-solid fa-credit-card"></i> Phương thức thanh toán:</span> <span class="payment-badge-qr"><i class="fa-solid fa-qrcode"></i> Quét mã VietQR</span> <span style="color:#64748b;">|</span> <span class="payment-badge-card"><i class="fa-solid fa-sim-card"></i> Thẻ cào / Card (Liên hệ riêng)</span></span></p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#products"><i class="fa-solid fa-bag-shopping"></i> Xem sản phẩm</a>
         <a class="btn btn-ghost" href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo Admin (Mở tab mới)"><i class="fa-solid fa-headset"></i> Liên hệ Zalo Admin</a>
       </div>
     </div>
-    <div class="wallet-summary guest-summary">
+    <aside class="wallet-summary guest-summary">
       <div class="wallet-icon"><i class="fa-solid fa-user-lock"></i></div>
       <span class="label">Tài khoản thành viên</span>
       <strong id="sideUserTitle">Đăng nhập để mua hàng</strong>
       <p id="sideUserSub">Đăng nhập hoặc tạo tài khoản để thanh toán và nhận sản phẩm sau khi mua.</p>
-      <button type="button" class="btn btn-primary btn-block" data-action="open-login" id="sideAuthBtn">Đăng nhập / Đăng ký</button>
-      <button type="button" class="btn btn-block btn-order-history hidden" data-action="open-order-history" id="sideOrderHistoryBtn"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đơn hàng của tôi</button>
-    </div>
+      <button type="button" class="btn btn-primary btn-block" onclick="openLogin()" id="sideAuthBtn">Đăng nhập / Đăng ký</button>
+      <button type="button" class="btn btn-block btn-order-history hidden" onclick="openMyOrderHistory()" id="sideOrderHistoryBtn"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đơn hàng của tôi</button>
+    </aside>
   </section>
 
   <!-- ══ PRODUCTS SECTION ══ -->
@@ -199,18 +200,18 @@
 <!-- ══ FOOTER ══ -->
 <footer class="footer">
   <div class="shell footer-inner">
-    <div class="footer-brand-box">
+    <div style="display:flex;align-items:center;gap:12px;">
       <img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="footer-logo">
       <div>
         <b>SHOP ĐẠI PHÚ FF</b>
         <p>Sản phẩm số • Kéo tâm đỉnh cao • Thanh toán nhanh • Hỗ trợ khi cần</p>
       </div>
     </div>
-    <div class="footer-actions-box">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
       <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo hỗ trợ (Mở tab mới)"><i class="fa-solid fa-headset"></i> Liên hệ Zalo hỗ trợ</a>
     </div>
   </div>
-  <div class="shell footer-bottom-bar">
+  <div class="shell" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);text-align:center;">
     <p class="footer-copyright">
       Bản quyền thuộc về Đại Phú ( ADMIN )
     </p>
@@ -219,18 +220,18 @@
 
 <!-- ══ MOBILE BOTTOM NAVIGATION ══ -->
 <nav class="mobile-nav" aria-label="Điều hướng trên điện thoại">
-  <button type="button" class="mobile-nav-btn active" data-action="scroll-top"><i class="fa-solid fa-store"></i><span>Cửa hàng</span></button>
+  <button type="button" class="mobile-nav-btn active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-store"></i><span>Cửa hàng</span></button>
   <a href="#products"><i class="fa-solid fa-fire"></i><span>Sản phẩm</span></a>
-  <button type="button" class="mobile-nav-btn" data-action="open-order-history"><i class="fa-solid fa-clock-rotate-left"></i><span>Lịch sử</span></button>
+  <button type="button" class="mobile-nav-btn" onclick="openMyOrderHistory()"><i class="fa-solid fa-clock-rotate-left"></i><span>Lịch sử</span></button>
   
   <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Hỗ trợ Zalo Admin (Mở tab mới)"><i class="fa-solid fa-headset"></i><span>Hỗ trợ</span></a>
 </nav>
 
 <!-- ══ BUY & PAYMENT MODAL (CHỌN GÓI + XEM ẢNH TÍNH NĂNG + VIETQR) ══ -->
 <div id="buyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mProdTitle">
-  <div class="modal-backdrop" data-action="close-buy-modal"></div>
+  <div class="modal-backdrop" onclick="closeBuyModal()"></div>
   <div class="modal-card checkout-modal">
-    <button class="m-close-btn" data-action="close-buy-modal" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+    <button class="m-close-btn" onclick="closeBuyModal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
 
     <div class="checkout-grid">
       <!-- CỘT TRÁI: PREVIEW & ẢNH TÍNH NĂNG -->
@@ -238,14 +239,14 @@
         <div class="m-preview-card">
           <span class="m-preview-badge" id="mPreviewBadge">ESP Ghim Đầu</span>
           <img id="mPreviewImg" src="proxy-ios.png" alt="Preview tính năng" loading="lazy" decoding="async">
-          <div class="m-preview-empty hidden" id="mPreviewEmpty">
+          <div class="m-preview-empty" id="mPreviewEmpty" style="display:none;">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
             <span>Chờ Cập Nhật Banner Mới</span>
             <small>Sản phẩm này đang được thiết kế banner chính thức</small>
           </div>
           <div class="m-preview-bottom">
             <div class="m-preview-title" id="mPreviewTitle">ESP AIMCHECK R8 - Định Vị Ghim Đầu</div>
-            <button type="button" class="m-preview-zoom-btn" id="mZoomBtn" data-action="zoom-preview">
+            <button type="button" class="m-preview-zoom-btn" id="mZoomBtn" onclick="zoomCurrentPreview()">
               <i class="fa-solid fa-magnifying-glass-plus"></i> Phóng to
             </button>
           </div>
@@ -288,9 +289,9 @@
         </div>
 
         <!-- BƯỚC 2: QUÉT MÃ QR THANH TOÁN -->
-        <div id="mStep2" class="hidden">
+        <div id="mStep2" style="display:none;">
           <div class="m-step2-topbar">
-            <button type="button" class="btn-step-back" data-action="step-back">
+            <button type="button" class="btn-step-back" onclick="goToStep(1)">
               <i class="fa-solid fa-arrow-left"></i> Quay lại chọn gói khác
             </button>
             <span class="m-step2-badge">BƯỚC 2 / 2</span>
@@ -307,10 +308,10 @@
 
           <!-- Phương thức thanh toán Tabs -->
           <div class="pay-method-tabs">
-            <button type="button" class="pay-method-tab active" id="tabPayBank" data-action="pay-method" data-method="bank">
+            <button type="button" class="pay-method-tab active" id="tabPayBank" onclick="switchPayMethod('bank')">
               <i class="fa-solid fa-qrcode"></i> Quét Mã QR Ngân Hàng
             </button>
-            <button type="button" class="pay-method-tab" id="tabPayCard" data-action="pay-method" data-method="card">
+            <button type="button" class="pay-method-tab" id="tabPayCard" onclick="switchPayMethod('card')">
               <i class="fa-solid fa-credit-card"></i> Thẻ Cào (Card) <span class="tab-pill-badge">Liên hệ riêng</span>
             </button>
           </div>
@@ -324,9 +325,9 @@
             <!-- Khung VietQR -->
             <div class="m-qr-box">
               <div id="mQrLoader" class="qr-loader-overlay">
-                <i class="fa-solid fa-circle-notch fa-spin qr-spinner"></i>
-                <span class="qr-status-text">Đang tải mã QR...</span>
-                <span class="qr-subtext">Vui lòng đợi trong giây lát</span>
+                <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 34px; color: #3b82f6; margin-bottom: 12px;"></i>
+                <span style="color: #1e293b; font-size: 14px; font-weight: 700;">Đang tải mã QR...</span>
+                <span style="color: #64748b; font-size: 11px; margin-top: 4px;">Vui lòng đợi trong giây lát</span>
               </div>
               <img id="mQrCode" src="" alt="VietQR MBBank" class="m-qr-img">
               <div class="m-qr-hint">Mở App ngân hàng bất kỳ (MBBank, Vietcombank, Momo...) quét để thanh toán tự động</div>
@@ -336,11 +337,11 @@
             <div class="m-bank-rows">
               <div class="m-bank-item">
                 <div><small>NGÂN HÀNG THỤ HƯỞNG</small><strong>MB BANK (Quân Đội)</strong></div>
-                <button class="m-copy-btn" data-action="copy-text" data-copy="MBBANK"><i class="fa-solid fa-copy"></i> Sao chép</button>
+                <button class="m-copy-btn" onclick="copyText('MBBANK', this)"><i class="fa-solid fa-copy"></i> Sao chép</button>
               </div>
               <div class="m-bank-item">
                 <div><small>SỐ TÀI KHOẢN</small><strong>0941414448</strong></div>
-                <button class="m-copy-btn" data-action="copy-text" data-copy="0941414448"><i class="fa-solid fa-copy"></i> Sao chép</button>
+                <button class="m-copy-btn" onclick="copyText('0941414448', this)"><i class="fa-solid fa-copy"></i> Sao chép</button>
               </div>
               <div class="m-bank-item">
                 <div><small>CHỦ TÀI KHOẢN</small><strong>BUI VAN CAO</strong></div>
@@ -365,10 +366,10 @@
             </div>
 
             <!-- Nút kiểm tra SePay -->
-            <button type="button" class="btn-mbbank-check" id="btnCheckPaid" data-action="check-paid">
+            <button type="button" class="btn-mbbank-check" id="btnCheckPaid" onclick="manualCheckPayment()">
               <i class="fa-solid fa-rotate"></i> Kiểm tra xác nhận tiền vào MBBank ngay
             </button>
-            <div id="checkPayFeedback" class="check-pay-feedback hidden"></div>
+            <div id="checkPayFeedback" style="display:none;margin-top:10px;padding:12px 14px;border-radius:12px;font-size:12px;text-align:left;line-height:1.55;"></div>
 
             <!-- Hướng dẫn Xác nhận Admin & Bàn giao -->
             <div class="m-bot-box m-admin-box">
@@ -380,12 +381,12 @@
 
             <!-- Card Hint Link -->
             <div class="card-hint-box">
-              <i class="fa-solid fa-credit-card text-cyan-icon"></i> Bạn muốn thanh toán bằng <b>Thẻ cào (Card)</b>? <button type="button" class="card-hint-link" data-action="pay-method" data-method="card">Bấm vào đây để liên hệ riêng Anh Phú</button>
+              <i class="fa-solid fa-credit-card" style="color:#38bdf8;margin-right:4px;"></i> Bạn muốn thanh toán bằng <b>Thẻ cào (Card)</b>? <button type="button" class="card-hint-link" onclick="switchPayMethod('card')">Bấm vào đây để liên hệ riêng Anh Phú</button>
             </div>
           </div>
 
           <!-- PHƯƠNG THỨC 2: THẺ CÀO (CARD) - LIÊN HỆ RIÊNG THEO YÊU CẦU ANH PHÚ -->
-          <div id="cardPayView" class="hidden">
+          <div id="cardPayView" style="display:none;">
             <div class="card-pay-box">
               <div class="card-pay-header">
                 <div class="card-pay-icon"><i class="fa-solid fa-credit-card"></i></div>
@@ -401,8 +402,8 @@
                 </p>
 
                 <div class="card-pay-notice">
-                  <i class="fa-solid fa-triangle-exclamation card-icon-amber-top"></i>
-                  <div class="card-notice-callout">
+                  <i class="fa-solid fa-triangle-exclamation" style="color:#fbbf24;font-size:16px;flex-shrink:0;margin-top:2px;"></i>
+                  <div style="font-size:12px;color:#fef3c7;line-height:1.45;">
                     <b>Quy định thanh toán thẻ:</b> Khi thanh toán bằng thẻ cào (Card), chiết khấu sẽ tính theo mệnh giá nhà mạng. Vui lòng nhắn tin trực tiếp cho <b>Anh Phú</b> để được tính mệnh giá thẻ cần nạp và gửi mã thẻ + seri.
                   </div>
                 </div>
@@ -426,8 +427,8 @@
                   <i class="fa-solid fa-comment-dots"></i> Nhắn Zalo Anh Phú: 0588500524 (Gửi Thẻ Cào)
                 </a>
 
-                <div class="card-switch-bank-wrap">
-                  <button type="button" data-action="pay-method" data-method="bank" class="btn-switch-bank">
+                <div style="text-align:center;margin-top:12px;">
+                  <button type="button" onclick="switchPayMethod('bank')" class="btn-switch-bank">
                     <i class="fa-solid fa-arrow-left"></i> Chuyển lại thanh toán quét mã QR Ngân hàng
                   </button>
                 </div>
@@ -442,9 +443,9 @@
 
 <!-- ══ PAID SUCCESS CONFIRMATION MODAL (MÃ XÁC NHẬN ĐƠN HÀNG) ══ -->
 <div id="paidModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="paidHeaderTitle">
-  <div class="modal-backdrop" data-action="close-paid-modal"></div>
+  <div class="modal-backdrop" onclick="closePaidModal()"></div>
   <div class="paid-modal-card">
-    <button type="button" class="paid-close-btn" data-action="close-paid-modal" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+    <button type="button" class="paid-close-btn" onclick="closePaidModal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
 
     <!-- Block 1: Receipt Header -->
     <div class="paid-header-box">
@@ -457,7 +458,7 @@
     <div id="paidKeyDeliveryBox" class="paid-key-box">
       <div class="paid-key-title"><i class="fa-solid fa-fingerprint"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ADMIN):</div>
       <div id="paidOrderCode" class="paid-key-code">DP...</div>
-      <button type="button" class="btn btn-primary paid-copy-key-btn" data-action="copy-paid-key" aria-label="Sao chép mã đơn hàng">
+      <button type="button" class="btn btn-primary paid-copy-key-btn" onclick="copyGeneratedKey(this)" aria-label="Sao chép mã đơn hàng">
           <i class="fa-solid fa-copy"></i> Sao chép Mã Đơn
         </button>
     </div>
@@ -472,7 +473,7 @@
             <span>Tạo đơn hàng thành công</span>
             <span class="nt-badge-presence"><span class="nt-dot-live"></span> Đã ghi nhận</span>
           </div>
-          <div class="nt-timeline-desc">Mã đơn <b id="ntTimelineMemo" class="text-cyan">DP...</b> đã lưu trữ an toàn trên máy chủ.</div>
+          <div class="nt-timeline-desc">Mã đơn <b id="ntTimelineMemo" style="color:#38bdf8;">DP...</b> đã lưu trữ an toàn trên máy chủ.</div>
         </div>
       </div>
       <div class="nt-timeline-item active" id="ntTimelineStep2">
@@ -499,21 +500,21 @@
     <div class="paid-syntax-box">
       <div class="paid-syntax-title">👤 MÃ ĐƠN HÀNG CỦA BẠN:</div>
       <div class="paid-cmd-wrapper">
-        <div class="paid-cmd-pill" id="paidCmdPill" data-action="copy-paid-syntax" title="Bấm để sao chép mã đơn">
+        <div class="paid-cmd-pill" id="paidCmdPill" onclick="copyPaidSyntax()" title="Bấm để sao chép mã đơn">
           <span class="paid-cmd-prefix">MÃ ĐƠN</span>
           <span class="paid-cmd-code" id="paidConfirmCode">DP487340</span>
         </div>
-        <button type="button" class="paid-copy-btn" id="paidCopyBtn" data-action="copy-paid-syntax">
+        <button type="button" class="paid-copy-btn" id="paidCopyBtn" onclick="copyPaidSyntax()">
           <span class="paid-copy-icon">📑</span>
           <span class="paid-copy-text" id="paidCopyText">Sao chép</span>
         </button>
       </div>
-      <button type="button" class="btn btn-primary btn-block btn-send-zalo" data-action="send-order-zalo">
-        <i class="fa-solid fa-comment-dots icon-zalo-btn"></i>
+      <button type="button" class="btn btn-primary btn-block btn-send-zalo" onclick="sendOrderToPhu()">
+        <i class="fa-solid fa-comment-dots" style="font-size:18px;"></i>
         <span>Nhắn Tới Anh Phú Để Nhận File</span>
       </button>
       <div class="paid-note-text">
-        <i class="fa-solid fa-circle-info text-cyan"></i> Bấm nút trên sẽ tự động sao chép mã đơn và mở Zalo <b>Anh Phú (0588500524)</b>
+        <i class="fa-solid fa-circle-info" style="color:#38bdf8;"></i> Bấm nút trên sẽ tự động sao chép mã đơn và mở Zalo <b>Anh Phú (0588500524)</b>
       </div>
     </div>
 
@@ -555,7 +556,7 @@
 
     <!-- Khách thanh toán thẻ cào -->
     <div class="card-notice-box">
-      <i class="fa-solid fa-credit-card card-icon-amber"></i>
+      <i class="fa-solid fa-credit-card" style="color:#fbbf24;font-size:16px;flex-shrink:0;"></i>
       <div class="card-notice-text">
         <b>Khách trả bằng Thẻ Cào (Card):</b> Gửi trực tiếp <b>Mã Đơn + Mã Thẻ &amp; Seri</b> qua Zalo Anh Phú (0588500524) để được nạp và nhận key!
       </div>
@@ -565,11 +566,11 @@
 
 <!-- ══ ORDER CHECK / ADMIN MODAL (TRA CỨU & CHECK ĐƠN HÀNG) ══ -->
 <div id="orderCheckModal" class="modal" role="dialog" aria-modal="true" aria-label="Lịch sử đơn hàng">
-  <div class="modal-backdrop" data-action="close-order-check-modal"></div>
-  <div class="modal-card auth-modal-card modal-card-sm">
-    <button class="modal-close" data-action="close-order-check-modal" aria-label="Đóng lịch sử đơn hàng"><i class="fa-solid fa-xmark"></i></button>
+  <div class="modal-backdrop" onclick="closeOrderCheckModal()"></div>
+  <div class="modal-card auth-modal-card" style="max-width:540px;">
+    <button class="modal-close" onclick="closeOrderCheckModal()" aria-label="Đóng lịch sử đơn hàng"><i class="fa-solid fa-xmark"></i></button>
 
-    <div class="auth-header-wrap">
+    <div style="text-align:center;margin-bottom:16px;">
       <div class="order-check-icon">
         <i class="fa-solid fa-clock-rotate-left"></i>
       </div>
@@ -579,8 +580,8 @@
 
     <!-- Search box by Order Code -->
     <div class="order-check-search">
-      <input type="text" id="checkOrderInput" class="input order-check-input" placeholder="Tìm theo mã đơn (Ví dụ: DP123456)...">
-      <button type="button" class="btn btn-primary order-check-btn" data-action="lookup-order">
+      <input type="text" id="checkOrderInput" class="input" placeholder="Tìm theo mã đơn (Ví dụ: DP123456)..." style="text-transform:uppercase;">
+      <button type="button" class="btn btn-primary order-check-btn" onclick="lookupOrderCode()">
         <i class="fa-solid fa-magnifying-glass"></i> Tra cứu
       </button>
     </div>
@@ -591,10 +592,10 @@
     </div>
 
     <!-- Recent Orders List -->
-    <div class="order-history-footer">
+    <div style="border-top:1px solid var(--line);padding-top:14px;">
       <div class="order-history-header">
-        <span class="order-history-title-lbl"><i class="fa-solid fa-box-open"></i> Đơn hàng đã mua của bạn:</span>
-        <button type="button" class="order-clear-btn" data-action="clear-order-history">Xóa lịch sử trên máy</button>
+        <span style="font-size:12.5px;font-weight:700;color:#cbd5e1;"><i class="fa-solid fa-box-open"></i> Đơn hàng đã mua của bạn:</span>
+        <button type="button" class="order-clear-btn" onclick="clearOrdersHistory()">Xóa lịch sử trên máy</button>
       </div>
       <div id="recentOrdersList" class="order-history-scroll">
         <!-- Populated orders -->
@@ -605,9 +606,9 @@
 
 <!-- ══ AUTH MODAL (ĐĂNG NHẬP / ĐĂNG KÝ) ══ -->
 <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
-  <div class="modal-backdrop" data-action="close-login-modal"></div>
+  <div class="modal-backdrop" onclick="closeLoginModal()"></div>
   <div class="modal-card auth-modal-card">
-    <button class="modal-close" data-action="close-login-modal" title="Đóng" aria-label="Đóng hộp thoại đăng nhập"><i class="fa-solid fa-xmark"></i></button>
+    <button class="modal-close" onclick="closeLoginModal()" title="Đóng" aria-label="Đóng hộp thoại đăng nhập"><i class="fa-solid fa-xmark"></i></button>
 
     <div class="auth-modal-header">
       <div class="auth-modal-icon">
@@ -618,67 +619,67 @@
     </div>
 
     <!-- Notice if redirected from buy button -->
-    <div id="authNotice" class="auth-notice hidden">
+    <div id="authNotice" class="auth-notice" style="display:none;">
       <div class="auth-notice-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
       <div class="auth-notice-body" id="authNoticeText">Vui lòng đăng nhập hoặc đăng ký tài khoản để tiếp tục mua hàng!</div>
     </div>
 
     <!-- Tabs -->
     <div class="auth-tabs">
-      <div class="auth-tab active" id="tabBtnLogin" data-action="switch-auth-tab" data-tab="login">
+      <div class="auth-tab active" id="tabBtnLogin" onclick="switchAuthTab('login')">
         <i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập
       </div>
-      <div class="auth-tab" id="tabBtnRegister" data-action="switch-auth-tab" data-tab="register">
+      <div class="auth-tab" id="tabBtnRegister" onclick="switchAuthTab('register')">
         <i class="fa-solid fa-user-plus"></i> Đăng Ký
       </div>
     </div>
 
     <!-- FORM ĐĂNG NHẬP -->
-    <form id="formLogin">
+    <form id="formLogin" onsubmit="handleLoginSubmit(event)">
       <div class="form-group">
-        <label class="label"><i class="fa-solid fa-user text-cyan-icon"></i> Tên tài khoản hoặc Email</label>
+        <label class="label"><i class="fa-solid fa-user" style="color:#38bdf8;margin-right:4px;"></i> Tên tài khoản hoặc Email</label>
         <input type="text" id="loginUser" class="input" placeholder="Nhập tên tài khoản..." required autocomplete="username">
       </div>
       <div class="form-group">
-        <label class="label"><i class="fa-solid fa-lock text-purple-icon"></i> Mật khẩu</label>
+        <label class="label"><i class="fa-solid fa-lock" style="color:#a78bfa;margin-right:4px;"></i> Mật khẩu</label>
         <input type="password" id="loginPass" class="input" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
       </div>
       <button type="submit" class="btn-auth-submit">
         <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập ngay
       </button>
-      <div class="auth-switch-prompt">
-        Chưa có tài khoản? <button type="button" class="btn-link-auth" data-action="switch-auth-tab" data-tab="register">Đăng ký miễn phí</button>
+      <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--muted);">
+        Chưa có tài khoản? <button type="button" class="btn-link-auth" onclick="switchAuthTab('register')">Đăng ký miễn phí</button>
       </div>
     </form>
 
     <!-- FORM ĐĂNG KÝ -->
-    <form id="formRegister" class="hidden">
+    <form id="formRegister" onsubmit="handleRegisterSubmit(event)" style="display:none;">
       <div class="form-group">
-        <label class="label"><i class="fa-solid fa-user-tag text-cyan-icon"></i> Tên tài khoản mong muốn</label>
+        <label class="label"><i class="fa-solid fa-user-tag" style="color:#38bdf8;margin-right:4px;"></i> Tên tài khoản mong muốn</label>
         <input type="text" id="regUser" class="input" placeholder="Ví dụ: gamer99..." required autocomplete="username">
       </div>
       <div class="form-group">
-        <label class="label"><i class="fa-solid fa-lock text-purple-icon"></i> Mật khẩu</label>
+        <label class="label"><i class="fa-solid fa-lock" style="color:#a78bfa;margin-right:4px;"></i> Mật khẩu</label>
         <input type="password" id="regPass" class="input" placeholder="Tối thiểu 6 ký tự..." required autocomplete="new-password">
       </div>
       <div class="form-group">
-        <label class="label"><i class="fa-solid fa-phone text-emerald-icon"></i> Số điện thoại hoặc Zalo (nhận key &amp; hỗ trợ)</label>
+        <label class="label"><i class="fa-solid fa-phone" style="color:#34d399;margin-right:4px;"></i> Số điện thoại hoặc Zalo (nhận key &amp; hỗ trợ)</label>
         <input type="tel" id="regPhone" class="input" placeholder="Ví dụ: 0987654321..." required>
       </div>
       <button type="submit" class="btn-auth-submit">
         <i class="fa-solid fa-user-check"></i> Hoàn tất đăng ký &amp; Tiếp tục mua
       </button>
-      <div class="auth-switch-prompt">
-        Đã có tài khoản? <button type="button" class="btn-link-auth" data-action="switch-auth-tab" data-tab="login">Đăng nhập ngay</button>
+      <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--muted);">
+        Đã có tài khoản? <button type="button" class="btn-link-auth" onclick="switchAuthTab('login')">Đăng nhập ngay</button>
       </div>
     </form>
   </div>
 </div>
 
 <!-- ══ LIGHTBOX MODAL ══ -->
-<div id="lbModal" class="lb-modal" role="dialog" aria-modal="true" aria-label="Phóng to ảnh chi tiết" tabindex="-1" data-action="close-lb">
-  <div class="lb-wrap">
-    <button class="lb-close" data-action="close-lb" aria-label="Đóng ảnh phóng to">✕</button>
+<div id="lbModal" class="lb-modal" role="dialog" aria-modal="true" aria-label="Phóng to ảnh chi tiết" tabindex="-1" onclick="closeLB()">
+  <div class="lb-wrap" onclick="event.stopPropagation()">
+    <button class="lb-close" onclick="closeLB()" aria-label="Đóng ảnh phóng to">✕</button>
     <img id="lbImg" src="" alt="Ảnh chi tiết phóng to" loading="lazy" decoding="async">
   </div>
 </div>
@@ -686,8 +687,8 @@
 <!-- ══ TOAST CONTAINER ══ -->
 <div id="tc" class="toasts" role="region" aria-live="polite" aria-label="Thông báo hệ thống"></div>
 
-<!-- ══ APP SCRIPTS WITH SRI ══ -->
-<script src="assets/app-bundle.js" integrity="sha384-ajfHpxEEvEgOPXG1eTUnwIF4tp9ZKWy/CMRdK0J/mAb0Y+LSIixX6M2EQ7+kearR" crossorigin="anonymous" defer></script>
+<!-- ══ APP SCRIPTS ══ -->
+<script src="assets/app-bundle.js" defer></script>
 </body>
 </html>
 
