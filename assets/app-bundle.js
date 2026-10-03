@@ -33,6 +33,66 @@ window.skipIntro = skipIntro;
   introTimeoutId = setTimeout(skipIntro, 1800);
 })();
 
+// ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD) ══
+var isMaintenanceActive = false;
+function renderMaintenanceScreen(msg, until) {
+  if (document.getElementById('maintenanceOverlay')) return;
+  var overlay = document.createElement('div');
+  overlay.id = 'maintenanceOverlay';
+  overlay.className = 'maintenance-screen';
+  overlay.innerHTML = 
+    '<div class="maintenance-card">' +
+      '<div class="maint-icon-wrap"><i class="fa-solid fa-screwdriver-wrench"></i></div>' +
+      '<div class="maint-badge"><i class="fa-solid fa-gear"></i> Hệ Thống Đang Bảo Trì</div>' +
+      '<h2>SHOP ĐẠI PHÚ FF ĐANG NÂNG CẤP</h2>' +
+      '<p class="maint-desc">' + escapeHTML(msg || 'Hệ thống đang tiến hành nâng cấp & bảo dưỡng máy chủ để mang đến trải nghiệm tốt nhất. Chức năng đặt hàng tạm thời tạm ngưng.') + '</p>' +
+      (until ? '<div class="maint-notice-box"><i class="fa-regular fa-clock"></i> Dự kiến hoàn thành: <b>' + escapeHTML(until) + '</b></div>' : '') +
+      '<div class="maint-actions">' +
+        '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn-maint-zalo">' +
+          '<i class="fa-solid fa-headset"></i> Mua hàng trực tiếp qua Zalo Admin (0588500524)' +
+        '</a>' +
+        '<button type="button" class="btn-maint-reload" onclick="window.location.reload()">' +
+          '<i class="fa-solid fa-rotate-right"></i> Kiểm tra lại (F5)' +
+        '</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+}
+
+function removeMaintenanceScreen() {
+  var overlay = document.getElementById('maintenanceOverlay');
+  if (overlay && overlay.parentNode) {
+    overlay.parentNode.removeChild(overlay);
+    document.body.style.overflow = '';
+  }
+}
+
+function checkMaintenanceStatus() {
+  fetch('/api/orders?view=maintenance')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data && data.success) {
+        if (data.maintenance) {
+          isMaintenanceActive = true;
+          renderMaintenanceScreen(data.maintenanceMessage, data.maintenanceUntil);
+        } else {
+          if (isMaintenanceActive) {
+            isMaintenanceActive = false;
+            removeMaintenanceScreen();
+          }
+        }
+      }
+    })
+    .catch(function() {
+      // Bỏ qua nếu lỗi mạng để không ảnh hưởng trang chủ
+    });
+}
+
+// Kiểm tra ngay khi tải trang và lặp lại mỗi 45s
+checkMaintenanceStatus();
+setInterval(checkMaintenanceStatus, 45000);
+
 function stripVietnamese(str) {
   if (!str) return '';
   return str

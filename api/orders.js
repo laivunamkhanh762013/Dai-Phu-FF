@@ -86,12 +86,27 @@ module.exports = async function handler(req, res) {
   try {
     // ════════ LẤY DANH SÁCH / TRA CỨU ĐƠN HÀNG (GET) ════════
     if (req.method === 'GET') {
-      const { orders } = await getGist();
+      const { orders, settings } = await getGist();
       const all = Array.isArray(orders) ? orders : [];
+      const currentSettings = (settings && typeof settings === 'object') ? settings : {};
 
-      // 1. Quản trị viên: Xem danh sách đơn hàng
+      // 0. Tra cứu trạng thái hệ thống / bảo trì (Public)
+      if (query.view === 'maintenance' || query.view === 'settings') {
+        return res.status(200).json({
+          success: true,
+          maintenance: Boolean(currentSettings.maintenance),
+          maintenanceMessage: currentSettings.maintenanceMessage || 'Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!',
+          maintenanceUntil: currentSettings.maintenanceUntil || ''
+        });
+      }
+
+      // 1. Quản trị viên: Xem danh sách đơn hàng & settings
       if (isAdmin) {
-        return res.status(200).json({ success: true, orders: all });
+        return res.status(200).json({
+          success: true,
+          orders: all,
+          settings: currentSettings
+        });
       }
 
       // 2. Tra cứu lịch sử đơn hàng của người dùng đã đăng nhập (?view=my_orders)
@@ -179,6 +194,33 @@ module.exports = async function handler(req, res) {
 
     // ════════ XỬ LÝ POST ════════
     if (req.method === 'POST') {
+      // 0. Bật/Tắt chế độ bảo trì hệ thống (Chỉ Admin)
+      if (body._action === 'toggle_maintenance' || body.action === 'toggle_maintenance') {
+        if (!isAdmin) {
+          return res.status(403).json({ success: false, error: 'Quyền hạn bị từ chối: Chỉ Quản trị viên mới được bật/tắt bảo trì!' });
+        }
+        const enableMaintenance = Boolean(body.maintenance);
+        const msg = sanitizeText(body.message || '', 200) || 'Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!';
+        const until = sanitizeText(body.until || '', 50);
+
+        const newSettings = await orderMutex.run(async () => {
+          const { settings } = await getGist();
+          const current = (settings && typeof settings === 'object') ? settings : {};
+          current.maintenance = enableMaintenance;
+          current.maintenanceMessage = msg;
+          current.maintenanceUntil = until;
+          current.updatedAt = Date.now();
+          await updateGist({ settings: current });
+          return current;
+        });
+
+        return res.status(200).json({
+          success: true,
+          message: enableMaintenance ? 'Đã BẬT chế độ bảo trì toàn hệ thống.' : 'Đã TẮT chế độ bảo trì. Cửa hàng hoạt động bình thường.',
+          settings: newSettings
+        });
+      }
+
       // 1. Reset toàn bộ dữ liệu đơn hàng (Chỉ Admin)
       if (Boolean(body._reset) === true) {
         if (!isAdmin) {
@@ -195,6 +237,15 @@ module.exports = async function handler(req, res) {
 
       // 2. Tạo đơn hàng mới (Chỉ sinh pending, kiểm tra catalog)
       if (body._action === 'create' || body.action === 'create') {
+        // Kiểm tra xem hệ thống có đang trong thời gian bảo trì không
+        const { settings } = await getGist();
+        if (settings && settings.maintenance && !isAdmin) {
+          return res.status(503).json({
+            success: false,
+            error: 'Hệ thống đang bảo trì. ' + (settings.maintenanceMessage || 'Vui lòng quay lại sau!')
+          });
+        }
+
         const ip = getClientIp ? getClientIp(req) : (req.headers['x-forwarded-for'] || '127.0.0.1');
         if (isCreationRateLimited(ip)) {
           return res.status(429).json({ success: false, error: 'Bạn tạo đơn quá nhanh. Vui lòng chờ 1 phút.' });

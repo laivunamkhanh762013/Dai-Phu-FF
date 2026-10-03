@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="utf-8">
@@ -110,6 +110,20 @@
     .btn-nav:hover { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.25); }
     .btn-nav-primary { background: rgba(0,240,255,0.12); border-color: rgba(0,240,255,0.35); color: var(--primary); }
     .btn-nav-primary:hover { background: rgba(0,240,255,0.22); color: #fff; }
+    .btn-maintenance {
+      background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.35); color: #fbbf24;
+    }
+    .btn-maintenance:hover { background: rgba(245,158,11,0.25); color: #fff; border-color: rgba(245,158,11,0.5); }
+    .btn-maintenance.active {
+      background: linear-gradient(135deg, rgba(239,68,68,0.25), rgba(185,28,28,0.3));
+      border-color: #ef4444; color: #fca5a5;
+      box-shadow: 0 0 15px rgba(239,68,68,0.35);
+      animation: maintBtnPulse 1.8s infinite;
+    }
+    @keyframes maintBtnPulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(239,68,68,0.25); }
+      50% { box-shadow: 0 0 20px rgba(239,68,68,0.5); }
+    }
     .btn-logout { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: #f87171; }
     .btn-logout:hover { background: rgba(239,68,68,0.2); color: #fff; }
 
@@ -292,6 +306,9 @@
       </div>
     </div>
     <div class="header-actions">
+      <button type="button" class="btn-nav btn-maintenance" id="btnAdminMaintenance" onclick="openMaintenanceModal()">
+        <i class="fa-solid fa-screwdriver-wrench"></i> <span id="maintBtnText">Bảo Trì: TẮT</span>
+      </button>
       <a href="index.html" class="btn-nav"><i class="fa-solid fa-store"></i> Xem Cửa Hàng</a>
       <a href="https://zalo.me/0588500524" target="_blank" rel="noopener" class="btn-nav btn-nav-primary"><i class="fa-solid fa-headset"></i> Zalo Anh Phú</a>
       <button type="button" class="btn-nav btn-logout" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
@@ -467,6 +484,46 @@
     </div>
     <div style="margin-top:16px;text-align:right;">
       <button type="button" class="btn-nav" onclick="closeStrixModal()">Đóng cửa sổ</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAINTENANCE SETTINGS MODAL -->
+<div class="modal-overlay" id="maintenanceModal">
+  <div class="scan-card" style="max-width:520px;border-color:rgba(245,158,11,0.4);">
+    <h3 class="scan-title" style="color:#fbbf24;">
+      <i class="fa-solid fa-screwdriver-wrench"></i> CẤU HÌNH BẢO TRÌ HỆ THỐNG
+    </h3>
+    <p class="scan-sub">Khi bật, toàn bộ khách truy cập vào trang chủ sẽ thấy thông báo bảo trì, tạm khóa chức năng đặt hàng.</p>
+    
+    <div style="background:#090c15;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div>
+          <strong style="font-size:14px;color:#fff;display:block;">Trạng thái chế độ bảo trì</strong>
+          <small style="color:#94a3b8;font-size:11px;" id="maintStatusNote">Đang TẮT (Web mở bình thường)</small>
+        </div>
+        <label style="position:relative;display:inline-block;width:52px;height:28px;cursor:pointer;">
+          <input type="checkbox" id="maintToggleCheckbox" style="opacity:0;width:0;height:0;">
+          <span style="position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);border-radius:34px;transition:.3s;" id="maintToggleSlider"></span>
+        </label>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label class="login-label">Thông báo cho khách hàng</label>
+        <input type="text" id="maintMessageInput" class="login-input" placeholder="Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!" value="Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!">
+      </div>
+
+      <div>
+        <label class="login-label">Dự kiến hoàn thành (Tùy chọn)</label>
+        <input type="text" id="maintUntilInput" class="login-input" placeholder="Ví dụ: 30 phút nữa hoặc 23:00 tối nay">
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;">
+      <button type="button" class="btn-nav" onclick="closeMaintenanceModal()">Hủy bỏ</button>
+      <button type="button" class="btn-nav btn-nav-primary" style="background:#f59e0b;color:#000;border-color:#f59e0b;font-weight:800;" onclick="saveMaintenanceSettings()">
+        <i class="fa-solid fa-floppy-disk"></i> Lưu &amp; Áp Dụng Ngay
+      </button>
     </div>
   </div>
 </div>
@@ -654,6 +711,9 @@ function loadAllOrders(silent) {
     .then(function(data) {
       const cloudOrders = (data && data.orders) ? data.orders : [];
       allOrders = cloudOrders;
+      if (data && data.settings) {
+        updateMaintenanceUI(data.settings);
+      }
       allOrders.sort(function(a, b) {
         const da = parseOrderDate(a.time);
         const db = parseOrderDate(b.time);
@@ -1273,6 +1333,103 @@ async function runStrixSecurityScan() {
 }
 
 function closeStrixModal() { document.getElementById('strixModal').classList.remove('open'); }
+
+/* ═══════ QUẢN LÝ BẢO TRÌ HỆ THỐNG (MAINTENANCE MANAGER) ═══════ */
+let currentMaintenanceSettings = {
+  maintenance: false,
+  maintenanceMessage: 'Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!',
+  maintenanceUntil: ''
+};
+
+function updateMaintenanceUI(settings) {
+  if (!settings) return;
+  currentMaintenanceSettings = Object.assign(currentMaintenanceSettings, settings);
+  const btn = document.getElementById('btnAdminMaintenance');
+  const btnText = document.getElementById('maintBtnText');
+  const isMaint = Boolean(currentMaintenanceSettings.maintenance);
+
+  if (btn && btnText) {
+    if (isMaint) {
+      btn.classList.add('active');
+      btnText.innerHTML = '<span style="color:#ef4444;font-weight:900;">BẢO TRÌ: BẬT</span>';
+      btn.title = 'Trang chủ đang bị khóa hiển thị màn hình bảo trì!';
+    } else {
+      btn.classList.remove('active');
+      btnText.innerHTML = 'Bảo Trì: TẮT';
+      btn.title = 'Bấm để cấu hình và bật chế độ bảo trì toàn trang';
+    }
+  }
+}
+
+function openMaintenanceModal() {
+  const modal = document.getElementById('maintenanceModal');
+  const checkbox = document.getElementById('maintToggleCheckbox');
+  const slider = document.getElementById('maintToggleSlider');
+  const note = document.getElementById('maintStatusNote');
+  const msgInput = document.getElementById('maintMessageInput');
+  const untilInput = document.getElementById('maintUntilInput');
+
+  if (checkbox) checkbox.checked = Boolean(currentMaintenanceSettings.maintenance);
+  if (msgInput) msgInput.value = currentMaintenanceSettings.maintenanceMessage || 'Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!';
+  if (untilInput) untilInput.value = currentMaintenanceSettings.maintenanceUntil || '';
+
+  function refreshSlider() {
+    if (checkbox.checked) {
+      slider.style.background = '#ef4444';
+      slider.style.borderColor = '#ef4444';
+      note.textContent = 'ĐANG BẬT (Khách truy cập sẽ bị chặn bởi màn hình bảo trì)';
+      note.style.color = '#ef4444';
+    } else {
+      slider.style.background = 'rgba(255,255,255,0.15)';
+      slider.style.borderColor = 'rgba(255,255,255,0.2)';
+      note.textContent = 'Đang TẮT (Web mở bình thường)';
+      note.style.color = '#94a3b8';
+    }
+  }
+  checkbox.onchange = refreshSlider;
+  refreshSlider();
+
+  if (modal) modal.classList.add('open');
+}
+
+function closeMaintenanceModal() {
+  const modal = document.getElementById('maintenanceModal');
+  if (modal) modal.classList.remove('open');
+}
+
+async function saveMaintenanceSettings() {
+  const checkbox = document.getElementById('maintToggleCheckbox');
+  const msgInput = document.getElementById('maintMessageInput');
+  const untilInput = document.getElementById('maintUntilInput');
+
+  const enable = Boolean(checkbox && checkbox.checked);
+  const msg = (msgInput ? msgInput.value.trim() : '') || 'Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!';
+  const until = untilInput ? untilInput.value.trim() : '';
+
+  try {
+    showToast('⏳ Đang lưu cấu hình bảo trì lên máy chủ...');
+    const res = await fetch('/api/orders', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({
+        _action: 'toggle_maintenance',
+        maintenance: enable,
+        message: msg,
+        until: until
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      updateMaintenanceUI(data.settings);
+      closeMaintenanceModal();
+      showToast(enable ? '🛑 ĐÃ BẬT BẢO TRÌ! Khách hàng sẽ thấy màn hình nâng cấp.' : '✅ ĐÃ TẮT BẢO TRÌ! Cửa hàng đã mở cửa đón khách.');
+    } else {
+      showToast('❌ ' + (data.error || 'Không thể lưu cài đặt bảo trì.'));
+    }
+  } catch (err) {
+    showToast('❌ Lỗi kết nối: ' + (err.message || 'Lỗi mạng'));
+  }
+}
 
 /* ═══════ TOAST ═══════ */
 function showToast(msg) {

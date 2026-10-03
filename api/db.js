@@ -32,6 +32,7 @@ function getGist() {
           const json = JSON.parse(body);
           let orders = JSON.parse(json.files && json.files['orders.json'] ? json.files['orders.json'].content : '[]');
           const users = JSON.parse(json.files && json.files['users.json'] ? json.files['users.json'].content : '[]');
+          const settings = JSON.parse(json.files && json.files['settings.json'] ? json.files['settings.json'].content : '{}');
 
           // AUTO PRUNE PENDING ORDERS OLDER THAN 1 HOUR
           const now = Date.now();
@@ -51,9 +52,9 @@ function getGist() {
             updateGist({ orders }).catch(err => console.error('Prune error', err));
           }
 
-          resolve({ orders, users });
+          resolve({ orders, users, settings });
         } catch(e) {
-          resolve({ orders: [], users: [] });
+          resolve({ orders: [], users: [], settings: {} });
         }
       });
     });
@@ -70,6 +71,9 @@ function updateGist(updates) {
     }
     if (updates.users !== undefined) {
       files['users.json'] = { content: JSON.stringify(updates.users, null, 2) };
+    }
+    if (updates.settings !== undefined) {
+      files['settings.json'] = { content: JSON.stringify(updates.settings, null, 2) };
     }
 
     const payload = JSON.stringify({ files });
