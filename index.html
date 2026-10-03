@@ -41,7 +41,8 @@
   }
   </script>
 
-<link rel="preload" as="image" href="assets/uploads/logos/aizen-logo.png">
+<link rel="preload" as="image" href="assets/uploads/logos/aizen-logo.png" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -54,7 +55,7 @@
 
 <body class="storefront">
 <!-- ══ GAMING SPLASH SCREEN INTRO (2.0s CHUẨN: FADE-IN -> TRƯỢT TÂM -> PHÓNG TO XUYÊN THẤU) ══ -->
-<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro()" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro()" tabindex="0" role="region" aria-label="Giới thiệu cửa hàng">
+<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro()" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro()" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
   <div class="dp-intro-center" id="dpIntroCenter">
     <!-- LOGO BÊN TRÁI -->
     <div class="dp-intro-logo-box" id="dpIntroLogoBox">
@@ -647,7 +648,7 @@
         <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập ngay
       </button>
       <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--muted);">
-        Chưa có tài khoản? <a href="javascript:void(0)" onclick="switchAuthTab('register')" style="color:#38bdf8;font-weight:700;text-decoration:none;">Đăng ký miễn phí</a>
+        Chưa có tài khoản? <button type="button" class="btn-link-auth" onclick="switchAuthTab('register')">Đăng ký miễn phí</button>
       </div>
     </form>
 
@@ -669,7 +670,7 @@
         <i class="fa-solid fa-user-check"></i> Hoàn tất đăng ký &amp; Tiếp tục mua
       </button>
       <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--muted);">
-        Đã có tài khoản? <a href="javascript:void(0)" onclick="switchAuthTab('login')" style="color:#38bdf8;font-weight:700;text-decoration:none;">Đăng nhập ngay</a>
+        Đã có tài khoản? <button type="button" class="btn-link-auth" onclick="switchAuthTab('login')">Đăng nhập ngay</button>
       </div>
     </form>
   </div>
