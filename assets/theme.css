@@ -475,31 +475,44 @@ body.storefront::before {
   z-index: 2;
   left: 9px;
   top: 9px;
-  font-size: 9px;
-  font-weight: 800;
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.65);
-  color: #00f0ff;
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  backdrop-filter: blur(8px);
-  letter-spacing: .4px;
+  font-size: 9.5px;
+  font-weight: 750;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(10, 14, 26, 0.78);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: .2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .product-meta {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #64748b;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .4px;
+  letter-spacing: .3px;
   margin-bottom: 6px;
 }
-.product-meta i {
-  font-size: 4px;
+.meta-cat {
   color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.meta-sep {
+  color: #475569;
+  font-size: 8px;
+}
+.meta-plat {
+  color: #94a3b8;
 }
 .product h3 {
   color: #f8fafc;
@@ -547,28 +560,71 @@ body.storefront::before {
   box-shadow: 0 2px 8px rgba(0, 240, 255, 0.3);
 }
 
-/* Card Price Display */
-.card-price-range {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px;
+/* ══ HUMAN-CRAFTED CARD PRICING BLOCK (ANTI-AI SLOP) ══ */
+.card-pricing-block {
   width: 100%;
   margin-top: auto;
   padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.card-price-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+.card-price-lead {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+.card-price-from {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: .4px;
 }
 .card-price-val {
-  font-size: 16px;
-  font-weight: 900;
-  color: #34d399;
-  letter-spacing: -.2px;
-  text-shadow: 0 0 12px rgba(52, 211, 153, 0.25);
+  font-size: 17.5px;
+  font-weight: 850;
+  color: #10b981;
+  letter-spacing: -.3px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
-.card-price-sub {
+.card-price-old {
+  font-size: 11px;
+  color: #f87171;
+  text-decoration: line-through;
+  margin-left: 4px;
+  font-weight: normal;
+}
+.card-tier-badge {
   font-size: 10px;
   font-weight: 750;
-  color: #a78bfa;
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  padding: 2px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
+  letter-spacing: .2px;
+}
+.card-price-span {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: .2px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* CTA Buy Button on Card */
