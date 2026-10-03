@@ -170,6 +170,35 @@ body.storefront::before {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+/* ── RESPONSIVE: đổ xuống 1 cột trên mobile ── */
+@media (max-width: 980px) {
+  .store-hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 20px;
+  }
+  .hero-copy,
+  .wallet-summary {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  .store-hero {
+    grid-template-columns: 1fr;
+    padding: 18px 14px;
+    border-radius: 18px;
+    gap: 16px;
+  }
+  .hero-copy h1 {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+  .hero-copy p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+}
 .store-hero::before {
   content: '';
   position: absolute;
