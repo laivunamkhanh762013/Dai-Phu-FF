@@ -897,6 +897,21 @@ function renderProducts() {
       img.alt = p.name;
       img.loading = 'lazy';
       img.decoding = 'async';
+      img.onerror = function() {
+        if (!this.getAttribute('data-tried-uploads')) {
+          this.setAttribute('data-tried-uploads', 'true');
+          var fileName = (p.image || '').split('/').pop();
+          this.src = 'assets/uploads/products/' + fileName;
+          return;
+        }
+        this.style.display = 'none';
+        var fallbackPlaceholder = document.createElement('div');
+        fallbackPlaceholder.className = 'thumb-no-img';
+        fallbackPlaceholder.innerHTML = '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
+        if (this.parentNode) {
+          this.parentNode.appendChild(fallbackPlaceholder);
+        }
+      };
       thumbDiv.appendChild(img);
     } else {
       var noImg = document.createElement('div');
@@ -905,9 +920,6 @@ function renderProducts() {
       thumbDiv.appendChild(noImg);
     }
 
-    var crownIcon = document.createElement('i');
-    crownIcon.className = 'fa-solid fa-crown image-fallback';
-    thumbDiv.appendChild(crownIcon);
     article.appendChild(thumbDiv);
 
     // Meta row
