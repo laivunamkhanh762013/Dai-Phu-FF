@@ -583,10 +583,15 @@ body.storefront::before {
   transition: all .2s ease;
 }
 .btn-buy:hover {
-  background: linear-gradient(135deg, #00f0ff 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 100%);
   border-color: transparent;
   color: #020617;
   box-shadow: 0 6px 20px rgba(0, 240, 255, 0.45);
+}
+.btn-buy:hover,
+.btn-buy:hover span,
+.btn-buy:hover i {
+  color: #020617 !important;
 }
 
 /* ══ 8. FOOTER & MOBILE NAV ══ */
