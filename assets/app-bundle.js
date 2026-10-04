@@ -259,7 +259,7 @@ var PRODUCTS = [
     shortDesc: 'Ngưng đọng thời gian, nhảy dù nhanh, định vị gắn đầu, Aimbot.',
     fullDesc: 'TrollModz bản quyền chính hãng hỗ trợ Android, iOS và PC.\nTính năng: Ngưng đọng thời gian, nhảy dù đáp đất tức thì, định vị gắn đầu, Aimbot tự động ghim, bypass an toàn tuyệt đối.',
     priceMin: 10000,
-    priceMax: 250000,
+    priceMax: 200000,
     image: 'trollmodz.png',
     images: [
       { src: 'trollmodz.png', label: 'TrollModz', title: 'TrollModz - Menu Adr · iOS · PC' }
@@ -308,7 +308,7 @@ var PRODUCTS = [
       },
       {
         name: 'Key 30 Ngày (1 Tháng)',
-        price: 250000,
+        price: 200000,
         badge: 'Phổ biến',
         action: 'Gói tháng toàn diện, chiến game thả ga cả mùa giải xếp hạng.',
         fix: 'Bảo vệ tài khoản tối đa với cơ chế chống report nâng cao.',

@@ -49,7 +49,7 @@ const RAW_CATALOG = {
       "Key 1 Ngày": 25000,
       "Key 7 Ngày (1 Tuần)": 100000,
       "Key 15 Ngày": 150000,
-      "Key 30 Ngày (1 Tháng)": 250000
+      "Key 30 Ngày (1 Tháng)": 200000
     }
   },
   "sx2-dinhvi": {
