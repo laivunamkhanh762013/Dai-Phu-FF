@@ -55,9 +55,10 @@
 </head>
 
 <body class="storefront">
-<!-- ════════ HIGH-TECH INTRO: RADAR SCANLINE + TEXT DECRYPT (< 0.8s) ════════ -->
-<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro()" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro()" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
-  <!-- Ultra-fast 0.4s Laser Scanline Sweep -->
+<!-- ════════ HIGH-TECH INTRO: RADAR SCANLINE + TEXT DECRYPT (10s) ════════ -->
+<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro(event)" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro(event)" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
+  <button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>
+  <!-- 0.4s Laser Scanline Sweep -->
   <div class="laser-scanline-sweep"></div>
   
   <div class="dp-intro-clash-content" id="dpIntroClashContent">

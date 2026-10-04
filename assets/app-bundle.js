@@ -93,6 +93,7 @@ function playIntroAnimation() {
   };
 
   intro.innerHTML = 
+    '<button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>' +
     '<div class="laser-scanline-sweep"></div>' +
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
@@ -115,13 +116,13 @@ function playIntroAnimation() {
 
   var logo = intro.querySelector("#dpIntroLogoBox");
 
-  // Ultra-fast: Scanline sweeps (0.4s) -> Decrypt finishes (0.32s) -> Fast Exit at 0.72s
+  // Thời lượng Intro: 10 giây (9.4s ngắm Decrypt & Logo rực rỡ + 0.6s Zoom Out mượt mà sang Storefront)
   introPhaseTimeoutId = setTimeout(function() {
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
-    introTimeoutId = setTimeout(skipIntro, 220);
-  }, 720);
+    introTimeoutId = setTimeout(skipIntro, 600);
+  }, 9400);
 }
 window.playIntroAnimation = playIntroAnimation;
 
