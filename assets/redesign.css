@@ -1999,7 +1999,7 @@ body.storefront .product:hover {
   cursor: pointer !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  animation: introPortalExit 0.4s cubic-bezier(0.4, 0, 0.2, 1) 1.45s forwards !important;
+  animation: introPortalExit 0.45s cubic-bezier(0.4, 0, 0.2, 1) 1.68s forwards !important;
 }
 
 @keyframes introPortalExit {
@@ -2114,29 +2114,45 @@ body.storefront .product:hover {
   justify-content: center;
   text-align: center;
   gap: 16px;
-  opacity: 0;
-  transform: scale(0.4);
-  will-change: transform, opacity;
-  animation: contentEmerge 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
 }
 
-@keyframes contentEmerge {
-  0% { opacity: 0; transform: scale(0.4) translateY(10px); }
-  60% { opacity: 1; transform: scale(1.06) translateY(0); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
+/* Logo Zoom Impact Entrance */
 .dp-intro-logo-glow {
   position: relative;
-  width: 88px;
-  height: 88px;
-  border-radius: 24px;
+  width: 92px;
+  height: 92px;
+  border-radius: 26px;
   background: #0f1117;
-  border: 2px solid rgba(215, 255, 60, 0.5);
-  box-shadow: 0 0 35px rgba(215, 255, 60, 0.4), 0 0 60px rgba(0, 240, 255, 0.25);
+  border: 2px solid rgba(215, 255, 60, 0.6);
+  box-shadow: 0 0 45px rgba(215, 255, 60, 0.5), 0 0 80px rgba(0, 240, 255, 0.35);
   display: grid;
   place-items: center;
   overflow: hidden;
+  will-change: transform, opacity, filter;
+  animation: logoZoomImpact 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.34s both;
+}
+
+@keyframes logoZoomImpact {
+  0% {
+    opacity: 0;
+    transform: scale(0.1) translateY(20px);
+    filter: blur(14px) brightness(3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.38) translateY(0);
+    filter: blur(0px) brightness(1.8);
+    box-shadow: 0 0 70px rgba(215, 255, 60, 0.8), 0 0 120px rgba(0, 240, 255, 0.6);
+  }
+  75% {
+    transform: scale(0.94);
+    filter: brightness(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
 }
 
 .intro-logo-aura {
@@ -2144,7 +2160,7 @@ body.storefront .product:hover {
   inset: -50%;
   background: conic-gradient(from 0deg, #d7ff3c, #00f0ff, #d7ff3c);
   animation: auraSpin 3s linear infinite;
-  opacity: 0.3;
+  opacity: 0.35;
 }
 
 @keyframes auraSpin {
@@ -2154,18 +2170,39 @@ body.storefront .product:hover {
 .dp-intro-logo-img {
   position: relative;
   z-index: 2;
-  width: 76px;
-  height: 76px;
-  border-radius: 18px;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
   object-fit: cover;
   display: block;
 }
 
+/* Brand Text Reveals Right After Logo Lands */
 .dp-intro-brand-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  will-change: transform, opacity;
+  animation: brandTextReveal 0.52s cubic-bezier(0.16, 1, 0.3, 1) 0.68s both;
+}
+
+@keyframes brandTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.85);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.03);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
 }
 
 .dp-intro-title {
