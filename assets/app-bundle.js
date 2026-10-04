@@ -2603,12 +2603,14 @@ initScrollReveal();
    ═══════════════════════════════════════════════════════════════════ */
 (function initLivePurchasesTicker() {
   var sampleBuyers = [
-    { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', time: '1 phút trước' },
-    { name: 'Huy Hoàng (091***)', prod: 'Forget Lix 3.5', plan: 'Bản iOS VIP', time: '2 phút trước' },
-    { name: 'Khánh (035***)', prod: 'TrollModz', plan: 'Key 1 Ngày', time: '3 phút trước' },
-    { name: 'Minh Đức (086***)', prod: 'AimLock Forget', plan: 'AimLock 2.0', time: '5 phút trước' },
-    { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', time: '7 phút trước' },
-    { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', time: '9 phút trước' }
+    { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '1 phút trước' },
+    { name: 'Huy Hoàng (091***)', prod: 'Forget Lix 3.5', plan: 'Bản iOS VIP', img: 'assets/uploads/products/forget-lix.jpg', time: '2 phút trước' },
+    { name: 'Khánh (035***)', prod: 'TrollModz', plan: 'Key 1 Ngày', img: 'trollmodz.png', time: '3 phút trước' },
+    { name: 'Minh Đức (086***)', prod: 'AimLock Forget', plan: 'AimLock 2.0', img: 'assets/uploads/products/aimlock-forget.jpg', time: '5 phút trước' },
+    { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '7 phút trước' },
+    { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '9 phút trước' },
+    { name: 'Đức Huy (038***)', prod: 'Forget Hex', plan: 'Bản Hex V3', img: 'assets/uploads/products/forget-hex.jpg', time: '11 phút trước' },
+    { name: 'Bảo Nam (093***)', prod: 'Sx2 External', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/sx2-external.jpg', time: '14 phút trước' }
   ];
 
   var tickerEl = document.createElement('div');
@@ -2622,11 +2624,15 @@ initScrollReveal();
     var b = sampleBuyers[buyerIndex];
     buyerIndex = (buyerIndex + 1) % sampleBuyers.length;
 
+    var thumbHtml = b.img
+      ? '<div class="lpt-thumb"><img src="' + escapeHTML(b.img) + '" alt="' + escapeHTML(b.prod) + '" class="lpt-img" onerror="this.src=\'trollmodz.png\'"><span class="lpt-live-dot"></span></div>'
+      : '<div class="lpt-icon"><i class="fa-solid fa-bolt"></i></div>';
+
     tickerEl.innerHTML = 
-      '<div class="lpt-icon"><i class="fa-solid fa-bolt"></i></div>' +
+      thumbHtml +
       '<div class="lpt-body">' +
         '<div class="lpt-title"><b>' + escapeHTML(b.name) + '</b> vừa mua thành công</div>' +
-        '<div class="lpt-desc">' + escapeHTML(b.prod) + ' • <span style="color:var(--rd-volt);">' + escapeHTML(b.plan) + '</span> <small style="opacity:0.6;">(' + escapeHTML(b.time) + ')</small></div>' +
+        '<div class="lpt-desc">' + escapeHTML(b.prod) + ' • <span style="color:var(--rd-volt);font-weight:700;">' + escapeHTML(b.plan) + '</span> <small style="opacity:0.65;">(' + escapeHTML(b.time) + ')</small></div>' +
       '</div>';
 
     tickerEl.classList.add('visible');
@@ -2636,11 +2642,11 @@ initScrollReveal();
     }, 4500);
   }
 
-  // Khởi chạy sau 3 giây và lặp lại mỗi 12-16 giây
+  // Khởi chạy sau 2.5 giây và lặp lại mỗi 12-15 giây
   setTimeout(function() {
     showNextPurchase();
     setInterval(function() {
       showNextPurchase();
-    }, 14000);
-  }, 3000);
+    }, 13500);
+  }, 2500);
 })();
