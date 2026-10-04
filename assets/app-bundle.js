@@ -257,6 +257,60 @@ function dispatchKeyForOrder(order) {
 }
 
 var PRODUCTS = [
+  {
+    id: 'aimlock-forget-2',
+    category: 'AimLock',
+    plat: 'Adr • iOS',
+    buyers: '450+ Người mua',
+    name: 'AimLock Forget 2.0 (Adr • iOS)',
+    shortDesc: 'Kéo tâm chuẩn xác, fix rung tâm ổn định, bám mục tiêu tốt, an toàn tuyệt đối.',
+    fullDesc: 'AimLock Forget 2.0 (Android & iOS) - Tối ưu hỗ trợ kéo tâm đỉnh cao:\n- Kéo tâm chuẩn xác vào đầu, fix rung tâm ổn định.\n- Tăng độ nhạy vuốt mượt mà, giảm delay tối đa.\n- Bypass an toàn 100%, không can thiệp sâu file gốc.',
+    priceMin: 100000,
+    priceMax: 100000,
+    oldPrice: 200000,
+    image: 'assets/uploads/products/aimlock-2.jpg',
+    images: [
+      { src: 'assets/uploads/products/aimlock-2.jpg', label: 'AimLock 2.0', title: 'AimLock Forget 2.0 - Kéo Tâm Chuẩn Xác' }
+    ],
+    plans: [
+      {
+        name: 'AimLock Forget 2.0',
+        price: 100000,
+        badge: 'Giảm 50%',
+        action: 'Kéo tâm chuẩn xác vào đầu, fix rung tâm ổn định, bám mục tiêu cực tốt.',
+        fix: 'Khắc phục hoàn toàn delay vuốt tâm, chống lag giật.',
+        pros: 'Bảo vệ tài khoản an toàn 100%, hỗ trợ cả Android và iOS.',
+        note: 'Hỗ trợ Android & iOS.'
+      }
+    ]
+  },
+  {
+    id: 'aimlock-forget-3',
+    category: 'AimLock',
+    plat: 'Adr • iOS',
+    buyers: '680+ Người mua',
+    name: 'AimLock Forget 3.0 (Adr • iOS)',
+    shortDesc: 'Khắc phục toàn diện, tăng tỷ lệ bám đầu tối đa, hỗ trợ mượt mà, độ chuẩn xác 99%.',
+    fullDesc: 'AimLock Forget 3.0 (Android & iOS) - Bản nâng cấp hoàn hảo nhất:\n- Tối ưu hóa toàn diện thuật toán bám tâm đầu.\n- Tỷ lệ Headshot 99%, cực nhạy mọi cự ly súng.\n- Fix rung tâm tuyệt đối, mượt mà 120 FPS.',
+    priceMin: 150000,
+    priceMax: 150000,
+    oldPrice: 300000,
+    image: 'assets/uploads/products/aimlock-3.jpg',
+    images: [
+      { src: 'assets/uploads/products/aimlock-3.jpg', label: 'AimLock 3.0', title: 'AimLock Forget 3.0 - Đỉnh Cao Kéo Tâm' }
+    ],
+    plans: [
+      {
+        name: 'AimLock Forget 3.0',
+        price: 150000,
+        badge: 'Bán chạy nhất',
+        action: 'Tăng tỷ lệ bám đầu tối đa 99%, kéo tâm siêu dính mọi khoảng cách.',
+        fix: 'Khắc phục toàn diện delay vuốt tâm, tối ưu FPS mượt mà đỉnh cao.',
+        pros: 'Bản cao cấp nhất, cập nhật liên tục 24/7 từ Admin Anh Phú.',
+        note: 'Hỗ trợ Android & iOS.'
+      }
+    ]
+  },
     {
     id: 'trollmodz',
     category: 'Menu & Mod',
@@ -2476,9 +2530,9 @@ initScrollReveal();
 (function initLivePurchasesTicker() {
   var sampleBuyers = [
     { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '1 phút trước' },
-    { name: 'Huy Hoàng (091***)', prod: 'NovaX iOS', plan: 'Bản iOS VIP', img: 'assets/uploads/products/novax.jpg', time: '2 phút trước' },
+    { name: 'Huy Hoàng (091***)', prod: 'AimLock Forget 3.0', plan: 'Bản 3.0 VIP', img: 'assets/uploads/products/aimlock-3.jpg', time: '2 phút trước' },
     { name: 'Khánh (035***)', prod: 'TrollModz', plan: 'Key 1 Ngày', img: 'trollmodz.png', time: '3 phút trước' },
-    { name: 'Minh Đức (086***)', prod: 'Migul Pro iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '5 phút trước' },
+    { name: 'Minh Đức (086***)', prod: 'AimLock Forget 2.0', plan: 'Bản 2.0', img: 'assets/uploads/products/aimlock-2.jpg', time: '5 phút trước' },
     { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '7 phút trước' },
     { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '9 phút trước' },
     { name: 'Bảo Nam (093***)', prod: 'Sx2 External', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/sx2-external.jpg', time: '14 phút trước' }

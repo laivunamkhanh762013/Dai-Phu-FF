@@ -13,6 +13,20 @@ function deepFreeze(obj) {
 }
 
 const RAW_CATALOG = {
+  "aimlock-forget-2": {
+    "name": "AimLock Forget 2.0 (Adr • iOS)",
+    "soldOut": false,
+    "plans": {
+      "AimLock Forget 2.0": 100000
+    }
+  },
+  "aimlock-forget-3": {
+    "name": "AimLock Forget 3.0 (Adr • iOS)",
+    "soldOut": false,
+    "plans": {
+      "AimLock Forget 3.0": 150000
+    }
+  },
   "trollmodz": {
     "name": "TrollModz (Adr • iOS • PC)",
     "soldOut": false,
