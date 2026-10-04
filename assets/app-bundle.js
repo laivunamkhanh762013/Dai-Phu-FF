@@ -138,9 +138,24 @@ function renderMaintenanceScreen(msg, until) {
     '<div class="maint-cyber-grid"></div>' +
     '<div class="maint-ambient-orb maint-orb-1"></div>' +
     '<div class="maint-ambient-orb maint-orb-2"></div>' +
+    '<div class="maint-ambient-orb maint-orb-3"></div>' +
+    '<div class="maint-particles-layer">' +
+      '<span class="m-particle p1"></span>' +
+      '<span class="m-particle p2"></span>' +
+      '<span class="m-particle p3"></span>' +
+      '<span class="m-particle p4"></span>' +
+      '<span class="m-particle p5"></span>' +
+      '<span class="m-particle p6"></span>' +
+    '</div>' +
     '<div class="maintenance-card">' +
+      '<div class="maint-corner-bracket corner-tl"></div>' +
+      '<div class="maint-corner-bracket corner-tr"></div>' +
+      '<div class="maint-corner-bracket corner-bl"></div>' +
+      '<div class="maint-corner-bracket corner-br"></div>' +
       '<div class="maint-card-scanner"></div>' +
       '<div class="maint-visual-wrap">' +
+        '<div class="maint-shockwave-ring ring-1"></div>' +
+        '<div class="maint-shockwave-ring ring-2"></div>' +
         '<div class="maint-gear-ring maint-gear-outer"><i class="fa-solid fa-gear"></i></div>' +
         '<div class="maint-gear-ring maint-gear-inner"><i class="fa-solid fa-gear"></i></div>' +
         '<div class="maint-icon-core"><i class="fa-solid fa-screwdriver-wrench"></i></div>' +
@@ -173,7 +188,13 @@ function renderMaintenanceScreen(msg, until) {
         '</button>' +
       '</div>' +
       '<div class="maint-footer-status">' +
-        '<i class="fa-solid fa-tower-broadcast"></i> Tự động kiểm tra mở lại máy chủ mỗi 15 giây' +
+        '<span class="maint-freq-bars">' +
+          '<span class="fb1"></span>' +
+          '<span class="fb2"></span>' +
+          '<span class="fb3"></span>' +
+          '<span class="fb4"></span>' +
+        '</span>' +
+        '<span>Tự động kiểm tra mở lại máy chủ mỗi 15 giây</span>' +
       '</div>' +
     '</div>';
   document.body.appendChild(overlay);
