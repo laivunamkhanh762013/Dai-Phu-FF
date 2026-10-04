@@ -74,9 +74,36 @@ function playIntroAnimation() {
   intro.style.display = "flex";
   document.body.style.overflow = "hidden";
 
-  introTimeoutId = setTimeout(function() {
-    skipIntro();
-  }, 2000);
+  var logo = intro.querySelector("#dpIntroLogoBox");
+  var text = intro.querySelector("#dpIntroTextBox");
+
+  // Bước 1: 1.1s - Chữ mờ dần trượt sang phải, Logo lướt siêu êm từ trái vào chính giữa tâm
+  setTimeout(function() {
+    if (text) text.classList.add("dp-intro-text-fade");
+
+    var textWidth = text ? (text.offsetWidth || 180) : 180;
+    var shiftX = Math.round((textWidth + 16) / 2);
+
+    if (logo) {
+      logo.style.transform = "translateX(" + shiftX + "px)";
+    }
+
+    // Bước 2: 1.55s - Logo đã trượt vào giữa hoàn tất và ổn định, BÂY GIỜ MỚI phóng to cực đại xuyên thấu màn hình
+    setTimeout(function() {
+      if (logo) {
+        logo.classList.add("dp-intro-logo-burst");
+        logo.style.transform = "translateX(" + shiftX + "px) scale(36)";
+      }
+      if (intro) {
+        intro.style.opacity = "0";
+      }
+
+      // Đúng 2.0s: Hoàn tất dọn dẹp và trả lại trạng thái trang web
+      setTimeout(function() {
+        skipIntro();
+      }, 420);
+    }, 450);
+  }, 1100);
 }
 window.playIntroAnimation = playIntroAnimation;
 
