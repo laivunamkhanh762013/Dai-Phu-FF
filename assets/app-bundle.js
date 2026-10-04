@@ -86,27 +86,50 @@ function renderMaintenanceScreen(msg, until) {
     return;
   }
 
-  // Tự động đóng và dọn dẹp Intro ngay lập tức để không bị đè layer hay chạy timer ngầm
-  skipIntro();
-
   if (document.getElementById('maintenanceOverlay')) return;
   var overlay = document.createElement('div');
   overlay.id = 'maintenanceOverlay';
   overlay.className = 'maintenance-screen';
   overlay.innerHTML = 
+    '<div class="maint-cyber-grid"></div>' +
+    '<div class="maint-ambient-orb maint-orb-1"></div>' +
+    '<div class="maint-ambient-orb maint-orb-2"></div>' +
     '<div class="maintenance-card">' +
-      '<div class="maint-icon-wrap"><i class="fa-solid fa-screwdriver-wrench"></i></div>' +
-      '<div class="maint-badge"><i class="fa-solid fa-gear"></i> Hệ Thống Đang Bảo Trì</div>' +
-      '<h2>SHOP ĐẠI PHÚ FF ĐANG NÂNG CẤP</h2>' +
-      '<p class="maint-desc">' + escapeHTML(msg || 'Hệ thống đang tiến hành nâng cấp & bảo dưỡng máy chủ để mang đến trải nghiệm tốt nhất. Chức năng đặt hàng tạm thời tạm ngưng.') + '</p>' +
-      (until ? '<div class="maint-notice-box"><i class="fa-regular fa-clock"></i> Dự kiến hoàn thành: <b>' + escapeHTML(until) + '</b></div>' : '') +
+      '<div class="maint-card-scanner"></div>' +
+      '<div class="maint-visual-wrap">' +
+        '<div class="maint-gear-ring maint-gear-outer"><i class="fa-solid fa-gear"></i></div>' +
+        '<div class="maint-gear-ring maint-gear-inner"><i class="fa-solid fa-gear"></i></div>' +
+        '<div class="maint-icon-core"><i class="fa-solid fa-screwdriver-wrench"></i></div>' +
+        '<div class="maint-core-glow"></div>' +
+      '</div>' +
+      '<div class="maint-badge">' +
+        '<span class="maint-radar-dot"></span>' +
+        '<span>HỆ THỐNG ĐANG BẢO TRÌ &amp; NÂNG CẤP</span>' +
+      '</div>' +
+      '<h2 class="maint-title">SHOP ĐẠI PHÚ FF</h2>' +
+      '<div class="maint-subtitle">HỆ THỐNG MÁY CHỦ ĐANG ĐƯỢC BẢO DƯỠNG ĐỊNH KỲ</div>' +
+      '<p class="maint-desc">' + escapeHTML(msg || 'Hệ thống đang tiến hành nâng cấp & bảo dưỡng máy chủ để tối ưu trải nghiệm và cập nhật tính năng mới. Chức năng đặt hàng trực tuyến tạm thời gián đoạn.') + '</p>' +
+      (until ? 
+        '<div class="maint-notice-box">' +
+          '<div class="maint-notice-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>' +
+          '<div class="maint-notice-text">' +
+            '<span class="maint-notice-label">DỰ KIẾN HOÀN TẤT:</span>' +
+            '<strong class="maint-notice-time">' + escapeHTML(until) + '</strong>' +
+          '</div>' +
+        '</div>' : '') +
       '<div class="maint-actions">' +
         '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn-maint-zalo">' +
-          '<i class="fa-solid fa-headset"></i> Mua hàng trực tiếp qua Zalo Admin (0588500524)' +
+          '<i class="fa-solid fa-headset"></i>' +
+          '<span>Mua hàng trực tiếp qua <b>Zalo Admin (0588500524)</b></span>' +
+          '<i class="fa-solid fa-arrow-up-right-from-square maint-btn-arrow"></i>' +
         '</a>' +
         '<button type="button" class="btn-maint-reload" onclick="window.location.reload()">' +
-          '<i class="fa-solid fa-rotate-right"></i> Kiểm tra lại (F5)' +
+          '<i class="fa-solid fa-rotate-right"></i>' +
+          '<span>Kiểm tra lại trạng thái (F5)</span>' +
         '</button>' +
+      '</div>' +
+      '<div class="maint-footer-status">' +
+        '<i class="fa-solid fa-tower-broadcast"></i> Tự động kiểm tra mở lại máy chủ mỗi 45 giây' +
       '</div>' +
     '</div>';
   document.body.appendChild(overlay);
