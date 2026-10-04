@@ -162,14 +162,14 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // ════════ XÓA ĐƠN HÀNG (DELETE) (CHỈ ADMIN) ════════
-    if (req.method === 'DELETE') {
+    // ════════ HÀM XÓA ĐƠN HÀNG VĨNH VIỄN (CHỈ ADMIN) ════════
+    async function executeDeleteOrder(targetId) {
       if (!isAdmin) {
-        return res.status(403).json({ success: false, error: 'Quyền hạn bị từ chối: Chỉ Quản trị viên mới được xóa đơn hàng!' });
+        return { status: 403, error: 'Quyền hạn bị từ chối: Chỉ Quản trị viên mới được xóa đơn hàng!' };
       }
-      const rawTargetId = String(query.id || body.id || '').trim().toUpperCase();
-      if (!validateOrderId(rawTargetId)) {
-        return res.status(400).json({ success: false, error: 'Mã đơn xóa không hợp lệ.' });
+      const cleanId = String(targetId || '').trim().toUpperCase();
+      if (!cleanId) {
+        return { status: 400, error: 'Mã đơn xóa không hợp lệ.' };
       }
 
       let orderExisted = false;
@@ -177,7 +177,7 @@ module.exports = async function handler(req, res) {
         const { orders } = await getGist();
         const list = Array.isArray(orders) ? orders : [];
         const initialLen = list.length;
-        const filtered = list.filter(o => o.id !== rawTargetId);
+        const filtered = list.filter(o => !o.id || o.id.toUpperCase() !== cleanId);
         orderExisted = filtered.length < initialLen;
         if (orderExisted) {
           await updateGist({ orders: filtered });
@@ -186,14 +186,27 @@ module.exports = async function handler(req, res) {
       });
 
       if (!orderExisted) {
-        return res.status(404).json({ success: false, error: 'Không tìm thấy đơn hàng cần xóa.' });
+        return { status: 404, error: 'Không tìm thấy đơn hàng cần xóa.' };
       }
 
-      return res.status(200).json({ success: true, message: 'Đã xóa đơn hàng thành công.', remaining: deleteResult.remaining });
+      return { status: 200, success: true, message: 'Đã xóa đơn hàng vĩnh viễn thành công.', remaining: deleteResult.remaining };
+    }
+
+    // ════════ XÓA ĐƠN HÀNG (DELETE) (CHỈ ADMIN) ════════
+    if (req.method === 'DELETE') {
+      const targetId = query.id || body.id || '';
+      const delRes = await executeDeleteOrder(targetId);
+      return res.status(delRes.status || 200).json(delRes);
     }
 
     // ════════ XỬ LÝ POST ════════
     if (req.method === 'POST') {
+      // -1. Xóa đơn hàng qua POST (_delete hoặc action='delete') (Chỉ Admin)
+      if (body._delete === true || body.action === 'delete' || body._action === 'delete' || body.act === 'delete') {
+        const targetId = body.id || query.id || '';
+        const delRes = await executeDeleteOrder(targetId);
+        return res.status(delRes.status || 200).json(delRes);
+      }
       // 0. Bật/Tắt chế độ bảo trì hệ thống (Chỉ Admin)
       if (body._action === 'toggle_maintenance' || body.action === 'toggle_maintenance') {
         if (!isAdmin) {

@@ -1589,16 +1589,16 @@ async function deleteOrder(id) {
   showToast('🗑️ Đang xóa đơn ' + id + ' khỏi máy chủ...');
 
   try {
-    const res = await fetch('/api/orders', {
-      method: 'POST',
+    const res = await fetch('/api/orders?id=' + encodeURIComponent(id), {
+      method: 'DELETE',
       headers: getAuthHeaders(),
-      body: JSON.stringify({ id: id, _delete: true })
+      body: JSON.stringify({ id: id, _delete: true, action: 'delete' })
     });
     const data = await res.json();
     if (res.ok && data.success) {
       allOrders = allOrders.filter(function(o) { return o.id !== id; });
       renderDashboard();
-      showToast('✅ Đã xóa vĩnh viễn đơn ' + id + '!');
+      showToast('✅ Đã xóa vĩnh viễn đơn ' + id + ' khỏi hệ thống!');
     } else {
       showToast('❌ Không thể xóa đơn: ' + (data.error || 'Lỗi máy chủ'));
     }
