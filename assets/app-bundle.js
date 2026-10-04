@@ -482,7 +482,7 @@ var PRODUCTS = [
     },
     {
       id: 'novax-android',
-      soldOut: true,
+      soldOut: false,
       category: 'NovaX',
       plat: 'Android',
       buyers: '150+ Người mua',

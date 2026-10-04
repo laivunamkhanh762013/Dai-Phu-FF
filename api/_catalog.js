@@ -61,7 +61,7 @@ const RAW_CATALOG = {
   },
   "novax-android": {
     "name": "NovaX (Android)",
-    "soldOut": true,
+    "soldOut": false,
     "plans": {
       "Key 1 Ngày": 20000,
       "Key 7 Ngày": 50000,
