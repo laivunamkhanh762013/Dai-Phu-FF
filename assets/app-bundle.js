@@ -1391,7 +1391,7 @@ function renderModalVersionBlocks(p, activeIdx) {
           + '<h3 class="vb-title">' + escapeHTML(plan.name) + '</h3>'
           + '<div class="vb-meta-row">'
             + '<span class="vb-plat-badge"><i class="fa-solid fa-microchip"></i> ' + escapeHTML(p.plat || 'iOS & Android') + '</span>'
-            + (p.id === 'trollmodz' && normalizeVaultPlanKey(plan.name) ? '<span class="vb-stock-badge" style="background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.3);padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;display:inline-flex;align-items:center;gap:4px;"><i class="fa-solid fa-boxes-stacked" style="font-size:10px;"></i> Còn ' + getDisplayStock(p.id, plan.name) + ' key (Sẵn kho)</span>' : '')
+            + (p.id === 'trollmodz' && normalizeVaultPlanKey(plan.name) ? '<span class="vb-stock-badge"><span class="stock-live-dot"></span> Còn ' + getDisplayStock(p.id, plan.name) + ' key sẵn kho</span>' : '')
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'

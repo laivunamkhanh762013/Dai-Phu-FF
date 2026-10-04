@@ -1661,17 +1661,37 @@ body.storefront .product:hover {
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(215, 255, 60, 0.12) !important;
 }
 
-/* 3. Glowing Live Badges & Stock Counter */
+/* 3. Sleek Minimal Stock Counter Badge */
 .vb-stock-badge {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(215, 255, 60, 0.12) 100%) !important;
-  border: 1px solid rgba(245, 158, 11, 0.4) !important;
-  box-shadow: 0 0 14px rgba(245, 158, 11, 0.18);
-  animation: superBadgeGlow 3s ease-in-out infinite alternate;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #34d399 !important;
+  background: rgba(34, 197, 94, 0.08) !important;
+  border: 1px solid rgba(34, 197, 94, 0.25) !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  animation: none !important;
+  letter-spacing: normal !important;
 }
 
-@keyframes superBadgeGlow {
-  0% { border-color: rgba(245, 158, 11, 0.35); box-shadow: 0 0 8px rgba(245, 158, 11, 0.15); }
-  100% { border-color: rgba(215, 255, 60, 0.55); box-shadow: 0 0 18px rgba(215, 255, 60, 0.3); }
+.stock-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: stockDotPulse 2s infinite ease-in-out;
+}
+
+@keyframes stockDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
 }
 
 /* 4. Superdesign VIP Digital Ticket Receipt */
