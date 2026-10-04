@@ -797,7 +797,9 @@ body.storefront .select { padding: 0 34px 0 16px !important; font-size: 13px !im
 /* Price Block */
 .card-pricing-block {
   margin-top: auto;
-  padding: 8px 6px 0;
+  padding: 8px 0 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .card-price-header {
@@ -853,7 +855,8 @@ body.storefront .select { padding: 0 34px 0 16px !important; font-size: 13px !im
 }
 
 .btn-buy {
-  margin: 10px 6px 0 !important;
+  width: 100% !important;
+  margin: 10px 0 0 !important;
   background: rgba(255, 255, 255, 0.04) !important;
   border: 1px solid var(--rd-line-2) !important;
   color: var(--rd-text) !important;
@@ -866,6 +869,7 @@ body.storefront .select { padding: 0 34px 0 16px !important; font-size: 13px !im
   gap: 8px !important;
   text-align: center !important;
   box-sizing: border-box !important;
+  cursor: pointer !important;
 }
 
 .btn-buy span, .btn-buy i { color: inherit !important; }
@@ -884,15 +888,18 @@ body.storefront .select { padding: 0 34px 0 16px !important; font-size: 13px !im
 .product-soldout { border-color: rgba(255,82,82,0.3) !important; }
 .product-soldout .card-price-val { color: var(--rd-red) !important; }
 .product-thumb .tag-soldout { background: var(--rd-red) !important; color: #fff !important; }
-.btn-soldout { 
-  color: var(--rd-red) !important; 
-  border-color: rgba(255,82,82,0.35) !important; 
-  background: rgba(255, 82, 82, 0.06) !important; 
+.btn-soldout {
+  width: 100% !important;
+  margin: 10px 0 0 !important;
+  color: var(--rd-red) !important;
+  border-color: rgba(255,82,82,0.35) !important;
+  background: rgba(255, 82, 82, 0.06) !important;
   cursor: not-allowed !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
+  box-sizing: border-box !important;
 }
 
 .product:hover .btn-soldout,
@@ -1548,7 +1555,17 @@ body.storefront .input:focus { border-color: rgba(215,255,60,0.6) !important; bo
   .card-plans { padding: 0 2px; display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 4px !important; }
   .card-plans::-webkit-scrollbar { display: none; }
   .card-plan-chip { font-size: 10px !important; padding: 3px 8px !important; white-space: nowrap; }
-  .btn-buy { margin: 8px 2px 0 !important; padding: 8px 10px !important; font-size: 12px !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; }
+  .btn-buy {
+  width: 100% !important;
+  margin: 8px 0 0 !important;
+  padding: 8px 10px !important;
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  box-sizing: border-box !important;
+}
 
   /* Thanh dock điều hướng dưới đáy màn hình */
   .mobile-nav {
