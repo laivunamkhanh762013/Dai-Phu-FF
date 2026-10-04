@@ -1987,6 +1987,8 @@ body.storefront .product:hover {
   mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
   -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
   pointer-events: none;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    CINEMATIC SPLASH INTRO: DUAL LIGHTNING CLASH & MEGA LOGO ZOOM
    ═══════════════════════════════════════════════════════════════════ */

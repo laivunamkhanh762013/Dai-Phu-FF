@@ -122,8 +122,9 @@ module.exports = async function handler(req, res) {
       // ──────────────── XỬ LÝ ĐĂNG KÝ (REGISTER) ────────────────
       if (action === 'register') {
         const cleanPhoneDigits = rawPhone.replace(/\s+/g, '');
-        if (!/^(0|\+84)[0-9]{8,11}$/.test(cleanPhoneDigits)) {
-          return res.status(400).json({ success: false, error: 'Bắt buộc nhập đúng Số điện thoại/Zalo (từ 9 đến 12 số)!' });
+        const digitsOnly = cleanPhoneDigits.replace(/[^0-9]/g, '');
+        if (digitsOnly.length < 10 || !/^(0|\+84)[0-9]{9,11}$/.test(cleanPhoneDigits)) {
+          return res.status(400).json({ success: false, error: 'Số điện thoại/Zalo đăng ký phải từ 10 số trở lên (Ví dụ: 0987654321)!' });
         }
 
         const hashedPassword = await hashPassword(password);

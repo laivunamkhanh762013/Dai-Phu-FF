@@ -1067,11 +1067,11 @@ function handleRegisterSubmit(e) {
   var u = document.getElementById('regUser').value.trim();
   var p = document.getElementById('regPass') ? document.getElementById('regPass').value.trim() : '';
   var phone = document.getElementById('regPhone').value.trim();
-    if (!u) return;
-    if (phone.replace(/[^0-9+]/g, '').length < 9) {
-      toast('📞', 'Vui lòng nhập đúng SĐT/Zalo (tối thiểu 9 số) để được hỗ trợ!');
-      return;
-    }
+  if (!u) return;
+  if (phone.replace(/[^0-9]/g, '').length < 10) {
+    toast('📞', 'Số điện thoại/Zalo đăng ký phải từ 10 số trở lên!');
+    return;
+  }
 
   var btn = e.target.querySelector('button[type="submit"]');
   var oldBtn = btn ? btn.innerHTML : '';
