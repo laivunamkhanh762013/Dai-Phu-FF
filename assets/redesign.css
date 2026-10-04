@@ -1983,21 +1983,23 @@ body.storefront .product:hover {
 
 /* Khối trung tâm ngang (Logo trái + Chữ phải) */
 .dp-intro-center {
+  --logo-size: clamp(74px, 16vw, 88px);
   position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 16px !important;
-  animation: introCenterIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  width: min(92vw, 440px) !important;
+  height: var(--logo-size) !important;
+  margin: auto !important;
+  animation: introCenterIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
   z-index: 10 !important;
   will-change: opacity, transform !important;
 }
 
-/* Logo: Ban đầu ở bên trái, đến 1.0s trượt siêu êm vào giữa tâm, dừng 1 nhịp ngắn, rồi bùng nổ phóng to cực đại xuyên thấu màn hình */
+/* Logo: Ban đầu ở bên trái, đến 0.9s trượt siêu êm vào đúng giữa tâm, dừng 1 nhịp, rồi MỚI phóng to xuyên thấu */
 .dp-intro-logo-box {
-  position: relative !important;
-  width: clamp(70px, 15vw, 92px) !important;
-  height: clamp(70px, 15vw, 92px) !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: var(--logo-size) !important;
+  height: var(--logo-size) !important;
   border-radius: 50% !important;
   padding: 3px !important;
   background: linear-gradient(135deg, #38bdf8 0%, #d4fc39 100%) !important;
@@ -2005,11 +2007,9 @@ body.storefront .product:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  flex-shrink: 0 !important;
   z-index: 2 !important;
-  will-change: transform, opacity !important;
-  transform: translate3d(0, 0, 0);
-  animation: logoGlideAndMegaBurst 2.0s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
+  will-change: transform, opacity, left !important;
+  animation: logoGlideCenterThenBurst 2.0s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
 }
 
 .dp-intro-logo-img {
@@ -2023,20 +2023,24 @@ body.storefront .product:hover {
 
 /* Tên Shop bên phải */
 .dp-intro-text-box {
+  position: absolute !important;
+  left: calc(var(--logo-size) + 14px) !important;
+  right: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   text-align: left !important;
   will-change: opacity, transform !important;
-  transform: translate3d(0, 0, 0);
-  animation: introTextSmoothFade 2.0s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  animation: textFadeOutLeft 2.0s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
 }
 
 .dp-intro-title {
   font-family: var(--rd-font-display, "Be Vietnam Pro", -apple-system, sans-serif) !important;
-  font-size: clamp(20px, 5.2vw, 34px) !important;
+  font-size: clamp(19px, 5vw, 32px) !important;
   font-weight: 900 !important;
-  letter-spacing: 1.5px !important;
+  letter-spacing: 1.2px !important;
   line-height: 1.15 !important;
   text-transform: uppercase !important;
   color: #ffffff !important;
@@ -2050,9 +2054,9 @@ body.storefront .product:hover {
 
 .dp-intro-subline {
   font-family: var(--rd-font-mono, monospace, system-ui) !important;
-  font-size: clamp(9px, 2.2vw, 12px) !important;
+  font-size: clamp(9px, 2.2vw, 11.5px) !important;
   font-weight: 700 !important;
-  letter-spacing: 3px !important;
+  letter-spacing: 2.5px !important;
   color: var(--rd-volt, #d4fc39) !important;
   margin-top: 5px !important;
   opacity: 0.9 !important;
@@ -2090,40 +2094,44 @@ body.storefront .product:hover {
 /* ═════ KEYFRAMES SIÊU MƯỢT (GPU COMPOSITING 100% 60FPS) ═════ */
 @keyframes introCenterIn {
   0% { opacity: 0; transform: scale(0.94); }
-  45% { opacity: 1; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1); }
   100% { opacity: 1; transform: scale(1); }
 }
 
-@keyframes introTextSmoothFade {
-  0%, 48% {
+@keyframes textFadeOutLeft {
+  0%, 45% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateY(-50%) translateX(0);
   }
-  68%, 100% {
+  65%, 100% {
     opacity: 0;
-    transform: translate3d(24px, 0, 0) scale(0.95);
+    transform: translateY(-50%) translateX(24px);
     pointer-events: none;
   }
 }
 
-@keyframes logoGlideAndMegaBurst {
-  0%, 48% {
-    transform: translate3d(0, 0, 0) scale(1);
+@keyframes logoGlideCenterThenBurst {
+  0%, 45% {
+    left: 0;
+    transform: scale(1);
     opacity: 1;
   }
-  /* Trượt siêu mượt vào giữa tâm */
+  /* Trượt siêu êm vào chính giữa tâm màn hình */
   70% {
-    transform: translate3d(var(--glide-x, 92px), 0, 0) scale(1.04);
+    left: calc(50% - (var(--logo-size) / 2));
+    transform: scale(1.06);
     opacity: 1;
   }
-  /* Khựng nhẹ 1 nhịp ở giữa tâm */
-  75% {
-    transform: translate3d(var(--glide-x, 92px), 0, 0) scale(1.08);
+  /* Dừng 1 nhịp ở giữa tâm */
+  76% {
+    left: calc(50% - (var(--logo-size) / 2));
+    transform: scale(1.08);
     opacity: 1;
   }
-  /* Phóng to cực mượt 60fps không khựng */
+  /* BÂY GIỜ MỚI phóng to cực đại xuyên thấu màn hình vào web */
   100% {
-    transform: translate3d(var(--glide-x, 92px), 0, 0) scale(32);
+    left: calc(50% - (var(--logo-size) / 2));
+    transform: scale(32);
     opacity: 0;
   }
 }

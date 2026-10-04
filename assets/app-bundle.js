@@ -74,14 +74,6 @@ function playIntroAnimation() {
   intro.style.display = "flex";
   document.body.style.overflow = "hidden";
 
-  var logo = intro.querySelector("#dpIntroLogoBox");
-  var text = intro.querySelector("#dpIntroTextBox");
-  if (logo && text) {
-    var textWidth = text.offsetWidth || 180;
-    var shiftX = Math.round((textWidth + 16) / 2);
-    logo.style.setProperty('--glide-x', shiftX + 'px');
-  }
-
   introTimeoutId = setTimeout(function() {
     skipIntro();
   }, 2000);
