@@ -87,21 +87,26 @@ function playIntroAnimation() {
   intro.setAttribute("role", "alertdialog");
   intro.setAttribute("aria-modal", "true");
   intro.setAttribute("aria-label", "Giới thiệu cửa hàng");
-  intro.onclick = function() { skipIntro(); };
+  intro.onclick = function(e) { skipIntro(e); };
   intro.onkeydown = function(event) {
-    if (event.key === "Enter" || event.key === "Escape") skipIntro();
+    if (event.key === "Enter" || event.key === "Escape") skipIntro(event);
   };
 
   intro.innerHTML = 
     '<button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>' +
-    '<div class="laser-scanline-sweep"></div>' +
+    '<div class="intro-cyber-grid-bg"></div>' +
+    '<div class="intro-beam intro-beam-left"></div>' +
+    '<div class="intro-beam intro-beam-right"></div>' +
+    '<div class="intro-shockwave"></div>' +
+    '<div class="intro-flash-bg"></div>' +
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
+        '<div class="intro-logo-aura"></div>' +
         '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">' +
       '</div>' +
       '<div class="dp-intro-brand-box" id="dpIntroBrandBox">' +
-        '<div class="dp-intro-title" id="dpIntroDecryptTitle">SHOP ĐẠI PHÚ FF</div>' +
-        '<div class="dp-intro-subline">HỆ THỐNG PHẦN MỀM TIỆN ÍCH VIP</div>' +
+        '<div class="dp-intro-title">SHOP ĐẠI PHÚ FF</div>' +
+        '<div class="dp-intro-subline">⚡ HỆ THỐNG PHẦN MỀM TIỆN ÍCH VIP ⚡</div>' +
       '</div>' +
     '</div>';
 
@@ -109,20 +114,18 @@ function playIntroAnimation() {
   intro.style.display = "flex";
   document.body.style.overflow = "hidden";
 
-  var titleEl = intro.querySelector("#dpIntroDecryptTitle");
-  if (titleEl) {
-    runTextDecrypt(titleEl, "SHOP ĐẠI PHÚ FF", 380);
-  }
-
   var logo = intro.querySelector("#dpIntroLogoBox");
+  var brand = intro.querySelector("#dpIntroBrandBox");
 
-  // Giải mã xong (0.38s) -> Giữ nguyên tên Shop Đại Phú FF trong đúng 1s để khách kịp đọc -> Vào web mượt mà
+  // Hiển thị logo và thương hiệu sau cú va chạm sét trong ~1.1s để khách đọc tên shop
+  // Rồi phóng to logo cực đại xuyên qua màn hình vào web
   introPhaseTimeoutId = setTimeout(function() {
+    if (brand) brand.classList.add("intro-fade-out");
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
-    introTimeoutId = setTimeout(skipIntro, 260);
-  }, 1380);
+    introTimeoutId = setTimeout(skipIntro, 550);
+  }, 1300);
 }
 window.playIntroAnimation = playIntroAnimation;
 

@@ -55,19 +55,28 @@
 </head>
 
 <body class="storefront">
-<!-- ════════ HIGH-TECH INTRO: RADAR SCANLINE + TEXT DECRYPT (~1.4s) ════════ -->
+<!-- ════════ GAMING SPLASH SCREEN INTRO: DUAL LIGHTNING CLASH ════════ -->
 <div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro(event)" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro(event)" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
   <button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>
-  <!-- 0.42s Laser Scanline Sweep -->
-  <div class="laser-scanline-sweep"></div>
+  <div class="intro-cyber-grid-bg"></div>
+
+  <!-- Dual Lightning Energy Beams -->
+  <div class="intro-beam intro-beam-left"></div>
+  <div class="intro-beam intro-beam-right"></div>
   
+  <!-- Central Shockwave Flash & Sparks -->
+  <div class="intro-shockwave"></div>
+  <div class="intro-flash-bg"></div>
+
+  <!-- Central Clash Content (Logo & Brand) -->
   <div class="dp-intro-clash-content" id="dpIntroClashContent">
     <div class="dp-intro-logo-glow" id="dpIntroLogoBox">
+      <div class="intro-logo-aura"></div>
       <img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">
     </div>
     <div class="dp-intro-brand-box" id="dpIntroBrandBox">
-      <div class="dp-intro-title" id="dpIntroDecryptTitle">SHOP ĐẠI PHÚ FF</div>
-      <div class="dp-intro-subline">HỆ THỐNG PHẦN MỀM TIỆN ÍCH VIP</div>
+      <div class="dp-intro-title">SHOP ĐẠI PHÚ FF</div>
+      <div class="dp-intro-subline">⚡ HỆ THỐNG PHẦN MỀM TIỆN ÍCH VIP ⚡</div>
     </div>
   </div>
 </div>

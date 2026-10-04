@@ -2247,7 +2247,7 @@ body.storefront .product:hover {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   PREMIUM HIGH-TECH INTRO: RADAR SCANLINE SWEEP & TEXT DECRYPT (< 0.8s)
+   CINEMATIC SPLASH INTRO: DUAL LIGHTNING CLASH & MEGA LOGO ZOOM
    ═══════════════════════════════════════════════════════════════════ */
 
 .dp-intro-overlay {
@@ -2256,7 +2256,7 @@ body.storefront .product:hover {
   width: 100vw !important;
   height: 100vh !important;
   height: 100dvh !important;
-  background: #08090d !important;
+  background: #07090e !important;
   z-index: 999999 !important;
   display: flex !important;
   align-items: center !important;
@@ -2265,7 +2265,7 @@ body.storefront .product:hover {
   cursor: pointer !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .dp-intro-overlay.intro-fade-out {
@@ -2273,130 +2273,230 @@ body.storefront .product:hover {
   pointer-events: none !important;
 }
 
-/* 1. Ultra-Smooth Laser Scanline Sweep (0.42s Sweep across screen) */
-.laser-scanline-sweep {
+.intro-cyber-grid-bg {
   position: absolute;
-  top: -20px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), #d4fc39, rgba(56, 189, 248, 0.8), transparent);
-  box-shadow: 0 0 20px #38bdf8, 0 0 40px rgba(212, 252, 57, 0.5);
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(215, 255, 60, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
   pointer-events: none;
-  z-index: 10;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-  animation: laserScanSweep 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes laserScanSweep {
-  0% { transform: translate3d(0, -10px, 0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translate3d(0, 105vh, 0); opacity: 0; }
+/* Left Beam (Electric Cyan Plasma Bolt) */
+.intro-beam-left {
+  position: absolute;
+  top: 50%;
+  left: -80vw;
+  width: 70vw;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #00f0ff, #ffffff);
+  box-shadow: 0 0 24px #00f0ff, 0 0 45px rgba(0, 240, 255, 0.8);
+  border-radius: 999px;
+  transform: translateY(-50%);
+  z-index: 2;
+  will-change: transform, left;
+  animation: beamClashLeft 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 2. Central Decrypt Content */
+@keyframes beamClashLeft {
+  0% { left: -80vw; opacity: 0.2; }
+  60% { opacity: 1; }
+  100% { left: calc(50% - 35vw); opacity: 0; transform: translateY(-50%) scaleX(1.4); }
+}
+
+/* Right Beam (Volt Neon / Gold Bolt) */
+.intro-beam-right {
+  position: absolute;
+  top: 50%;
+  right: -80vw;
+  width: 70vw;
+  height: 5px;
+  background: linear-gradient(270deg, transparent, #d7ff3c, #ffffff);
+  box-shadow: 0 0 24px #d7ff3c, 0 0 45px rgba(215, 255, 60, 0.8);
+  border-radius: 999px;
+  transform: translateY(-50%);
+  z-index: 2;
+  will-change: transform, right;
+  animation: beamClashRight 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes beamClashRight {
+  0% { right: -80vw; opacity: 0.2; }
+  60% { opacity: 1; }
+  100% { right: calc(50% - 35vw); opacity: 0; transform: translateY(-50%) scaleX(1.4); }
+}
+
+/* Central Shockwave Flash */
+.intro-shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, rgba(0,240,255,0.8) 35%, rgba(215,255,60,0.6) 65%, transparent 100%);
+  box-shadow: 0 0 50px #ffffff, 0 0 100px #00f0ff, 0 0 150px #d7ff3c;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: shockwavePulse 0.65s cubic-bezier(0.1, 0.9, 0.2, 1) 0.34s forwards;
+}
+
+@keyframes shockwavePulse {
+  0% { transform: scale(0.1); opacity: 1; }
+  50% { opacity: 0.9; }
+  100% { transform: scale(8); opacity: 0; }
+}
+
+/* Instant Background Ambient Flash */
+.intro-flash-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 240, 255, 0.25) 0%, rgba(215, 255, 60, 0.15) 40%, transparent 75%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: bgFlashGlow 0.8s ease-out 0.34s forwards;
+}
+
+@keyframes bgFlashGlow {
+  0% { opacity: 1; }
+  100% { opacity: 0.15; }
+}
+
+/* Central Clash Content (Logo + Brand) */
 .dp-intro-clash-content {
   position: relative;
-  z-index: 5;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 14px;
+  gap: 16px;
   transform: translate3d(0, 0, 0);
-  animation: decryptIntroEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes decryptIntroEntrance {
-  from { opacity: 0; transform: scale(0.95) translate3d(0, 8px, 0); }
-  to { opacity: 1; transform: scale(1) translate3d(0, 0, 0); }
-}
-
+/* Logo Box & Entrance Pop */
 .dp-intro-logo-glow {
   position: relative;
-  width: 82px;
-  height: 82px;
-  border-radius: 22px;
-  background: rgba(18, 22, 34, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 35px rgba(212, 252, 57, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  width: 92px;
+  height: 92px;
+  border-radius: 26px;
+  background: #0f1117;
+  border: 2px solid rgba(215, 255, 60, 0.6);
+  box-shadow: 0 0 35px rgba(215, 255, 60, 0.45), 0 0 65px rgba(0, 240, 255, 0.3);
   display: grid;
   place-items: center;
   overflow: hidden;
-  will-change: transform, opacity;
+  will-change: transform, opacity, filter;
   transform: translate3d(0, 0, 0);
-  animation: introLogoPulse 3s ease-in-out infinite alternate;
-  transition: transform 0.35s cubic-bezier(0.7, 0, 1, 1), opacity 0.3s ease !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: logoEntrancePop 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  transition: transform 0.58s cubic-bezier(0.7, 0, 1, 1), opacity 0.52s ease, filter 0.52s ease !important;
 }
 
-@keyframes introLogoPulse {
+@keyframes logoEntrancePop {
   0% {
-    box-shadow: 0 0 25px rgba(56, 189, 248, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border-color: rgba(56, 189, 248, 0.3);
+    opacity: 0;
+    transform: scale(0.3) translate3d(0, 0, 0);
+    filter: brightness(2.5);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.08) translate3d(0, 0, 0);
+    filter: brightness(1.3);
   }
   100% {
-    box-shadow: 0 0 45px rgba(212, 252, 57, 0.35), 0 0 20px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-color: rgba(212, 252, 57, 0.45);
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: brightness(1);
   }
 }
 
-.intro-progress-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #38bdf8, #d4fc39);
-  width: 0%;
-  animation: introProgressFill 15s linear forwards;
-  box-shadow: 0 0 12px rgba(212, 252, 57, 0.6);
-  z-index: 20;
-}
-
-@keyframes introProgressFill {
-  0% { width: 0%; opacity: 0.8; }
-  95% { width: 100%; opacity: 1; }
-  100% { width: 100%; opacity: 0; }
-}
-
+/* Phóng to cực đại bao trùm hết cả web xuyên thấu màn hình vào storefront */
 .dp-intro-logo-glow.intro-zoom-out {
-  transform: scale(24) translate3d(0, 0, 0) !important;
+  transform: scale(32) translate3d(0, 0, 0) !important;
   opacity: 0 !important;
+  filter: brightness(3.5) blur(1px) !important;
+  box-shadow: 0 0 160px rgba(215, 255, 60, 1), 0 0 160px rgba(0, 240, 255, 1) !important;
+}
+
+.intro-logo-aura {
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(from 0deg, #d7ff3c, #00f0ff, #d7ff3c);
+  animation: auraSpin 3s linear infinite;
+  opacity: 0.35;
+}
+
+@keyframes auraSpin {
+  100% { transform: rotate(360deg); }
 }
 
 .dp-intro-logo-img {
-  width: 68px;
-  height: 68px;
-  border-radius: 18px;
+  position: relative;
+  z-index: 2;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
   object-fit: cover;
   display: block;
 }
 
+/* Brand Text Box */
 .dp-intro-brand-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: brandEntranceFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  transition: transform 0.25s ease, opacity 0.25s ease !important;
+}
+
+@keyframes brandEntranceFade {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.95) translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) translate3d(0, 0, 0);
+  }
+}
+
+.dp-intro-brand-box.intro-fade-out {
+  opacity: 0 !important;
+  transform: translateY(-8px) scale(0.92) translate3d(0, 0, 0) !important;
 }
 
 .dp-intro-title {
   font-family: var(--rd-font-display, "Be Vietnam Pro", sans-serif) !important;
-  font-size: clamp(22px, 5vw, 32px) !important;
+  font-size: clamp(24px, 5.5vw, 36px) !important;
   font-weight: 900 !important;
-  letter-spacing: 0.8px !important;
+  letter-spacing: 1px !important;
   color: #ffffff !important;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8), 0 0 24px rgba(212, 252, 57, 0.2);
+  text-shadow: 0 0 20px rgba(215, 255, 60, 0.6), 0 0 40px rgba(0, 240, 255, 0.4);
 }
 
 .dp-intro-subline {
   font-family: var(--rd-font-mono, monospace) !important;
   font-size: 11px !important;
   font-weight: 700 !important;
-  letter-spacing: 2px !important;
-  color: #38bdf8 !important;
-  opacity: 0.85;
+  letter-spacing: 2.5px !important;
+  color: #d7ff3c !important;
+  text-shadow: 0 0 10px rgba(215, 255, 60, 0.5) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════
