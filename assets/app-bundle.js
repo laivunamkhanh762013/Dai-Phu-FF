@@ -116,13 +116,13 @@ function playIntroAnimation() {
 
   var logo = intro.querySelector("#dpIntroLogoBox");
 
-  // Thời lượng Intro: 10 giây (9.4s ngắm Decrypt & Logo rực rỡ + 0.6s Zoom Out mượt mà sang Storefront)
+  // Thời lượng Intro: 15 giây (14.4s ngắm Decrypt & Logo rực rỡ + 0.6s Zoom Out mượt mà sang Storefront)
   introPhaseTimeoutId = setTimeout(function() {
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
     introTimeoutId = setTimeout(skipIntro, 600);
-  }, 9400);
+  }, 14400);
 }
 window.playIntroAnimation = playIntroAnimation;
 
