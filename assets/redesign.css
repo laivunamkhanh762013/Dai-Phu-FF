@@ -1999,11 +1999,13 @@ body.storefront .product:hover {
   cursor: pointer !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  animation: introOverlayBgFade 0.4s cubic-bezier(0.4, 0, 0.2, 1) 1.62s forwards !important;
+  animation: silkyOverlayExit 0.45s cubic-bezier(0.4, 0, 0.2, 1) 1.52s forwards !important;
 }
 
-@keyframes introOverlayBgFade {
+@keyframes silkyOverlayExit {
   0% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; visibility: hidden; }
+}
   100% { opacity: 0; pointer-events: none; visibility: hidden; }
 }
 
@@ -2114,9 +2116,10 @@ body.storefront .product:hover {
   justify-content: center;
   text-align: center;
   gap: 16px;
+  transform: translate3d(0, 0, 0);
 }
 
-/* Logo: Xuất hiện -> Giữ 1.0s cùng chữ -> Phóng to cực đại tràn hết toàn bộ web */
+/* Silky 60FPS Hardware-Accelerated Logo Journey */
 .dp-intro-logo-glow {
   position: relative;
   width: 92px;
@@ -2124,45 +2127,49 @@ body.storefront .product:hover {
   border-radius: 26px;
   background: #0f1117;
   border: 2px solid rgba(215, 255, 60, 0.6);
-  box-shadow: 0 0 45px rgba(215, 255, 60, 0.5), 0 0 80px rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 35px rgba(215, 255, 60, 0.45), 0 0 65px rgba(0, 240, 255, 0.3);
   display: grid;
   place-items: center;
   overflow: hidden;
-  will-change: transform, opacity, filter;
-  animation: logoEntranceAndMassiveZoom 1.95s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: silkyLogoJourney 1.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-@keyframes logoEntranceAndMassiveZoom {
+@keyframes silkyLogoJourney {
   0% {
     opacity: 0;
-    transform: scale(0.2);
-    filter: blur(10px) brightness(2.5);
+    transform: scale(0.25) translate3d(0, 0, 0);
+    filter: brightness(2);
   }
   20% {
     opacity: 1;
-    transform: scale(1.15);
-    filter: blur(0px) brightness(1.5);
+    transform: scale(1.06) translate3d(0, 0, 0);
+    filter: brightness(1.2);
   }
-  30% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  /* Giữ nguyên cùng chữ thương hiệu hiển thị trong 1.0 giây */
-  72% {
+  28% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translate3d(0, 0, 0);
     filter: brightness(1);
   }
-  /* PHÓNG TO CỰC ĐẠI TRÀN HẾT WEB XUYÊN QUA MÀN HÌNH VÀO WEB */
-  86% {
-    opacity: 0.95;
-    transform: scale(8);
-    filter: blur(3px);
+  /* Giữ nguyên cùng chữ thương hiệu hiển thị rõ ràng trong 1.0 giây */
+  70% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: brightness(1);
+  }
+  /* Phóng to siêu mượt mà xuyên thấu qua màn hình vào trang web */
+  88% {
+    opacity: 0.8;
+    transform: scale(3.8) translate3d(0, 0, 0);
+    filter: brightness(1.3);
   }
   100% {
     opacity: 0;
-    transform: scale(36);
-    filter: blur(14px);
+    transform: scale(8.5) translate3d(0, 0, 0);
+    filter: brightness(1.6);
   }
 }
 
@@ -2188,42 +2195,41 @@ body.storefront .product:hover {
   display: block;
 }
 
-/* Chữ Shop Đại Phú: Hiển thị rực rỡ trong 1.0 giây rồi mờ đi để logo phóng to */
+/* Chữ Shop Đại Phú: Hiển thị rực rỡ trong 1.0 giây rồi lướt mờ êm dịu */
 .dp-intro-brand-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   will-change: transform, opacity;
-  animation: brandTextDisplayAndFade 1.95s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: silkyBrandJourney 1.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-@keyframes brandTextDisplayAndFade {
+@keyframes silkyBrandJourney {
   0% {
     opacity: 0;
-    transform: translateY(18px) scale(0.9);
-    filter: blur(6px);
+    transform: translateY(14px) scale(0.95) translate3d(0, 0, 0);
   }
   20% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
+    transform: translateY(0) scale(1) translate3d(0, 0, 0);
   }
   /* Giữ trọn vẹn chữ trong 1.0 giây */
-  70% {
+  68% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
+    transform: translateY(0) scale(1) translate3d(0, 0, 0);
   }
-  /* Mờ nhanh khi logo bắt đầu phóng to cực đại */
-  80% {
+  /* Lướt mờ êm ái khi logo bắt đầu phóng to */
+  78% {
     opacity: 0;
-    transform: translateY(-10px) scale(0.9);
-    filter: blur(4px);
+    transform: translateY(-8px) scale(0.96) translate3d(0, 0, 0);
   }
   100% {
     opacity: 0;
-    transform: translateY(-12px) scale(0.85);
+    transform: translateY(-10px) scale(0.92) translate3d(0, 0, 0);
   }
 }
 
