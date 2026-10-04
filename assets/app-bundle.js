@@ -45,15 +45,15 @@ window.skipIntro = skipIntro;
   intro.style.display = "flex";
   document.body.style.overflow = "hidden";
 
-  // Hiển thị logo & tên shop rõ nét trong 1.0 giây
+  // Hiển thị logo & tên shop rõ nét trong ~2.4 giây
   introPhaseTimeoutId = setTimeout(function() {
     if (brand) brand.classList.add("intro-fade-out");
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
-    // Sau khi phóng to cực đại xuyên thấu màn hình (0.45s), gỡ bỏ intro
-    introTimeoutId = setTimeout(skipIntro, 450);
-  }, 1000);
+    // Sau khi phóng to cực đại xuyên thấu màn hình (0.6s), gỡ bỏ intro (tổng 3.0s)
+    introTimeoutId = setTimeout(skipIntro, 600);
+  }, 2400);
 })();
 
 // ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD VỚI ÂN HẠN ĐƠN HÀNG) ══

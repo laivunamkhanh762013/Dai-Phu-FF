@@ -2297,7 +2297,7 @@ body.storefront .product:hover {
   cursor: pointer !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  transition: opacity 0.42s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .dp-intro-overlay.intro-fade-out {
@@ -2432,7 +2432,7 @@ body.storefront .product:hover {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   animation: logoEntrancePop 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
-  transition: transform 0.46s cubic-bezier(0.7, 0, 1, 1), opacity 0.42s ease, filter 0.42s ease !important;
+  transition: transform 0.58s cubic-bezier(0.7, 0, 1, 1), opacity 0.52s ease, filter 0.52s ease !important;
 }
 
 @keyframes logoEntrancePop {
