@@ -1847,9 +1847,11 @@ function sendOrderToPhu() {
   var memo = window.currentOrderMemo || (document.getElementById('paidConfirmCode') ? document.getElementById('paidConfirmCode').textContent.trim() : '');
   var prod = currentProduct ? currentProduct.name : 'Phần Mềm FF';
   var plan = currentPlan ? currentPlan.name : '';
-  var price = currentPlan ? formatVND(currentPlan.price) : '';
+  var price = currentPlan ? currentPlan.price : 0;
+  var usedMap = getUsedKeysMap();
+  var key = usedMap[memo] || '';
 
-  var textToCopy = 'Chào Anh Phú, em vừa chuyển khoản mua ' + prod + (plan ? ' (' + plan + ' - ' + price + ')' : '') + '. Mã đơn hàng của em là: ' + memo + '. Anh check và gửi file cài đặt cho em với ạ!';
+  var textToCopy = buildOrderReceiptText({ id: memo, product: prod, plan: plan, price: price, licenseKey: key });
 
   if (navigator.clipboard) {
     navigator.clipboard.writeText(textToCopy);
@@ -1862,11 +1864,39 @@ function sendOrderToPhu() {
     document.body.removeChild(ta);
   }
 
-  toast('💬', 'Đã sao chép mã đơn ' + memo + '! Đang mở Zalo Anh Phú...');
+  toast('📋', 'Đã sao chép biên lai mua hàng & Đang mở Zalo Anh Phú...');
 
   setTimeout(function() {
     window.open('https://zalo.me/0588500524', '_blank');
   }, 350);
+}
+
+
+function buildOrderReceiptText(order) {
+  var prod = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'TrollModz');
+  var plan = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : '');
+  var price = (order && order.price) || (currentPlan ? currentPlan.price : 0);
+  var memo = (order && (order.id || order.memo)) || window.currentOrderId || 'DP000000';
+  var usedMap = getUsedKeysMap();
+  var key = (order && order.licenseKey) || usedMap[memo] || '';
+
+  var lines = [
+    '🎉 MUA HÀNG THÀNH CÔNG! 🎉',
+    '',
+    '🎮 Game: Free Fire',
+    '📦 Sản phẩm: ' + prod + (plan ? ' - ' + plan : ''),
+    '🔢 Số lượng: 1',
+    '💸 Giá : ' + formatVND(price),
+    '🧾 Mã đơn: ' + memo
+  ];
+
+  if (key) {
+    lines.push('');
+    lines.push('🔑 KEY CỦA BẠN:');
+    lines.push(key);
+  }
+
+  return lines.join('\n');
 }
 
 function openPaidModal(order) {
