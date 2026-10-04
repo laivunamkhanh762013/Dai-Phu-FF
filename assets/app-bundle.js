@@ -1,3 +1,9 @@
+
+function isLongTermOrMonthlyPlan(planName) {
+  if (!planName) return false;
+  var p = planName.toLowerCase();
+  return p.includes('30 ngày') || p.includes('30 ngay') || p.includes('1 tháng') || p.includes('1 thang') || p.includes('vĩnh viễn') || p.includes('vinh vien') || p.includes('month');
+}
 function manageModalFocus(modalEl) {
   if (!modalEl) return;
   setTimeout(function() {
@@ -221,12 +227,18 @@ function dispatchKeyForOrder(order) {
   var isTroll = prodId === 'trollmodz' || prodName.includes('trollmodz');
   if (!isTroll) return null;
 
+  var planName = order.planName || order.plan || (currentPlan ? currentPlan.name : '');
+  // NẾU LÀ GÓI THÁNG (30 Ngày) HOẶC VĨNH VIỄN: KHÔNG TỰ ĐỘNG CẤP KEY MÀ NHẮN ADMIN ZALO MÃ ĐƠN
+  if (isLongTermOrMonthlyPlan(planName)) {
+    return null;
+  }
+
   var usedMap = getUsedKeysMap();
   if (usedMap[orderId]) {
     return usedMap[orderId];
   }
 
-  var planKey = normalizeVaultPlanKey(order.planName || order.plan || (currentPlan ? currentPlan.name : ''));
+  var planKey = normalizeVaultPlanKey(planName);
   if (planKey) {
     var available = getRemainingRealKeys(planKey);
     if (available.length > 0) {
@@ -237,7 +249,7 @@ function dispatchKeyForOrder(order) {
     }
   }
 
-  // Tự động cấp key TRLL cho tất cả các gói TrollModz
+  // Tự động cấp key TRLL cho các gói ngắn hạn (12h, 1 ngày, 1h...)
   var genKey = generateRandomTrollKey();
   usedMap[orderId] = genKey;
   saveUsedKeysMap(usedMap);
@@ -1865,10 +1877,13 @@ function sendOrderToPhu() {
   var prod = currentProduct ? currentProduct.name : 'Phần Mềm FF';
   var plan = currentPlan ? currentPlan.name : '';
   var price = currentPlan ? currentPlan.price : 0;
+  var isMonthly = isLongTermOrMonthlyPlan(plan);
   var usedMap = getUsedKeysMap();
-  var key = usedMap[memo] || '';
+  var key = isMonthly ? '' : (usedMap[memo] || '');
 
-  var textToCopy = buildOrderReceiptText({ id: memo, product: prod, plan: plan, price: price, licenseKey: key });
+  var textToCopy = isMonthly
+    ? ('Chào Anh Phú, em vừa mua ' + prod + (plan ? ' (' + plan + ' - ' + formatVND(price) + ')' : '') + '. Mã đơn hàng của em là: ' + memo + '. Em mua gói tháng, anh check và gửi Key + file cài đặt cho em với ạ!')
+    : buildOrderReceiptText({ id: memo, product: prod, plan: plan, price: price, licenseKey: key });
 
   if (navigator.clipboard) {
     navigator.clipboard.writeText(textToCopy);
@@ -1881,7 +1896,7 @@ function sendOrderToPhu() {
     document.body.removeChild(ta);
   }
 
-  toast('📋', 'Đã sao chép biên lai mua hàng & Đang mở Zalo Anh Phú...');
+  toast('📋', 'Đã sao chép thông tin đơn hàng & Đang mở Zalo Anh Phú...');
 
   setTimeout(function() {
     window.open('https://zalo.me/0588500524', '_blank');
@@ -1938,8 +1953,10 @@ function openPaidModal(order) {
   var planName = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : 'Gói phần mềm');
   var price = (order && order.price) || (currentPlan ? currentPlan.price : 50000);
 
-  // Auto-dispatch real key for TrollModz if not already dispatched
-  var dispatchedKey = dispatchKeyForOrder(order || { id: memo, product: prodName, plan: planName, price: price });
+  var isMonthly = isLongTermOrMonthlyPlan(planName);
+
+  // Auto-dispatch real key for TrollModz if not monthly
+  var dispatchedKey = isMonthly ? null : dispatchKeyForOrder(order || { id: memo, product: prodName, plan: planName, price: price });
   if (dispatchedKey && order) {
     order.licenseKey = dispatchedKey;
     saveOrder(order);
@@ -1984,8 +2001,22 @@ function openPaidModal(order) {
   if (headerIcon) headerIcon.textContent = '🎉';
   if (headerTitle) headerTitle.textContent = 'ĐÃ XÁC NHẬN TIỀN VÀO MBBANK!';
 
-  if (dispatchedKey) {
-    if (headerSub) headerSub.textContent = 'Tài khoản MBBank đã khớp tiền! Key bản quyên của bạn đã được xuất tự động bên dưới:';
+  if (isMonthly) {
+    // THÔNG BÁO DÀNH CHO GÓI THÁNG / VĨNH VIỄN
+    if (headerSub) headerSub.innerHTML = '<span style="color:#fbbf24;font-weight:700;">Gói ' + escapeHTML(planName) + ' đã thanh toán thành công!</span> Vui lòng gửi Mã Đơn cho Anh Phú qua Zalo để nhận Key bản quyền & file cài đặt VIP.';
+    if (keyBox) keyBox.style.display = 'block';
+    if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-fingerprint" style="color:#f59e0b;"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ZALO ANH PHÚ ĐỂ LẤY KEY):';
+    if (keyEl) {
+      keyEl.textContent = memo;
+      keyEl.style.letterSpacing = '2px';
+      keyEl.style.color = '#38bdf8';
+    }
+    if (keyCopyBtn) {
+      keyCopyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Sao chép Mã Đơn';
+      keyCopyBtn.setAttribute('aria-label', 'Sao chép mã đơn');
+    }
+  } else if (dispatchedKey) {
+    if (headerSub) headerSub.textContent = 'Tài khoản MBBank đã khớp tiền! Key bản quyền của bạn đã được xuất tự động bên dưới:';
     if (keyBox) keyBox.style.display = 'block';
     if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-key" style="color:#f59e0b;"></i> KEY BẢN QUYỀN CỦA BẠN (KÍCH HOẠT NGAY):';
     if (keyEl) {
@@ -2565,3 +2596,51 @@ document.addEventListener('keydown', function(e) {
 });
 
 initScrollReveal();
+
+/* ═══════════════════════════════════════════════════════════════════
+   ⚡ LIVE PURCHASES TICKER NOTIFICATION CONTROLLER
+   Hiển thị thông báo mua hàng theo thời gian thực tạo độ uy tín cao
+   ═══════════════════════════════════════════════════════════════════ */
+(function initLivePurchasesTicker() {
+  var sampleBuyers = [
+    { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', time: '1 phút trước' },
+    { name: 'Huy Hoàng (091***)', prod: 'Forget Lix 3.5', plan: 'Bản iOS VIP', time: '2 phút trước' },
+    { name: 'Khánh (035***)', prod: 'TrollModz', plan: 'Key 1 Ngày', time: '3 phút trước' },
+    { name: 'Minh Đức (086***)', prod: 'AimLock Forget', plan: 'AimLock 2.0', time: '5 phút trước' },
+    { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', time: '7 phút trước' },
+    { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', time: '9 phút trước' }
+  ];
+
+  var tickerEl = document.createElement('div');
+  tickerEl.id = 'livePurchaseToast';
+  tickerEl.className = 'live-purchase-toast';
+  document.body.appendChild(tickerEl);
+
+  var buyerIndex = 0;
+  function showNextPurchase() {
+    if (!tickerEl) return;
+    var b = sampleBuyers[buyerIndex];
+    buyerIndex = (buyerIndex + 1) % sampleBuyers.length;
+
+    tickerEl.innerHTML = 
+      '<div class="lpt-icon"><i class="fa-solid fa-bolt"></i></div>' +
+      '<div class="lpt-body">' +
+        '<div class="lpt-title"><b>' + escapeHTML(b.name) + '</b> vừa mua thành công</div>' +
+        '<div class="lpt-desc">' + escapeHTML(b.prod) + ' • <span style="color:var(--rd-volt);">' + escapeHTML(b.plan) + '</span> <small style="opacity:0.6;">(' + escapeHTML(b.time) + ')</small></div>' +
+      '</div>';
+
+    tickerEl.classList.add('visible');
+
+    setTimeout(function() {
+      if (tickerEl) tickerEl.classList.remove('visible');
+    }, 4500);
+  }
+
+  // Khởi chạy sau 3 giây và lặp lại mỗi 12-16 giây
+  setTimeout(function() {
+    showNextPurchase();
+    setInterval(function() {
+      showNextPurchase();
+    }, 14000);
+  }, 3000);
+})();
