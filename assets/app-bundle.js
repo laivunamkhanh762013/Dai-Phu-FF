@@ -41,7 +41,6 @@ function skipIntro(e) {
 window.skipIntro = skipIntro;
 
 function playIntroAnimation() {
-  // Gỡ bỏ intro cũ nếu có
   var existingIntro = document.getElementById("gamingIntro");
   if (existingIntro && existingIntro.parentNode) {
     existingIntro.parentNode.removeChild(existingIntro);
@@ -68,19 +67,32 @@ function playIntroAnimation() {
   };
 
   intro.innerHTML = 
-    '<div class="intro-cyber-grid-bg"></div>' +
-    '<div class="intro-beam intro-beam-left"></div>' +
-    '<div class="intro-beam intro-beam-right"></div>' +
-    '<div class="intro-shockwave"></div>' +
-    '<div class="intro-flash-bg"></div>' +
+    '<div class="intro-cyber-grid-bg">' +
+      '<span class="grid-twinkle gt-1"></span>' +
+      '<span class="grid-twinkle gt-2"></span>' +
+      '<span class="grid-twinkle gt-3"></span>' +
+      '<span class="grid-twinkle gt-4"></span>' +
+    '</div>' +
+    '<div class="intro-particles-layer">' +
+      '<span class="intro-particle ip-1"></span>' +
+      '<span class="intro-particle ip-2"></span>' +
+      '<span class="intro-particle ip-3"></span>' +
+      '<span class="intro-particle ip-4"></span>' +
+      '<span class="intro-particle ip-5"></span>' +
+    '</div>' +
+    '<div class="intro-system-boot" id="introSystemBoot">' +
+      '<div class="intro-boot-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i></div>' +
+      '<div class="intro-boot-bar"><div class="intro-boot-progress"></div></div>' +
+      '<div class="intro-boot-text">INITIALIZING SECURE GATEWAY...</div>' +
+    '</div>' +
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
         '<div class="intro-logo-aura"></div>' +
         '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">' +
       '</div>' +
       '<div class="dp-intro-brand-box" id="dpIntroBrandBox">' +
-        '<div class="dp-intro-title">SHOP ĐẠI PHÚ FF</div>' +
-        '<div class="dp-intro-subline">⚡ GAMING STORE • MOD &amp; UTILITIES ⚡</div>' +
+        '<div class="dp-intro-title" data-text="SHOP ĐẠI PHÚ FF">SHOP ĐẠI PHÚ FF</div>' +
+        '<div class="dp-intro-subline">⚡ HỖ TRỢ KÉO TÂM &amp; MOD VIP ⚡</div>' +
       '</div>' +
     '</div>' +
     '<button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>';

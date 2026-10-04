@@ -55,28 +55,41 @@
 </head>
 
 <body class="storefront">
-<!-- ══ GAMING SPLASH SCREEN INTRO (2.0s CHUẨN: FADE-IN -> TRƯỢT TÂM -> PHÓNG TO XUYÊN THẤU) ══ -->
-<!-- ════ GAMING SPLASH SCREEN INTRO: DUAL LIGHTNING CLASH ════ -->
+<!-- ════════ CINEMATIC SPLASH SCREEN INTRO (HACKER GLITCH & SEQUENTIAL BOOT) ════════ -->
 <div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro()" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro()" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
-  <div class="intro-cyber-grid-bg"></div>
+  <!-- Dynamic Cyber Grid with Node Twinkles -->
+  <div class="intro-cyber-grid-bg">
+    <span class="grid-twinkle gt-1"></span>
+    <span class="grid-twinkle gt-2"></span>
+    <span class="grid-twinkle gt-3"></span>
+    <span class="grid-twinkle gt-4"></span>
+  </div>
 
-  <!-- Dual Lightning Energy Beams -->
-  <div class="intro-beam intro-beam-left"></div>
-  <div class="intro-beam intro-beam-right"></div>
-  
-  <!-- Central Shockwave Flash & Sparks -->
-  <div class="intro-shockwave"></div>
-  <div class="intro-flash-bg"></div>
+  <!-- Slow CSS Micro Particles -->
+  <div class="intro-particles-layer">
+    <span class="intro-particle ip-1"></span>
+    <span class="intro-particle ip-2"></span>
+    <span class="intro-particle ip-3"></span>
+    <span class="intro-particle ip-4"></span>
+    <span class="intro-particle ip-5"></span>
+  </div>
 
-  <!-- Central Clash Content (Logo & Brand) -->
-  <div class="dp-intro-clash-content">
-    <div class="dp-intro-logo-glow">
+  <!-- 1. System Boot Loader (Runs first 0.5s) -->
+  <div class="intro-system-boot" id="introSystemBoot">
+    <div class="intro-boot-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
+    <div class="intro-boot-bar"><div class="intro-boot-progress"></div></div>
+    <div class="intro-boot-text">INITIALIZING SECURE GATEWAY...</div>
+  </div>
+
+  <!-- 2. Central Brand Sequence (Reveals at 0.5s with Single Glitch & Breathing Light) -->
+  <div class="dp-intro-clash-content" id="dpIntroClashContent">
+    <div class="dp-intro-logo-glow" id="dpIntroLogoBox">
       <div class="intro-logo-aura"></div>
       <img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">
     </div>
-    <div class="dp-intro-brand-box">
-      <div class="dp-intro-title">SHOP ĐẠI PHÚ FF</div>
-      <div class="dp-intro-subline">⚡ GAMING STORE • MOD &amp; UTILITIES ⚡</div>
+    <div class="dp-intro-brand-box" id="dpIntroBrandBox">
+      <div class="dp-intro-title" data-text="SHOP ĐẠI PHÚ FF">SHOP ĐẠI PHÚ FF</div>
+      <div class="dp-intro-subline">⚡ HỖ TRỢ KÉO TÂM &amp; MOD VIP ⚡</div>
     </div>
   </div>
 
