@@ -490,43 +490,451 @@
 
 <!-- MAINTENANCE SETTINGS MODAL -->
 <div class="modal-overlay" id="maintenanceModal">
-  <div class="scan-card" style="max-width:520px;border-color:rgba(245,158,11,0.4);">
-    <h3 class="scan-title" style="color:#fbbf24;">
-      <i class="fa-solid fa-screwdriver-wrench"></i> CẤU HÌNH BẢO TRÌ HỆ THỐNG
-    </h3>
-    <p class="scan-sub">Khi bật, toàn bộ khách truy cập vào trang chủ sẽ thấy thông báo bảo trì, tạm khóa chức năng đặt hàng.</p>
-    
-    <div style="background:#090c15;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:16px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08);">
-        <div>
-          <strong style="font-size:14px;color:#fff;display:block;">Trạng thái chế độ bảo trì</strong>
-          <small style="color:#94a3b8;font-size:11px;" id="maintStatusNote">Đang TẮT (Web mở bình thường)</small>
+  <div class="maint-admin-card">
+    <div class="maint-admin-card-glow"></div>
+    <div class="maint-admin-header">
+      <div class="maint-admin-header-left">
+        <div class="maint-admin-icon-wrap">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
         </div>
-        <label style="position:relative;display:inline-block;width:52px;height:28px;cursor:pointer;">
-          <input type="checkbox" id="maintToggleCheckbox" style="opacity:0;width:0;height:0;">
-          <span style="position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);border-radius:34px;transition:.3s;" id="maintToggleSlider"></span>
+        <div>
+          <h3 class="maint-admin-title">CẤU HÌNH BẢO TRÌ HỆ THỐNG</h3>
+          <p class="maint-admin-subtitle">Quản lý trạng thái máy chủ &amp; thông báo toàn trang web</p>
+        </div>
+      </div>
+      <button type="button" class="maint-admin-close-btn" onclick="closeMaintenanceModal()" aria-label="Đóng">&times;</button>
+    </div>
+
+    <!-- Toggle Status Box -->
+    <div class="maint-admin-status-box" id="maintStatusCard">
+      <div class="maint-admin-status-info">
+        <div class="maint-admin-status-badge" id="maintStatusBadge">
+          <span class="maint-status-dot" id="maintStatusDot"></span>
+          <span id="maintStatusBadgeText">ĐANG TẮT</span>
+        </div>
+        <strong class="maint-admin-status-heading">Kích hoạt chế độ bảo trì</strong>
+        <p class="maint-admin-status-desc" id="maintStatusNote">Toàn bộ khách truy cập sẽ thấy màn hình nâng cấp và tạm khóa đặt hàng.</p>
+      </div>
+      <label class="maint-cyber-switch">
+        <input type="checkbox" id="maintToggleCheckbox">
+        <span class="maint-cyber-slider" id="maintToggleSlider">
+          <span class="maint-slider-knob"></span>
+        </span>
+      </label>
+    </div>
+
+    <!-- Inputs Section -->
+    <div class="maint-admin-body">
+      <div class="maint-form-group">
+        <label class="maint-form-label">
+          <i class="fa-solid fa-message"></i> Thông báo hiển thị cho khách hàng
         </label>
+        <input type="text" id="maintMessageInput" class="maint-form-input" placeholder="Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!" value="Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!">
       </div>
 
-      <div style="margin-bottom:14px;">
-        <label class="login-label">Thông báo cho khách hàng</label>
-        <input type="text" id="maintMessageInput" class="login-input" placeholder="Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!" value="Hệ thống đang được bảo trì và nâng cấp. Vui lòng quay lại sau ít phút!">
-      </div>
-
-      <div>
-        <label class="login-label">Dự kiến hoàn thành (Tùy chọn)</label>
-        <input type="text" id="maintUntilInput" class="login-input" placeholder="Ví dụ: 30 phút nữa hoặc 23:00 tối nay">
+      <div class="maint-form-group" style="margin-bottom: 0;">
+        <label class="maint-form-label">
+          <i class="fa-solid fa-clock"></i> Dự kiến hoàn thành (Tùy chọn)
+        </label>
+        <input type="text" id="maintUntilInput" class="maint-form-input" placeholder="Ví dụ: 15 phút nữa, 30 phút nữa, hoặc 23:00 tối nay">
+        
+        <!-- Quick Preset Chips -->
+        <div class="maint-preset-chips">
+          <span class="maint-chip-label"><i class="fa-solid fa-bolt"></i> Gợi ý nhanh:</span>
+          <button type="button" class="maint-chip" onclick="setMaintPreset('15 phút nữa nha mn')">15 phút</button>
+          <button type="button" class="maint-chip" onclick="setMaintPreset('30 phút nữa nha mn')">30 phút</button>
+          <button type="button" class="maint-chip" onclick="setMaintPreset('1 tiếng nữa nha mn')">1 tiếng</button>
+          <button type="button" class="maint-chip" onclick="setMaintPreset('Tối nay mở lại nha mn')">Tối nay</button>
+          <button type="button" class="maint-chip maint-chip-clear" onclick="setMaintPreset('')">Xóa</button>
+        </div>
       </div>
     </div>
 
-    <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;">
-      <button type="button" class="btn-nav" onclick="closeMaintenanceModal()">Hủy bỏ</button>
-      <button type="button" class="btn-nav btn-nav-primary" style="background:#f59e0b;color:#000;border-color:#f59e0b;font-weight:800;" onclick="saveMaintenanceSettings()">
+    <!-- Modal Footer Actions -->
+    <div class="maint-admin-footer">
+      <button type="button" class="btn-maint-cancel" onclick="closeMaintenanceModal()">
+        <i class="fa-solid fa-xmark"></i> Hủy bỏ
+      </button>
+      <button type="button" class="btn-maint-save" onclick="saveMaintenanceSettings()">
         <i class="fa-solid fa-floppy-disk"></i> Lưu &amp; Áp Dụng Ngay
       </button>
     </div>
   </div>
 </div>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM CYBERPUNK MAINTENANCE MODAL (ADMIN CONSOLE)
+   ═══════════════════════════════════════════════════════════════ */
+.maint-admin-card {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  background: linear-gradient(165deg, #121624 0%, #0a0d18 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 45px rgba(245, 158, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  animation: adminModalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes adminModalPop {
+  from { opacity: 0; transform: scale(0.95) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.maint-admin-card-glow {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.maint-admin-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.maint-admin-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.maint-admin-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.15) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fbbf24;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+  flex-shrink: 0;
+}
+
+.maint-admin-title {
+  font-family: var(--rd-font-display, "Be Vietnam Pro", sans-serif);
+  font-size: 17px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  margin: 0 0 3px;
+  background: linear-gradient(135deg, #ffffff 0%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.maint-admin-subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.maint-admin-close-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+.maint-admin-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+}
+
+/* Status Card with Interactive Switch */
+.maint-admin-status-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(18, 24, 40, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  transition: all 0.25s ease;
+}
+
+.maint-admin-status-box.active {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(220, 38, 38, 0.05) 100%);
+  border-color: rgba(239, 68, 68, 0.45);
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.15);
+}
+
+.maint-admin-status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.maint-admin-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-family: var(--rd-font-mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.2);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.maint-admin-status-badge.active {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+
+.maint-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+.maint-admin-status-badge.active .maint-status-dot {
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: radarBlink 1.4s infinite;
+}
+
+.maint-admin-status-heading {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.maint-admin-status-desc {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Custom High-Tech Toggle Switch */
+.maint-cyber-switch {
+  position: relative;
+  display: inline-block;
+  width: 58px;
+  height: 32px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.maint-cyber-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.maint-cyber-slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.maint-slider-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+.maint-cyber-switch input:checked + .maint-cyber-slider {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-color: #ef4444;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
+}
+.maint-cyber-switch input:checked + .maint-cyber-slider .maint-slider-knob {
+  transform: translateX(26px);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Inputs & Form Groups */
+.maint-admin-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.maint-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.maint-form-label {
+  font-family: var(--rd-font-display, "Be Vietnam Pro", sans-serif);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.maint-form-label i {
+  color: #fbbf24;
+  font-size: 12px;
+}
+
+.maint-form-input {
+  width: 100%;
+  background: rgba(10, 14, 26, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: var(--rd-font-display, "Be Vietnam Pro", sans-serif);
+  font-size: 13.5px;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.maint-form-input:focus {
+  border-color: #fbbf24;
+  background: rgba(15, 20, 36, 0.95);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Preset Chips */
+.maint-preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.maint-chip-label {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 2px;
+}
+.maint-chip-label i {
+  color: #f59e0b;
+}
+
+.maint-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-family: var(--rd-font-display, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.maint-chip:hover {
+  background: rgba(251, 191, 36, 0.18);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: #fbbf24;
+  transform: translateY(-1px);
+}
+.maint-chip-clear {
+  color: #94a3b8;
+  border-style: dashed;
+}
+.maint-chip-clear:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* Modal Actions */
+.maint-admin-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-maint-cancel {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #cbd5e1;
+  font-family: var(--rd-font-display, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+.btn-maint-cancel:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.btn-maint-save {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border: 1px solid #fbbf24;
+  color: #0b0e17;
+  font-family: var(--rd-font-display, sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 11px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-maint-save:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(245, 158, 11, 0.6);
+}
+.btn-maint-save:active {
+  transform: translateY(0);
+}
+</style>
 
 <!-- TOAST -->
 <div class="admin-toast" id="adminToast">
@@ -1361,10 +1769,20 @@ function updateMaintenanceUI(settings) {
   }
 }
 
+function setMaintPreset(val) {
+  const input = document.getElementById('maintUntilInput');
+  if (input) {
+    input.value = val;
+    input.focus();
+  }
+}
+
 function openMaintenanceModal() {
   const modal = document.getElementById('maintenanceModal');
   const checkbox = document.getElementById('maintToggleCheckbox');
-  const slider = document.getElementById('maintToggleSlider');
+  const statusCard = document.getElementById('maintStatusCard');
+  const badge = document.getElementById('maintStatusBadge');
+  const badgeText = document.getElementById('maintStatusBadgeText');
   const note = document.getElementById('maintStatusNote');
   const msgInput = document.getElementById('maintMessageInput');
   const untilInput = document.getElementById('maintUntilInput');
@@ -1375,18 +1793,24 @@ function openMaintenanceModal() {
 
   function refreshSlider() {
     if (checkbox.checked) {
-      slider.style.background = '#ef4444';
-      slider.style.borderColor = '#ef4444';
-      note.textContent = 'ĐANG BẬT (Khách truy cập sẽ bị chặn bởi màn hình bảo trì)';
-      note.style.color = '#ef4444';
+      if (statusCard) statusCard.classList.add('active');
+      if (badge) badge.classList.add('active');
+      if (badgeText) badgeText.textContent = 'ĐANG BẬT';
+      if (note) {
+        note.textContent = 'Khách truy cập sẽ thấy màn hình nâng cấp và bị tạm khóa đặt hàng.';
+        note.style.color = '#f87171';
+      }
     } else {
-      slider.style.background = 'rgba(255,255,255,0.15)';
-      slider.style.borderColor = 'rgba(255,255,255,0.2)';
-      note.textContent = 'Đang TẮT (Web mở bình thường)';
-      note.style.color = '#94a3b8';
+      if (statusCard) statusCard.classList.remove('active');
+      if (badge) badge.classList.remove('active');
+      if (badgeText) badgeText.textContent = 'ĐANG TẮT';
+      if (note) {
+        note.textContent = 'Trang chủ mở bình thường, khách có thể đặt mua hàng.';
+        note.style.color = '#94a3b8';
+      }
     }
   }
-  checkbox.onchange = refreshSlider;
+  if (checkbox) checkbox.onchange = refreshSlider;
   refreshSlider();
 
   if (modal) modal.classList.add('open');
