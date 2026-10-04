@@ -17,26 +17,43 @@ function manageModalFocus(modalEl) {
 
 // ══ GAMING SPLASH SCREEN CONTROLLER ══
 var introTimeoutId = null;
+var introPhaseTimeoutId = null;
+
 function skipIntro(e) {
   if (e && e.stopPropagation) e.stopPropagation();
+  if (introPhaseTimeoutId) {
+    clearTimeout(introPhaseTimeoutId);
+    introPhaseTimeoutId = null;
+  }
   if (introTimeoutId) {
     clearTimeout(introTimeoutId);
     introTimeoutId = null;
   }
-  var intro = document.getElementById('gamingIntro');
+  var intro = document.getElementById("gamingIntro");
   if (intro && intro.parentNode) {
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
     intro.parentNode.removeChild(intro);
   }
 }
 window.skipIntro = skipIntro;
 
 (function initSplash() {
-  var intro = document.getElementById('gamingIntro');
+  var intro = document.getElementById("gamingIntro");
+  var logo = document.getElementById("dpIntroLogoBox");
+  var brand = document.getElementById("dpIntroBrandBox");
   if (!intro) return;
-  intro.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  introTimeoutId = setTimeout(skipIntro, 1850);
+  intro.style.display = "flex";
+  document.body.style.overflow = "hidden";
+
+  // Hiển thị logo & tên shop rõ nét trong 1.0 giây
+  introPhaseTimeoutId = setTimeout(function() {
+    if (brand) brand.classList.add("intro-fade-out");
+    if (logo) logo.classList.add("intro-zoom-out");
+    if (intro) intro.classList.add("intro-fade-out");
+
+    // Sau khi phóng to cực đại xuyên thấu màn hình (0.45s), gỡ bỏ intro
+    introTimeoutId = setTimeout(skipIntro, 450);
+  }, 1000);
 })();
 
 // ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD VỚI ÂN HẠN ĐƠN HÀNG) ══
