@@ -199,6 +199,18 @@ function getDisplayStock(productId, planName) {
   return 15;
 }
 
+function generateRandomTrollKey() {
+  var chars = '0123456789ABCDEF';
+  function seg() {
+    var s = '';
+    for (var i = 0; i < 4; i++) {
+      s += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return s;
+  }
+  return 'TRLL-' + seg() + '-' + seg() + '-' + seg();
+}
+
 function dispatchKeyForOrder(order) {
   if (!order) return null;
   var orderId = order.id || order.memo || window.currentOrderId || '';
@@ -209,22 +221,27 @@ function dispatchKeyForOrder(order) {
   var isTroll = prodId === 'trollmodz' || prodName.includes('trollmodz');
   if (!isTroll) return null;
 
-  var planKey = normalizeVaultPlanKey(order.planName || order.plan || (currentPlan ? currentPlan.name : ''));
-  if (!planKey) return null;
-
   var usedMap = getUsedKeysMap();
   if (usedMap[orderId]) {
     return usedMap[orderId];
   }
 
-  var available = getRemainingRealKeys(planKey);
-  if (available.length > 0) {
-    var key = available[0];
-    usedMap[orderId] = key;
-    saveUsedKeysMap(usedMap);
-    return key;
+  var planKey = normalizeVaultPlanKey(order.planName || order.plan || (currentPlan ? currentPlan.name : ''));
+  if (planKey) {
+    var available = getRemainingRealKeys(planKey);
+    if (available.length > 0) {
+      var key = available[0];
+      usedMap[orderId] = key;
+      saveUsedKeysMap(usedMap);
+      return key;
+    }
   }
-  return null;
+
+  // Tự động cấp key TRLL cho tất cả các gói TrollModz
+  var genKey = generateRandomTrollKey();
+  usedMap[orderId] = genKey;
+  saveUsedKeysMap(usedMap);
+  return genKey;
 }
 
 var PRODUCTS = [
@@ -1872,6 +1889,15 @@ function sendOrderToPhu() {
 }
 
 
+function formatVndWithoutUnit(price) {
+  return Number(price || 0).toLocaleString('vi-VN');
+}
+
+function cleanTrollmodzPlanName(plan) {
+  if (!plan) return '';
+  return plan.replace(/^Key\s+/i, '').trim();
+}
+
 function buildOrderReceiptText(order) {
   var prod = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'TrollModz');
   var plan = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : '');
@@ -1880,14 +1906,18 @@ function buildOrderReceiptText(order) {
   var usedMap = getUsedKeysMap();
   var key = (order && order.licenseKey) || usedMap[memo] || '';
 
+  var isTroll = (prod || '').toLowerCase().includes('trollmodz') || (order && order.productId === 'trollmodz');
+  var prodDisplay = isTroll 
+    ? ('Trollmodz - ' + (cleanTrollmodzPlanName(plan) || '12 Giờ'))
+    : (prod + (plan ? ' - ' + plan : ''));
+
   var lines = [
     '🎉 MUA HÀNG THÀNH CÔNG! 🎉',
     '',
     '🎮 Game: Free Fire',
-    '📦 Sản phẩm: ' + prod + (plan ? ' - ' + plan : ''),
+    '📦 Sản phẩm: ' + prodDisplay,
     '🔢 Số lượng: 1',
-    '💸 Giá : ' + formatVND(price),
-    '🧾 Mã đơn: ' + memo
+    '💸Giá : ' + formatVndWithoutUnit(price) + 'VND'
   ];
 
   if (key) {
