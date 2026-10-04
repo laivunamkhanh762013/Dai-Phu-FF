@@ -36,7 +36,7 @@ window.skipIntro = skipIntro;
   if (!intro) return;
   intro.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  introTimeoutId = setTimeout(skipIntro, 1800);
+  introTimeoutId = setTimeout(skipIntro, 1750);
 })();
 
 // ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD VỚI ÂN HẠN ĐƠN HÀNG) ══
