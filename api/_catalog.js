@@ -13,6 +13,15 @@ function deepFreeze(obj) {
 }
 
 const RAW_CATALOG = {
+  "innova-cheat": {
+    "name": "InNova Cheat (Adr • iOS)",
+    "soldOut": false,
+    "plans": {
+      "Gói 1 Ngày": 25000,
+      "Gói 7 Ngày": 70000,
+      "Gói 30 Ngày": 150000
+    }
+  },
   "aimlock-forget-2": {
     "name": "AimLock Forget 2.0 (Adr • iOS)",
     "soldOut": false,
