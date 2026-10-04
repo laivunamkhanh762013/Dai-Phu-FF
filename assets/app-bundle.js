@@ -40,6 +40,32 @@ function skipIntro(e) {
 }
 window.skipIntro = skipIntro;
 
+// Text Decrypt / Scramble Effect
+function runTextDecrypt(el, finalText, durationMs) {
+  if (!el) return;
+  var chars = "ABCDEF0123456789!@#$%&*<>/~";
+  var start = Date.now();
+  var len = finalText.length;
+  var timer = setInterval(function() {
+    var progress = (Date.now() - start) / durationMs;
+    if (progress >= 1) {
+      clearInterval(timer);
+      el.textContent = finalText;
+      return;
+    }
+    var revealedCount = Math.floor(progress * len);
+    var str = "";
+    for (var i = 0; i < len; i++) {
+      if (i < revealedCount) {
+        str += finalText[i];
+      } else {
+        str += chars[Math.floor(Math.random() * chars.length)];
+      }
+    }
+    el.textContent = str;
+  }, 35);
+}
+
 function playIntroAnimation() {
   var existingIntro = document.getElementById("gamingIntro");
   if (existingIntro && existingIntro.parentNode) {
@@ -67,50 +93,35 @@ function playIntroAnimation() {
   };
 
   intro.innerHTML = 
-    '<div class="intro-cyber-grid-bg">' +
-      '<span class="grid-twinkle gt-1"></span>' +
-      '<span class="grid-twinkle gt-2"></span>' +
-      '<span class="grid-twinkle gt-3"></span>' +
-      '<span class="grid-twinkle gt-4"></span>' +
-    '</div>' +
-    '<div class="intro-particles-layer">' +
-      '<span class="intro-particle ip-1"></span>' +
-      '<span class="intro-particle ip-2"></span>' +
-      '<span class="intro-particle ip-3"></span>' +
-      '<span class="intro-particle ip-4"></span>' +
-      '<span class="intro-particle ip-5"></span>' +
-    '</div>' +
-    '<div class="intro-system-boot" id="introSystemBoot">' +
-      '<div class="intro-boot-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i></div>' +
-      '<div class="intro-boot-bar"><div class="intro-boot-progress"></div></div>' +
-      '<div class="intro-boot-text">INITIALIZING SECURE GATEWAY...</div>' +
-    '</div>' +
+    '<div class="laser-scanline-sweep"></div>' +
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
-        '<div class="intro-logo-aura"></div>' +
         '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">' +
       '</div>' +
       '<div class="dp-intro-brand-box" id="dpIntroBrandBox">' +
-        '<div class="dp-intro-title" data-text="SHOP ĐẠI PHÚ FF">SHOP ĐẠI PHÚ FF</div>' +
-        '<div class="dp-intro-subline">⚡ HỖ TRỢ KÉO TÂM &amp; MOD VIP ⚡</div>' +
+        '<div class="dp-intro-title" id="dpIntroDecryptTitle">SHOP ĐẠI PHÚ FF</div>' +
+        '<div class="dp-intro-subline">HỆ THỐNG PHẦN MỀM TIỆN ÍCH VIP</div>' +
       '</div>' +
-    '</div>' +
-    '<button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>';
+    '</div>';
 
   document.body.prepend(intro);
   intro.style.display = "flex";
   document.body.style.overflow = "hidden";
 
-  var logo = intro.querySelector("#dpIntroLogoBox");
-  var brand = intro.querySelector("#dpIntroBrandBox");
+  var titleEl = intro.querySelector("#dpIntroDecryptTitle");
+  if (titleEl) {
+    runTextDecrypt(titleEl, "SHOP ĐẠI PHÚ FF", 320);
+  }
 
+  var logo = intro.querySelector("#dpIntroLogoBox");
+
+  // Ultra-fast: Scanline sweeps (0.4s) -> Decrypt finishes (0.32s) -> Fast Exit at 0.72s
   introPhaseTimeoutId = setTimeout(function() {
-    if (brand) brand.classList.add("intro-fade-out");
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
-    introTimeoutId = setTimeout(skipIntro, 600);
-  }, 9400);
+    introTimeoutId = setTimeout(skipIntro, 220);
+  }, 720);
 }
 window.playIntroAnimation = playIntroAnimation;
 
@@ -914,6 +925,7 @@ function updateAuthUI() {
   var sideSub = document.getElementById('sideUserSub');
   var sideBtn = document.getElementById('sideAuthBtn');
   var sideHistoryBtn = document.getElementById('sideOrderHistoryBtn');
+  var miniLogout = document.getElementById('sideMiniLogoutBtn');
 
   if (user && user.username) {
     if (topBtn) {
@@ -923,12 +935,18 @@ function updateAuthUI() {
       topBtn.onclick = toggleUserDropdown;
     }
     if (sideTitle) sideTitle.textContent = 'Chào, ' + user.username + ' ⭐';
-    if (sideSub) sideSub.textContent = 'Tài khoản thành viên (SĐT: ' + (user.phone || 'Đã liên kết') + ') đã sẵn sàng mua hàng & nhận key.';
+    if (sideSub) sideSub.textContent = 'Tài khoản thành viên VIP đã sẵn sàng. Xem đơn hàng đã mua hoặc đặt gói mới.';
+    
+    // Nút chính chuyển sang "Xem bảng giá & Mua ngay" để không bị nút đăng xuất lấn át
     if (sideBtn) {
-      sideBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Đăng xuất';
-      sideBtn.onclick = handleLogout;
+      sideBtn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> Mua thêm gói bản quyền';
+      sideBtn.onclick = function() {
+        var prodSec = document.getElementById('products');
+        if (prodSec) prodSec.scrollIntoView({ behavior: 'smooth' });
+      };
     }
     if (sideHistoryBtn) sideHistoryBtn.classList.remove('hidden');
+    if (miniLogout) miniLogout.classList.remove('hidden');
   } else {
     closeUserDropdown();
     if (topBtn) {
@@ -940,16 +958,16 @@ function updateAuthUI() {
         openLogin();
       };
     }
-    if (sideTitle) sideTitle.textContent = 'Đăng nhập để mua hàng';
-    if (sideSub) sideSub.textContent = 'Đăng nhập hoặc tạo tài khoản để thanh toán và nhận sản phẩm sau khi mua.';
+    if (sideTitle) sideTitle.textContent = 'Đăng nhập tài khoản';
+    if (sideSub) sideSub.textContent = 'Đăng nhập để nhận mã key tự động, tra cứu lịch sử mua hàng và nhận ưu đãi riêng.';
     if (sideBtn) {
-      sideBtn.innerHTML = 'Đăng nhập / Đăng ký';
+      sideBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Đăng nhập / Đăng ký';
       sideBtn.onclick = function() { openLogin(); };
     }
     if (sideHistoryBtn) sideHistoryBtn.classList.add('hidden');
+    if (miniLogout) miniLogout.classList.add('hidden');
   }
 }
-
 
 function switchAuthTab(tab) {
   var tabLogin = document.getElementById('tabBtnLogin') || document.getElementById('tabLogin');
