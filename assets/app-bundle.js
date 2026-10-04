@@ -121,6 +121,112 @@ function stripVietnamese(str) {
 }
 
 /* ═══════ REAL PRODUCTS DATA (SHOP ĐẠI PHÚ FF) ═══════ */
+/* ═══════════════════════════════════════════════════════════════════
+   🔑 TROLLMODZ REAL KEY VAULT & VIRTUAL STOCK COUNTER SYSTEM
+   - Kho Key thật chính hãng do Admin cấp (8 key 1 Ngày, 10 key 12 Giờ)
+   - Bộ đếm tồn kho ảo (+10 key ảo)
+   - Tự động xuất Key trực tiếp khi khách thanh toán thành công
+   - Mỗi lượt mua thật sẽ giảm trừ 1 key thật và 1 tồn kho thật
+   ═══════════════════════════════════════════════════════════════════ */
+var TROLLMODZ_KEY_VAULT = {
+  '1day': [
+    'TRLL-D431-D5E2-45A8',
+    'TRLL-B200-8BC4-6F7A',
+    'TRLL-3A42-4C06-1A81',
+    'TRLL-52A3-4DBD-0E2C',
+    'TRLL-3602-4561-3A0F',
+    'TRLL-BCF8-2A4E-879F',
+    'TRLL-58E1-6D3E-FCC5',
+    'TRLL-7C2D-18C2-E0F3'
+  ],
+  '12h': [
+    'TRLL-94A2-37A2-6377',
+    'TRLL-A4DB-A2BA-3971',
+    'TRLL-457D-B203-F099',
+    'TRLL-1131-215B-9607',
+    'TRLL-3FDE-7210-27CD',
+    'TRLL-593C-CA9A-7C4D',
+    'TRLL-39C2-939D-B241',
+    'TRLL-F732-3D30-DD8A',
+    'TRLL-0D13-5A72-90F9',
+    'TRLL-B73E-FB18-5FC3'
+  ]
+};
+
+function normalizeVaultPlanKey(planName) {
+  if (!planName) return null;
+  var p = planName.toLowerCase();
+  if (p.includes('1 ngày') || p.includes('1 ngay') || p.includes('1ngay') || p.includes('1 day') || p.includes('1 nga')) {
+    return '1day';
+  }
+  if (p.includes('12 giờ') || p.includes('12 gio') || p.includes('12gio') || p.includes('12h') || p.includes('12 h') || p.includes('12 hour') || p.includes('12 gi')) {
+    return '12h';
+  }
+  return null;
+}
+
+function getUsedKeysMap() {
+  try {
+    var raw = localStorage.getItem('daiphu_used_keys');
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveUsedKeysMap(map) {
+  try {
+    localStorage.setItem('daiphu_used_keys', JSON.stringify(map));
+  } catch (e) {}
+}
+
+function getRemainingRealKeys(planKey) {
+  var pool = TROLLMODZ_KEY_VAULT[planKey] || [];
+  var usedMap = getUsedKeysMap();
+  var usedList = Object.keys(usedMap).map(function(k) { return usedMap[k]; });
+  return pool.filter(function(k) {
+    return !usedList.includes(k);
+  });
+}
+
+function getDisplayStock(productId, planName) {
+  var pKey = normalizeVaultPlanKey(planName);
+  if (productId === 'trollmodz' && pKey) {
+    var remainingReal = getRemainingRealKeys(pKey).length;
+    // Tăng thêm 10 key ảo theo yêu cầu (8 thật -> 18 ảo; 10 thật -> 20 ảo; mỗi mua thật giảm 1)
+    return remainingReal + 10;
+  }
+  return 15;
+}
+
+function dispatchKeyForOrder(order) {
+  if (!order) return null;
+  var orderId = order.id || order.memo || window.currentOrderId || '';
+  if (!orderId) return null;
+
+  var prodName = (order.productName || order.product || (currentProduct ? currentProduct.name : '')).toLowerCase();
+  var prodId = (order.productId || (currentProduct ? currentProduct.id : '')).toLowerCase();
+  var isTroll = prodId === 'trollmodz' || prodName.includes('trollmodz');
+  if (!isTroll) return null;
+
+  var planKey = normalizeVaultPlanKey(order.planName || order.plan || (currentPlan ? currentPlan.name : ''));
+  if (!planKey) return null;
+
+  var usedMap = getUsedKeysMap();
+  if (usedMap[orderId]) {
+    return usedMap[orderId];
+  }
+
+  var available = getRemainingRealKeys(planKey);
+  if (available.length > 0) {
+    var key = available[0];
+    usedMap[orderId] = key;
+    saveUsedKeysMap(usedMap);
+    return key;
+  }
+  return null;
+}
+
 var PRODUCTS = [
     {
       id: 'forget-lix',
@@ -1330,6 +1436,7 @@ function renderModalVersionBlocks(p, activeIdx) {
           + '<h3 class="vb-title">' + escapeHTML(plan.name) + '</h3>'
           + '<div class="vb-meta-row">'
             + '<span class="vb-plat-badge"><i class="fa-solid fa-microchip"></i> ' + escapeHTML(p.plat || 'iOS & Android') + '</span>'
+            + (p.id === 'trollmodz' && normalizeVaultPlanKey(plan.name) ? '<span class="vb-stock-badge" style="background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.3);padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;display:inline-flex;align-items:center;gap:4px;"><i class="fa-solid fa-boxes-stacked" style="font-size:10px;"></i> Còn ' + getDisplayStock(p.id, plan.name) + ' key (Sẵn kho)</span>' : '')
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'
@@ -1767,6 +1874,17 @@ function openPaidModal(order) {
   window.currentOrderId = (order && order.id) || memo;
   window.currentOrderMemo = (order && order.memo) || window.currentOrderMemo;
 
+  var prodName = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'TrollModz');
+  var planName = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : 'Gói phần mềm');
+  var price = (order && order.price) || (currentPlan ? currentPlan.price : 50000);
+
+  // Auto-dispatch real key for TrollModz if not already dispatched
+  var dispatchedKey = dispatchKeyForOrder(order || { id: memo, product: prodName, plan: planName, price: price });
+  if (dispatchedKey && order) {
+    order.licenseKey = dispatchedKey;
+    saveOrder(order);
+  }
+
   var confirmCodeEl = document.getElementById('paidConfirmCode');
   var detailCodeEl = document.getElementById('paidDetailCode');
   var detailProdEl = document.getElementById('paidDetailProd');
@@ -1779,12 +1897,14 @@ function openPaidModal(order) {
   var headerSub = document.getElementById('paidHeaderSub');
   var keyBox = document.getElementById('paidKeyDeliveryBox');
   var keyEl = document.getElementById('paidOrderCode');
+  var keyTitleEl = keyBox ? keyBox.querySelector('.paid-key-title') : null;
+  var keyCopyBtn = keyBox ? keyBox.querySelector('.paid-copy-key-btn') : null;
 
   if (confirmCodeEl) confirmCodeEl.textContent = memo;
   if (detailCodeEl) detailCodeEl.textContent = memo;
-  if (detailProdEl) detailProdEl.textContent = (order && order.product) || (currentProduct ? currentProduct.name : 'AimLock iOS');
-  if (detailPlanEl) detailPlanEl.textContent = (order && order.plan) || (currentPlan ? currentPlan.name : 'Gói phần mềm');
-  if (detailPriceEl) detailPriceEl.textContent = formatVND((order && order.price) || (currentPlan ? currentPlan.price : 50000));
+  if (detailProdEl) detailProdEl.textContent = prodName;
+  if (detailPlanEl) detailPlanEl.textContent = planName;
+  if (detailPriceEl) detailPriceEl.textContent = formatVND(price);
   if (detailTimeEl) detailTimeEl.textContent = (order && order.time) || '';
 
   var statusEl = document.querySelector('.paid-status');
@@ -1802,19 +1922,45 @@ function openPaidModal(order) {
 
   var refText = (order && order.txId) ? order.txId : 'MBBANK';
   if (headerIcon) headerIcon.textContent = '🎉';
-  if (headerTitle) headerTitle.textContent = 'Đã Xác Nhận Tiền Vào MBBank!';
-  if (headerSub) headerSub.textContent = 'Tài khoản MBBank đã nhận đủ tiền! Nhắn tin cho Anh Phú để nhận file cài đặt & kích hoạt ngay.';
+  if (headerTitle) headerTitle.textContent = 'ĐÃ XÁC NHẬN TIỀN VÀO MBBANK!';
+
+  if (dispatchedKey) {
+    if (headerSub) headerSub.textContent = 'Tài khoản MBBank đã khớp tiền! Key bản quyên của bạn đã được xuất tự động bên dưới:';
+    if (keyBox) keyBox.style.display = 'block';
+    if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-key" style="color:#f59e0b;"></i> KEY BẢN QUYỀN CỦA BẠN (KÍCH HOẠT NGAY):';
+    if (keyEl) {
+      keyEl.textContent = dispatchedKey;
+      keyEl.style.letterSpacing = '1px';
+      keyEl.style.color = '#38bdf8';
+    }
+    if (keyCopyBtn) {
+      keyCopyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Sao chép Mã Key';
+      keyCopyBtn.setAttribute('aria-label', 'Sao chép mã Key');
+    }
+  } else {
+    if (headerSub) headerSub.textContent = 'Tài khoản MBBank đã nhận đủ tiền! Nhắn tin cho Anh Phú để nhận file cài đặt & kích hoạt ngay.';
+    if (keyBox) keyBox.style.display = 'block';
+    if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-fingerprint"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ADMIN):';
+    if (keyEl) {
+      keyEl.textContent = memo;
+      keyEl.style.letterSpacing = 'normal';
+      keyEl.style.color = '';
+    }
+    if (keyCopyBtn) {
+      keyCopyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Sao chép Mã Đơn';
+      keyCopyBtn.setAttribute('aria-label', 'Sao chép mã đơn hàng');
+    }
+  }
+
   if (statusEl) {
     statusEl.innerHTML = '✅ <span style="color:#34d399;font-weight:800;">ĐÃ THANH TOÁN THÀNH CÔNG (MBBank #' + escapeHTML(refText) + ')</span>';
   }
-  if (keyBox) keyBox.style.display = 'block';
-  if (keyEl) keyEl.textContent = memo;
 
   // Timeline: Step 2 Done, Step 3 Done
   if (tlStep2) { tlStep2.className = 'nt-timeline-item done'; }
   if (tlNode2) { tlNode2.innerHTML = '<i class="fa-solid fa-check"></i>'; }
   if (tlTitle2) { tlTitle2.innerHTML = '<span>Đã nhận tiền qua MBBank</span> <span class="nt-badge-presence"><span class="nt-dot-live"></span> Đã khớp</span>'; }
-  if (tlDesc2) { tlDesc2.textContent = 'Ghi có +' + formatVND((order && order.price) || 0) + ' khớp mã đơn ' + memo + '.'; }
+  if (tlDesc2) { tlDesc2.textContent = 'Ghi có +' + formatVND(price) + ' khớp mã đơn ' + memo + '.'; }
 
   if (tlStep3) { tlStep3.className = 'nt-timeline-item done active'; }
   if (tlNode3) { tlNode3.innerHTML = '<i class="fa-solid fa-unlock"></i>'; }
@@ -1977,6 +2123,17 @@ function lookupOrderCode(manualCode) {
     var cleanPhone = escapeHTML(o.phone || '');
     var cleanTime = escapeHTML(o.time || '');
     var cleanTxId = (o.status === 'approved' && o.txId) ? '<div style="color:#34d399;font-weight:700;">• Giao dịch MBBank: ' + escapeHTML(o.txId) + '</div>' : '';
+    var existingKey = o.licenseKey || (getUsedKeysMap()[o.id]);
+    var licenseKeyHtml = '';
+    if (o.status === 'approved' && existingKey) {
+      licenseKeyHtml = '<div style="margin-top:8px;padding:10px 12px;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.3);border-radius:8px;">'
+        + '<div style="color:#38bdf8;font-size:11px;font-weight:800;margin-bottom:4px;text-transform:uppercase;"><i class="fa-solid fa-key"></i> Key bản quyền của bạn:</div>'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">'
+          + '<strong style="color:#00f0ff;font-family:monospace;font-size:14px;letter-spacing:1px;">' + escapeHTML(existingKey) + '</strong>'
+          + '<button type="button" class="btn" onclick="copyText(\'' + escapeHTML(existingKey) + '\', this)" style="background:var(--rd-volt,#d7ff3c);color:#0a0d14;font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;cursor:pointer;border:none;">Sao chép Key</button>'
+        + '</div>'
+      + '</div>';
+    }
 
     resultBox.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:8px;flex-wrap:wrap;gap:8px;">'
       + codeDisplayHtml
@@ -1988,6 +2145,7 @@ function lookupOrderCode(manualCode) {
       + '<div>👤 <b>Tài khoản mua:</b> <span style="color:#fff;">' + cleanUser + '</span>' + (cleanPhone ? ' • SĐT/Zalo: <span style="color:#f59e0b;">' + cleanPhone + '</span>' : '') + '</div>'
       + '<div>⏰ <b>Thời gian:</b> ' + cleanTime + '</div>'
       + cleanTxId
+      + licenseKeyHtml
       + (o.status !== 'approved' ? '<div style="margin-top:6px;padding:8px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:6px;color:#fbbf24;font-size:11.5px;"><i class="fa-solid fa-circle-info"></i> Nội dung chuyển khoản là <b>Tên tài khoản (Username)</b> của bạn. Sau khi MBBank xác nhận tiền vào, hệ thống sẽ tự động duyệt đơn và cấp mã đơn chính thức!</div>' : '')
     + '</div>'
     + '<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-wrap:wrap;gap:8px;">'
