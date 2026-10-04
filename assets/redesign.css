@@ -2265,12 +2265,18 @@ body.storefront .product:hover {
   cursor: pointer !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .dp-intro-overlay.intro-fade-out {
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.dp-intro-overlay.intro-fade-out .dp-intro-brand-box {
+  opacity: 0;
+  transform: scale(0.92) translate3d(0, 10px, 0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 /* 1. Ultra-Smooth Laser Scanline Sweep (0.42s Sweep across screen) */
@@ -2326,10 +2332,9 @@ body.storefront .product:hover {
   display: grid;
   place-items: center;
   overflow: hidden;
-  will-change: transform, opacity;
+  will-change: transform, opacity, filter;
   transform: translate3d(0, 0, 0);
   animation: introLogoPulse 3s ease-in-out infinite alternate;
-  transition: transform 0.35s cubic-bezier(0.7, 0, 1, 1), opacity 0.3s ease !important;
 }
 
 @keyframes introLogoPulse {
@@ -2343,27 +2348,42 @@ body.storefront .product:hover {
   }
 }
 
-.intro-progress-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #38bdf8, #d4fc39);
-  width: 0%;
-  animation: introProgressFill 15s linear forwards;
-  box-shadow: 0 0 12px rgba(212, 252, 57, 0.6);
-  z-index: 20;
-}
-
-@keyframes introProgressFill {
-  0% { width: 0%; opacity: 0.8; }
-  95% { width: 100%; opacity: 1; }
-  100% { width: 100%; opacity: 0; }
-}
-
+/* Phóng logo khựng 1 nhịp (nén nhẹ tạo đà) rồi mới lướt chầm chậm xuyên màn hình vào web */
 .dp-intro-logo-glow.intro-zoom-out {
-  transform: scale(24) translate3d(0, 0, 0) !important;
-  opacity: 0 !important;
+  animation: introCinematicZoom 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+}
+
+@keyframes introCinematicZoom {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  22% {
+    /* Khựng 1 nhịp: Nén nhẹ lấy đà và rực sáng viền */
+    transform: scale(0.88) translate3d(0, 0, 0);
+    opacity: 1;
+    box-shadow: 0 0 60px #d4fc39, 0 0 90px rgba(56, 189, 248, 0.7);
+    filter: blur(0px);
+  }
+  50% {
+    /* Bắt đầu phóng từ từ */
+    transform: scale(2.2) translate3d(0, 0, 0);
+    opacity: 0.95;
+    filter: blur(1px);
+  }
+  80% {
+    /* Lướt to dần chầm chậm êm ái */
+    transform: scale(9) translate3d(0, 0, 0);
+    opacity: 0.45;
+    filter: blur(6px);
+  }
+  100% {
+    /* Hòa tan mượt mà vào giao diện */
+    transform: scale(26) translate3d(0, 0, 0);
+    opacity: 0;
+    filter: blur(16px);
+  }
 }
 
 .dp-intro-logo-img {

@@ -116,12 +116,13 @@ function playIntroAnimation() {
 
   var logo = intro.querySelector("#dpIntroLogoBox");
 
-  // Giải mã xong (0.38s) -> Giữ nguyên tên Shop Đại Phú FF trong đúng 1s để khách kịp đọc -> Vào web mượt mà
+  // Giải mã xong (0.38s) -> Giữ nguyên tên Shop Đại Phú FF trong đúng 1s để khách kịp đọc
+  // -> Khựng 1 nhịp rồi phóng logo chầm chậm cinematic vào web
   introPhaseTimeoutId = setTimeout(function() {
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
-    introTimeoutId = setTimeout(skipIntro, 260);
+    introTimeoutId = setTimeout(skipIntro, 750);
   }, 1380);
 }
 window.playIntroAnimation = playIntroAnimation;
