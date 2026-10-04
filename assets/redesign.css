@@ -2273,7 +2273,7 @@ body.storefront .product:hover {
   pointer-events: none !important;
 }
 
-/* 1. Ultra-Smooth Laser Scanline Sweep (0.4s Sweep across screen) */
+/* 1. Ultra-Smooth Laser Scanline Sweep (3.0s Sweep across screen) */
 .laser-scanline-sweep {
   position: absolute;
   top: -20px;
@@ -2286,13 +2286,13 @@ body.storefront .product:hover {
   z-index: 10;
   will-change: transform;
   transform: translate3d(0, 0, 0);
-  animation: laserScanSweep 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: laserScanSweep 3.0s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
 @keyframes laserScanSweep {
   0% { transform: translate3d(0, -10px, 0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
+  5% { opacity: 1; }
+  92% { opacity: 1; }
   100% { transform: translate3d(0, 105vh, 0); opacity: 0; }
 }
 

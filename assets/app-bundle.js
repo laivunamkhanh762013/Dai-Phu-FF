@@ -111,7 +111,7 @@ function playIntroAnimation() {
 
   var titleEl = intro.querySelector("#dpIntroDecryptTitle");
   if (titleEl) {
-    runTextDecrypt(titleEl, "SHOP ĐẠI PHÚ FF", 320);
+    runTextDecrypt(titleEl, "SHOP ĐẠI PHÚ FF", 3000);
   }
 
   var logo = intro.querySelector("#dpIntroLogoBox");
