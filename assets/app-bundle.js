@@ -95,7 +95,6 @@ function playIntroAnimation() {
   intro.innerHTML = 
     '<button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>' +
     '<div class="laser-scanline-sweep"></div>' +
-    '<div class="intro-progress-line"></div>' +
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
         '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">' +
@@ -112,18 +111,18 @@ function playIntroAnimation() {
 
   var titleEl = intro.querySelector("#dpIntroDecryptTitle");
   if (titleEl) {
-    runTextDecrypt(titleEl, "SHOP ĐẠI PHÚ FF", 1000);
+    runTextDecrypt(titleEl, "SHOP ĐẠI PHÚ FF", 380);
   }
 
   var logo = intro.querySelector("#dpIntroLogoBox");
 
-  // Thời lượng Intro: 15 giây (14.4s ngắm Decrypt & Logo rực rỡ + 0.6s Zoom Out mượt mà sang Storefront)
+  // Giải mã xong (0.38s) -> Giữ nguyên tên Shop Đại Phú FF trong đúng 1s để khách kịp đọc -> Vào web mượt mà
   introPhaseTimeoutId = setTimeout(function() {
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
-    introTimeoutId = setTimeout(skipIntro, 600);
-  }, 14400);
+    introTimeoutId = setTimeout(skipIntro, 260);
+  }, 1380);
 }
 window.playIntroAnimation = playIntroAnimation;
 
