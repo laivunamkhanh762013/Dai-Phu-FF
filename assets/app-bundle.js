@@ -95,6 +95,7 @@ function playIntroAnimation() {
   intro.innerHTML = 
     '<button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>' +
     '<div class="laser-scanline-sweep"></div>' +
+    '<div class="intro-progress-line"></div>' +
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
         '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">' +
