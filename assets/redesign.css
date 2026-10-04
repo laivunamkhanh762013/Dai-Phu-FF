@@ -1981,87 +1981,269 @@ body.storefront .product:hover {
   pointer-events: none !important;
 }
 
-/* Khối trung tâm ngang (Logo trái + Chữ phải) */
-.dp-intro-center {
-  --logo-size: clamp(74px, 16vw, 88px);
-  position: relative !important;
-  width: min(92vw, 440px) !important;
-  height: var(--logo-size) !important;
-  margin: auto !important;
-  animation: introCenterIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-  z-index: 10 !important;
-  will-change: opacity, transform !important;
-}
+/* ═══════════════════════════════════════════════════════════════════
+   ⚡ DUAL LIGHTNING CLASH & MASSIVE CENTER LOGO ZOOM INTRO
+   - 2 tia sét Cyan & Volt lao siêu tốc từ 2 mép vào tâm
+   - Bùng nổ Shockwave năng lượng & Holographic Logo Shimmer
+   - Hiện chữ thương hiệu -> Mất chữ -> Logo ở giữa phóng to xuyên thấu
+   ═══════════════════════════════════════════════════════════════════ */
 
-/* Logo: Ban đầu ở bên trái, đến 0.9s trượt siêu êm vào đúng giữa tâm, dừng 1 nhịp, rồi MỚI phóng to xuyên thấu */
-.dp-intro-logo-box {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: var(--logo-size) !important;
-  height: var(--logo-size) !important;
-  border-radius: 50% !important;
-  padding: 3px !important;
-  background: linear-gradient(135deg, #38bdf8 0%, #d4fc39 100%) !important;
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.7), 0 0 45px rgba(212, 252, 57, 0.45) !important;
+.dp-intro-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: #08090f !important;
+  z-index: 999999999 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  animation: introOverlayBgFade 0.4s cubic-bezier(0.4, 0, 0.2, 1) 1.62s forwards !important;
+}
+
+@keyframes introOverlayBgFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+
+.intro-cyber-grid-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: 
+    linear-gradient(rgba(212, 252, 57, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.035) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%) !important;
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%) !important;
+  pointer-events: none !important;
+}
+
+/* Left Beam (Cyan Plasma Bolt) */
+.intro-beam-left {
+  position: absolute !important;
+  top: 50% !important;
+  left: -80vw !important;
+  width: 70vw !important;
+  height: 5px !important;
+  background: linear-gradient(90deg, transparent, #00f0ff, #ffffff) !important;
+  box-shadow: 0 0 24px #00f0ff, 0 0 45px rgba(0, 240, 255, 0.8) !important;
+  border-radius: 999px !important;
+  transform: translateY(-50%) !important;
   z-index: 2 !important;
-  will-change: transform, opacity, left !important;
-  animation: logoGlideCenterThenBurst 2.0s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
+  will-change: transform, left !important;
+  animation: beamClashLeft 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes beamClashLeft {
+  0% { left: -80vw; opacity: 0.2; }
+  60% { opacity: 1; }
+  100% { left: calc(50% - 35vw); opacity: 0; transform: translateY(-50%) scaleX(1.4); }
+}
+
+/* Right Beam (Volt Neon Bolt) */
+.intro-beam-right {
+  position: absolute !important;
+  top: 50% !important;
+  right: -80vw !important;
+  width: 70vw !important;
+  height: 5px !important;
+  background: linear-gradient(270deg, transparent, #d4fc39, #ffffff) !important;
+  box-shadow: 0 0 24px #d4fc39, 0 0 45px rgba(212, 252, 57, 0.8) !important;
+  border-radius: 999px !important;
+  transform: translateY(-50%) !important;
+  z-index: 2 !important;
+  will-change: transform, right !important;
+  animation: beamClashRight 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes beamClashRight {
+  0% { right: -80vw; opacity: 0.2; }
+  60% { opacity: 1; }
+  100% { right: calc(50% - 35vw); opacity: 0; transform: translateY(-50%) scaleX(1.4); }
+}
+
+/* Central Shockwave Flash */
+.intro-shockwave {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: -20px !important;
+  margin-left: -20px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, #ffffff 0%, rgba(56,189,248,0.8) 35%, rgba(212,252,57,0.6) 65%, transparent 100%) !important;
+  box-shadow: 0 0 50px #ffffff, 0 0 100px #38bdf8, 0 0 150px #d4fc39 !important;
+  pointer-events: none !important;
+  z-index: 3 !important;
+  opacity: 0 !important;
+  will-change: transform, opacity !important;
+  animation: shockwavePulse 0.65s cubic-bezier(0.1, 0.9, 0.2, 1) 0.34s forwards !important;
+}
+
+@keyframes shockwavePulse {
+  0% { transform: scale(0.1); opacity: 1; }
+  50% { opacity: 0.9; }
+  100% { transform: scale(8); opacity: 0; }
+}
+
+/* Instant Background Ambient Flash */
+.intro-flash-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at center, rgba(56, 189, 248, 0.25) 0%, rgba(212, 252, 57, 0.15) 40%, transparent 75%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  opacity: 0 !important;
+  animation: bgFlashGlow 0.8s ease-out 0.34s forwards !important;
+}
+
+@keyframes bgFlashGlow {
+  0% { opacity: 1; }
+  100% { opacity: 0.15; }
+}
+
+/* Central Content Container */
+.dp-intro-clash-content {
+  position: relative !important;
+  z-index: 10 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 16px !important;
+}
+
+/* Logo: Xuất hiện -> Giữ 1.0s cùng chữ -> Mất chữ -> Phóng to cực đại tràn hết toàn bộ web */
+.dp-intro-logo-glow {
+  position: relative !important;
+  width: 92px !important;
+  height: 92px !important;
+  max-width: 92px !important;
+  max-height: 92px !important;
+  border-radius: 26px !important;
+  background: #11141d !important;
+  border: 2px solid rgba(212, 252, 57, 0.6) !important;
+  box-shadow: 0 0 45px rgba(212, 252, 57, 0.5), 0 0 80px rgba(56, 189, 248, 0.35) !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  will-change: transform, opacity !important;
+  animation: logoEntranceAndMassiveZoom 1.95s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
+}
+
+@keyframes logoEntranceAndMassiveZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  30% {
+    transform: scale(1);
+  }
+  /* Giữ nguyên cùng chữ thương hiệu hiển thị cho người dùng đọc */
+  72% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  /* BÂY GIỜ MỚI PHÓNG TO CỰC ĐẠI TRÀN HẾT WEB XUYÊN QUA MÀN HÌNH VÀO WEB */
+  86% {
+    opacity: 0.95;
+    transform: scale(8);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(36);
+  }
+}
+
+.intro-logo-aura {
+  position: absolute !important;
+  inset: -50% !important;
+  background: conic-gradient(from 0deg, #d4fc39, #38bdf8, #d4fc39) !important;
+  animation: auraSpin 3s linear infinite !important;
+  opacity: 0.35 !important;
+}
+
+@keyframes auraSpin {
+  100% { transform: rotate(360deg); }
 }
 
 .dp-intro-logo-img {
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 50% !important;
+  position: relative !important;
+  z-index: 2 !important;
+  width: 80px !important;
+  height: 80px !important;
+  max-width: 80px !important;
+  max-height: 80px !important;
+  border-radius: 20px !important;
   object-fit: cover !important;
-  background: #06080e !important;
   display: block !important;
 }
 
-/* Tên Shop bên phải */
-.dp-intro-text-box {
-  position: absolute !important;
-  left: calc(var(--logo-size) + 14px) !important;
-  right: 0 !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
+/* Chữ Shop Đại Phú: Hiển thị rực rỡ trong 1.0 giây rồi MẤT CHỮ trước khi logo phóng to */
+.dp-intro-brand-box {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
-  text-align: left !important;
-  will-change: opacity, transform !important;
-  animation: textFadeOutLeft 2.0s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  align-items: center !important;
+  gap: 4px !important;
+  will-change: transform, opacity !important;
+  animation: brandTextDisplayAndFade 1.95s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
+}
+
+@keyframes brandTextDisplayAndFade {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.9);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  /* Giữ trọn vẹn chữ trong 1.0 giây */
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  /* MẤT CHỮ nhanh để logo ở chính giữa rồi mới phóng to */
+  80% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.85);
+  }
 }
 
 .dp-intro-title {
-  font-family: var(--rd-font-display, "Be Vietnam Pro", -apple-system, sans-serif) !important;
-  font-size: clamp(19px, 5vw, 32px) !important;
+  font-family: var(--rd-font-display, 'Be Vietnam Pro', sans-serif) !important;
+  font-size: clamp(24px, 5.5vw, 36px) !important;
   font-weight: 900 !important;
-  letter-spacing: 1.2px !important;
-  line-height: 1.15 !important;
-  text-transform: uppercase !important;
-  color: #ffffff !important;
-  background: linear-gradient(135deg, #38bdf8 0%, #ffffff 45%, #d4fc39 100%) !important;
+  letter-spacing: 1px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #d4fc39 50%, #38bdf8 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  text-shadow: 0 0 20px rgba(56, 189, 248, 0.65), 0 0 35px rgba(212, 252, 57, 0.5) !important;
-  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.9)) !important;
-  white-space: nowrap !important;
+  text-shadow: none !important;
+  filter: drop-shadow(0 0 16px rgba(212, 252, 57, 0.45)) !important;
 }
 
 .dp-intro-subline {
-  font-family: var(--rd-font-mono, monospace, system-ui) !important;
-  font-size: clamp(9px, 2.2vw, 11.5px) !important;
+  font-family: var(--rd-font-mono, monospace) !important;
+  font-size: clamp(10px, 2.4vw, 12px) !important;
   font-weight: 700 !important;
-  letter-spacing: 2.5px !important;
-  color: var(--rd-volt, #d4fc39) !important;
-  margin-top: 5px !important;
-  opacity: 0.9 !important;
-  text-shadow: 0 0 10px rgba(212, 252, 57, 0.8) !important;
-  white-space: nowrap !important;
+  letter-spacing: 2px !important;
+  color: var(--rd-volt) !important;
+  text-shadow: 0 0 10px rgba(212, 252, 57, 0.5) !important;
 }
 
 .intro-skip-btn {
@@ -2076,10 +2258,8 @@ body.storefront .product:hover {
   border-radius: 999px !important;
   font-size: 11px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.5px !important;
-  cursor: pointer !important;
   backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  cursor: pointer !important;
   transition: all 0.2s ease !important;
 }
 
@@ -2088,57 +2268,6 @@ body.storefront .product:hover {
   color: var(--rd-volt-ink) !important;
   border-color: var(--rd-volt) !important;
   box-shadow: 0 0 12px rgba(212, 252, 57, 0.4) !important;
-  transform: scale(1.05) !important;
-}
-
-/* ═════ KEYFRAMES SIÊU MƯỢT (GPU COMPOSITING 100% 60FPS) ═════ */
-@keyframes introCenterIn {
-  0% { opacity: 0; transform: scale(0.94); }
-  40% { opacity: 1; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes textFadeOutLeft {
-  0%, 45% {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-  }
-  65%, 100% {
-    opacity: 0;
-    transform: translateY(-50%) translateX(24px);
-    pointer-events: none;
-  }
-}
-
-@keyframes logoGlideCenterThenBurst {
-  0%, 45% {
-    left: 0;
-    transform: scale(1);
-    opacity: 1;
-  }
-  /* Trượt siêu êm vào chính giữa tâm màn hình */
-  70% {
-    left: calc(50% - (var(--logo-size) / 2));
-    transform: scale(1.06);
-    opacity: 1;
-  }
-  /* Dừng 1 nhịp ở giữa tâm */
-  76% {
-    left: calc(50% - (var(--logo-size) / 2));
-    transform: scale(1.08);
-    opacity: 1;
-  }
-  /* BÂY GIỜ MỚI phóng to cực đại xuyên thấu màn hình vào web */
-  100% {
-    left: calc(50% - (var(--logo-size) / 2));
-    transform: scale(32);
-    opacity: 0;
-  }
-}
-
-@keyframes introBgFadeOut {
-  0%, 75% { opacity: 1; }
-  100% { opacity: 0; pointer-events: none; visibility: hidden; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
