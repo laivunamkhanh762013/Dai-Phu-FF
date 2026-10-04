@@ -85,6 +85,7 @@ function removeMaintenanceScreen() {
 }
 
 function checkMaintenanceStatus() {
+  if (window.location.protocol === 'file:') return;
   fetch('/api/orders?view=maintenance')
     .then(function(r) { return r.json(); })
     .then(function(data) {
@@ -270,6 +271,14 @@ var PRODUCTS = [
         action: 'Dùng thử trọn bộ tính năng: Ngưng đọng thời gian, nhảy dù tức thì.',
         fix: 'Bypass qua mặt hệ thống kiểm tra, chống lag giật tối đa.',
         pros: 'Chi phí cực rẻ để trải nghiệm sức mạnh trước khi mua dài hạn.',
+        note: 'Hỗ trợ Android, iOS và PC giả lập.'
+      },
+      {
+        name: 'Key 12 Giờ',
+        price: 15000,
+        action: 'Trải nghiệm 12 giờ trọn bộ tính năng: Ngưng đọng thời gian, nhảy dù tức thì, định vị ghim đầu.',
+        fix: 'Bypass qua mặt hệ thống kiểm tra, chống lag giật và ổn định suốt 12h.',
+        pros: 'Mức giá siêu tiết kiệm 15k, leo rank thả ga cả ngày.',
         note: 'Hỗ trợ Android, iOS và PC giả lập.'
       },
       {

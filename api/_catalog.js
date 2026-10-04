@@ -45,6 +45,7 @@ const RAW_CATALOG = {
     "soldOut": false,
     "plans": {
       "Key 1 Giờ (Test)": 10000,
+      "Key 12 Giờ": 15000,
       "Key 1 Ngày": 25000,
       "Key 7 Ngày (1 Tuần)": 100000,
       "Key 15 Ngày": 150000,
