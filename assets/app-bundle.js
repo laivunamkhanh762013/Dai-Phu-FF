@@ -258,134 +258,6 @@ function dispatchKeyForOrder(order) {
 
 var PRODUCTS = [
     {
-      id: 'forget-lix',
-      category: 'SX2 & Panel',
-      plat: 'iOS',
-      buyers: '50+ Người mua',
-      name: 'Forget Lix 3.5 (iOS)',
-      shortDesc: 'Tối ưu trải nghiệm, bứt phá hiệu suất. Fix rung, fix lố, tăng độ nhạy, giảm delay.',
-      fullDesc: 'Forget Lix 3.5 - Siêu phẩm hỗ trợ tối ưu cho anh em iOS.\nKhông cần phần mềm can thiệp.\nTính năng: Fix rung ổn định aim, fix lố tăng độ nhạy, tăng FPS mượt hơn, giảm delay phản hồi nhanh.',
-      priceMin: 150000,
-      priceMax: 150000,
-      oldPrice: 350000,
-      image: 'assets/uploads/products/forget-lix.jpg',
-      images: [
-        { src: 'assets/uploads/products/forget-lix.jpg', label: 'Forget Lix', title: 'Forget Lix 3.5 - Siêu Phẩm Tối Ưu iOS' }
-      ],
-      plans: [
-        {
-          name: 'Forget Lix 3.5 (Giảm từ 350k)',
-          price: 150000,
-          badge: 'Khuyến mãi 57%',
-          action: 'Sở hữu vĩnh viễn tính năng tối ưu FPS, fix rung, tăng độ nhạy hoàn hảo.',
-          fix: 'Tương thích mọi thiết bị iOS. Không can thiệp phần mềm, siêu an toàn.',
-          pros: 'Cảm giác vuốt mượt mà, định vị mục tiêu siêu chính xác.',
-          note: 'Chỉ hỗ trợ iOS.'
-        }
-      ]
-    },
-
-  {
-    id: 'aimlock-forget',
-    category: 'AimLock',
-    plat: 'Android & iOS',
-    buyers: '200+ Người mua',
-    name: 'AimLock Forget (Adr · iOS)',
-    shortDesc: '1.0 khắc phục lố rung lạc đạn delay. 2.0 & 3.0 bám đầu ổn định, hỗ trợ FPS.',
-    fullDesc: 'AimLock Forget 1.0 - 2.0 - 3.0 (Android & iOS) — Tối ưu hỗ trợ kéo tâm:\n• Bản 1.0 (50k): Khắc phục lố, rung tâm, lạc đạn và delay khi kéo tâm.\n• Bản 2.0 (200k): Kéo tâm chuẩn xác, fix rung tâm ổn định, bám mục tiêu tốt, an toàn.\n• Bản 3.0 (500k): Khắc phục toàn diện, tăng tỷ lệ bám đầu tối đa, hỗ trợ mượt mà, độ chuẩn xác cao.',
-    priceMin: 50000,
-    priceMax: 500000,
-    image: 'assets/uploads/products/aimlock-forget.jpg',
-    images: [
-      { src: 'assets/uploads/products/aimlock-forget.jpg', label: 'AimLock 3D', title: 'AimLock Forget 1.0 - 2.0 - 3.0 Full Khắc Phục Lỗi' }
-    ],
-    plans: [
-      {
-        name: 'AimLock Forget 1.0',
-        price: 50000,
-        action: 'Hỗ trợ kéo tâm nhạy, ghìm tâm chuẩn xác khi giao tranh tầm gần và tầm xa.',
-        fix: '1.0 khắc phục lố rung lạc đạn delay khi vuốt tâm.',
-        pros: 'Cài đặt nhanh gọn, nhẹ máy, giao diện đơn giản cho người mới bắt đầu.',
-        note: 'Hỗ trợ toàn bộ dòng máy Android & iOS (iPhone/iPad). Không can thiệp sâu.'
-      },
-      {
-        name: 'AimLock Forget 2.0',
-        price: 200000,
-        badge: 'Bán chạy',
-        action: 'Kéo tâm chuẩn xác, tự động ôm đầu ổn định trong mọi tình huống đối đầu.',
-        fix: '2.0 khắc phục: kéo tâm chuẩn xác, fix rung tâm ổn định, bám đầu hiệu quả, an toàn tuyệt đối.',
-        pros: 'Tự động ghìm tâm chuẩn xác khi đối thủ di chuyển liên tục, chống lệch hướng đạn.',
-        note: 'Tương thích 100% mọi dòng máy Android & iOS, bao mượt và an toàn leo rank.'
-      },
-      {
-        name: 'AimLock Forget 3.0',
-        price: 500000,
-        action: 'Công nghệ AimLock tối ưu, tự động ghim đầu đối thủ với độ trễ thấp.',
-        fix: '3.0 khắc phục toàn diện, tăng tỷ lệ bám đầu và tối ưu khung hình FPS.',
-        pros: 'Tối ưu độ mượt, ghìm tâm chắc tay, tỷ lệ trúng mục tiêu cao.',
-        note: 'Bản quyền cao cấp nhất, cập nhật phiên bản liên tục, hỗ trợ kỹ thuật 1:1 từ Admin.'
-      }
-    ]
-  },
-  {
-    id: 'forget-hex',
-    category: 'Forget Hex',
-    plat: 'Android & iOS',
-    buyers: '300+ Người mua',
-    name: 'Forget Hex (V1 - V5)',
-    shortDesc: 'Forget Hex V1 đến V5 hỗ trợ iOS & Android, bám dính đầu hiệu quả.',
-    fullDesc: 'Hệ thống Forget Hex độc quyền hỗ trợ Android & iOS:\n- Forget Hex V1 (49.000đ)\n- Forget Hex V2 (99.000đ)\n- Forget Hex V3 (199.000đ)\n- Forget Hex V4 (399.000đ)\n- Forget Hex V5 (799.000đ)',
-    priceMin: 49000,
-    priceMax: 799000,
-    image: 'assets/uploads/products/forget-hex.jpg',
-    images: [
-      { src: 'assets/uploads/products/forget-hex.jpg', label: 'Forget Hex V1-V5', title: 'Forget Hex V1 - V5 - Make URL Code Tối Ưu' }
-    ],
-    plans: [
-      {
-        name: 'Forget Hex V1',
-        price: 49000,
-        action: 'Make URL Code Hex tăng độ nhạy màn hình, hỗ trợ bám tâm cơ bản.',
-        fix: 'Khắc phục tản đạn, hạn chế tối đa đạn văng ra ngoài tâm ngắm khi sấy.',
-        pros: 'Cấu hình URL gọn nhẹ, kích hoạt tức thì chỉ sau 30 giây cài đặt.',
-        note: 'Hỗ trợ mọi hệ điều hành iOS & Android, không cần cài đặt phần mềm bên thứ 3.'
-      },
-      {
-        name: 'Forget Hex V2',
-        price: 99000,
-        action: 'Tối ưu độ trễ cảm ứng, tăng tốc độ phản hồi vuốt tâm siêu nhạy.',
-        fix: 'Khắc phục delay vuốt màn hình, ghìm tâm chắc tay và giảm rung lắc.',
-        pros: 'Giúp đường đạn đi thẳng và tập trung hơn vào phần thân trên của mục tiêu.',
-        note: 'Dùng mượt mà cho tất cả các khẩu súng sấy và shotgun.'
-      },
-      {
-        name: 'Forget Hex V3',
-        price: 199000,
-        badge: 'Đề xuất',
-        action: 'Mã Hex chuyên sâu hỗ trợ ghìm chặt tâm vào vùng đầu đối thủ.',
-        fix: 'Khắc phục hiện tượng lố đầu khi vuốt tâm ở cự ly gần và tầm trung.',
-        pros: 'Khả năng bám đầu nhạy bén, giúp người chơi phản xạ nhanh và dứt điểm mục tiêu.',
-        note: 'Khuyên dùng cho game thủ leo rank Kim Cương - Huyền Thoại.'
-      },
-      {
-        name: 'Forget Hex V4',
-        price: 399000,
-        action: 'Cấu hình Hex nâng cao, mở rộng góc bám tâm và tối ưu cảm ứng đa điểm.',
-        fix: 'Khắc phục triệt để rung lag màn hình, giữ khung hình ổn định cực cao.',
-        pros: 'Đường đạn tự tìm đầu đối phương với tỷ lệ chính xác vượt trội.',
-        note: 'Chuyên dụng cho các giải đấu cọ xát và leo rank cao.'
-      },
-      {
-        name: 'Forget Hex V5',
-        price: 799000,
-        action: 'Cấu hình Make URL Code Hex tối ưu, nâng cao tỷ lệ headshot.',
-        fix: 'Khắc phục hoàn toàn mọi lỗi lệch tâm, trượt đạn, rung giật màn hình.',
-        pros: 'Tỷ lệ headshot cao, tối ưu FPS mượt mà không gây nóng máy.',
-        note: 'Bản cao cấp độc quyền của Shop Đại Phú FF, hỗ trợ kỹ thuật 1:1 trọn đời.'
-      }
-    ]
-  },
-  {
     id: 'trollmodz',
     category: 'Menu & Mod',
     plat: 'Adr · iOS · PC',
@@ -2604,12 +2476,11 @@ initScrollReveal();
 (function initLivePurchasesTicker() {
   var sampleBuyers = [
     { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '1 phút trước' },
-    { name: 'Huy Hoàng (091***)', prod: 'Forget Lix 3.5', plan: 'Bản iOS VIP', img: 'assets/uploads/products/forget-lix.jpg', time: '2 phút trước' },
+    { name: 'Huy Hoàng (091***)', prod: 'NovaX iOS', plan: 'Bản iOS VIP', img: 'assets/uploads/products/novax.jpg', time: '2 phút trước' },
     { name: 'Khánh (035***)', prod: 'TrollModz', plan: 'Key 1 Ngày', img: 'trollmodz.png', time: '3 phút trước' },
-    { name: 'Minh Đức (086***)', prod: 'AimLock Forget', plan: 'AimLock 2.0', img: 'assets/uploads/products/aimlock-forget.jpg', time: '5 phút trước' },
+    { name: 'Minh Đức (086***)', prod: 'Migul Pro iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '5 phút trước' },
     { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '7 phút trước' },
     { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '9 phút trước' },
-    { name: 'Đức Huy (038***)', prod: 'Forget Hex', plan: 'Bản Hex V3', img: 'assets/uploads/products/forget-hex.jpg', time: '11 phút trước' },
     { name: 'Bảo Nam (093***)', prod: 'Sx2 External', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/sx2-external.jpg', time: '14 phút trước' }
   ];
 

@@ -13,35 +13,8 @@ function deepFreeze(obj) {
 }
 
 const RAW_CATALOG = {
-  "forget-lix": {
-    "name": "Forget Lix 3.5 (iOS)",
-    "soldOut": false,
-    "plans": {
-      "Forget Lix 3.5 (Giảm từ 350k)": 150000
-    }
-  },
-  "aimlock-forget": {
-    "name": "AimLock Forget (Adr · iOS)",
-    "soldOut": false,
-    "plans": {
-      "AimLock Forget 1.0": 50000,
-      "AimLock Forget 2.0": 200000,
-      "AimLock Forget 3.0": 500000
-    }
-  },
-  "forget-hex": {
-    "name": "Forget Hex (V1 - V5)",
-    "soldOut": false,
-    "plans": {
-      "Forget Hex V1": 49000,
-      "Forget Hex V2": 99000,
-      "Forget Hex V3": 199000,
-      "Forget Hex V4": 399000,
-      "Forget Hex V5": 799000
-    }
-  },
   "trollmodz": {
-    "name": "TrollModz (Adr · iOS · PC)",
+    "name": "TrollModz (Adr • iOS • PC)",
     "soldOut": false,
     "plans": {
       "Key 1 Giờ (Test)": 10000,
