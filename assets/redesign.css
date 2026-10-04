@@ -1988,7 +1988,7 @@ body.storefront .product:hover {
   -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
   pointer-events: none;
 /* ═══════════════════════════════════════════════════════════════════
-   ORIGINAL GAMING SPLASH SCREEN INTRO: GLIDE & BURST EXPONENTIAL ZOOM
+   CINEMATIC SPLASH INTRO: DUAL LIGHTNING CLASH & MEGA LOGO ZOOM
    ═══════════════════════════════════════════════════════════════════ */
 
 .dp-intro-overlay {
@@ -1997,121 +1997,275 @@ body.storefront .product:hover {
   width: 100vw !important;
   height: 100vh !important;
   height: 100dvh !important;
-  background: radial-gradient(circle at center, #091024 0%, #030509 100%) !important;
+  background: #08090f !important;
   z-index: 999999999 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   overflow: hidden !important;
-  pointer-events: all !important;
+  cursor: pointer !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  animation: introBgFadeOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) 1.6s forwards !important;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-/* Khối trung tâm — giữ trang */
-.dp-intro-center {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(92vw, 440px);
-  height: 100px;
-  animation: introCenterIn 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.dp-intro-overlay.intro-fade-out {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
-/* Logo: bắt đầu bên trái, trượt vào giữa, rồi burst */
-.dp-intro-logo-box {
-  position: absolute;
-  left: 0;
-  width: clamp(68px, 15vw, 86px);
-  height: clamp(68px, 15vw, 86px);
-  border-radius: 50%;
-  padding: 3px;
-  background: linear-gradient(135deg, #00f0ff 0%, #d7ff3c 100%);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.7), 0 0 50px rgba(215, 255, 60, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  will-change: transform, opacity;
-  animation: introLogoGlideBurst 2.0s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+.intro-cyber-grid-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: 
+    linear-gradient(rgba(212, 252, 57, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.035) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%) !important;
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%) !important;
+  pointer-events: none !important;
+}
+
+/* Left Beam (Cyan Plasma Bolt) */
+.intro-beam-left {
+  position: absolute !important;
+  top: 50% !important;
+  left: -80vw !important;
+  width: 70vw !important;
+  height: 5px !important;
+  background: linear-gradient(90deg, transparent, #00f0ff, #ffffff) !important;
+  box-shadow: 0 0 24px #00f0ff, 0 0 45px rgba(0, 240, 255, 0.8) !important;
+  border-radius: 999px !important;
+  transform: translateY(-50%) !important;
+  z-index: 2 !important;
+  will-change: transform, left !important;
+  animation: beamClashLeft 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes beamClashLeft {
+  0% { left: -80vw; opacity: 0.2; }
+  60% { opacity: 1; }
+  100% { left: calc(50% - 35vw); opacity: 0; transform: translateY(-50%) scaleX(1.4); }
+}
+
+/* Right Beam (Volt Neon Bolt) */
+.intro-beam-right {
+  position: absolute !important;
+  top: 50% !important;
+  right: -80vw !important;
+  width: 70vw !important;
+  height: 5px !important;
+  background: linear-gradient(270deg, transparent, #d4fc39, #ffffff) !important;
+  box-shadow: 0 0 24px #d4fc39, 0 0 45px rgba(212, 252, 57, 0.8) !important;
+  border-radius: 999px !important;
+  transform: translateY(-50%) !important;
+  z-index: 2 !important;
+  will-change: transform, right !important;
+  animation: beamClashRight 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes beamClashRight {
+  0% { right: -80vw; opacity: 0.2; }
+  60% { opacity: 1; }
+  100% { right: calc(50% - 35vw); opacity: 0; transform: translateY(-50%) scaleX(1.4); }
+}
+
+/* Central Shockwave Flash */
+.intro-shockwave {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: -20px !important;
+  margin-left: -20px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, #ffffff 0%, rgba(56,189,248,0.8) 35%, rgba(212,252,57,0.6) 65%, transparent 100%) !important;
+  box-shadow: 0 0 50px #ffffff, 0 0 100px #38bdf8, 0 0 150px #d4fc39 !important;
+  pointer-events: none !important;
+  z-index: 3 !important;
+  opacity: 0 !important;
+  will-change: transform, opacity !important;
+  animation: shockwavePulse 0.65s cubic-bezier(0.1, 0.9, 0.2, 1) 0.34s forwards !important;
+}
+
+@keyframes shockwavePulse {
+  0% { transform: scale(0.1); opacity: 1; }
+  50% { opacity: 0.9; }
+  100% { transform: scale(8); opacity: 0; }
+}
+
+/* Instant Background Ambient Flash */
+.intro-flash-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at center, rgba(56, 189, 248, 0.25) 0%, rgba(212, 252, 57, 0.15) 40%, transparent 75%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  opacity: 0 !important;
+  animation: bgFlashGlow 0.8s ease-out 0.34s forwards !important;
+}
+
+@keyframes bgFlashGlow {
+  0% { opacity: 1; }
+  100% { opacity: 0.15; }
+}
+
+/* Central Clash Content (Logo + Brand) */
+.dp-intro-clash-content {
+  position: relative !important;
+  z-index: 10 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 16px !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Logo Box & Entrance Pop */
+.dp-intro-logo-glow {
+  position: relative !important;
+  width: 92px !important;
+  height: 92px !important;
+  max-width: 92px !important;
+  max-height: 92px !important;
+  border-radius: 26px !important;
+  background: #11141d !important;
+  border: 2px solid rgba(212, 252, 57, 0.6) !important;
+  box-shadow: 0 0 35px rgba(212, 252, 57, 0.45), 0 0 65px rgba(56, 189, 248, 0.3) !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  will-change: transform, opacity, filter !important;
+  transform: translate3d(0, 0, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  animation: logoEntrancePop 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both !important;
+  transition: transform 0.58s cubic-bezier(0.7, 0, 1, 1), opacity 0.52s ease, filter 0.52s ease !important;
+}
+
+@keyframes logoEntrancePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translate3d(0, 0, 0);
+    filter: brightness(2.5);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.08) translate3d(0, 0, 0);
+    filter: brightness(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: brightness(1);
+  }
+}
+
+/* Phóng to cực đại bao trùm hết cả web xuyên thấu màn hình vào storefront */
+.dp-intro-logo-glow.intro-zoom-out {
+  transform: scale(32) translate3d(0, 0, 0) !important;
+  opacity: 0 !important;
+  filter: brightness(3.5) blur(1px) !important;
+  box-shadow: 0 0 160px rgba(212, 252, 57, 1), 0 0 160px rgba(56, 189, 248, 1) !important;
+}
+
+.intro-logo-aura {
+  position: absolute !important;
+  inset: -50% !important;
+  background: conic-gradient(from 0deg, #d4fc39, #38bdf8, #d4fc39) !important;
+  animation: auraSpin 3s linear infinite !important;
+  opacity: 0.35 !important;
+}
+
+@keyframes auraSpin {
+  100% { transform: rotate(360deg); }
 }
 
 .dp-intro-logo-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #020409;
-  display: block;
+  position: relative !important;
+  z-index: 2 !important;
+  width: 80px !important;
+  height: 80px !important;
+  max-width: 80px !important;
+  max-height: 80px !important;
+  border-radius: 20px !important;
+  object-fit: cover !important;
+  display: block !important;
 }
 
-/* Chữ bên phải: mờ dần biến mất từ 1.1s */
-.dp-intro-text-box {
-  position: absolute;
-  left: clamp(82px, 18vw, 104px);
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  pointer-events: none;
-  will-change: opacity, transform;
-  animation: introTextSmoothFade 2.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+/* Brand Text Box */
+.dp-intro-brand-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 4px !important;
+  will-change: transform, opacity !important;
+  transform: translate3d(0, 0, 0) !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  animation: brandEntranceFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both !important;
+  transition: transform 0.25s ease, opacity 0.25s ease !important;
+}
+
+@keyframes brandEntranceFade {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.95) translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) translate3d(0, 0, 0);
+  }
+}
+
+.dp-intro-brand-box.intro-fade-out {
+  opacity: 0 !important;
+  transform: translateY(-8px) scale(0.92) translate3d(0, 0, 0) !important;
 }
 
 .dp-intro-title {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Be Vietnam Pro", sans-serif !important;
-  font-size: clamp(20px, 5.2vw, 34px) !important;
+  font-family: var(--rd-font-display, "Be Vietnam Pro", sans-serif) !important;
+  font-size: clamp(24px, 5.5vw, 36px) !important;
   font-weight: 900 !important;
-  letter-spacing: 1.5px !important;
-  line-height: 1.15 !important;
-  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
   color: #ffffff !important;
-  background: linear-gradient(135deg, #00f0ff 0%, #ffffff 45%, #d7ff3c 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  white-space: nowrap !important;
+  text-shadow: 0 0 20px rgba(212, 252, 57, 0.6), 0 0 40px rgba(56, 189, 248, 0.4) !important;
 }
 
 .dp-intro-subline {
-  font-family: monospace, system-ui !important;
-  font-size: clamp(9px, 2.2vw, 12px) !important;
+  font-family: var(--rd-font-mono, monospace) !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
-  letter-spacing: 3px !important;
-  color: #38bdf8 !important;
-  margin-top: 5px !important;
-  opacity: 0.85;
-  white-space: nowrap !important;
+  letter-spacing: 2.5px !important;
+  color: var(--rd-volt) !important;
+  text-shadow: 0 0 10px rgba(212, 252, 57, 0.5) !important;
 }
 
-/* ═════ KEYFRAMES ═════ */
-@keyframes introCenterIn {
-  0%   { opacity: 0; transform: scale(0.94); }
-  60%  { opacity: 1; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1); }
+.intro-skip-btn {
+  position: absolute !important;
+  top: 24px !important;
+  right: 24px !important;
+  z-index: 99 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #e2e8f0 !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(8px) !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
 }
 
-@keyframes introTextSmoothFade {
-  0%, 55% { opacity: 1; transform: translateX(0); }
-  80%      { opacity: 0; transform: translateX(14px); }
-  100%     { opacity: 0; transform: translateX(14px); }
-}
-
-/* Logo trượt từ trái vào giữa rồi burst */
-@keyframes introLogoGlideBurst {
-  0%   { transform: translateX(0) scale(0.95); opacity: 1; }
-  55%  { transform: translateX(0) scale(1.02); opacity: 1; }
-  75%  { transform: translateX(calc(min(46vw, 220px) - clamp(34px, 7.5vw, 43px))) scale(1); opacity: 1; }
-  84%  { transform: translateX(calc(min(46vw, 220px) - clamp(34px, 7.5vw, 43px))) scale(1.2); opacity: 1; }
-  100% { transform: translateX(calc(min(46vw, 220px) - clamp(34px, 7.5vw, 43px))) scale(36); opacity: 0; }
-}
-
-/* Nền đen tan biến */
-@keyframes introBgFadeOut {
-  0%   { opacity: 1; }
-  100% { opacity: 0; pointer-events: none; }
+.intro-skip-btn:hover {
+  background: var(--rd-volt) !important;
+  color: var(--rd-volt-ink) !important;
+  border-color: var(--rd-volt) !important;
+  box-shadow: 0 0 12px rgba(212, 252, 57, 0.4) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════
