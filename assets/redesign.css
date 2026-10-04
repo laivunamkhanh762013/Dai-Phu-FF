@@ -66,8 +66,56 @@ body.storefront::before {
 
 body.storefront ::selection { background: var(--rd-volt); color: var(--rd-volt-ink); }
 
-/* ── Thanh thông báo đầu trang (Đã ẩn theo yêu cầu) ── */
-.announcement-bar { display: none !important; }
+/* ── CUSTOM SLEEK DARK GAMING SCROLLBAR (XOÁ THANH CUỘN XÁM MẶC ĐỊNH) ── */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #242731 #0b0c0e;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0c0e !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262934 !important;
+  border-radius: 999px !important;
+  border: 2px solid #0b0c0e !important;
+  transition: background .2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rd-volt) !important;
+}
+
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: #0b0c0e !important;
+}
+
+/* ── Thanh thông báo đầu trang ── */
+.announcement-bar {
+  background: var(--rd-volt) !important;
+  color: var(--rd-volt-ink) !important;
+  font-family: var(--rd-font-display);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .3px;
+  border: 0 !important;
+  padding: 8px 0 !important;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(215, 255, 60, 0.2);
+}
+.announcement-bar i { color: var(--rd-volt-ink) !important; }
 
 /* ── Topbar Điều Hướng ── */
 .topbar {
