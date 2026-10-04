@@ -3364,3 +3364,46 @@ html, body {
   animation: radarBlink 1.4s infinite !important;
 }
 
+/* 2. QR Code Display: Clean, Laser-Free, Large & Sharp */
+.qr-laser-scanner {
+  display: none !important;
+}
+
+.m-qr-box {
+  background: #ffffff !important;
+  border: 2px solid var(--rd-volt-border) !important;
+  border-radius: var(--rd-r) !important;
+  padding: 22px 16px 18px !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 0 24px rgba(215, 255, 60, 0.15) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.m-qr-img,
+.m-qr-box img {
+  width: min(290px, 80vw) !important;
+  height: min(290px, 80vw) !important;
+  max-width: 320px !important;
+  max-height: 320px !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+  display: block !important;
+  margin: 0 auto !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.m-qr-hint {
+  font-family: var(--rd-font-display, "Be Vietnam Pro", sans-serif) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+  margin-top: 14px !important;
+  line-height: 1.45 !important;
+}
+
