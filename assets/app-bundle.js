@@ -31,8 +31,11 @@ function skipIntro(e) {
   }
   var intro = document.getElementById("gamingIntro");
   if (intro && intro.parentNode) {
-    document.body.style.overflow = "";
     intro.parentNode.removeChild(intro);
+  }
+  // Chỉ mở lại thanh cuộn trang nếu KHÔNG có màn hình bảo trì đang bật
+  if (!document.getElementById("maintenanceOverlay")) {
+    document.body.style.overflow = "";
   }
 }
 window.skipIntro = skipIntro;
@@ -42,6 +45,13 @@ window.skipIntro = skipIntro;
   var logo = document.getElementById("dpIntroLogoBox");
   var brand = document.getElementById("dpIntroBrandBox");
   if (!intro) return;
+
+  // Nếu đang bảo trì thì lập tức gỡ bỏ intro để hiển thị thẳng bảng thông báo bảo trì
+  if (document.getElementById("maintenanceOverlay") || window.isMaintenanceActive) {
+    if (intro.parentNode) intro.parentNode.removeChild(intro);
+    return;
+  }
+
   intro.style.display = "flex";
   document.body.style.overflow = "hidden";
 
@@ -75,6 +85,10 @@ function renderMaintenanceScreen(msg, until) {
   if (isCustomerInCheckout()) {
     return;
   }
+
+  // Tự động đóng và dọn dẹp Intro ngay lập tức để không bị đè layer hay chạy timer ngầm
+  skipIntro();
+
   if (document.getElementById('maintenanceOverlay')) return;
   var overlay = document.createElement('div');
   overlay.id = 'maintenanceOverlay';
