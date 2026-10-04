@@ -268,9 +268,9 @@ var PRODUCTS = [
     priceMin: 100000,
     priceMax: 100000,
     oldPrice: 200000,
-    image: 'assets/uploads/products/aimlock-2.jpg',
+    image: 'assets/uploads/products/aimlock-forget.jpg',
     images: [
-      { src: 'assets/uploads/products/aimlock-2.jpg', label: 'AimLock 2.0', title: 'AimLock Forget 2.0 - Kéo Tâm Chuẩn Xác' }
+      { src: 'assets/uploads/products/aimlock-forget.jpg', label: 'AimLock 2.0', title: 'AimLock Forget 2.0 - Kéo Tâm Chuẩn Xác' }
     ],
     plans: [
       {
@@ -295,9 +295,9 @@ var PRODUCTS = [
     priceMin: 150000,
     priceMax: 150000,
     oldPrice: 300000,
-    image: 'assets/uploads/products/aimlock-3.jpg',
+    image: 'assets/uploads/products/aimlock-forget.jpg',
     images: [
-      { src: 'assets/uploads/products/aimlock-3.jpg', label: 'AimLock 3.0', title: 'AimLock Forget 3.0 - Đỉnh Cao Kéo Tâm' }
+      { src: 'assets/uploads/products/aimlock-forget.jpg', label: 'AimLock 3.0', title: 'AimLock Forget 3.0 - Đỉnh Cao Kéo Tâm' }
     ],
     plans: [
       {
@@ -2530,9 +2530,9 @@ initScrollReveal();
 (function initLivePurchasesTicker() {
   var sampleBuyers = [
     { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '1 phút trước' },
-    { name: 'Huy Hoàng (091***)', prod: 'AimLock Forget 3.0', plan: 'Bản 3.0 VIP', img: 'assets/uploads/products/aimlock-3.jpg', time: '2 phút trước' },
+    { name: 'Huy Hoàng (091***)', prod: 'AimLock Forget 3.0', plan: 'Bản 3.0 VIP', img: 'assets/uploads/products/aimlock-forget.jpg', time: '2 phút trước' },
     { name: 'Khánh (035***)', prod: 'TrollModz', plan: 'Key 1 Ngày', img: 'trollmodz.png', time: '3 phút trước' },
-    { name: 'Minh Đức (086***)', prod: 'AimLock Forget 2.0', plan: 'Bản 2.0', img: 'assets/uploads/products/aimlock-2.jpg', time: '5 phút trước' },
+    { name: 'Minh Đức (086***)', prod: 'AimLock Forget 2.0', plan: 'Bản 2.0', img: 'assets/uploads/products/aimlock-forget.jpg', time: '5 phút trước' },
     { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '7 phút trước' },
     { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '9 phút trước' },
     { name: 'Bảo Nam (093***)', prod: 'Sx2 External', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/sx2-external.jpg', time: '14 phút trước' }
