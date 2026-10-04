@@ -860,9 +860,16 @@ body.storefront .select { padding: 0 34px 0 16px !important; font-size: 13px !im
   border-radius: 999px !important;
   padding: 10px 14px !important;
   font-weight: 800 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
 }
 
 .btn-buy span, .btn-buy i { color: inherit !important; }
+.btn-buy i { font-size: 11px; }
 
 .product:hover .btn-buy,
 .btn-buy:hover {
@@ -877,7 +884,25 @@ body.storefront .select { padding: 0 34px 0 16px !important; font-size: 13px !im
 .product-soldout { border-color: rgba(255,82,82,0.3) !important; }
 .product-soldout .card-price-val { color: var(--rd-red) !important; }
 .product-thumb .tag-soldout { background: var(--rd-red) !important; color: #fff !important; }
-.btn-soldout { color: var(--rd-red) !important; border-color: rgba(255,82,82,0.35) !important; background: transparent !important; }
+.btn-soldout { 
+  color: var(--rd-red) !important; 
+  border-color: rgba(255,82,82,0.35) !important; 
+  background: rgba(255, 82, 82, 0.06) !important; 
+  cursor: not-allowed !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.product:hover .btn-soldout,
+.btn-soldout:hover {
+  background: rgba(255, 82, 82, 0.15) !important;
+  border-color: rgba(255, 82, 82, 0.6) !important;
+  color: var(--rd-red) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
 
 /* Skeleton */
 .product-skeleton { background: var(--rd-surface) !important; border: 1px solid var(--rd-line) !important; border-radius: var(--rd-r-lg) !important; }
@@ -1521,8 +1546,7 @@ body.storefront .input:focus { border-color: rgba(215,255,60,0.6) !important; bo
   .card-plans { padding: 0 2px; display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 4px !important; }
   .card-plans::-webkit-scrollbar { display: none; }
   .card-plan-chip { font-size: 10px !important; padding: 3px 8px !important; white-space: nowrap; }
-  .card-price-val { font-size: 16px !important; }
-  .btn-buy { margin: 8px 2px 0 !important; padding: 8px 10px !important; font-size: 12px !important; }
+  .btn-buy { margin: 8px 2px 0 !important; padding: 8px 10px !important; font-size: 12px !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 6px !important; }
 
   /* Thanh dock điều hướng dưới đáy màn hình */
   .mobile-nav {
