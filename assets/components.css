@@ -3342,18 +3342,25 @@ html, body {
 }
 
 .maint-footer-status {
-  font-family: var(--rd-font-mono, monospace);
-  font-size: 10.5px;
-  color: #64748b;
-  margin-top: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  letter-spacing: 0.3px;
+  font-family: var(--rd-font-display, 'Be Vietnam Pro', sans-serif) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #cbd5e1 !important;
+  margin-top: 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  letter-spacing: 0.2px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 6px 16px !important;
+  border-radius: 999px !important;
 }
 .maint-footer-status i {
-  color: #10b981;
-  animation: radarBlink 2s infinite;
+  color: #10b981 !important;
+  font-size: 13px !important;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.8)) !important;
+  animation: radarBlink 1.4s infinite !important;
 }
 

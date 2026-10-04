@@ -40,30 +40,76 @@ function skipIntro(e) {
 }
 window.skipIntro = skipIntro;
 
-(function initSplash() {
-  var intro = document.getElementById("gamingIntro");
-  var logo = document.getElementById("dpIntroLogoBox");
-  var brand = document.getElementById("dpIntroBrandBox");
-  if (!intro) return;
-
-  // Nếu đang bảo trì thì lập tức gỡ bỏ intro để hiển thị thẳng bảng thông báo bảo trì
-  if (document.getElementById("maintenanceOverlay") || window.isMaintenanceActive) {
-    if (intro.parentNode) intro.parentNode.removeChild(intro);
-    return;
+function playIntroAnimation() {
+  // Gỡ bỏ intro cũ nếu có
+  var existingIntro = document.getElementById("gamingIntro");
+  if (existingIntro && existingIntro.parentNode) {
+    existingIntro.parentNode.removeChild(existingIntro);
   }
 
+  if (introPhaseTimeoutId) {
+    clearTimeout(introPhaseTimeoutId);
+    introPhaseTimeoutId = null;
+  }
+  if (introTimeoutId) {
+    clearTimeout(introTimeoutId);
+    introTimeoutId = null;
+  }
+
+  var intro = document.createElement("div");
+  intro.id = "gamingIntro";
+  intro.className = "dp-intro-overlay";
+  intro.setAttribute("role", "alertdialog");
+  intro.setAttribute("aria-modal", "true");
+  intro.setAttribute("aria-label", "Giới thiệu cửa hàng");
+  intro.onclick = function() { skipIntro(); };
+  intro.onkeydown = function(event) {
+    if (event.key === "Enter" || event.key === "Escape") skipIntro();
+  };
+
+  intro.innerHTML = 
+    '<div class="intro-cyber-grid-bg"></div>' +
+    '<div class="intro-beam intro-beam-left"></div>' +
+    '<div class="intro-beam intro-beam-right"></div>' +
+    '<div class="intro-shockwave"></div>' +
+    '<div class="intro-flash-bg"></div>' +
+    '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
+      '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
+        '<div class="intro-logo-aura"></div>' +
+        '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">' +
+      '</div>' +
+      '<div class="dp-intro-brand-box" id="dpIntroBrandBox">' +
+        '<div class="dp-intro-title">SHOP ĐẠI PHÚ FF</div>' +
+        '<div class="dp-intro-subline">⚡ GAMING STORE • MOD &amp; UTILITIES ⚡</div>' +
+      '</div>' +
+    '</div>' +
+    '<button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>';
+
+  document.body.prepend(intro);
   intro.style.display = "flex";
   document.body.style.overflow = "hidden";
 
-  // Hiển thị logo & tên shop rõ nét trong ~9.4 giây
+  var logo = intro.querySelector("#dpIntroLogoBox");
+  var brand = intro.querySelector("#dpIntroBrandBox");
+
   introPhaseTimeoutId = setTimeout(function() {
     if (brand) brand.classList.add("intro-fade-out");
     if (logo) logo.classList.add("intro-zoom-out");
     if (intro) intro.classList.add("intro-fade-out");
 
-    // Sau khi phóng to cực đại xuyên thấu màn hình (0.6s), gỡ bỏ intro (tổng 10.0s)
     introTimeoutId = setTimeout(skipIntro, 600);
   }, 9400);
+}
+window.playIntroAnimation = playIntroAnimation;
+
+(function initSplash() {
+  // Nếu đang bảo trì thì không chạy intro ban đầu
+  if (document.getElementById("maintenanceOverlay") || window.isMaintenanceActive) {
+    var existingIntro = document.getElementById("gamingIntro");
+    if (existingIntro && existingIntro.parentNode) existingIntro.parentNode.removeChild(existingIntro);
+    return;
+  }
+  playIntroAnimation();
 })();
 
 // ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD VỚI ÂN HẠN ĐƠN HÀNG) ══
@@ -71,7 +117,6 @@ var isMaintenanceActive = false;
 var cachedMaintenanceData = null;
 
 function isCustomerInCheckout() {
-  // Kiểm tra xem khách có đang mở modal thanh toán hoặc đã khởi tạo đơn hàng
   var buyModal = document.getElementById('buyModal');
   var paidModal = document.getElementById('paidModal');
   var isBuyModalOpen = buyModal && buyModal.classList.contains('open');
@@ -81,7 +126,6 @@ function isCustomerInCheckout() {
 }
 
 function renderMaintenanceScreen(msg, until) {
-  // Grace Period: Nếu khách đang mở quét QR chuyển khoản hoặc xem Key vừa mua, hoãn hiển thị bảo trì
   if (isCustomerInCheckout()) {
     return;
   }
@@ -129,7 +173,7 @@ function renderMaintenanceScreen(msg, until) {
         '</button>' +
       '</div>' +
       '<div class="maint-footer-status">' +
-        '<i class="fa-solid fa-tower-broadcast"></i> Tự động kiểm tra mở lại máy chủ mỗi 45 giây' +
+        '<i class="fa-solid fa-tower-broadcast"></i> Tự động kiểm tra mở lại máy chủ mỗi 15 giây' +
       '</div>' +
     '</div>';
   document.body.appendChild(overlay);
@@ -140,8 +184,9 @@ function removeMaintenanceScreen() {
   var overlay = document.getElementById('maintenanceOverlay');
   if (overlay && overlay.parentNode) {
     overlay.parentNode.removeChild(overlay);
-    document.body.style.overflow = '';
   }
+  // Khi bảo trì vừa tắt -> Phát lại Intro gaming hoành tráng rồi dẫn vào web
+  playIntroAnimation();
 }
 
 function checkMaintenanceStatus() {
@@ -167,9 +212,9 @@ function checkMaintenanceStatus() {
     });
 }
 
-// Kiểm tra ngay khi tải trang và lặp lại mỗi 45s
+// Kiểm tra ngay khi tải trang và lặp lại mỗi 15s
 checkMaintenanceStatus();
-setInterval(checkMaintenanceStatus, 45000);
+setInterval(checkMaintenanceStatus, 15000);
 
 function stripVietnamese(str) {
   if (!str) return '';
