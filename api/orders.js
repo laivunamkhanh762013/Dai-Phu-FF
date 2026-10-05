@@ -129,7 +129,8 @@ module.exports = async function handler(req, res) {
             user: o.user,
             time: o.time,
             status: o.status,
-            txId: o.txId
+            txId: o.txId,
+            licenseKey: o.licenseKey || o.key || ''
           }))
         });
       }
@@ -157,7 +158,8 @@ module.exports = async function handler(req, res) {
           user: canViewFull ? found.user : (found.user ? found.user.substring(0, 3) + '***' : '***'),
           time: found.time,
           status: found.status,
-          txId: canViewFull ? found.txId : undefined
+          txId: canViewFull ? found.txId : undefined,
+          licenseKey: found.licenseKey || found.key || ''
         }
       });
     }

@@ -2293,7 +2293,15 @@ function lookupOrderCode(manualCode) {
     var cleanPhone = escapeHTML(o.phone || '');
     var cleanTime = escapeHTML(o.time || '');
     var cleanTxId = (o.status === 'approved' && o.txId) ? '<div style="color:#34d399;font-weight:700;">• Giao dịch MBBank: ' + escapeHTML(o.txId) + '</div>' : '';
-    var existingKey = o.licenseKey || (getUsedKeysMap()[o.id]);
+    var existingKey = o.licenseKey || (getUsedKeysMap()[o.id]) || '';
+    if (o.status === 'approved' && !existingKey) {
+      var autoKey = dispatchKeyForOrder(o);
+      if (autoKey) {
+        existingKey = autoKey;
+        o.licenseKey = autoKey;
+        saveOrder(o);
+      }
+    }
     var licenseKeyHtml = '';
     if (o.status === 'approved' && existingKey) {
       licenseKeyHtml = '<div style="margin-top:8px;padding:10px 12px;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.3);border-radius:8px;">'
@@ -2343,7 +2351,8 @@ function lookupOrderCode(manualCode) {
             phone: found.phone || '',
             time: found.time,
             status: found.status,
-            txId: found.txId
+            txId: found.txId,
+            licenseKey: found.licenseKey || found.key || ''
           };
           saveOrder(ord);
           displayOrderResult(ord);
