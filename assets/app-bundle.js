@@ -81,7 +81,7 @@ function playIntroAnimation() {
 
   introTimeoutId = setTimeout(function() {
     skipIntro();
-  }, 1350);
+  }, 15000);
 }
 window.playIntroAnimation = playIntroAnimation;
 
@@ -1210,10 +1210,9 @@ function renderProducts() {
           }
         }
         this.style.display = 'none';
-        var fallbackPlaceholder = document.createElement('div');
+                var fallbackPlaceholder = document.createElement('div');
         fallbackPlaceholder.className = 'thumb-no-img';
-        fallbackPlaceholder.innerHTML = '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
-          : '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
+        fallbackPlaceholder.innerHTML = '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
         if (this.parentNode) {
           this.parentNode.appendChild(fallbackPlaceholder);
         }
@@ -1222,8 +1221,7 @@ function renderProducts() {
     } else {
       var noImg = document.createElement('div');
       noImg.className = 'thumb-no-img';
-      noImg.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
-        : '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';
+      noImg.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';
       thumbDiv.appendChild(noImg);
     }
 

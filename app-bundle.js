@@ -81,7 +81,7 @@ function playIntroAnimation() {
 
   introTimeoutId = setTimeout(function() {
     skipIntro();
-  }, 1350);
+  }, 15000);
 }
 window.playIntroAnimation = playIntroAnimation;
 
@@ -1183,9 +1183,6 @@ function renderProducts() {
     buyerTag.className = 'tag';
     buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
     thumbDiv.appendChild(buyerTag);
-    buyerTag.className = 'tag';
-    buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
-    thumbDiv.appendChild(buyerTag);
 
     if (p.soldOut) {
       var soldBadge = document.createElement('span');
@@ -1213,11 +1210,9 @@ function renderProducts() {
           }
         }
         this.style.display = 'none';
-        var fallbackPlaceholder = document.createElement('div');
-        fallbackPlaceholder.className = 'thumb-no-img' + '';
-        fallbackPlaceholder.innerHTML = p.pinned 
-          ? '<i class="fa-solid fa-crown" style="color:#f5d372;font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
-          : '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
+                var fallbackPlaceholder = document.createElement('div');
+        fallbackPlaceholder.className = 'thumb-no-img';
+        fallbackPlaceholder.innerHTML = '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
         if (this.parentNode) {
           this.parentNode.appendChild(fallbackPlaceholder);
         }
@@ -1225,10 +1220,8 @@ function renderProducts() {
       thumbDiv.appendChild(img);
     } else {
       var noImg = document.createElement('div');
-      noImg.className = 'thumb-no-img' + '';
-      noImg.innerHTML = p.pinned
-        ? '<i class="fa-solid fa-crown" style="color:#f5d372;font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
-        : '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';
+      noImg.className = 'thumb-no-img';
+      noImg.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';
       thumbDiv.appendChild(noImg);
     }
 
