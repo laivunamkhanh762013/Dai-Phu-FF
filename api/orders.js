@@ -43,10 +43,10 @@ function isCreationRateLimited(ip) {
 }
 
 // Whitelist-based text sanitizer (Alphanumeric, unicode letters, spaces, safe punctuation)
-function sanitizeText(str, maxLen = 50) {
+function sanitizeText(str, maxLen = 80) {
   if (!str) return '';
   return String(str)
-    .replace(/[^\p{L}\p{N}\s_.@+-]/gu, '')
+    .replace(/[^\p{L}\p{N}\s_.@+()•/\\-]/gu, '')
     .trim()
     .substring(0, maxLen);
 }
