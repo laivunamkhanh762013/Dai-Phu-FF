@@ -361,10 +361,10 @@ var PRODUCTS = [
   {
     id: 'slot-nhom-file-tien',
     category: 'Dịch Vụ VIP',
-    plat: 'All Thiết Bị • iOS & Adr',
+    plat: 'iOS • Android • PC',
     buyers: '10+ Người mua',
-    name: '1 Slot Nhóm File Tiền (Nexvia VIP)',
-    shortDesc: 'Vào nhóm File Tiền VIP của Nexvia VN - Nhận trọn bộ file kéo tâm, data vip, update trọn đời.',
+    name: 'Slot Nhóm File Tiền VIP',
+    shortDesc: 'Vào nhóm File Tiền VIP Nexvia VN - Nhận trọn bộ file kéo tâm VIP, cập nhật trọn đời.',
     fullDesc: '1 SLOT VÀO NHÓM FILE TIỀN ĐỘC QUYỀN NEXVIA VN:\n- Nhận toàn bộ kho file kéo tâm VIP, proxy siêu mượt, data obb độc quyền cho iOS & Android.\n- Cập nhật liên tục các bản file mới nhất khi game ra mùa/bản mới.\n- Hỗ trợ trực tiếp 1:1 từ Admin Phú Bán Hàng (Zalo: 0588500524).',
     priceMin: 20000,
     priceMax: 20000,
