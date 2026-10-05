@@ -1977,7 +1977,7 @@ body.storefront .product:hover {
 }
 
 @keyframes fastOverlayFade {
-  0%, 82% {
+  0%, 86% {
     opacity: 1;
   }
   100% {
@@ -2008,67 +2008,64 @@ body.storefront .product:hover {
   will-change: transform, opacity !important;
 }
 
-/* 1. LOGO: Hiện cùng chữ -> Chữ mất -> Logo trượt êm vào chính giữa tâm màn hình -> Phóng to 120 FPS */
+/* 1. LOGO: Hiện cùng chữ -> Chữ mất -> Logo trượt êm vào chính giữa tâm màn hình -> Phóng to 120 FPS SIÊU LỚN */
 .dp-intro-logo-glow {
   position: relative !important;
-  width: 88px !important;
-  height: 88px !important;
+  width: 90px !important;
+  height: 90px !important;
   border-radius: 24px !important;
   background: #11141d !important;
   border: 2px solid #f5d372 !important;
-  box-shadow: 0 0 30px rgba(245, 211, 114, 0.5) !important;
+  box-shadow: 0 0 35px rgba(245, 211, 114, 0.6) !important;
   display: grid !important;
   place-items: center !important;
   overflow: hidden !important;
-  will-change: transform, opacity !important;
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
-  transform: translate3d(0, 0, 0) scale3d(1, 1, 1) !important;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   animation: introLogoCenterZoom 2.2s cubic-bezier(0.2, 0.85, 0.25, 1) forwards !important;
 }
 
 @keyframes introLogoCenterZoom {
   0% {
     opacity: 0;
-    transform: translate3d(0, 10px, 0) scale3d(0.88, 0.88, 1);
+    transform: translate3d(0, 10px, 0) scale(0.6);
   }
   15% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale3d(1.02, 1.02, 1);
+    transform: translate3d(0, 0, 0) scale(1.05);
   }
   22% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   /* Giữ logo ở vị trí ban đầu cùng chữ đến 44% (~0.95s) để người dùng đọc */
   44% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
-  /* Khi chữ bắt đầu mờ (0.95s -> 1.25s), logo bắt đầu trượt mượt mà xuống chính giữa tâm màn hình */
-  57% {
+  /* Khi chữ bắt đầu mờ (0.95s -> 1.35s), logo trượt mượt mà xuống chính giữa tâm màn hình */
+  62% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 42px, 0) scale(1.08);
   }
-  /* 70% (1.54s): Logo đã vào đúng chính xác tâm giữa màn hình */
-  70% {
+  68% {
     opacity: 1;
-    transform: translate3d(0, 38px, 0) scale3d(1.04, 1.04, 1);
+    transform: translate3d(0, 42px, 0) scale(1);
   }
-  73% {
-    opacity: 1;
-    transform: translate3d(0, 38px, 0) scale3d(1, 1, 1);
+  /* PHÓNG TO SIÊU KHỔNG LỒ 120 FPS LAO VÀO MÀN HÌNH (1.5s -> 2.2s) */
+  88% {
+    opacity: 0.9;
   }
-  /* Phóng to cực đại 120 FPS không giật lag lao thẳng vào storefront (1.65s -> 2.2s) */
   100% {
     opacity: 0;
-    transform: translate3d(0, 38px, 0) scale3d(24, 24, 1);
+    transform: translate3d(0, 42px, 0) scale(35);
   }
 }
 
 .dp-intro-logo-img {
-  width: 76px !important;
-  height: 76px !important;
+  width: 78px !important;
+  height: 78px !important;
   border-radius: 18px !important;
   object-fit: cover !important;
   display: block !important;
@@ -2080,7 +2077,7 @@ body.storefront .product:hover {
   flex-direction: column !important;
   align-items: center !important;
   gap: 6px !important;
-  will-change: transform, opacity !important;
+  will-change: transform, opacity;
   animation: introTextFadeOut 2.2s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
 }
 
@@ -2098,10 +2095,10 @@ body.storefront .product:hover {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
-  /* Chữ mờ dần và BIẾN MẤT HOÀN TOÀN (0.95s -> 1.25s) trước khi logo trượt vào giữa & phóng to */
-  57%, 100% {
+  /* Chữ mờ dần và BIẾN MẤT HOÀN TOÀN (0.95s -> 1.3s) trước khi logo trượt vào giữa & phóng to */
+  60%, 100% {
     opacity: 0;
-    transform: translate3d(0, -6px, 0);
+    transform: translate3d(0, -8px, 0);
     pointer-events: none;
   }
 }
