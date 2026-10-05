@@ -815,7 +815,7 @@ var PRODUCTS = [
         price: 450000,
         action: 'Bản quyền 1 tháng đầy đủ tính năng cao cấp của dòng Migul.',
         fix: 'Bảo vệ tài khoản liên tục với hệ thống cập nhật bypass tự động.',
-        pros: 'Được hỗ trợ kỹ thuật trực tiếp 1:1 từ Admin Phú bé Ngàn (NEXVIA VN).',
+        pros: 'Được hỗ trợ kỹ thuật trực tiếp 1:1 từ Admin Phú Bán Hàng (NEXVIA VN).',
         note: 'Hỗ trợ các thiết bị iOS.'
       }
     ]
