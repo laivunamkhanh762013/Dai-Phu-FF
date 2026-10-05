@@ -239,8 +239,6 @@ function stripVietnamese(str) {
    ═══════════════════════════════════════════════════════════════════ */
 var TROLLMODZ_KEY_VAULT = {
   '1day': [
-    'TRLL-D431-D5E2-45A8',
-    'TRLL-B200-8BC4-6F7A',
     'TRLL-3A42-4C06-1A81',
     'TRLL-52A3-4DBD-0E2C',
     'TRLL-3602-4561-3A0F',
