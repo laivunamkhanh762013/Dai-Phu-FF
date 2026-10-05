@@ -359,6 +359,35 @@ function dispatchKeyForOrder(order) {
 
 var PRODUCTS = [
   {
+    id: 'slot-nhom-file-tien',
+    pinned: true,
+    category: 'Nhóm VIP & File Tiền',
+    plat: 'All Thiết Bị • iOS & Adr',
+    buyers: '1.250+ Thành viên',
+    name: '1 Slot Nhóm File Tiền (Nexvia VIP)',
+    shortDesc: '👑 [GHIM] Vào nhóm File Tiền VIP độc quyền Nexvia VN - Full data kéo tâm, proxy, file vip update trọn đời.',
+    fullDesc: '1 SLOT VÀO NHÓM FILE TIỀN ĐỘC QUYỀN NEXVIA VN:\n- Nhận toàn bộ kho file kéo tâm VIP, proxy siêu mượt, data obb độc quyền cho iOS & Android.\n- Cập nhật liên tục các bản file mới nhất khi game ra mùa/bản mới.\n- Hỗ trợ trực tiếp 1:1 từ Admin Phú Bán Hàng (Zalo: 0588500524).',
+    priceMin: 20000,
+    priceMax: 20000,
+    oldPrice: 50000,
+    image: 'assets/uploads/products/nhom-file-tien.jpg',
+    images: [
+      { src: 'assets/uploads/products/nhom-file-tien.jpg', label: 'Nhóm File Tiền VIP', title: '1 Slot Nhóm File Tiền (Nexvia VIP)' }
+    ],
+    plans: [
+      {
+        name: '1 Slot Vào Nhóm (Vĩnh Viễn)',
+        price: 20000,
+        badge: '👑 VIP GHIM',
+        action: 'Cấp quyền vào nhóm Zalo/Telegram File Tiền VIP độc quyền Nexvia VN trọn đời.',
+        fix: 'Nhận toàn bộ file kéo tâm VIP, fix rung, proxy mượt mà 120 FPS không giới hạn.',
+        pros: 'Admin Phú Bán Hàng trực tiếp duyệt vào nhóm và gửi link tải ngay sau khi thanh toán.',
+        note: 'Hỗ trợ tất cả thiết bị iOS, Android, PC.'
+      }
+    ]
+  },
+
+  {
     id: 'innova-cheat',
     category: 'Proxy & Injector',
     plat: 'Adr • iOS',
@@ -1159,7 +1188,7 @@ function renderProducts() {
 
   filtered.forEach(function(p) {
     var article = document.createElement('article');
-    article.className = 'product product-clickable' + (p.soldOut ? ' product-soldout' : '');
+    article.className = 'product product-clickable' + (p.pinned ? ' product-pinned' : '') + (p.soldOut ? ' product-soldout' : '');
     article.setAttribute('data-category', p.category);
     article.setAttribute('data-price', p.priceMin);
     article.setAttribute('data-name', p.name.toLowerCase());
@@ -1178,6 +1207,12 @@ function renderProducts() {
     var thumbDiv = document.createElement('div');
     thumbDiv.className = 'product-thumb';
 
+    if (p.pinned) {
+      var pinBadge = document.createElement('span');
+      pinBadge.className = 'tag-pinned';
+      pinBadge.innerHTML = '<i class="fa-solid fa-thumbtack"></i> GHIM ĐẦU TRANG';
+      thumbDiv.appendChild(pinBadge);
+    }
     var buyerTag = document.createElement('span');
     buyerTag.className = 'tag';
     buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
