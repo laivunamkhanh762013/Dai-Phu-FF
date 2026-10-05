@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BỘ SƯU TẬP INTRO MỞ MÀN ĐỈNH CAO · NEXVIA VN</title>
+  <title>BỘ SƯU TẬP 52 MẪU INTRO ĐỈNH CAO · NEXVIA VN</title>
   <meta name="theme-color" content="#07080d">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;900&family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   
   <style>
@@ -18,7 +18,7 @@
       --gold-light: #fff2b2;
       --gold-dark: #d4af37;
       --gold-grad: linear-gradient(135deg, #fff2b2 0%, #f5d372 35%, #e5a93b 80%, #d4af37 100%);
-      --line: rgba(245, 211, 114, 0.2);
+      --line: rgba(245, 211, 114, 0.18);
       --text: #f8fafc;
       --muted: #94a3b8;
     }
@@ -30,10 +30,9 @@
       font-family: 'Be Vietnam Pro', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
-      padding-bottom: 60px;
+      padding-bottom: 90px;
     }
 
-    /* Ambient Background Grid */
     body::before {
       content: '';
       position: fixed;
@@ -47,17 +46,16 @@
     }
 
     .shell {
-      max-width: 1200px;
+      max-width: 1360px;
       margin: 0 auto;
       padding: 0 20px;
       position: relative;
       z-index: 1;
     }
 
-    /* Header Showcase */
     .header {
       text-align: center;
-      padding: 40px 0 28px;
+      padding: 40px 0 24px;
     }
 
     .header-badge {
@@ -66,31 +64,31 @@
       gap: 8px;
       background: rgba(245, 211, 114, 0.12);
       border: 1px solid rgba(245, 211, 114, 0.35);
-      color: var(--gold);
-      padding: 6px 16px;
+      padding: 6px 18px;
       border-radius: 999px;
+      color: var(--gold-light);
       font-size: 11.5px;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 14px;
-      box-shadow: 0 0 20px rgba(245, 211, 114, 0.2);
+      margin-bottom: 16px;
+      box-shadow: 0 0 20px rgba(245, 211, 114, 0.15);
     }
 
     .header h1 {
-      font-size: clamp(26px, 4.5vw, 42px);
+      font-size: clamp(26px, 4.5vw, 44px);
       font-weight: 900;
       background: var(--gold-grad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       letter-spacing: -0.5px;
     }
 
     .header p {
       color: var(--muted);
-      font-size: 14.5px;
-      max-width: 680px;
+      font-size: clamp(13px, 1.8vw, 15px);
+      max-width: 780px;
       margin: 0 auto 24px;
       line-height: 1.6;
     }
@@ -98,37 +96,37 @@
     /* Controls Bar */
     .controls-bar {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      background: var(--bg-card);
+      gap: 12px;
+      background: rgba(15, 20, 32, 0.75);
       border: 1px solid var(--line);
-      padding: 14px 24px;
+      padding: 12px 20px;
       border-radius: 999px;
-      width: fit-content;
-      margin: 0 auto 36px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      max-width: fit-content;
+      margin: 0 auto 20px;
+      backdrop-filter: blur(12px);
     }
 
     .controls-label {
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--gold);
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
     .duration-btns {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
     .dur-btn {
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #cbd5e1;
       padding: 6px 14px;
       border-radius: 999px;
       font-size: 12px;
@@ -138,23 +136,25 @@
     }
 
     .dur-btn:hover {
+      background: rgba(245, 211, 114, 0.15);
       border-color: var(--gold);
-      color: var(--gold);
+      color: var(--gold-light);
     }
 
     .dur-btn.active {
       background: var(--gold-grad);
       color: #140d02;
-      border-color: var(--gold);
-      box-shadow: 0 0 14px rgba(245, 211, 114, 0.4);
+      border-color: transparent;
+      font-weight: 800;
+      box-shadow: 0 0 12px rgba(245, 211, 114, 0.4);
     }
 
     .btn-back-shop {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.2);
       color: #e2e8f0;
       padding: 6px 16px;
       border-radius: 999px;
@@ -164,102 +164,184 @@
       transition: all 0.2s ease;
     }
     .btn-back-shop:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.15);
       border-color: #fff;
+      color: #fff;
     }
 
-    /* Grid Showcase */
+    /* Filter Category Tabs */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .tab-btn {
+      background: rgba(18, 22, 34, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      background: rgba(245, 211, 114, 0.08);
+    }
+
+    .tab-btn.active {
+      background: rgba(245, 211, 114, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+      box-shadow: 0 0 14px rgba(245, 211, 114, 0.2);
+    }
+
+    /* Search & Stats Bar */
+    .search-stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+      padding: 0 4px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(18, 22, 34, 0.9);
+      border: 1px solid var(--line);
+      padding: 8px 16px;
+      border-radius: 999px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .search-box i { color: var(--gold); font-size: 13px; }
+    .search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 13px;
+      width: 100%;
+      font-family: inherit;
+    }
+    .search-box input::placeholder { color: #64748b; }
+
+    .stats-count {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(245, 211, 114, 0.08);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 211, 114, 0.2);
+    }
+
+    /* Grid Showcase (3 columns on desktop, 2 on tablet, 1 on mobile) */
     .intro-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 18px;
     }
 
     .intro-card {
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 24px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
     .intro-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(245, 211, 114, 0.5);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.6), 0 0 24px rgba(245, 211, 114, 0.18);
+      transform: translateY(-4px);
+      border-color: rgba(245, 211, 114, 0.55);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6), 0 0 24px rgba(245, 211, 114, 0.18);
     }
 
     .intro-card-badge {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 800;
       text-transform: uppercase;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       width: fit-content;
     }
 
     .badge-royal { background: rgba(245, 211, 114, 0.15); color: #fce08b; border: 1px solid rgba(245, 211, 114, 0.35); }
     .badge-cyber { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); }
-    .badge-space { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35); }
-    .badge-fire { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); }
-    .badge-laser { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.35); }
-    .badge-diamond { background: rgba(244, 114, 182, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.35); }
-    .badge-warp { background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.35); }
-    .badge-katana { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.35); }
+    .badge-esports { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); }
+    .badge-element { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.35); }
+    .badge-anime { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35); }
+    .badge-speed { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.35); }
+    .badge-minimal { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.35); }
 
     .intro-card h3 {
-      font-size: 18px;
+      font-size: 16.5px;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
 
     .intro-card p {
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-      margin-bottom: 20px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      margin-bottom: 16px;
     }
 
     .btn-play-intro {
       background: var(--gold-grad);
       color: #140d02;
       border: none;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 999px;
       font-weight: 800;
-      font-size: 13px;
+      font-size: 12.5px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 16px rgba(229, 169, 59, 0.35);
+      gap: 7px;
+      box-shadow: 0 4px 14px rgba(229, 169, 59, 0.3);
       transition: all 0.2s ease;
       width: 100%;
     }
 
     .btn-play-intro:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 22px rgba(229, 169, 59, 0.5);
+      box-shadow: 0 6px 20px rgba(229, 169, 59, 0.5);
       background: linear-gradient(135deg, #ffffff 0%, #fff0b8 40%, #f6d365 100%);
     }
 
     /* ═══════════════════════════════════════════════════════════════
-       STAGE OVERLAY CHO TEST INTRO TOÀN MÀN HÌNH
+       STAGE TEST FULLSCREEN
        ═══════════════════════════════════════════════════════════════ */
     #introStage {
       position: fixed;
@@ -278,8 +360,8 @@
       top: 24px;
       right: 24px;
       z-index: 10000;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.3);
       color: #ffffff;
       padding: 8px 18px;
       border-radius: 999px;
@@ -289,7 +371,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       transition: all 0.2s ease;
     }
     .stage-close-btn:hover {
@@ -298,8 +380,8 @@
     }
 
     .stage-logo {
-      width: 90px;
-      height: 90px;
+      width: 92px;
+      height: 92px;
       border-radius: 22px;
       object-fit: cover;
       display: block;
@@ -307,7 +389,7 @@
 
     .stage-title {
       font-family: 'Be Vietnam Pro', sans-serif;
-      font-size: clamp(24px, 5.5vw, 36px);
+      font-size: clamp(22px, 5.5vw, 36px);
       font-weight: 900;
       letter-spacing: 1.5px;
       color: #ffffff;
@@ -315,234 +397,138 @@
     }
 
     .stage-sub {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       text-align: center;
     }
 
-    /* ── EFFECT 1: ROYAL GOLD SHOCKWAVE ── */
-    .fx-royal-content {
+    /* FX Base & Keyframes */
+    .fx-base-content {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 12px;
       z-index: 10;
-      animation: fxRoyalZoom var(--dur) cubic-bezier(0.25, 1, 0.35, 1) forwards;
+      animation: fxDefaultZoom var(--dur) cubic-bezier(0.25, 1, 0.35, 1) forwards;
     }
-    .fx-royal-logo-box {
+    .fx-base-box {
       border: 2px solid var(--gold);
       border-radius: 26px;
       padding: 4px;
       background: #11141f;
       box-shadow: 0 0 35px rgba(245, 211, 114, 0.7);
     }
-    .fx-royal-beam-left {
-      position: absolute;
-      top: 0; left: 0; width: 60%; height: 100%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.9), var(--gold), transparent);
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
-      opacity: 0;
-      animation: fxBeamIn calc(var(--dur) * 0.4) ease forwards;
-    }
-    .fx-royal-beam-right {
-      position: absolute;
-      top: 0; right: 0; width: 60%; height: 100%;
-      background: linear-gradient(-135deg, rgba(255,255,255,0.9), #e5a93b, transparent);
-      clip-path: polygon(100% 0, 0 50%, 100% 100%);
-      opacity: 0;
-      animation: fxBeamIn calc(var(--dur) * 0.4) ease forwards;
-    }
-    .fx-royal-shockwave {
-      position: absolute;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      border: 3px solid var(--gold);
-      opacity: 0;
-      animation: fxShockwave calc(var(--dur) * 0.6) ease-out calc(var(--dur) * 0.2) forwards;
-    }
 
-    @keyframes fxRoyalZoom {
+    @keyframes fxDefaultZoom {
       0% { opacity: 0; transform: scale(0.4); }
-      20% { opacity: 1; transform: scale(1.05); }
+      18% { opacity: 1; transform: scale(1.06); }
       30% { opacity: 1; transform: scale(1); }
       75% { opacity: 1; transform: scale(1); }
       100% { opacity: 0; transform: scale(16); }
     }
-    @keyframes fxBeamIn {
-      0% { opacity: 0; transform: translateX(-50%); }
-      50% { opacity: 0.8; }
-      100% { opacity: 0; transform: translateX(0); }
+
+    /* Effect Keyframe Highlights */
+    .fx-royal-beam-l {
+      position: absolute; top: 0; left: 0; width: 60%; height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), var(--gold), transparent);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      opacity: 0; animation: fxBeamIn calc(var(--dur) * 0.45) ease forwards;
     }
-    @keyframes fxShockwave {
-      0% { opacity: 1; transform: scale(0.2); }
-      100% { opacity: 0; transform: scale(6); }
+    .fx-royal-beam-r {
+      position: absolute; top: 0; right: 0; width: 60%; height: 100%;
+      background: linear-gradient(-135deg, rgba(255,255,255,0.9), #e5a93b, transparent);
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      opacity: 0; animation: fxBeamIn calc(var(--dur) * 0.45) ease forwards;
+    }
+    .fx-royal-wave {
+      position: absolute; width: 200px; height: 200px; border-radius: 50%; border: 3px solid var(--gold); opacity: 0;
+      animation: fxWave calc(var(--dur) * 0.65) ease-out calc(var(--dur) * 0.15) forwards;
+    }
+    @keyframes fxBeamIn { 0% { opacity: 0; transform: translateX(-50%); } 50% { opacity: 0.9; } 100% { opacity: 0; transform: translateX(0); } }
+    @keyframes fxWave { 0% { opacity: 1; transform: scale(0.2); } 100% { opacity: 0; transform: scale(8); } }
+
+    /* Matrix Rain */
+    .fx-matrix-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.85;
     }
 
-    /* ── EFFECT 2: CYBERPUNK NEON GLITCH ── */
-    .fx-cyber-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      z-index: 10;
-      animation: fxCyberGlitch var(--dur) ease forwards;
+    /* Laser Scanner */
+    .fx-laser-ring-el {
+      position: absolute; width: 240px; height: 240px; border: 2px dashed #34d399; border-radius: 50%;
+      animation: fxSpin 3s linear infinite;
     }
-    .fx-cyber-grid {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
-      background-size: 30px 30px;
+    .fx-laser-bar-el {
+      position: absolute; width: 280px; height: 2px; background: #34d399; box-shadow: 0 0 20px #34d399;
+      animation: fxScan calc(var(--dur) * 0.6) ease-in-out infinite alternate;
     }
-    @keyframes fxCyberGlitch {
-      0% { opacity: 0; transform: scale(0.8) skewX(20deg); filter: hue-rotate(90deg); }
-      15% { opacity: 1; transform: scale(1.02) skewX(-10deg); }
-      25% { transform: scale(1) skewX(0); filter: hue-rotate(0); }
-      75% { opacity: 1; transform: scale(1); filter: none; }
-      85% { transform: scale(1.1) skewX(15deg); filter: invert(1); }
-      100% { opacity: 0; transform: scale(14); filter: brightness(3); }
-    }
+    @keyframes fxSpin { 100% { transform: rotate(360deg); } }
+    @keyframes fxScan { 0% { transform: translateY(-80px); } 100% { transform: translateY(80px); } }
 
-    /* ── EFFECT 3: BLACK HOLE SUPERNOVA ── */
-    .fx-space-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      z-index: 10;
-      animation: fxSpaceSupernova var(--dur) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    /* Katana Slash */
+    .fx-katana-line-el {
+      position: absolute; top: 50%; left: -20%; width: 140%; height: 4px;
+      background: #ffffff; box-shadow: 0 0 30px #f5d372, 0 0 50px #e5a93b;
+      transform: rotate(-25deg); opacity: 0;
+      animation: fxSlash calc(var(--dur) * 0.35) ease forwards;
     }
-    .fx-space-vortex {
-      position: absolute;
-      width: 500px; height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(192, 132, 252, 0.4) 0%, rgba(56, 189, 248, 0.2) 40%, transparent 70%);
-      animation: fxRotateVortex 4s linear infinite;
-    }
-    @keyframes fxRotateVortex {
-      0% { transform: rotate(0deg) scale(0.5); }
-      50% { transform: rotate(180deg) scale(1.2); }
-      100% { transform: rotate(360deg) scale(0.5); }
-    }
-    @keyframes fxSpaceSupernova {
-      0% { opacity: 0; transform: scale(0.1) rotate(-180deg); }
-      25% { opacity: 1; transform: scale(1) rotate(0deg); }
-      75% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(18) rotate(45deg); filter: blur(4px); }
-    }
+    @keyframes fxSlash { 0% { opacity: 0; transform: rotate(-25deg) scaleX(0); } 50% { opacity: 1; transform: rotate(-25deg) scaleX(1); } 100% { opacity: 0; } }
 
-    /* ── EFFECT 4: BIOMETRIC HUD LASER ── */
-    .fx-laser-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      z-index: 10;
-      animation: fxLaserScan var(--dur) ease forwards;
+    /* Sniper Crosshair */
+    .fx-sniper-crosshair {
+      position: absolute; width: 260px; height: 260px;
+      border: 2px solid #ef4444; border-radius: 50%;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+      display: flex; align-items: center; justify-content: center;
+      animation: fxSniperLock 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .fx-laser-ring {
-      position: absolute;
-      width: 220px; height: 220px;
-      border: 2px dashed #34d399;
-      border-radius: 50%;
-      animation: fxSpinRing 3s linear infinite;
-    }
-    .fx-laser-bar {
-      position: absolute;
-      width: 260px; height: 2px;
-      background: #34d399;
-      box-shadow: 0 0 16px #34d399;
-      animation: fxScanUpDown calc(var(--dur) * 0.6) ease-in-out infinite alternate;
-    }
-    @keyframes fxSpinRing { 100% { transform: rotate(360deg); } }
-    @keyframes fxScanUpDown { 0% { transform: translateY(-70px); } 100% { transform: translateY(70px); } }
-    @keyframes fxLaserScan {
-      0% { opacity: 0; transform: scale(0.7); }
-      20% { opacity: 1; transform: scale(1); }
-      75% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(15); }
-    }
+    .fx-sniper-crosshair::before { content: ''; position: absolute; width: 100%; height: 1px; background: #ef4444; }
+    .fx-sniper-crosshair::after { content: ''; position: absolute; height: 100%; width: 1px; background: #ef4444; }
+    @keyframes fxSniperLock { 0% { transform: scale(2.5) rotate(90deg); opacity: 0; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
 
-    /* ── EFFECT 5: SAMURAI KATANA SLASH ── */
-    .fx-slash-line {
-      position: absolute;
-      top: 50%; left: -20%; width: 140%; height: 3px;
-      background: #ffffff;
-      box-shadow: 0 0 24px #f5d372, 0 0 40px #e5a93b;
-      transform: rotate(-25deg);
-      opacity: 0;
-      animation: fxKatanaSlash calc(var(--dur) * 0.3) ease forwards;
+    /* Dragon */
+    .fx-dragon-ring {
+      position: absolute; width: 320px; height: 320px; border-radius: 50%;
+      border: 3px solid #facc15; box-shadow: 0 0 50px #eab308, inset 0 0 30px #facc15;
+      animation: fxDragonBreath 2s ease-in-out infinite alternate;
     }
-    @keyframes fxKatanaSlash {
-      0% { opacity: 0; transform: rotate(-25deg) scaleX(0); }
-      50% { opacity: 1; transform: rotate(-25deg) scaleX(1); }
-      100% { opacity: 0; transform: rotate(-25deg) scaleX(1); }
-    }
+    @keyframes fxDragonBreath { 0% { transform: scale(0.9); opacity: 0.6; } 100% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 25px #facc15); } }
 
-    /* ── EFFECT 6: HELLFIRE PHOENIX ── */
-    .fx-fire-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      z-index: 10;
-      animation: fxFirePhoenix var(--dur) ease forwards;
+    /* Thor Bolt */
+    .fx-thor-bolt {
+      position: absolute; top: 0; left: 50%; width: 6px; height: 100%;
+      background: #ffffff; box-shadow: 0 0 40px #60a5fa, 0 0 80px #93c5fd;
+      transform: translateX(-50%);
+      animation: fxThorStrike 0.4s ease forwards;
     }
-    @keyframes fxFirePhoenix {
-      0% { opacity: 0; transform: translateY(60px) scale(0.5); filter: drop-shadow(0 0 40px #ef4444); }
-      25% { opacity: 1; transform: translateY(0) scale(1.05); filter: drop-shadow(0 0 25px #f59e0b); }
-      35% { transform: translateY(0) scale(1); }
-      75% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(18); filter: brightness(4); }
-    }
+    @keyframes fxThorStrike { 0% { opacity: 0; transform: translateX(-50%) scaleY(0); } 50% { opacity: 1; transform: translateX(-50%) scaleY(1); } 100% { opacity: 0; } }
 
-    /* ── EFFECT 7: HYPER SPEEDWARP ── */
-    .fx-warp-tunnel {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, transparent 0%, #000 80%);
+    /* Sharingan */
+    .fx-sharingan-eye {
+      position: absolute; width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, #b91c1c 0%, #7f1d1d 60%, #000 100%);
+      border: 4px solid #ef4444; box-shadow: 0 0 60px #dc2626;
+      animation: fxSpinEye 3s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
     }
-    .fx-warp-streak {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 2px; height: 100px;
-      background: #60a5fa;
-      box-shadow: 0 0 10px #60a5fa;
-      transform-origin: top center;
-    }
-    .fx-warp-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      z-index: 10;
-      animation: fxWarpSpeed var(--dur) cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
-    }
-    @keyframes fxWarpSpeed {
-      0% { opacity: 0; transform: translateZ(-500px) scale(0.1); }
-      30% { opacity: 1; transform: translateZ(0) scale(1); }
-      75% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(20); }
-    }
+    @keyframes fxSpinEye { 0% { transform: rotate(0deg) scale(0.8); } 50% { transform: rotate(720deg) scale(1.1); } 100% { transform: rotate(1080deg) scale(0.8); } }
 
-    /* ── EFFECT 8: DIAMOND SHARDS ── */
-    .fx-diamond-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      z-index: 10;
-      animation: fxDiamondGather var(--dur) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    /* Super Saiyan Aura */
+    .fx-saiyan-aura {
+      position: absolute; width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.4) 0%, rgba(234, 179, 8, 0.15) 50%, transparent 80%);
+      box-shadow: 0 0 80px #eab308;
+      animation: fxSaiyanPulse 0.4s ease-in-out infinite alternate;
     }
-    @keyframes fxDiamondGather {
-      0% { opacity: 0; transform: scale(0.3) rotate(45deg); filter: blur(8px); }
-      25% { opacity: 1; transform: scale(1.08) rotate(-5deg); filter: blur(0); }
-      35% { transform: scale(1) rotate(0deg); }
-      75% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(16); }
+    @keyframes fxSaiyanPulse { 0% { transform: scale(0.95); opacity: 0.7; } 100% { transform: scale(1.1); opacity: 1; } }
+
+    /* Domain Expansion */
+    .fx-domain-space {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle, #020617 0%, #0f172a 40%, #000 100%);
+      animation: fxDomainExpand calc(var(--dur) * 0.7) ease forwards;
     }
+    @keyframes fxDomainExpand { 0% { filter: invert(1); transform: scale(0.1); } 50% { filter: invert(0); transform: scale(1); } 100% { filter: blur(0); } }
 
   </style>
 </head>
@@ -550,11 +536,10 @@
 
   <div class="shell">
     <header class="header">
-      <div class="header-badge"><i class="fa-solid fa-crown"></i> BỘ SƯU TẬP HIỆU ỨNG INTRO NEXVIA VN</div>
+      <div class="header-badge"><i class="fa-solid fa-crown"></i> BỘ SƯU TẬP 52 MẪU INTRO ĐỈNH CAO · NEXVIA VN</div>
       <h1>CHỌN MẪU INTRO BẠN ƯNG Ý NHẤT</h1>
-      <p>Tổng hợp 8 phong cách hiệu ứng mở màn đẹp mắt, đẳng cấp nhất (Hoàng gia Luxury, Cyberpunk, Samurai Slash, Hố đen, Quét Laser, Phượng hoàng...). Bấm <b>Xem Thử</b> để xem trực tiếp full màn hình!</p>
+      <p>Tổng hợp đầy đủ <b>52 phong cách hiệu ứng mở màn siêu phẩm</b> (Hoàng Gia, Cyberpunk, Free Fire Esports, Anime Siêu Năng Lực, Nguyên Tố, Tốc Độ & Apple Minimal). Bấm <b>Xem Thử</b> ở bất kỳ mẫu nào để trải nghiệm 120 FPS!</p>
 
-      <!-- Controls -->
       <div class="controls-bar">
         <span class="controls-label"><i class="fa-solid fa-stopwatch"></i> Thời lượng:</span>
         <div class="duration-btns">
@@ -565,107 +550,32 @@
         </div>
         <a href="index.html" class="btn-back-shop"><i class="fa-solid fa-arrow-left"></i> Trở Về Shop</a>
       </div>
+
+      <!-- Filter Category Tabs -->
+      <div class="filter-tabs">
+        <button type="button" class="tab-btn active" onclick="filterCategory('all', this)"><i class="fa-solid fa-layer-group"></i> Tất Cả (52 Mẫu)</button>
+        <button type="button" class="tab-btn" onclick="filterCategory('royal', this)"><i class="fa-solid fa-crown"></i> 👑 Hoàng Gia & Luxury</button>
+        <button type="button" class="tab-btn" onclick="filterCategory('cyber', this)"><i class="fa-solid fa-bolt"></i> ⚡ Cyber & Matrix</button>
+        <button type="button" class="tab-btn" onclick="filterCategory('esports', this)"><i class="fa-solid fa-crosshairs"></i> 🎮 Esports & Free Fire</button>
+        <button type="button" class="tab-btn" onclick="filterCategory('anime', this)"><i class="fa-solid fa-wand-magic-sparkles"></i> 💥 Anime & Siêu Năng Lực</button>
+        <button type="button" class="tab-btn" onclick="filterCategory('element', this)"><i class="fa-solid fa-fire"></i> 🔥 Nguyên Tố Tự Nhiên</button>
+        <button type="button" class="tab-btn" onclick="filterCategory('speed', this)"><i class="fa-solid fa-car-side"></i> 🏎️ Tốc Độ & Heist</button>
+        <button type="button" class="tab-btn" onclick="filterCategory('minimal', this)"><i class="fa-brands fa-apple"></i> 💎 Minimal & Apple</button>
+      </div>
+
+      <!-- Search & Stats Bar -->
+      <div class="search-stats-bar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="introSearch" placeholder="Tìm kiếm mẫu intro theo tên hoặc hiệu ứng..." oninput="handleSearch()">
+        </div>
+        <div class="stats-count" id="statsCount">Hiển thị 52 / 52 mẫu</div>
+      </div>
     </header>
 
-    <!-- Intro Showcase Cards -->
-    <div class="intro-grid">
-
-      <!-- Intro 1 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-royal"><i class="fa-solid fa-crown"></i> MẪU 1 · ROYAL GOLD</span>
-          <h3>Hoàng Gia Vàng Kim (Royal Clash)</h3>
-          <p>Hai luồng năng lượng vàng kim va chạm nảy lửa, sóng chấn động tỏa sáng, logo NEXVIA VN xuất hiện lộng lẫy và zoom mở siêu êm.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('royal')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 1 (Royal Gold)
-        </button>
-      </div>
-
-      <!-- Intro 2 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-cyber"><i class="fa-solid fa-bolt"></i> MẪU 2 · CYBER GLITCH</span>
-          <h3>Cyberpunk Sét Neon & Hologram</h3>
-          <p>Lưới tọa độ quét Neon Cyan, tia sét chớp glitch 3D kỹ thuật số công nghệ cao, đậm chất game thủ Free Fire Pro.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('cyber')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 2 (Cyber Glitch)
-        </button>
-      </div>
-
-      <!-- Intro 3 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-space"><i class="fa-solid fa-atom"></i> MẪU 3 · SUPERNOVA</span>
-          <h3>Vũ Trụ Lỗ Đen & Supernova</h3>
-          <p>Xoáy bão hạt ánh sáng đa sắc bị hút vào tâm điểm nén rồi bùng nổ Supernova cực đại giải phóng logo thương hiệu.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('space')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 3 (Supernova)
-        </button>
-      </div>
-
-      <!-- Intro 4 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-laser"><i class="fa-solid fa-shield-halved"></i> MẪU 4 · BIOMETRIC</span>
-          <h3>Quét Laser Bảo Mật Quân Sự</h3>
-          <p>Vòng tròn radar HUD xoay 360°, tia laser xanh lục quét vân tay bảo mật xác nhận "VIP ACCESS 100%" đầy uy quyền.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('laser')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 4 (Laser Scan)
-        </button>
-      </div>
-
-      <!-- Intro 5 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-katana"><i class="fa-solid fa-wand-magic-sparkles"></i> MẪU 5 · SAMURAI</span>
-          <h3>Nhát Chém Samurai Katana Slash</h3>
-          <p>Vệt chém ánh kim xé toạc màn hình đêm đen trong chớp mắt, vết rạch phát quang mở ra logo NEXVIA VN cực kỳ ngầu.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('katana')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 5 (Katana Slash)
-        </button>
-      </div>
-
-      <!-- Intro 6 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-fire"><i class="fa-solid fa-fire-flame-curved"></i> MẪU 6 · PHOENIX</span>
-          <h3>Hỏa Thần Phượng Hoàng Lửa</h3>
-          <p>Cánh lửa đỏ rực bốc cháy hào hùng từ đáy màn hình tụ lại thành biểu tượng năng lượng hoàng kim bất diệt.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('fire')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 6 (Hellfire Phoenix)
-        </button>
-      </div>
-
-      <!-- Intro 7 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-warp"><i class="fa-solid fa-gauge-high"></i> MẪU 7 · HYPER WARP</span>
-          <h3>Hyper Speedwarp Vượt Tốc</h3>
-          <p>Đường hầm ánh sáng kéo dãn không thời gian như tàu du hành vũ trụ tốc độ ánh sáng lao vụt vào màn hình.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('warp')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 7 (Hyper Speedwarp)
-        </button>
-      </div>
-
-      <!-- Intro 8 -->
-      <div class="intro-card">
-        <div>
-          <span class="intro-card-badge badge-diamond"><i class="fa-solid fa-gem"></i> MẪU 8 · DIAMOND SHARDS</span>
-          <h3>Pha Lê Kim Cương Ghép Khối</h3>
-          <p>Hàng ngàn mảnh pha lê kim cương lấp lánh tụ hội ghép thành khối logo mạ vàng, xoay 3D phản quang sang trọng bậc nhất.</p>
-        </div>
-        <button type="button" class="btn-play-intro" onclick="playEffect('diamond')">
-          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 8 (Diamond Shards)
-        </button>
-      </div>
-
+    <!-- Intro Cards Grid -->
+    <div class="intro-grid" id="introGrid">
+      <!-- Injected by JavaScript -->
     </div>
   </div>
 
@@ -679,6 +589,339 @@
 
   <script>
     var currentDuration = 2; // default 2s
+    var currentCategory = 'all';
+    var logoSrc = 'assets/uploads/logos/aizen-logo.png';
+    var closeTimeout = null;
+
+    // 52 INTRO DATA DEFINITION
+    var introsData = [
+      // 👑 Group 1: Hoàng Gia & Ultra Luxury (1-8)
+      {
+        id: 1, type: 'royal_clash', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-crown',
+        title: 'Hoàng Gia Vàng Kim Va Chạm (Royal Clash)',
+        desc: 'Hai luồng năng lượng vàng kim va chạm nảy lửa, sóng chấn động tỏa sáng, logo NEXVIA VN xuất hiện lộng lẫy và zoom mở siêu êm.'
+      },
+      {
+        id: 2, type: 'crown_sovereign', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-crown',
+        title: 'Vương Miện Đế Vương Giáng Lâm (Imperial Crown)',
+        desc: 'Vương miện vàng đính hồng ngọc hạ từ đỉnh trời, hào quang rực rỡ phong tước tôn vinh thương hiệu bậc nhất.'
+      },
+      {
+        id: 3, type: 'gold_vault', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-vault',
+        title: 'Két Sắt Ngân Hàng Mưa Vàng (Gold Vault 9999)',
+        desc: 'Cánh cửa kho báu xoay bánh răng mở ra, từng cọc tiền đô la cùng thỏi vàng 9999 tuôn trào tỏa ánh kim lấp lánh.'
+      },
+      {
+        id: 4, type: 'liquid_gold', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-droplet',
+        title: 'Dòng Thủy Ngân Vàng Tráng Gương (Liquid Gold)',
+        desc: 'Sóng chất lỏng kim loại vàng champagne sóng sánh tráng gương phủ kín màn hình rồi gom lại thành khối logo 3D sắc nét.'
+      },
+      {
+        id: 5, type: 'golden_dragon', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-dragon',
+        title: 'Rồng Vàng Thần Long Giáng Trần (Shenron Dragon)',
+        desc: 'Vòng xoáy long khí hoàng kim uốn lượn xung quanh, phun ngọn lửa vàng sấm sét tạo thành ấn chú logo quyền uy.'
+      },
+      {
+        id: 6, type: 'champagne_burst', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-champagne-glasses',
+        title: 'Pháo Hoa Champagne Hoàng Gia (Champagne Burst)',
+        desc: 'Bọt champagne vàng ánh kim bắn vút lên bầu trời đêm, nổ tung thành muôn vàn tinh tú sao sáng bọc quanh logo.'
+      },
+      {
+        id: 7, type: 'gold_monogram', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-stamp',
+        title: 'Đúc Khuôn Vàng Đóng Dấu Hoàng Gia (Monogram Mint)',
+        desc: 'Dòng dung nham vàng kim chảy dọc theo rãnh chữ rồi nguội lại đóng thành khối vàng đặc nguyên khối dập nổi.'
+      },
+      {
+        id: 8, type: 'palace_gates', cat: 'royal', badgeClass: 'badge-royal', icon: 'fa-torii-gate',
+        title: 'Cổng Trời Cung Điện Hoàng Gia (Palace Gates)',
+        desc: 'Cánh cổng dát vàng nguy nga từ từ mở rộng đón tiếp VIP Member bước vào thế giới giải trí thượng lưu.'
+      },
+
+      // ⚡ Group 2: Cyberpunk & Matrix (9-16)
+      {
+        id: 9, type: 'matrix_rain', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-terminal',
+        title: 'Mưa Mã Code Xanh Matrix (Matrix Rain Code)',
+        desc: 'Các dòng mã nhị phân màu xanh lục rơi xối xả tốc độ ánh sáng, tụ hội mã hóa giải mã thành logo NEXVIA.'
+      },
+      {
+        id: 10, type: 'cyber_glitch', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-bolt',
+        title: 'Cyberpunk Sét Neon & Hologram (Cyber Glitch)',
+        desc: 'Lưới tọa độ quét Neon Cyan, tia sét chớp glitch 3D kỹ thuật số công nghệ cao, đậm chất game thủ Free Fire Pro.'
+      },
+      {
+        id: 11, type: 'laser_scan', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-fingerprint',
+        title: 'Quét Laser Bảo Mật Quân Sự (Biometric Scanner)',
+        desc: 'Vòng tròn radar HUD xoay 360°, tia laser xanh lục quét vân tay bảo mật xác nhận "VIP ACCESS 100%" đầy uy quyền.'
+      },
+      {
+        id: 12, type: 'quantum_core', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-atom',
+        title: 'Lõi Phản Ứng Năng Lượng Lượng Tử (Quantum Core)',
+        desc: 'Vòng gia tốc hạt photon quay cuồng tích tụ năng lượng phản vật chất nén cực hạn rồi bùng phát.'
+      },
+      {
+        id: 13, type: 'jarvis_hud', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-circle-nodes',
+        title: 'Giao Diện Trợ Lý JARVIS Ảo (JARVIS HUD)',
+        desc: 'Hàng loạt biểu đồ vector phân tích dữ liệu 3D xoay tròn xung quanh logo tựa trợ lý AI của Iron Man.'
+      },
+      {
+        id: 14, type: 'stargate_portal', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-ring',
+        title: 'Cổng Dịch Chuyển Không Gian (Stargate Portal)',
+        desc: 'Cổng tròn xoay cơ khí mở luồng hố giun không gian kéo người xem xuyên thẳng vào vũ trụ NEXVIA.'
+      },
+      {
+        id: 15, type: 'nanotech_swarm', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-microchip',
+        title: 'Bầy Robot Nano Lắp Ráp (Nanotech Swarm)',
+        desc: 'Hàng triệu con robot nano phát sáng li ti bay ùa vào kết nối từng pixel tạo thành logo nguyên khối.'
+      },
+      {
+        id: 16, type: 'synthwave_neon', cat: 'cyber', badgeClass: 'badge-cyber', icon: 'fa-sun',
+        title: 'Đại Lộ Neon Synthwave Hoàng Hôn (Sunset Grid)',
+        desc: 'Đường chân trời lưới neon 80s tím hồng, mặt trời kỹ thuật số hạ dần tôn vinh logo rực sáng.'
+      },
+
+      // 🎮 Group 3: Free Fire, Gaming & Esports (17-24)
+      {
+        id: 17, type: 'sniper_lock', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-crosshairs',
+        title: 'Ống Ngắm Khóa Mục Tiêu Đỏ (Sniper Aimbot Lock)',
+        desc: 'Tâm ngắm Sniper hồng ngoại khóa chặt mục tiêu "LOCK ON 100%", phát súng xuyên phá phóng thẳng vào trung tâm.'
+      },
+      {
+        id: 18, type: 'katana_slash', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-wand-magic-sparkles',
+        title: 'Nhát Chém Samurai Katana (Master Blade Slash)',
+        desc: 'Vệt chém ánh kim xé toạc màn hình đêm đen trong chớp mắt, vết rạch phát quang mở ra logo NEXVIA VN cực kỳ ngầu.'
+      },
+      {
+        id: 19, type: 'headshot_badge', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-skull',
+        title: 'Huy Hiệu Headshot Huyền Thoại (Free Fire Headshot)',
+        desc: 'Biểu tượng đầu lâu kim cương đỏ lóe lửa cùng âm vang Headshot giòn giã khẳng định đẳng cấp tay to số 1.'
+      },
+      {
+        id: 20, type: 'airdrop_mythic', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-box-open',
+        title: 'Thùng Thính Huyền Thoại Thả Khói Đỏ (Mythic Airdrop)',
+        desc: 'Chiếc hòm thính dù vàng hạ cánh, cột khói đỏ bay ngút trời bung mở bộ sưu tập tàng bảo đồ vô giá.'
+      },
+      {
+        id: 21, type: 'grandmaster_rank', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-shield-halved',
+        title: 'Huy Hiệu Thách Đấu Đại Kiện Tướng (Grandmaster)',
+        desc: 'Huy hiệu kim cương đỏ cánh đại bàng mở rộng, ngọc sáng nhấp nháy tôn vinh đỉnh cao danh vọng.'
+      },
+      {
+        id: 22, type: 'gun_reload', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-gun',
+        title: 'Lên Đạn Súng Laser Siêu Cấp (Cyber Cocking)',
+        desc: 'Tiếng cơ khí khớp nạp băng đạn nổ tia điện plasma giật nảy màn hình bắn phá rào cản.'
+      },
+      {
+        id: 23, type: 'level_up_max', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-angles-up',
+        title: 'Thăng Cấp Bá Chủ Server (Level UP 999)',
+        desc: 'Cột ánh sáng vàng óng bốc cao từ mặt đất, chữ LEVEL UP MAX VIP xoay chuyển uy phong.'
+      },
+      {
+        id: 24, type: 'esports_trophy', cat: 'esports', badgeClass: 'badge-esports', icon: 'fa-trophy',
+        title: 'Cúp Vàng Vô Địch Thế Giới (Champion Trophy)',
+        desc: 'Chiếc cúp vàng rực rỡ xoay tròn 3D phản chiếu ánh đèn sân vận động Esports bùng nổ vạn người hò reo.'
+      },
+
+      // 💥 Group 4: Anime, Mythic & Siêu Năng Lực (25-32)
+      {
+        id: 25, type: 'sharingan_eye', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-eye',
+        title: 'Nhãn Thuật Sharingan & Mangekyou (Tsukuyomi)',
+        desc: 'Vòng xoáy huyết nhãn Sharingan xoay tít biến ảo 3 phẩy thành Mangekyou ảo thuật mê hoặc mở ra cánh cửa shop.'
+      },
+      {
+        id: 26, type: 'domain_expansion', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-infinity',
+        title: 'Bành Trướng Lãnh Địa Vô Hạn (Infinite Void)',
+        desc: 'Không gian đảo ngược âm bản, triệu tỷ hạt ngân hà nén chặt vào đôi mắt vô hạ hạn của Gojo Satoru.'
+      },
+      {
+        id: 27, type: 'super_saiyan', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-burst',
+        title: 'Hào Quang Siêu Xayda Bùng Cháy (Super Saiyan Aura)',
+        desc: 'Khí công vàng rực bốc cháy dữ dội xung quanh logo, các tia sét điện xanh xẹt qua xé toạc mặt đất.'
+      },
+      {
+        id: 28, type: 'shadow_clone', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-clone',
+        title: 'Phân Thân Ảo Ảnh Nhẫn Thuật (Shadow Clone)',
+        desc: 'Khói trắng bùm một phát chia thành 8 bản sao logo xoay tròn rồi dung hợp thành một vị thần bất khả chiến bại.'
+      },
+      {
+        id: 29, type: 'god_of_war', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-hand-fist',
+        title: 'Chiến Thần Nộ Khí & Xiềng Xích (Spartan War)',
+        desc: 'Xiềng xích đỏ rực giật vỡ vụn dung nham, sóng nộ khí đỏ thẩm bùng nổ thể hiện sức mạnh áp đảo vô địch.'
+      },
+      {
+        id: 30, type: 'excalibur_sword', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-shield',
+        title: 'Thánh Kiếm Hoàng Gia Tỏa Sáng (Holy Excalibur)',
+        desc: 'Lưỡi kiếm ánh sáng vàng rực cắm xuống mặt đất, kết giới bảo hộ thánh quang lan tỏa khắp không gian.'
+      },
+      {
+        id: 31, type: 'void_reaper', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-ghost',
+        title: 'Lưỡi Hái Hắc Ám Nuốt Chửng (Dark Void Reaper)',
+        desc: 'Bóng đêm hắc ám u ám cuộn trào, vết chém bóng ma mở ra cánh cổng dẫn tới thế giới bí ẩn.'
+      },
+      {
+        id: 32, type: 'phoenix_fire', cat: 'anime', badgeClass: 'badge-anime', icon: 'fa-fire-flame-curved',
+        title: 'Phượng Hoàng Lửa Tái Sinh (Hellfire Phoenix)',
+        desc: 'Cánh lửa đỏ rực bốc cháy hào hùng từ đáy màn hình tụ lại thành biểu tượng năng lượng hoàng kim bất diệt.'
+      },
+
+      // 🔥 Group 5: Nguyên Tố & Tự Nhiên (33-40)
+      {
+        id: 33, type: 'thor_thunder', cat: 'element', badgeClass: 'badge-element', icon: 'fa-cloud-bolt',
+        title: 'Thiên Lôi Sấm Sét Thần Sấm (Thor Thunder Bolt)',
+        desc: 'Cột sét xanh trắng cực đại từ trời giáng xuống đánh nổ tung mặt đất, để lại logo bốc khói phát sáng uy lực.'
+      },
+      {
+        id: 34, type: 'ice_freeze', cat: 'element', badgeClass: 'badge-element', icon: 'fa-snowflake',
+        title: 'Băng Tuyết Hàn Băng Vỡ Kính (Sub-Zero Cryo)',
+        desc: 'Sương mù băng giá đóng băng toàn bộ màn hình, vết nứt pha lê rắc rắc rồi vỡ tung để lộ logo NEXVIA sắc lạnh.'
+      },
+      {
+        id: 35, type: 'tsunami_surge', cat: 'element', badgeClass: 'badge-element', icon: 'fa-water',
+        title: 'Sóng Thần Thủy Triều Biển Sâu (Tsunami Wave)',
+        desc: 'Cơn sóng biển phát quang xanh ngọc cuồn cuộn ập đến cuốn phăng bóng tối, để lại mặt nước phẳng lặng soi bóng logo.'
+      },
+      {
+        id: 36, type: 'volcano_magma', cat: 'element', badgeClass: 'badge-element', icon: 'fa-volcano',
+        title: 'Dung Nham Núi Lửa Phun Trào (Volcanic Magma)',
+        desc: 'Dòng dung nham đỏ quạch rực lửa trào dâng, tàn tro than hồng bay lượn tạo cảm giác nóng bỏng nghẹt thở.'
+      },
+      {
+        id: 37, type: 'tornado_vortex', cat: 'element', badgeClass: 'badge-element', icon: 'fa-wind',
+        title: 'Cơn Lốc Xoáy Bão Táp (Tornado Storm)',
+        desc: 'Cơn bão lốc xoáy khổng lồ quét qua cuốn phăng các chướng ngại vật rồi hạ tâm bão lộ diện thương hiệu.'
+      },
+      {
+        id: 38, type: 'solar_flare', cat: 'element', badgeClass: 'badge-element', icon: 'fa-sun',
+        title: 'Nhật Thực & Tia Bão Mặt Trời (Solar Flare)',
+        desc: 'Vầng nhật thực vàng chói lóe lên những chùm tia bức xạ mặt trời rực rỡ như vương miện của vũ trụ.'
+      },
+      {
+        id: 39, type: 'aurora_borealis', cat: 'element', badgeClass: 'badge-element', icon: 'fa-compass-drafting',
+        title: 'Cực Quang Bắc Cực Xanh Huyền Ảo (Aurora Light)',
+        desc: 'Dải ruy băng ánh sáng cực quang xanh ngọc bích uốn lượn mềm mại trên nền trời đêm đầy sao lãng mạn.'
+      },
+      {
+        id: 40, type: 'blackhole_nova', cat: 'element', badgeClass: 'badge-element', icon: 'fa-star',
+        title: 'Lỗ Đen Siêu Tân Tinh (Black Hole Supernova)',
+        desc: 'Hố đen vũ trụ hút trọn mọi ánh sáng xung quanh vào tâm điểm rồi giải phóng vụ nổ Big Bang rực rỡ vô tận.'
+      },
+
+      // 🏎️ Group 6: Tốc Độ, Heist & Casino (41-46)
+      {
+        id: 41, type: 'tokyo_drift', cat: 'speed', badgeClass: 'badge-speed', icon: 'fa-car-side',
+        title: 'Siêu Xe Drift Xịt Lửa Nitro (Tokyo Nitro Drift)',
+        desc: 'Vệt bánh xe cháy đường khói tím neon xẹt lửa, tiếng pô nổ gầm thét đẩy logo phóng vút về phía người xem.'
+      },
+      {
+        id: 42, type: 'casino_jackpot', cat: 'speed', badgeClass: 'badge-speed', icon: 'fa-coins',
+        title: 'Sòng Bài Casino Nổ JackPot (JackPot 777)',
+        desc: 'Bộ bài Tây Át Bích mạ vàng xoay 3D, tiền xu vàng tuôn rơi như mưa kèm tiếng chuông JackPot rộn ràng đẳng cấp.'
+      },
+      {
+        id: 43, type: 'diamond_shards', cat: 'speed', badgeClass: 'badge-speed', icon: 'fa-gem',
+        title: 'Pha Lê Kim Cương Ghép Khối (Diamond Centurion)',
+        desc: 'Hàng ngàn mảnh pha lê kim cương lấp lánh tụ hội ghép thành khối logo mạ vàng, xoay 3D phản quang sang trọng.'
+      },
+      {
+        id: 44, type: 'bank_heist', cat: 'speed', badgeClass: 'badge-speed', icon: 'fa-key',
+        title: 'Phi Vụ Đột Kích Két Sắt (Laser Grid Heist)',
+        desc: 'Hệ thống lưới laser đỏ quét qua căn hầm bí mật, cửa thép mở khóa 100% để lộ khối tài sản vô hạn.'
+      },
+      {
+        id: 45, type: 'jet_sonic', cat: 'speed', badgeClass: 'badge-speed', icon: 'fa-jet-fighter',
+        title: 'Tiêm Kích Siêu Thanh Phá Rào Cản (Sonic Boom)',
+        desc: 'Máy bay tiêm kích vút qua tạo sóng chấn động âm thanh phá vỡ tầng mây để lại vệt khói vàng rực.'
+      },
+      {
+        id: 46, type: 'rocket_launch', cat: 'speed', badgeClass: 'badge-speed', icon: 'fa-rocket',
+        title: 'Tên Lửa Đẩy Rực Lửa Bay Vào Không Gian (Launch)',
+        desc: 'Động cơ phản lực phun luồng lửa đẩy đưa phi thuyền bay vụt lên đỉnh cao mới không giới hạn.'
+      },
+
+      // 💎 Group 7: Minimalist, Apple Keynote & Modern (47-52)
+      {
+        id: 47, type: 'glass_prism', cat: 'minimal', badgeClass: 'badge-minimal', icon: 'fa-cubes',
+        title: 'Kính Mờ Tán Sắc Lăng Kính (Glassmorphism Prism)',
+        desc: 'Khối kính mờ cao cấp lướt nhẹ, tia sáng trắng khúc xạ tán sắc 7 màu cầu vồng tinh tế và thời thượng.'
+      },
+      {
+        id: 48, type: 'apple_keynote', cat: 'minimal', badgeClass: 'badge-minimal', icon: 'fa-apple',
+        title: 'Tối Giản Sang Trọng Phong Cách Apple (Smooth Keynote)',
+        desc: 'Phong cách tối giản thuần khiết, logo nổi lên nhẹ nhàng với độ mượt 120 FPS đẳng cấp quốc tế.'
+      },
+      {
+        id: 49, type: 'movie_reveal', cat: 'minimal', badgeClass: 'badge-minimal', icon: 'fa-film',
+        title: 'Mở Màn Phim Hollywood Điện Ảnh (Cinematic Reveal)',
+        desc: 'Chùm sáng rạp chiếu phim quét qua bóng tối kết hợp ống kính anamorphic flare tạo chiều sâu điện ảnh.'
+      },
+      {
+        id: 50, type: 'liquid_metal', cat: 'minimal', badgeClass: 'badge-minimal', icon: 'fa-circle-half-stroke',
+        title: 'Kim Loại Lỏng Từ Tính Hợp Nhất (Magnetic Fluid)',
+        desc: 'Các giọt thủy ngân từ tính lơ lửng hút dính lại với nhau tạo thành logo bóng bẩy liền mạch hoàn hảo.'
+      },
+      {
+        id: 51, type: 'kinetic_type', cat: 'minimal', badgeClass: 'badge-minimal', icon: 'fa-font',
+        title: 'Chữ Động Kinetic Typography (Modern Kinetic)',
+        desc: 'Các khối chữ cái xoay trượt nhịp nhàng chuẩn tỷ lệ vàng typographical design tạo dấu ấn hiện đại.'
+      },
+      {
+        id: 52, type: 'card_flip_3d', cat: 'minimal', badgeClass: 'badge-minimal', icon: 'fa-id-card',
+        title: 'Thẻ Bài VIP 3D Lật Đa Chiều (VIP Hologram Card)',
+        desc: 'Thẻ bài VIP đen mạ vàng viền phát quang lật 360 độ trong không gian ba chiều phản chiếu ánh sáng sang trọng.'
+      }
+    ];
+
+    function renderGrid(list) {
+      var grid = document.getElementById('introGrid');
+      if (!list || list.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#94a3b8;"><i class="fa-solid fa-magnifying-glass" style="font-size:32px;margin-bottom:12px;color:var(--gold);"></i><p>Không tìm thấy mẫu intro phù hợp. Hãy thử từ khóa khác!</p></div>';
+        document.getElementById('statsCount').innerText = 'Hiển thị 0 / ' + introsData.length + ' mẫu';
+        return;
+      }
+
+      var html = '';
+      list.forEach(function(item) {
+        html += 
+          '<div class="intro-card" data-cat="' + item.cat + '">' +
+            '<div>' +
+              '<span class="intro-card-badge ' + item.badgeClass + '"><i class="fa-solid ' + item.icon + '"></i> MẪU ' + item.id + '</span>' +
+              '<h3>' + item.title + '</h3>' +
+              '<p>' + item.desc + '</p>' +
+            '</div>' +
+            '<button type="button" class="btn-play-intro" onclick="playEffect(\'' + item.type + '\')">' +
+              '<i class="fa-solid fa-play"></i> Xem Thử Mẫu ' + item.id +
+            '</button>' +
+          '</div>';
+      });
+
+      grid.innerHTML = html;
+      document.getElementById('statsCount').innerText = 'Hiển thị ' + list.length + ' / ' + introsData.length + ' mẫu';
+    }
+
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      if (btn) btn.classList.add('active');
+
+      var searchVal = document.getElementById('introSearch').value.toLowerCase().trim();
+      applyFilters(cat, searchVal);
+    }
+
+    function handleSearch() {
+      var searchVal = document.getElementById('introSearch').value.toLowerCase().trim();
+      applyFilters(currentCategory, searchVal);
+    }
+
+    function applyFilters(cat, search) {
+      var filtered = introsData.filter(function(item) {
+        var matchCat = (cat === 'all' || item.cat === cat);
+        var matchSearch = !search || 
+          item.title.toLowerCase().includes(search) || 
+          item.desc.toLowerCase().includes(search) || 
+          ('mẫu ' + item.id).includes(search);
+        return matchCat && matchSearch;
+      });
+      renderGrid(filtered);
+    }
 
     function setDuration(dur, btn) {
       currentDuration = dur;
@@ -688,99 +931,508 @@
 
     function closeStage(e) {
       if (e) e.stopPropagation();
+      if (closeTimeout) clearTimeout(closeTimeout);
       var stage = document.getElementById('introStage');
       stage.style.display = 'none';
-      stage.innerHTML = '<button type="button" class="stage-close-btn" onclick="closeStage(event)"><i class="fa-solid fa-xmark"></i> Thoát Xem Thử</button><div id="stageContainer"></div>';
+      var container = document.getElementById('stageContainer');
+      if (container) container.innerHTML = '';
     }
 
     function playEffect(type) {
+      if (closeTimeout) clearTimeout(closeTimeout);
       var stage = document.getElementById('introStage');
       var container = document.getElementById('stageContainer');
       stage.style.display = 'flex';
       stage.style.setProperty('--dur', currentDuration + 's');
       container.innerHTML = '';
 
-      var logoSrc = 'assets/uploads/logos/aizen-logo.png';
-
-      if (type === 'royal') {
+      // RENDER SPECIFIC EFFECTS
+      if (type === 'royal_clash') {
         container.innerHTML = 
-          '<div class="fx-royal-beam-left"></div>' +
-          '<div class="fx-royal-beam-right"></div>' +
-          '<div class="fx-royal-shockwave"></div>' +
-          '<div class="fx-royal-content">' +
-            '<div class="fx-royal-logo-box"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+          '<div class="fx-royal-beam-l"></div>' +
+          '<div class="fx-royal-beam-r"></div>' +
+          '<div class="fx-royal-wave"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
             '<div class="stage-title" style="text-shadow: 0 0 24px rgba(245, 211, 114, 0.7);">NEXVIA VN</div>' +
             '<div class="stage-sub" style="color:var(--gold);">⚡ ROYAL LUXURY STORE ⚡</div>' +
           '</div>';
-      } 
-      else if (type === 'cyber') {
+      }
+      else if (type === 'crown_sovereign') {
         container.innerHTML = 
-          '<div class="fx-cyber-grid"></div>' +
-          '<div class="fx-cyber-content">' +
-            '<div class="fx-royal-logo-box" style="border-color:#38bdf8;box-shadow:0 0 35px #38bdf8;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+          '<div style="position:absolute;font-size:70px;color:#facc15;top:15%;animation:fxBeamIn ' + (currentDuration * 0.4) + 's ease forwards;filter:drop-shadow(0 0 30px #facc15);"><i class="fa-solid fa-crown"></i></div>' +
+          '<div class="fx-base-content" style="animation: fxDefaultZoom ' + currentDuration + 's ease forwards;">' +
+            '<div class="fx-base-box" style="border-color:#fde047;box-shadow:0 0 50px #eab308;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef08a;text-shadow:0 0 30px #ca8a04;">NEXVIA SOVEREIGN</div>' +
+            '<div class="stage-sub" style="color:#fde047;">👑 IMPERIAL ROYAL EDITION 👑</div>' +
+          '</div>';
+      }
+      else if (type === 'gold_vault') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#fef08a;box-shadow:0 0 45px #eab308;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef9c3;text-shadow:0 0 30px #ca8a04;">GOLD VAULT 9999</div>' +
+            '<div class="stage-sub" style="color:#facc15;">💰 BILLIONAIRE CLUB 💰</div>' +
+          '</div>';
+      }
+      else if (type === 'liquid_gold') {
+        container.innerHTML = 
+          '<div style="position:absolute;inset:0;background:radial-gradient(circle at center, rgba(245,211,114,0.3) 0%, transparent 70%);animation:fxWave ' + (currentDuration * 0.7) + 's ease forwards;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#fff2b2;box-shadow:0 0 40px #f5d372;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fff2b2;text-shadow:0 0 25px #f5d372;">NEXVIA LIQUID GOLD</div>' +
+            '<div class="stage-sub" style="color:#e5a93b;">✨ MIRROR CHROME EDITION ✨</div>' +
+          '</div>';
+      }
+      else if (type === 'golden_dragon') {
+        container.innerHTML = 
+          '<div class="fx-dragon-ring"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#facc15;box-shadow:0 0 45px #facc15;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef08a;text-shadow:0 0 25px #eab308;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#facc15;">🐉 SHENRON DRAGON BREATH 🐉</div>' +
+          '</div>';
+      }
+      else if (type === 'champagne_burst') {
+        container.innerHTML = 
+          '<div style="position:absolute;inset:0;background:radial-gradient(circle, rgba(253, 224, 71, 0.3) 0%, transparent 60%);animation:fxWave ' + (currentDuration * 0.6) + 's ease forwards;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#fde047;box-shadow:0 0 40px #facc15;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fffbeb;text-shadow:0 0 25px #facc15;">NEXVIA CELEBRATION</div>' +
+            '<div class="stage-sub" style="color:#fde047;">🥂 LUXURY CHAMPAGNE BURST 🥂</div>' +
+          '</div>';
+      }
+      else if (type === 'gold_monogram') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#fde68a;box-shadow:0 0 50px #d97706;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fffbeb;text-shadow:0 0 35px #b45309;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#f59e0b;">👑 PURE GOLD MONOGRAM 👑</div>' +
+          '</div>';
+      }
+      else if (type === 'palace_gates') {
+        container.innerHTML = 
+          '<div style="position:absolute;left:0;top:0;width:50%;height:100%;background:linear-gradient(90deg, #181206, #3b2a0c);animation:fxBeamIn ' + (currentDuration * 0.5) + 's ease forwards;"></div>' +
+          '<div style="position:absolute;right:0;top:0;width:50%;height:100%;background:linear-gradient(-90deg, #181206, #3b2a0c);animation:fxBeamIn ' + (currentDuration * 0.5) + 's ease forwards;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#facc15;box-shadow:0 0 45px #eab308;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef08a;text-shadow:0 0 25px #ca8a04;">OLYMPUS PALACE</div>' +
+            '<div class="stage-sub" style="color:#fde047;">🏛️ GATES OF HEAVEN OPEN 🏛️</div>' +
+          '</div>';
+      }
+      else if (type === 'matrix_rain') {
+        container.innerHTML = 
+          '<canvas id="matrixCanvas" class="fx-matrix-canvas"></canvas>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#22c55e;box-shadow:0 0 40px #22c55e;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#86efac;text-shadow:0 0 25px #22c55e;font-family:\'JetBrains Mono\',monospace;">> NEXVIA.VN_</div>' +
+            '<div class="stage-sub" style="color:#4ade80;">[ MATRIX DECRYPT COMPLETED ]</div>' +
+          '</div>';
+        initMatrixEffect();
+      }
+      else if (type === 'cyber_glitch') {
+        container.innerHTML = 
+          '<div style="position:absolute;inset:0;background:linear-gradient(rgba(56,189,248,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.1) 1px, transparent 1px);background-size:32px 32px;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#38bdf8;box-shadow:0 0 35px #38bdf8;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
             '<div class="stage-title" style="color:#38bdf8;text-shadow:0 0 20px #38bdf8;">NEXVIA.VN</div>' +
             '<div class="stage-sub" style="color:#f5d372;">// CYBER TACTICAL GAMING //</div>' +
           '</div>';
       }
-      else if (type === 'space') {
+      else if (type === 'laser_scan') {
         container.innerHTML = 
-          '<div class="fx-space-vortex"></div>' +
-          '<div class="fx-space-content">' +
-            '<div class="fx-royal-logo-box" style="border-color:#c084fc;box-shadow:0 0 40px #c084fc;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
-            '<div class="stage-title" style="text-shadow:0 0 30px #c084fc;">NEXVIA VN</div>' +
-            '<div class="stage-sub" style="color:#38bdf8;">★ INFINITE HORIZON ★</div>' +
-          '</div>';
-      }
-      else if (type === 'laser') {
-        container.innerHTML = 
-          '<div class="fx-laser-ring"></div>' +
-          '<div class="fx-laser-bar"></div>' +
-          '<div class="fx-laser-content">' +
-            '<div class="fx-royal-logo-box" style="border-color:#34d399;box-shadow:0 0 30px #34d399;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+          '<div class="fx-laser-ring-el"></div>' +
+          '<div class="fx-laser-bar-el"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#34d399;box-shadow:0 0 30px #34d399;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
             '<div class="stage-title" style="color:#34d399;text-shadow:0 0 20px #34d399;">NEXVIA SECURITY</div>' +
             '<div class="stage-sub" style="color:#ffffff;">[ VIP ACCESS GRANTED 100% ]</div>' +
           '</div>';
       }
-      else if (type === 'katana') {
+      else if (type === 'quantum_core') {
         container.innerHTML = 
-          '<div class="fx-slash-line"></div>' +
-          '<div class="fx-royal-content">' +
-            '<div class="fx-royal-logo-box" style="border-color:#fb923c;box-shadow:0 0 35px #fb923c;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+          '<div style="position:absolute;width:280px;height:280px;border-radius:50%;border:2px dashed #a855f7;animation:fxSpin 2s linear infinite;box-shadow:0 0 40px #a855f7;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#c084fc;box-shadow:0 0 45px #a855f7;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#f3e8ff;text-shadow:0 0 25px #a855f7;">QUANTUM CORE</div>' +
+            '<div class="stage-sub" style="color:#c084fc;">⚛️ FUSION OVERDRIVE ⚛️</div>' +
+          '</div>';
+      }
+      else if (type === 'jarvis_hud') {
+        container.innerHTML = 
+          '<div style="position:absolute;width:300px;height:300px;border:1px solid #38bdf8;border-radius:50%;box-shadow:inset 0 0 30px #0284c7;animation:fxSpin 4s linear infinite;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#38bdf8;box-shadow:0 0 35px #0284c7;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#bae6fd;text-shadow:0 0 20px #0284c7;">J.A.R.V.I.S ONLINE</div>' +
+            '<div class="stage-sub" style="color:#38bdf8;">PROTOCOL: NEXVIA ACTIVATED</div>' +
+          '</div>';
+      }
+      else if (type === 'stargate_portal') {
+        container.innerHTML = 
+          '<div style="position:absolute;width:320px;height:320px;border-radius:50%;border:4px double #818cf8;box-shadow:0 0 60px #4f46e5;animation:fxSpin 1.5s linear infinite;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#818cf8;box-shadow:0 0 40px #4f46e5;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#e0e7ff;text-shadow:0 0 25px #4f46e5;">STARGATE HORIZON</div>' +
+            '<div class="stage-sub" style="color:#a5b4fc;">🌀 WARP DIMENSION JUMP 🌀</div>' +
+          '</div>';
+      }
+      else if (type === 'nanotech_swarm') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#2dd4bf;box-shadow:0 0 40px #14b8a6;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#ccfbf1;text-shadow:0 0 25px #0d9488;">NANOTECH PROTOCOL</div>' +
+            '<div class="stage-sub" style="color:#2dd4bf;">🦾 100% RECONSTRUCTED 🦾</div>' +
+          '</div>';
+      }
+      else if (type === 'synthwave_neon') {
+        container.innerHTML = 
+          '<div style="position:absolute;bottom:0;width:100%;height:50%;background:linear-gradient(transparent, rgba(236,72,153,0.3));clip-path:polygon(0 100%, 100% 100%, 80% 0, 20% 0);"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f472b6;box-shadow:0 0 45px #db2777;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fdf2f8;text-shadow:0 0 25px #db2777;">RETRO SYNTHWAVE</div>' +
+            '<div class="stage-sub" style="color:#f472b6;">🌴 1984 NEON SUNSET 🌴</div>' +
+          '</div>';
+      }
+      else if (type === 'sniper_lock') {
+        container.innerHTML = 
+          '<div class="fx-sniper-crosshair"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#ef4444;box-shadow:0 0 35px #ef4444;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#f87171;text-shadow:0 0 20px #ef4444;">TARGET LOCKED</div>' +
+            '<div class="stage-sub" style="color:#ffffff;">🎯 AIMBOT 99.9% HEADSHOT 🎯</div>' +
+          '</div>';
+      }
+      else if (type === 'katana_slash') {
+        container.innerHTML = 
+          '<div class="fx-katana-line-el"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#fb923c;box-shadow:0 0 35px #fb923c;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
             '<div class="stage-title" style="text-shadow:0 0 24px #fb923c;">NEXVIA VN</div>' +
             '<div class="stage-sub" style="color:#f5d372;">⚔️ MASTER BLADE EDITION ⚔️</div>' +
           '</div>';
       }
-      else if (type === 'fire') {
+      else if (type === 'headshot_badge') {
         container.innerHTML = 
-          '<div class="fx-fire-content">' +
-            '<div class="fx-royal-logo-box" style="border-color:#ef4444;box-shadow:0 0 45px #ef4444;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+          '<div style="position:absolute;font-size:75px;color:#ef4444;animation:fxSniperLock 0.6s ease forwards;filter:drop-shadow(0 0 30px #ef4444);"><i class="fa-solid fa-skull"></i></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#ef4444;box-shadow:0 0 45px #dc2626;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fca5a5;text-shadow:0 0 30px #b91c1c;">HEADSHOT VIP</div>' +
+            '<div class="stage-sub" style="color:#f87171;">💀 FREE FIRE LEGENDARY KILL 💀</div>' +
+          '</div>';
+      }
+      else if (type === 'airdrop_mythic') {
+        container.innerHTML = 
+          '<div style="position:absolute;top:10%;font-size:60px;color:#ef4444;animation:fxBeamIn ' + (currentDuration * 0.4) + 's ease forwards;"><i class="fa-solid fa-parachute-box"></i></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f5d372;box-shadow:0 0 40px #f5d372;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fff2b2;text-shadow:0 0 25px #f5d372;">MYTHIC AIRDROP</div>' +
+            '<div class="stage-sub" style="color:#ef4444;">📦 100% CUNG CẤP VŨ KHÍ VIP 📦</div>' +
+          '</div>';
+      }
+      else if (type === 'grandmaster_rank') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#ef4444;box-shadow:0 0 50px #dc2626;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fecaca;text-shadow:0 0 35px #dc2626;">GRANDMASTER</div>' +
+            '<div class="stage-sub" style="color:#fde047;">🦅 THÁCH ĐẤU ĐẠI KIỆN TƯỚNG 🦅</div>' +
+          '</div>';
+      }
+      else if (type === 'gun_reload') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#38bdf8;box-shadow:0 0 40px #0284c7;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#e0f2fe;text-shadow:0 0 25px #0284c7;">LOCKED & LOADED</div>' +
+            '<div class="stage-sub" style="color:#38bdf8;">🔫 READY FOR COMBAT 100% 🔫</div>' +
+          '</div>';
+      }
+      else if (type === 'level_up_max') {
+        container.innerHTML = 
+          '<div style="position:absolute;width:300px;height:100%;background:linear-gradient(transparent, rgba(234,179,8,0.4), transparent);animation:fxScan 1s ease infinite;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#facc15;box-shadow:0 0 45px #eab308;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef08a;text-shadow:0 0 30px #ca8a04;">LEVEL UP MAX 999</div>' +
+            '<div class="stage-sub" style="color:#fde047;">⭐ BÁ CHỦ MỌI SERVER ⭐</div>' +
+          '</div>';
+      }
+      else if (type === 'esports_trophy') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#facc15;box-shadow:0 0 50px #eab308;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef9c3;text-shadow:0 0 35px #ca8a04;">CHAMPION 2026</div>' +
+            '<div class="stage-sub" style="color:#facc15;">🏆 VÔ ĐỊCH THẾ GIỚI ESPORTS 🏆</div>' +
+          '</div>';
+      }
+      else if (type === 'sharingan_eye') {
+        container.innerHTML = 
+          '<div class="fx-sharingan-eye"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#ef4444;box-shadow:0 0 40px #ef4444;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fecaca;text-shadow:0 0 25px #dc2626;">MANGEKYOU</div>' +
+            '<div class="stage-sub" style="color:#f87171;">👁️ TSUKUYOMI GENJUTSU 👁️</div>' +
+          '</div>';
+      }
+      else if (type === 'domain_expansion') {
+        container.innerHTML = 
+          '<div class="fx-domain-space"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#60a5fa;box-shadow:0 0 50px #3b82f6;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#eff6ff;text-shadow:0 0 30px #2563eb;">BÀNH TRƯỚNG LÃNH ĐỊA</div>' +
+            '<div class="stage-sub" style="color:#93c5fd;">🌌 VÔ LƯỢNG KHÔNG XỨ 🌌</div>' +
+          '</div>';
+      }
+      else if (type === 'super_saiyan') {
+        container.innerHTML = 
+          '<div class="fx-saiyan-aura"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#facc15;box-shadow:0 0 50px #eab308;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef08a;text-shadow:0 0 30px #ca8a04;">SUPER SAIYAN GOD</div>' +
+            '<div class="stage-sub" style="color:#facc15;">🔥 BÙNG NỔ NĂNG LƯỢNG VÀNG 🔥</div>' +
+          '</div>';
+      }
+      else if (type === 'shadow_clone') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#e2e8f0;box-shadow:0 0 40px #94a3b8;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#f8fafc;text-shadow:0 0 25px #cbd5e1;">ẢO ẢNH PHÂN THÂN</div>' +
+            '<div class="stage-sub" style="color:#e2e8f0;">⚡ KAGE BUNSHIN NO JUTSU ⚡</div>' +
+          '</div>';
+      }
+      else if (type === 'god_of_war') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#ef4444;box-shadow:0 0 45px #dc2626;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fca5a5;text-shadow:0 0 30px #b91c1c;">NEXVIA RAGE</div>' +
+            '<div class="stage-sub" style="color:#f87171;">⚔️ SPARTAN GOD OF WAR ⚔️</div>' +
+          '</div>';
+      }
+      else if (type === 'excalibur_sword') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#fde047;box-shadow:0 0 45px #ca8a04;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef9c3;text-shadow:0 0 30px #eab308;">HOLY EXCALIBUR</div>' +
+            '<div class="stage-sub" style="color:#fde047;">✨ THÁNH KIẾM QUYỀN NĂNG ✨</div>' +
+          '</div>';
+      }
+      else if (type === 'void_reaper') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#9333ea;box-shadow:0 0 45px #7e22ce;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#f3e8ff;text-shadow:0 0 30px #9333ea;">VOID REAPER</div>' +
+            '<div class="stage-sub" style="color:#c084fc;">☠️ TỬ THẦN BÓNG ĐÊM ☠️</div>' +
+          '</div>';
+      }
+      else if (type === 'phoenix_fire') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#ef4444;box-shadow:0 0 45px #ef4444;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
             '<div class="stage-title" style="color:#fca5a5;text-shadow:0 0 28px #ef4444;">NEXVIA VN</div>' +
             '<div class="stage-sub" style="color:#fbbf24;">🔥 HELLFIRE PHOENIX GAMING 🔥</div>' +
           '</div>';
       }
-      else if (type === 'warp') {
+      else if (type === 'thor_thunder') {
         container.innerHTML = 
-          '<div class="fx-warp-tunnel"></div>' +
-          '<div class="fx-warp-content">' +
-            '<div class="fx-royal-logo-box" style="border-color:#60a5fa;box-shadow:0 0 35px #60a5fa;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
-            '<div class="stage-title" style="text-shadow:0 0 25px #60a5fa;">NEXVIA VN</div>' +
-            '<div class="stage-sub" style="color:#93c5fd;">⚡ HYPERSPEED 120 FPS ⚡</div>' +
+          '<div class="fx-thor-bolt"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#93c5fd;box-shadow:0 0 45px #60a5fa;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#dbeafe;text-shadow:0 0 30px #3b82f6;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#93c5fd;">⚡ THOR THUNDER GOD ⚡</div>' +
           '</div>';
       }
-      else if (type === 'diamond') {
+      else if (type === 'ice_freeze') {
         container.innerHTML = 
-          '<div class="fx-diamond-content">' +
-            '<div class="fx-royal-logo-box" style="border-color:#f472b6;box-shadow:0 0 40px #f472b6;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#7dd3fc;box-shadow:0 0 40px #7dd3fc;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#e0f2fe;text-shadow:0 0 25px #38bdf8;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#7dd3fc;">❄️ SUB-ZERO CRYO SHATTER ❄️</div>' +
+          '</div>';
+      }
+      else if (type === 'tsunami_surge') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#38bdf8;box-shadow:0 0 40px #0284c7;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#e0f2fe;text-shadow:0 0 25px #0284c7;">NEXVIA TSUNAMI</div>' +
+            '<div class="stage-sub" style="color:#38bdf8;">🌊 OCEAN NEON SURGE 🌊</div>' +
+          '</div>';
+      }
+      else if (type === 'volcano_magma') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f97316;box-shadow:0 0 45px #ea580c;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#ffedd5;text-shadow:0 0 30px #ea580c;">VOLCANO MAGMA</div>' +
+            '<div class="stage-sub" style="color:#fb923c;">🌋 DUNG NHAM PHUN TRÀO 🌋</div>' +
+          '</div>';
+      }
+      else if (type === 'tornado_vortex') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#94a3b8;box-shadow:0 0 40px #64748b;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#f1f5f9;text-shadow:0 0 25px #64748b;">TORNADO STORM</div>' +
+            '<div class="stage-sub" style="color:#cbd5e1;">🌪️ LỐC XOÁY CUỒN CUỘN 🌪️</div>' +
+          '</div>';
+      }
+      else if (type === 'solar_flare') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f59e0b;box-shadow:0 0 50px #d97706;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fffbeb;text-shadow:0 0 30px #b45309;">SOLAR FLARE</div>' +
+            '<div class="stage-sub" style="color:#fbbf24;">☀️ NHẬT THỰC TOÀN PHẦN ☀️</div>' +
+          '</div>';
+      }
+      else if (type === 'aurora_borealis') {
+        container.innerHTML = 
+          '<div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(52,211,153,0.3), rgba(56,189,248,0.2), transparent);animation:fxWave ' + (currentDuration * 0.8) + 's ease forwards;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#34d399;box-shadow:0 0 40px #059669;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#d1fae5;text-shadow:0 0 25px #059669;">AURORA BOREALIS</div>' +
+            '<div class="stage-sub" style="color:#34d399;">🌌 CỰC QUANG BẮC CỰC 🌌</div>' +
+          '</div>';
+      }
+      else if (type === 'blackhole_nova') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#c084fc;box-shadow:0 0 45px #9333ea;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#faf5ff;text-shadow:0 0 30px #7e22ce;">SUPERNOVA NOVA</div>' +
+            '<div class="stage-sub" style="color:#c084fc;">★ BÙNG NỔ VŨ TRỤ TINH CẦU ★</div>' +
+          '</div>';
+      }
+      else if (type === 'tokyo_drift') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f0abfc;box-shadow:0 0 40px #d946ef;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fae8ff;text-shadow:0 0 25px #c026d3;">NEXVIA RACING</div>' +
+            '<div class="stage-sub" style="color:#f0abfc;">🏎️ TOKYO DRIFT NITRO 🏎️</div>' +
+          '</div>';
+      }
+      else if (type === 'casino_jackpot') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#fde047;box-shadow:0 0 45px #facc15;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fef08a;text-shadow:0 0 30px #eab308;">🎰 JACKPOT 777 🎰</div>' +
+            '<div class="stage-sub" style="color:#fde047;">👑 CASINO ROYAL VIP 👑</div>' +
+          '</div>';
+      }
+      else if (type === 'diamond_shards') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f472b6;box-shadow:0 0 40px #f472b6;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
             '<div class="stage-title" style="color:#fdf4ff;text-shadow:0 0 30px #f472b6;">NEXVIA VN</div>' +
             '<div class="stage-sub" style="color:#f5d372;">💎 DIAMOND CENTURION 💎</div>' +
           '</div>';
       }
+      else if (type === 'bank_heist') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#ef4444;box-shadow:0 0 40px #b91c1c;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fee2e2;text-shadow:0 0 25px #dc2626;">BANK HEIST 100%</div>' +
+            '<div class="stage-sub" style="color:#ef4444;">🚨 VAULT ACCESS BREACHED 🚨</div>' +
+          '</div>';
+      }
+      else if (type === 'jet_sonic') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#60a5fa;box-shadow:0 0 40px #2563eb;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#eff6ff;text-shadow:0 0 25px #2563eb;">MACH 3.0 SONIC</div>' +
+            '<div class="stage-sub" style="color:#93c5fd;">✈️ JET FIGHTER SPEED ✈️</div>' +
+          '</div>';
+      }
+      else if (type === 'rocket_launch') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f97316;box-shadow:0 0 45px #c2410c;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fff7ed;text-shadow:0 0 30px #ea580c;">TO THE MOON</div>' +
+            '<div class="stage-sub" style="color:#fb923c;">🚀 ROCKET BLASTOFF 🚀</div>' +
+          '</div>';
+      }
+      else if (type === 'glass_prism') {
+        container.innerHTML = 
+          '<div style="position:absolute;width:320px;height:240px;background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.25);border-radius:24px;box-shadow:0 20px 50px rgba(0,0,0,0.5);"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:rgba(255,255,255,0.4);box-shadow:0 0 35px rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#ffffff;text-shadow:0 0 20px rgba(255,255,255,0.5);">NEXVIA PRISM</div>' +
+            '<div class="stage-sub" style="color:#e2e8f0;">💎 GLASSMORPHISM LUXE 💎</div>' +
+          '</div>';
+      }
+      else if (type === 'apple_keynote') {
+        container.innerHTML = 
+          '<div class="fx-base-content" style="animation:fxDefaultZoom ' + currentDuration + 's cubic-bezier(0.16, 1, 0.3, 1) forwards;">' +
+            '<div class="fx-base-box" style="border-color:#ffffff;box-shadow:0 0 30px rgba(255,255,255,0.4);background:#000;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#ffffff;font-weight:700;letter-spacing:0px;">Nexvia.</div>' +
+            '<div class="stage-sub" style="color:#94a3b8;letter-spacing:1px;font-weight:500;">Pro. Beyond.</div>' +
+          '</div>';
+      }
+      else if (type === 'movie_reveal') {
+        container.innerHTML = 
+          '<div style="position:absolute;width:100%;height:4px;background:#fff;box-shadow:0 0 40px #38bdf8;animation:fxSlash ' + (currentDuration * 0.4) + 's ease forwards;"></div>' +
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#e2e8f0;box-shadow:0 0 40px rgba(255,255,255,0.5);"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="font-family:\'Cinzel\',serif;letter-spacing:3px;color:#fff;">N E X V I A</div>' +
+            '<div class="stage-sub" style="color:var(--gold);letter-spacing:4px;">A CINEMATIC EXPERIENCE</div>' +
+          '</div>';
+      }
+      else if (type === 'liquid_metal') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#cbd5e1;box-shadow:0 0 40px #94a3b8;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#f8fafc;text-shadow:0 0 25px #cbd5e1;">LIQUID TITANIUM</div>' +
+            '<div class="stage-sub" style="color:#cbd5e1;">🧲 MAGNETIC FLUID MERGE 🧲</div>' +
+          '</div>';
+      }
+      else if (type === 'kinetic_type') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:var(--gold);box-shadow:0 0 40px var(--gold);"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="font-family:\'Space Grotesk\',sans-serif;font-weight:900;color:var(--gold);">NEXVIA // 2026</div>' +
+            '<div class="stage-sub" style="color:#fff;">KINETIC MOTION GRAPHIC</div>' +
+          '</div>';
+      }
+      else if (type === 'card_flip_3d') {
+        container.innerHTML = 
+          '<div class="fx-base-content">' +
+            '<div class="fx-base-box" style="border-color:#f5d372;box-shadow:0 0 45px #f5d372;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fff2b2;text-shadow:0 0 25px #f5d372;">VIP BLACK CARD</div>' +
+            '<div class="stage-sub" style="color:var(--gold);">💳 3D HOLOGRAPHIC PASS 💳</div>' +
+          '</div>';
+      }
 
-      // Tự động đóng sau đúng thời gian đã chọn
-      setTimeout(function() {
+      closeTimeout = setTimeout(function() {
         closeStage();
       }, currentDuration * 1000 + 300);
     }
+
+    // Matrix Rain Effect Helper
+    function initMatrixEffect() {
+      var canvas = document.getElementById('matrixCanvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var letters = '01NEXVIAGAMINGVIP9999FF100%';
+      letters = letters.split('');
+      var fontSize = 14;
+      var columns = canvas.width / fontSize;
+      var drops = [];
+      for (var i = 0; i < columns; i++) drops[i] = 1;
+
+      var matrixInterval = setInterval(function() {
+        if (!document.getElementById('matrixCanvas')) {
+          clearInterval(matrixInterval);
+          return;
+        }
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#22c55e';
+        ctx.font = fontSize + 'px monospace';
+        for (var i = 0; i < drops.length; i++) {
+          var text = letters[Math.floor(Math.random() * letters.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }, 33);
+    }
+
+    // Init Render
+    renderGrid(introsData);
   </script>
 </body>
 </html>
