@@ -369,9 +369,9 @@ var PRODUCTS = [
     priceMin: 20000,
     priceMax: 20000,
     oldPrice: 50000,
-    image: 'assets/uploads/logos/aizen-logo.png',
+    image: 'assets/uploads/products/nhom-file-tien.jpg',
     images: [
-      { src: 'assets/uploads/logos/aizen-logo.png', label: 'Nhóm File Tiền VIP', title: '1 Slot Nhóm File Tiền (Nexvia VIP)' }
+      { src: 'assets/uploads/products/nhom-file-tien.jpg', label: 'Nhóm File Tiền VIP', title: '1 Slot Nhóm File Tiền (Nexvia VIP)' }
     ],
     plans: [
       {
