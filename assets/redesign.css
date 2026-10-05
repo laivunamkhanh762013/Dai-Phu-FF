@@ -2370,3 +2370,180 @@ body.storefront .product:hover {
   line-height: 1.45 !important;
 }
 
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   👑 ULTRA-LUXURY ROYAL GOLD & OBSIDIAN EDITION (NEXVIA VN)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Luxury Gold Glow Selection */
+::selection {
+  background: #f5d372 !important;
+  color: #120a00 !important;
+}
+
+/* Luxury Announcement Bar */
+.announcement-bar {
+  background: linear-gradient(90deg, #150f02 0%, #2c1f05 50%, #150f02 100%) !important;
+  color: #fce08b !important;
+  border-bottom: 1px solid rgba(245, 211, 114, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 211, 114, 0.15) !important;
+}
+
+/* Topbar Luxury Crystal Glass */
+.topbar {
+  background: rgba(8, 10, 16, 0.88) !important;
+  border-bottom: 1px solid rgba(245, 211, 114, 0.18) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+.brand-mark {
+  border: 1px solid rgba(245, 211, 114, 0.4) !important;
+  box-shadow: 0 0 16px rgba(245, 211, 114, 0.25) !important;
+}
+
+/* Luxury Hero Banner */
+.store-hero {
+  background: linear-gradient(165deg, rgba(18, 22, 34, 0.95) 0%, rgba(8, 10, 16, 0.98) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.22) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 243, 196, 0.15), 0 0 40px rgba(245, 211, 114, 0.08) !important;
+}
+
+.hero-brand-glitch {
+  color: #ffffff !important;
+  text-shadow: 0 0 20px rgba(245, 211, 114, 0.5) !important;
+  letter-spacing: 2px !important;
+}
+
+.hero-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #fff1b8 30%, #f6d365 60%, #e5a93b 85%, #b8860b 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 12px rgba(229, 169, 59, 0.35));
+}
+
+/* Luxury Feature Badges in Hero */
+.hero-feature-badges .hfb-item {
+  background: rgba(18, 22, 34, 0.8) !important;
+  border: 1px solid rgba(245, 211, 114, 0.25) !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+.hero-feature-badges .hfb-item.hfb-special {
+  background: linear-gradient(135deg, rgba(245, 211, 114, 0.18) 0%, rgba(229, 169, 59, 0.25) 100%) !important;
+  border-color: rgba(245, 211, 114, 0.5) !important;
+  color: #fce08b !important;
+  box-shadow: 0 0 18px rgba(245, 211, 114, 0.2) !important;
+}
+
+/* VIP Centurion Card */
+.wallet-summary {
+  background: linear-gradient(160deg, rgba(22, 27, 42, 0.9) 0%, rgba(10, 13, 20, 0.96) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.28) !important;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 243, 196, 0.2), 0 0 25px rgba(245, 211, 114, 0.1) !important;
+}
+
+.wallet-status-tag {
+  background: linear-gradient(135deg, rgba(245, 211, 114, 0.2) 0%, rgba(229, 169, 59, 0.35) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.5) !important;
+  color: #fce08b !important;
+  font-weight: 800 !important;
+  letter-spacing: .5px !important;
+}
+
+.wallet-border-beam {
+  background: linear-gradient(90deg, transparent, #38bdf8, #f5d372, #e5a93b, #ffd700, transparent) !important;
+  box-shadow: 0 0 18px rgba(245, 211, 114, 0.7) !important;
+}
+
+/* Luxury Product Cards */
+.product {
+  background: linear-gradient(165deg, rgba(18, 22, 34, 0.88) 0%, rgba(10, 13, 20, 0.95) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.18) !important;
+  border-radius: var(--rd-r) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.product:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(245, 211, 114, 0.55) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7), 0 0 28px rgba(245, 211, 114, 0.25), inset 0 1px 0 rgba(255, 243, 196, 0.3) !important;
+}
+
+.product-price {
+  color: #fce08b !important;
+  font-family: var(--rd-font-display) !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 12px rgba(245, 211, 114, 0.35) !important;
+}
+
+/* Luxury Filter Buttons */
+.filter-btn {
+  background: rgba(18, 22, 34, 0.7) !important;
+  border: 1px solid rgba(245, 211, 114, 0.18) !important;
+  color: #94a3b8 !important;
+}
+
+.filter-btn:hover {
+  color: #f8fafc !important;
+  border-color: rgba(245, 211, 114, 0.4) !important;
+  background: rgba(245, 211, 114, 0.08) !important;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #fff2b2 0%, #f5d372 35%, #e5a93b 80%, #d4af37 100%) !important;
+  border-color: #f5d372 !important;
+  color: #140d02 !important;
+  box-shadow: 0 4px 16px rgba(229, 169, 59, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+/* Feature Cards Ultra-Luxury */
+.feature-card {
+  background: linear-gradient(165deg, rgba(18, 22, 34, 0.85) 0%, rgba(10, 13, 20, 0.95) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.2) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 243, 196, 0.08) !important;
+}
+
+.feature-card:hover {
+  border-color: rgba(245, 211, 114, 0.5) !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(245, 211, 114, 0.2) !important;
+}
+
+.feature-card .fc-icon {
+  background: linear-gradient(135deg, rgba(245, 211, 114, 0.15) 0%, rgba(229, 169, 59, 0.3) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.4) !important;
+  color: #fce08b !important;
+  box-shadow: 0 0 16px rgba(245, 211, 114, 0.25) !important;
+}
+
+/* Luxury Feedback Cards */
+.fb-item {
+  background: linear-gradient(165deg, rgba(18, 22, 34, 0.8) 0%, rgba(10, 13, 20, 0.92) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.16) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+.fb-item:hover {
+  border-color: rgba(245, 211, 114, 0.4) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 211, 114, 0.15) !important;
+}
+
+.fb-stars-row i, .fb-stars i {
+  color: #f5d372 !important;
+  text-shadow: 0 0 8px rgba(245, 211, 114, 0.5);
+}
+
+/* Footer Luxury */
+.footer {
+  border-top: 1px solid rgba(245, 211, 114, 0.18) !important;
+  background: rgba(7, 8, 13, 0.95) !important;
+}
+
+.footer-logo {
+  border: 1px solid rgba(245, 211, 114, 0.35) !important;
+  box-shadow: 0 0 14px rgba(245, 211, 114, 0.2) !important;
+  border-radius: 12px !important;
+}
