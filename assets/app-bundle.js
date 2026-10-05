@@ -67,10 +67,10 @@ function playIntroAnimation() {
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
         '<div class="intro-logo-aura"></div>' +
-        '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo Shop Đại Phú FF" class="dp-intro-logo-img">' +
+        '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo NEXVIA VN" class="dp-intro-logo-img">' +
       '</div>' +
       '<div class="dp-intro-brand-box" id="dpIntroBrandBox">' +
-        '<div class="dp-intro-title">SHOP ĐẠI PHÚ FF</div>' +
+        '<div class="dp-intro-title">NEXVIA VN</div>' +
         '<div class="dp-intro-subline">⚡ GAMING STORE • MOD &amp; UTILITIES ⚡</div>' +
       '</div>' +
     '</div>';
@@ -148,7 +148,7 @@ function renderMaintenanceScreen(msg, until) {
         '<span class="maint-radar-dot"></span>' +
         '<span>HỆ THỐNG ĐANG BẢO TRÌ &amp; NÂNG CẤP</span>' +
       '</div>' +
-      '<h2 class="maint-title">SHOP ĐẠI PHÚ FF</h2>' +
+      '<h2 class="maint-title">NEXVIA VN</h2>' +
       '<div class="maint-subtitle">HỆ THỐNG MÁY CHỦ ĐANG ĐƯỢC BẢO DƯỠNG ĐỊNH KỲ</div>' +
       '<p class="maint-desc">' + escapeHTML(msg || 'Hệ thống đang tiến hành nâng cấp & bảo dưỡng máy chủ để tối ưu trải nghiệm và cập nhật tính năng mới. Chức năng đặt hàng trực tuyến tạm thời gián đoạn.') + '</p>' +
       (until ? 
@@ -815,7 +815,7 @@ var PRODUCTS = [
         price: 450000,
         action: 'Bản quyền 1 tháng đầy đủ tính năng cao cấp của dòng Migul.',
         fix: 'Bảo vệ tài khoản liên tục với hệ thống cập nhật bypass tự động.',
-        pros: 'Được hỗ trợ kỹ thuật trực tiếp 1:1 từ Admin Shop Đại Phú FF.',
+        pros: 'Được hỗ trợ kỹ thuật trực tiếp 1:1 từ Admin Phú bé Ngàn (NEXVIA VN).',
         note: 'Hỗ trợ các thiết bị iOS.'
       }
     ]

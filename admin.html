@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>BẢNG QUẢN TRỊ ADMIN · SHOP ĐẠI PHÚ FF</title>
+  <title>BẢNG QUẢN TRỊ ADMIN · NEXVIA VN</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="assets/uploads/logos/aizen-logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -278,7 +278,7 @@
   <div class="login-card">
     <div class="login-badge"><i class="fa-solid fa-shield-halved"></i> Strix Security Gateway</div>
     <h2 class="login-title">Đăng Nhập Quản Trị Viên</h2>
-    <p class="login-sub">Cổng kiểm tra & đối soát đơn hàng Shop Đại Phú FF</p>
+    <p class="login-sub">Cổng kiểm tra & đối soát đơn hàng NEXVIA VN</p>
     <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
       <div class="login-input-wrap">
         <label class="login-label">Mật khẩu Quản Trị (Admin Pass)</label>
@@ -288,7 +288,7 @@
         <i class="fa-solid fa-key"></i> Xác thực bảo mật &amp; Vào trang
       </button>
       <div class="login-hint">
-        <i class="fa-solid fa-lock"></i> Chỉ dành cho Bạn &amp; Anh Phú.
+        <i class="fa-solid fa-lock"></i> Chỉ dành cho Bạn &amp; Phú bé Ngàn.
       </div>
     </form>
   </div>
@@ -299,7 +299,7 @@
 
   <header class="admin-header">
     <div class="brand-group">
-      <img src="assets/uploads/logos/aizen-logo.png" alt="Shop Đại Phú FF" class="brand-logo">
+      <img src="assets/uploads/logos/aizen-logo.png" alt="NEXVIA VN" class="brand-logo">
       <div class="brand-info">
         <h1>BẢNG QUẢN TRỊ ADMIN <span style="font-size:11px;background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.3);padding:2px 8px;border-radius:100px;">v2.0 PRO</span></h1>
         <p>Đối soát đơn hàng • Kiểm duyệt thanh toán MB Bank • Bàn giao key</p>
@@ -310,7 +310,7 @@
         <i class="fa-solid fa-screwdriver-wrench"></i> <span id="maintBtnText">Bảo Trì: TẮT</span>
       </button>
       <a href="index.html" class="btn-nav"><i class="fa-solid fa-store"></i> Xem Cửa Hàng</a>
-      <a href="https://zalo.me/0588500524" target="_blank" rel="noopener" class="btn-nav btn-nav-primary"><i class="fa-solid fa-headset"></i> Zalo Anh Phú</a>
+      <a href="https://zalo.me/0588500524" target="_blank" rel="noopener" class="btn-nav btn-nav-primary"><i class="fa-solid fa-headset"></i> Zalo Phú bé Ngàn</a>
       <button type="button" class="btn-nav btn-logout" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
     </div>
   </header>
@@ -478,7 +478,7 @@
 <div class="modal-overlay" id="strixModal">
   <div class="scan-card">
     <h3 class="scan-title"><i class="fa-solid fa-shield-halved" style="color:#a78bfa;"></i> STRIX AI PENETRATION TEST</h3>
-    <p class="scan-sub">Kiểm tra bảo mật toàn diện Shop Đại Phú FF theo tiêu chuẩn Strix Engine</p>
+    <p class="scan-sub">Kiểm tra bảo mật toàn diện NEXVIA VN theo tiêu chuẩn Strix Engine</p>
     <div class="scan-terminal" id="scanTerminal">
       <div>[INIT] Khởi động Strix Security Core v1.4...</div>
     </div>
@@ -1612,9 +1612,9 @@ function copyCustomerReply(id) {
   const order = allOrders.find(function(o) { return o.id === id; });
   if (!order) return;
   let msg = '';
-  if (order.status === 'approved') msg = '[SHOP ĐẠI PHÚ FF] Xác nhận đơn hàng ' + order.id + ' thành công! Đã nhận đủ ' + formatVND(order.price) + '. Cảm ơn bạn!';
-  else if (order.status === 'rejected') msg = '[SHOP ĐẠI PHÚ FF] Đơn hàng ' + order.id + ': Chưa nhận được tiền hoặc sai nội dung CK. Vui lòng gửi bill qua Zalo 0588500524.';
-  else msg = '[SHOP ĐẠI PHÚ FF] Đã nhận yêu cầu đơn ' + order.id + '. Admin đang kiểm tra MB Bank và sẽ gửi file sớm!';
+  if (order.status === 'approved') msg = '[NEXVIA VN] Xác nhận đơn hàng ' + order.id + ' thành công! Đã nhận đủ ' + formatVND(order.price) + '. Cảm ơn bạn!';
+  else if (order.status === 'rejected') msg = '[NEXVIA VN] Đơn hàng ' + order.id + ': Chưa nhận được tiền hoặc sai nội dung CK. Vui lòng gửi bill qua Zalo 0588500524.';
+  else msg = '[NEXVIA VN] Đã nhận yêu cầu đơn ' + order.id + '. Admin đang kiểm tra MB Bank và sẽ gửi file sớm!';
   navigator.clipboard.writeText(msg).then(function() { showToast('📋 Đã sao chép mẫu tin Zalo!'); });
 }
 
