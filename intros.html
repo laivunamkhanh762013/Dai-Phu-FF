@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BỘ SƯU TẬP INTRO MỞ MÀN ĐỈNH CAO · NEXVIA VN</title>
+  <meta name="theme-color" content="#07080d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg: #07080d;
+      --bg-card: rgba(18, 22, 34, 0.85);
+      --gold: #f5d372;
+      --gold-light: #fff2b2;
+      --gold-dark: #d4af37;
+      --gold-grad: linear-gradient(135deg, #fff2b2 0%, #f5d372 35%, #e5a93b 80%, #d4af37 100%);
+      --line: rgba(245, 211, 114, 0.2);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Be Vietnam Pro', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 60px;
+    }
+
+    /* Ambient Background Grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(245, 211, 114, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 211, 114, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header Showcase */
+    .header {
+      text-align: center;
+      padding: 40px 0 28px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 211, 114, 0.12);
+      border: 1px solid rgba(245, 211, 114, 0.35);
+      color: var(--gold);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      box-shadow: 0 0 20px rgba(245, 211, 114, 0.2);
+    }
+
+    .header h1 {
+      font-size: clamp(26px, 4.5vw, 42px);
+      font-weight: 900;
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .header p {
+      color: var(--muted);
+      font-size: 14.5px;
+      max-width: 680px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      padding: 14px 24px;
+      border-radius: 999px;
+      width: fit-content;
+      margin: 0 auto 36px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .controls-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .duration-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dur-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dur-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .dur-btn.active {
+      background: var(--gold-grad);
+      color: #140d02;
+      border-color: var(--gold);
+      box-shadow: 0 0 14px rgba(245, 211, 114, 0.4);
+    }
+
+    .btn-back-shop {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #e2e8f0;
+      padding: 6px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .btn-back-shop:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+    }
+
+    /* Grid Showcase */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 22px;
+    }
+
+    .intro-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .intro-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(245, 211, 114, 0.5);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.6), 0 0 24px rgba(245, 211, 114, 0.18);
+    }
+
+    .intro-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .badge-royal { background: rgba(245, 211, 114, 0.15); color: #fce08b; border: 1px solid rgba(245, 211, 114, 0.35); }
+    .badge-cyber { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); }
+    .badge-space { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35); }
+    .badge-fire { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); }
+    .badge-laser { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.35); }
+    .badge-diamond { background: rgba(244, 114, 182, 0.15); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.35); }
+    .badge-warp { background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.35); }
+    .badge-katana { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.35); }
+
+    .intro-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .intro-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+
+    .btn-play-intro {
+      background: var(--gold-grad);
+      color: #140d02;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(229, 169, 59, 0.35);
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn-play-intro:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(229, 169, 59, 0.5);
+      background: linear-gradient(135deg, #ffffff 0%, #fff0b8 40%, #f6d365 100%);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       STAGE OVERLAY CHO TEST INTRO TOÀN MÀN HÌNH
+       ═══════════════════════════════════════════════════════════════ */
+    #introStage {
+      position: fixed;
+      inset: 0;
+      z-index: 999999999;
+      background: #000000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .stage-close-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 10000;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+    .stage-close-btn:hover {
+      background: #ef4444;
+      border-color: #ef4444;
+    }
+
+    .stage-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 22px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .stage-title {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: clamp(24px, 5.5vw, 36px);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .stage-sub {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ── EFFECT 1: ROYAL GOLD SHOCKWAVE ── */
+    .fx-royal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      animation: fxRoyalZoom var(--dur) cubic-bezier(0.25, 1, 0.35, 1) forwards;
+    }
+    .fx-royal-logo-box {
+      border: 2px solid var(--gold);
+      border-radius: 26px;
+      padding: 4px;
+      background: #11141f;
+      box-shadow: 0 0 35px rgba(245, 211, 114, 0.7);
+    }
+    .fx-royal-beam-left {
+      position: absolute;
+      top: 0; left: 0; width: 60%; height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), var(--gold), transparent);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      opacity: 0;
+      animation: fxBeamIn calc(var(--dur) * 0.4) ease forwards;
+    }
+    .fx-royal-beam-right {
+      position: absolute;
+      top: 0; right: 0; width: 60%; height: 100%;
+      background: linear-gradient(-135deg, rgba(255,255,255,0.9), #e5a93b, transparent);
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      opacity: 0;
+      animation: fxBeamIn calc(var(--dur) * 0.4) ease forwards;
+    }
+    .fx-royal-shockwave {
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      opacity: 0;
+      animation: fxShockwave calc(var(--dur) * 0.6) ease-out calc(var(--dur) * 0.2) forwards;
+    }
+
+    @keyframes fxRoyalZoom {
+      0% { opacity: 0; transform: scale(0.4); }
+      20% { opacity: 1; transform: scale(1.05); }
+      30% { opacity: 1; transform: scale(1); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(16); }
+    }
+    @keyframes fxBeamIn {
+      0% { opacity: 0; transform: translateX(-50%); }
+      50% { opacity: 0.8; }
+      100% { opacity: 0; transform: translateX(0); }
+    }
+    @keyframes fxShockwave {
+      0% { opacity: 1; transform: scale(0.2); }
+      100% { opacity: 0; transform: scale(6); }
+    }
+
+    /* ── EFFECT 2: CYBERPUNK NEON GLITCH ── */
+    .fx-cyber-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      animation: fxCyberGlitch var(--dur) ease forwards;
+    }
+    .fx-cyber-grid {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    @keyframes fxCyberGlitch {
+      0% { opacity: 0; transform: scale(0.8) skewX(20deg); filter: hue-rotate(90deg); }
+      15% { opacity: 1; transform: scale(1.02) skewX(-10deg); }
+      25% { transform: scale(1) skewX(0); filter: hue-rotate(0); }
+      75% { opacity: 1; transform: scale(1); filter: none; }
+      85% { transform: scale(1.1) skewX(15deg); filter: invert(1); }
+      100% { opacity: 0; transform: scale(14); filter: brightness(3); }
+    }
+
+    /* ── EFFECT 3: BLACK HOLE SUPERNOVA ── */
+    .fx-space-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      animation: fxSpaceSupernova var(--dur) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .fx-space-vortex {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(192, 132, 252, 0.4) 0%, rgba(56, 189, 248, 0.2) 40%, transparent 70%);
+      animation: fxRotateVortex 4s linear infinite;
+    }
+    @keyframes fxRotateVortex {
+      0% { transform: rotate(0deg) scale(0.5); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(0.5); }
+    }
+    @keyframes fxSpaceSupernova {
+      0% { opacity: 0; transform: scale(0.1) rotate(-180deg); }
+      25% { opacity: 1; transform: scale(1) rotate(0deg); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(18) rotate(45deg); filter: blur(4px); }
+    }
+
+    /* ── EFFECT 4: BIOMETRIC HUD LASER ── */
+    .fx-laser-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      animation: fxLaserScan var(--dur) ease forwards;
+    }
+    .fx-laser-ring {
+      position: absolute;
+      width: 220px; height: 220px;
+      border: 2px dashed #34d399;
+      border-radius: 50%;
+      animation: fxSpinRing 3s linear infinite;
+    }
+    .fx-laser-bar {
+      position: absolute;
+      width: 260px; height: 2px;
+      background: #34d399;
+      box-shadow: 0 0 16px #34d399;
+      animation: fxScanUpDown calc(var(--dur) * 0.6) ease-in-out infinite alternate;
+    }
+    @keyframes fxSpinRing { 100% { transform: rotate(360deg); } }
+    @keyframes fxScanUpDown { 0% { transform: translateY(-70px); } 100% { transform: translateY(70px); } }
+    @keyframes fxLaserScan {
+      0% { opacity: 0; transform: scale(0.7); }
+      20% { opacity: 1; transform: scale(1); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(15); }
+    }
+
+    /* ── EFFECT 5: SAMURAI KATANA SLASH ── */
+    .fx-slash-line {
+      position: absolute;
+      top: 50%; left: -20%; width: 140%; height: 3px;
+      background: #ffffff;
+      box-shadow: 0 0 24px #f5d372, 0 0 40px #e5a93b;
+      transform: rotate(-25deg);
+      opacity: 0;
+      animation: fxKatanaSlash calc(var(--dur) * 0.3) ease forwards;
+    }
+    @keyframes fxKatanaSlash {
+      0% { opacity: 0; transform: rotate(-25deg) scaleX(0); }
+      50% { opacity: 1; transform: rotate(-25deg) scaleX(1); }
+      100% { opacity: 0; transform: rotate(-25deg) scaleX(1); }
+    }
+
+    /* ── EFFECT 6: HELLFIRE PHOENIX ── */
+    .fx-fire-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      animation: fxFirePhoenix var(--dur) ease forwards;
+    }
+    @keyframes fxFirePhoenix {
+      0% { opacity: 0; transform: translateY(60px) scale(0.5); filter: drop-shadow(0 0 40px #ef4444); }
+      25% { opacity: 1; transform: translateY(0) scale(1.05); filter: drop-shadow(0 0 25px #f59e0b); }
+      35% { transform: translateY(0) scale(1); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(18); filter: brightness(4); }
+    }
+
+    /* ── EFFECT 7: HYPER SPEEDWARP ── */
+    .fx-warp-tunnel {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, #000 80%);
+    }
+    .fx-warp-streak {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 2px; height: 100px;
+      background: #60a5fa;
+      box-shadow: 0 0 10px #60a5fa;
+      transform-origin: top center;
+    }
+    .fx-warp-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      animation: fxWarpSpeed var(--dur) cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    }
+    @keyframes fxWarpSpeed {
+      0% { opacity: 0; transform: translateZ(-500px) scale(0.1); }
+      30% { opacity: 1; transform: translateZ(0) scale(1); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(20); }
+    }
+
+    /* ── EFFECT 8: DIAMOND SHARDS ── */
+    .fx-diamond-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      animation: fxDiamondGather var(--dur) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fxDiamondGather {
+      0% { opacity: 0; transform: scale(0.3) rotate(45deg); filter: blur(8px); }
+      25% { opacity: 1; transform: scale(1.08) rotate(-5deg); filter: blur(0); }
+      35% { transform: scale(1) rotate(0deg); }
+      75% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(16); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="shell">
+    <header class="header">
+      <div class="header-badge"><i class="fa-solid fa-crown"></i> BỘ SƯU TẬP HIỆU ỨNG INTRO NEXVIA VN</div>
+      <h1>CHỌN MẪU INTRO BẠN ƯNG Ý NHẤT</h1>
+      <p>Tổng hợp 8 phong cách hiệu ứng mở màn đẹp mắt, đẳng cấp nhất (Hoàng gia Luxury, Cyberpunk, Samurai Slash, Hố đen, Quét Laser, Phượng hoàng...). Bấm <b>Xem Thử</b> để xem trực tiếp full màn hình!</p>
+
+      <!-- Controls -->
+      <div class="controls-bar">
+        <span class="controls-label"><i class="fa-solid fa-stopwatch"></i> Thời lượng:</span>
+        <div class="duration-btns">
+          <button type="button" class="dur-btn" onclick="setDuration(1.5, this)">1.5 Giây</button>
+          <button type="button" class="dur-btn active" onclick="setDuration(2, this)">2 Giây (Chuẩn)</button>
+          <button type="button" class="dur-btn" onclick="setDuration(3, this)">3 Giây</button>
+          <button type="button" class="dur-btn" onclick="setDuration(4.5, this)">4.5 Giây</button>
+        </div>
+        <a href="index.html" class="btn-back-shop"><i class="fa-solid fa-arrow-left"></i> Trở Về Shop</a>
+      </div>
+    </header>
+
+    <!-- Intro Showcase Cards -->
+    <div class="intro-grid">
+
+      <!-- Intro 1 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-royal"><i class="fa-solid fa-crown"></i> MẪU 1 · ROYAL GOLD</span>
+          <h3>Hoàng Gia Vàng Kim (Royal Clash)</h3>
+          <p>Hai luồng năng lượng vàng kim va chạm nảy lửa, sóng chấn động tỏa sáng, logo NEXVIA VN xuất hiện lộng lẫy và zoom mở siêu êm.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('royal')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 1 (Royal Gold)
+        </button>
+      </div>
+
+      <!-- Intro 2 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-cyber"><i class="fa-solid fa-bolt"></i> MẪU 2 · CYBER GLITCH</span>
+          <h3>Cyberpunk Sét Neon & Hologram</h3>
+          <p>Lưới tọa độ quét Neon Cyan, tia sét chớp glitch 3D kỹ thuật số công nghệ cao, đậm chất game thủ Free Fire Pro.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('cyber')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 2 (Cyber Glitch)
+        </button>
+      </div>
+
+      <!-- Intro 3 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-space"><i class="fa-solid fa-atom"></i> MẪU 3 · SUPERNOVA</span>
+          <h3>Vũ Trụ Lỗ Đen & Supernova</h3>
+          <p>Xoáy bão hạt ánh sáng đa sắc bị hút vào tâm điểm nén rồi bùng nổ Supernova cực đại giải phóng logo thương hiệu.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('space')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 3 (Supernova)
+        </button>
+      </div>
+
+      <!-- Intro 4 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-laser"><i class="fa-solid fa-shield-halved"></i> MẪU 4 · BIOMETRIC</span>
+          <h3>Quét Laser Bảo Mật Quân Sự</h3>
+          <p>Vòng tròn radar HUD xoay 360°, tia laser xanh lục quét vân tay bảo mật xác nhận "VIP ACCESS 100%" đầy uy quyền.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('laser')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 4 (Laser Scan)
+        </button>
+      </div>
+
+      <!-- Intro 5 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-katana"><i class="fa-solid fa-wand-magic-sparkles"></i> MẪU 5 · SAMURAI</span>
+          <h3>Nhát Chém Samurai Katana Slash</h3>
+          <p>Vệt chém ánh kim xé toạc màn hình đêm đen trong chớp mắt, vết rạch phát quang mở ra logo NEXVIA VN cực kỳ ngầu.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('katana')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 5 (Katana Slash)
+        </button>
+      </div>
+
+      <!-- Intro 6 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-fire"><i class="fa-solid fa-fire-flame-curved"></i> MẪU 6 · PHOENIX</span>
+          <h3>Hỏa Thần Phượng Hoàng Lửa</h3>
+          <p>Cánh lửa đỏ rực bốc cháy hào hùng từ đáy màn hình tụ lại thành biểu tượng năng lượng hoàng kim bất diệt.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('fire')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 6 (Hellfire Phoenix)
+        </button>
+      </div>
+
+      <!-- Intro 7 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-warp"><i class="fa-solid fa-gauge-high"></i> MẪU 7 · HYPER WARP</span>
+          <h3>Hyper Speedwarp Vượt Tốc</h3>
+          <p>Đường hầm ánh sáng kéo dãn không thời gian như tàu du hành vũ trụ tốc độ ánh sáng lao vụt vào màn hình.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('warp')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 7 (Hyper Speedwarp)
+        </button>
+      </div>
+
+      <!-- Intro 8 -->
+      <div class="intro-card">
+        <div>
+          <span class="intro-card-badge badge-diamond"><i class="fa-solid fa-gem"></i> MẪU 8 · DIAMOND SHARDS</span>
+          <h3>Pha Lê Kim Cương Ghép Khối</h3>
+          <p>Hàng ngàn mảnh pha lê kim cương lấp lánh tụ hội ghép thành khối logo mạ vàng, xoay 3D phản quang sang trọng bậc nhất.</p>
+        </div>
+        <button type="button" class="btn-play-intro" onclick="playEffect('diamond')">
+          <i class="fa-solid fa-play"></i> Xem Thử Mẫu 8 (Diamond Shards)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stage Overlay (Full Screen Preview) -->
+  <div id="introStage" onclick="closeStage()">
+    <button type="button" class="stage-close-btn" onclick="closeStage(event)">
+      <i class="fa-solid fa-xmark"></i> Thoát Xem Thử
+    </button>
+    <div id="stageContainer"></div>
+  </div>
+
+  <script>
+    var currentDuration = 2; // default 2s
+
+    function setDuration(dur, btn) {
+      currentDuration = dur;
+      document.querySelectorAll('.dur-btn').forEach(function(b) { b.classList.remove('active'); });
+      if (btn) btn.classList.add('active');
+    }
+
+    function closeStage(e) {
+      if (e) e.stopPropagation();
+      var stage = document.getElementById('introStage');
+      stage.style.display = 'none';
+      stage.innerHTML = '<button type="button" class="stage-close-btn" onclick="closeStage(event)"><i class="fa-solid fa-xmark"></i> Thoát Xem Thử</button><div id="stageContainer"></div>';
+    }
+
+    function playEffect(type) {
+      var stage = document.getElementById('introStage');
+      var container = document.getElementById('stageContainer');
+      stage.style.display = 'flex';
+      stage.style.setProperty('--dur', currentDuration + 's');
+      container.innerHTML = '';
+
+      var logoSrc = 'assets/uploads/logos/aizen-logo.png';
+
+      if (type === 'royal') {
+        container.innerHTML = 
+          '<div class="fx-royal-beam-left"></div>' +
+          '<div class="fx-royal-beam-right"></div>' +
+          '<div class="fx-royal-shockwave"></div>' +
+          '<div class="fx-royal-content">' +
+            '<div class="fx-royal-logo-box"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="text-shadow: 0 0 24px rgba(245, 211, 114, 0.7);">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:var(--gold);">⚡ ROYAL LUXURY STORE ⚡</div>' +
+          '</div>';
+      } 
+      else if (type === 'cyber') {
+        container.innerHTML = 
+          '<div class="fx-cyber-grid"></div>' +
+          '<div class="fx-cyber-content">' +
+            '<div class="fx-royal-logo-box" style="border-color:#38bdf8;box-shadow:0 0 35px #38bdf8;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#38bdf8;text-shadow:0 0 20px #38bdf8;">NEXVIA.VN</div>' +
+            '<div class="stage-sub" style="color:#f5d372;">// CYBER TACTICAL GAMING //</div>' +
+          '</div>';
+      }
+      else if (type === 'space') {
+        container.innerHTML = 
+          '<div class="fx-space-vortex"></div>' +
+          '<div class="fx-space-content">' +
+            '<div class="fx-royal-logo-box" style="border-color:#c084fc;box-shadow:0 0 40px #c084fc;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="text-shadow:0 0 30px #c084fc;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#38bdf8;">★ INFINITE HORIZON ★</div>' +
+          '</div>';
+      }
+      else if (type === 'laser') {
+        container.innerHTML = 
+          '<div class="fx-laser-ring"></div>' +
+          '<div class="fx-laser-bar"></div>' +
+          '<div class="fx-laser-content">' +
+            '<div class="fx-royal-logo-box" style="border-color:#34d399;box-shadow:0 0 30px #34d399;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#34d399;text-shadow:0 0 20px #34d399;">NEXVIA SECURITY</div>' +
+            '<div class="stage-sub" style="color:#ffffff;">[ VIP ACCESS GRANTED 100% ]</div>' +
+          '</div>';
+      }
+      else if (type === 'katana') {
+        container.innerHTML = 
+          '<div class="fx-slash-line"></div>' +
+          '<div class="fx-royal-content">' +
+            '<div class="fx-royal-logo-box" style="border-color:#fb923c;box-shadow:0 0 35px #fb923c;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="text-shadow:0 0 24px #fb923c;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#f5d372;">⚔️ MASTER BLADE EDITION ⚔️</div>' +
+          '</div>';
+      }
+      else if (type === 'fire') {
+        container.innerHTML = 
+          '<div class="fx-fire-content">' +
+            '<div class="fx-royal-logo-box" style="border-color:#ef4444;box-shadow:0 0 45px #ef4444;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fca5a5;text-shadow:0 0 28px #ef4444;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#fbbf24;">🔥 HELLFIRE PHOENIX GAMING 🔥</div>' +
+          '</div>';
+      }
+      else if (type === 'warp') {
+        container.innerHTML = 
+          '<div class="fx-warp-tunnel"></div>' +
+          '<div class="fx-warp-content">' +
+            '<div class="fx-royal-logo-box" style="border-color:#60a5fa;box-shadow:0 0 35px #60a5fa;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="text-shadow:0 0 25px #60a5fa;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#93c5fd;">⚡ HYPERSPEED 120 FPS ⚡</div>' +
+          '</div>';
+      }
+      else if (type === 'diamond') {
+        container.innerHTML = 
+          '<div class="fx-diamond-content">' +
+            '<div class="fx-royal-logo-box" style="border-color:#f472b6;box-shadow:0 0 40px #f472b6;"><img src="' + logoSrc + '" class="stage-logo" alt="Logo"></div>' +
+            '<div class="stage-title" style="color:#fdf4ff;text-shadow:0 0 30px #f472b6;">NEXVIA VN</div>' +
+            '<div class="stage-sub" style="color:#f5d372;">💎 DIAMOND CENTURION 💎</div>' +
+          '</div>';
+      }
+
+      // Tự động đóng sau đúng thời gian đã chọn
+      setTimeout(function() {
+        closeStage();
+      }, currentDuration * 1000 + 300);
+    }
+  </script>
+</body>
+</html>
