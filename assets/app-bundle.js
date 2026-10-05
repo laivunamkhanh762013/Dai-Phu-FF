@@ -81,7 +81,7 @@ function playIntroAnimation() {
 
   introTimeoutId = setTimeout(function() {
     skipIntro();
-  }, 15000);
+  }, 3000);
 }
 window.playIntroAnimation = playIntroAnimation;
 
