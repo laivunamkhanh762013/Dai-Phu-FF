@@ -2580,3 +2580,106 @@ body.storefront .product:hover {
   font-size: 9.5px;
   transform: rotate(30deg);
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   👑 PINNED & PRODUCT CARD BADGE ANTI-COLLISION & LUXURY FIX
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Fix Overlap: Pin Badge on TOP-LEFT, Buyer Badge on BOTTOM-LEFT */
+.product-pinned .product-thumb {
+  min-height: 140px;
+  background: radial-gradient(circle at 50% 35%, #2a2007 0%, #121624 70%, #080a10 100%) !important;
+}
+
+.product-pinned .product-thumb .tag-pinned {
+  position: absolute !important;
+  top: 10px !important;
+  left: 10px !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 6 !important;
+  background: linear-gradient(135deg, #fff2b2 0%, #f5d372 35%, #e5a93b 80%, #d4af37 100%) !important;
+  color: #140d02 !important;
+  font-family: var(--rd-font-display);
+  font-size: 10.5px !important;
+  font-weight: 900 !important;
+  letter-spacing: .5px;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 4px 16px rgba(229, 169, 59, 0.45) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.product-pinned .product-thumb .tag {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 10px !important;
+  left: 10px !important;
+  right: auto !important;
+  z-index: 5 !important;
+  background: rgba(8, 10, 16, 0.9) !important;
+  border: 1px solid rgba(245, 211, 114, 0.35) !important;
+  color: #fce08b !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Luxury Thumb Placeholder for Pinned VIP */
+.thumb-pinned-vip {
+  background: radial-gradient(circle at 50% 40%, rgba(245, 211, 114, 0.18) 0%, rgba(18, 22, 36, 0.95) 70%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.25) !important;
+  border-radius: 12px !important;
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+/* Category Badge on Card */
+.product-meta .meta-cat {
+  background: rgba(245, 211, 114, 0.12) !important;
+  border: 1px solid rgba(245, 211, 114, 0.28) !important;
+  color: #fce08b !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: .4px !important;
+  display: inline-block !important;
+}
+
+/* Card CTA Buy Button Luxury Styling */
+.btn-buy {
+  background: linear-gradient(135deg, rgba(245, 211, 114, 0.14) 0%, rgba(229, 169, 59, 0.24) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.4) !important;
+  color: #fce08b !important;
+  font-family: var(--rd-font-display) !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  border-radius: 999px !important;
+  padding: 9px 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-buy:hover, .product:hover .btn-buy {
+  background: linear-gradient(135deg, #fff2b2 0%, #f5d372 35%, #e5a93b 80%, #d4af37 100%) !important;
+  border-color: #f5d372 !important;
+  color: #140d02 !important;
+  box-shadow: 0 6px 20px rgba(229, 169, 59, 0.45) !important;
+  transform: translateY(-1px);
+}

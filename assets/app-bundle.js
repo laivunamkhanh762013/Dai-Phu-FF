@@ -1210,7 +1210,7 @@ function renderProducts() {
     if (p.pinned) {
       var pinBadge = document.createElement('span');
       pinBadge.className = 'tag-pinned';
-      pinBadge.innerHTML = '<i class="fa-solid fa-thumbtack"></i> GHIM ĐẦU TRANG';
+      pinBadge.innerHTML = '<i class="fa-solid fa-crown" style="color:#140d02;margin-right:2px;"></i> GHIM ĐẦU TRANG';
       thumbDiv.appendChild(pinBadge);
     }
     var buyerTag = document.createElement('span');
@@ -1245,8 +1245,10 @@ function renderProducts() {
         }
         this.style.display = 'none';
         var fallbackPlaceholder = document.createElement('div');
-        fallbackPlaceholder.className = 'thumb-no-img';
-        fallbackPlaceholder.innerHTML = '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
+        fallbackPlaceholder.className = 'thumb-no-img' + (p.pinned ? ' thumb-pinned-vip' : '');
+        fallbackPlaceholder.innerHTML = p.pinned 
+          ? '<i class="fa-solid fa-crown" style="color:#f5d372;font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
+          : '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
         if (this.parentNode) {
           this.parentNode.appendChild(fallbackPlaceholder);
         }
@@ -1254,8 +1256,10 @@ function renderProducts() {
       thumbDiv.appendChild(img);
     } else {
       var noImg = document.createElement('div');
-      noImg.className = 'thumb-no-img';
-      noImg.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';
+      noImg.className = 'thumb-no-img' + (p.pinned ? ' thumb-pinned-vip' : '');
+      noImg.innerHTML = p.pinned
+        ? '<i class="fa-solid fa-crown" style="color:#f5d372;font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
+        : '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';
       thumbDiv.appendChild(noImg);
     }
 
