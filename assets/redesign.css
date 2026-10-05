@@ -2550,36 +2550,11 @@ body.storefront .product:hover {
 
 
 /* ── PINNED PRODUCT BADGE & CARD HIGHLIGHT ── */
-.product-pinned {
-  border: 1px solid rgba(245, 211, 114, 0.45) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 24px rgba(245, 211, 114, 0.22), inset 0 1px 0 rgba(255, 243, 196, 0.25) !important;
-  position: relative;
-}
 
-.tag-pinned {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 5;
-  background: linear-gradient(135deg, #fff2b2 0%, #f5d372 35%, #e5a93b 80%, #d4af37 100%);
-  color: #140d02;
-  font-family: var(--rd-font-display);
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .5px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(229, 169, 59, 0.4);
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
 
-.tag-pinned i {
-  color: #140d02;
-  font-size: 9.5px;
-  transform: rotate(30deg);
-}
+
+
+
 
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -2630,36 +2605,11 @@ body.storefront .product:hover {
   z-index: 2 !important;
 }
 
-.tag-pinned {
-  position: absolute !important;
-  top: 8px !important;
-  right: 8px !important;
-  left: auto !important;
-  bottom: auto !important;
-  z-index: 3 !important;
-  background: linear-gradient(135deg, #fff2b2 0%, #f5d372 35%, #e5a93b 80%, #d4af37 100%) !important;
-  color: #140d02 !important;
-  font-family: var(--rd-font-display, sans-serif) !important;
-  font-size: 9.5px !important;
-  font-weight: 900 !important;
-  letter-spacing: .4px !important;
-  padding: 3px 8px !important;
-  border-radius: 999px !important;
-  box-shadow: 0 2px 10px rgba(229, 169, 59, 0.35) !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 3px !important;
-}
 
-.tag-pinned i {
-  color: #140d02 !important;
-  font-size: 8.5px !important;
-}
 
-.product-pinned {
-  border: 1px solid rgba(245, 211, 114, 0.4) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(245, 211, 114, 0.15), inset 0 1px 0 rgba(255, 243, 196, 0.2) !important;
-}
+
+
+
 
 .product-meta .meta-cat {
   background: rgba(245, 211, 114, 0.1) !important;

@@ -358,34 +358,6 @@ function dispatchKeyForOrder(order) {
 }
 
 var PRODUCTS = [
-  {
-    id: 'slot-nhom-file-tien',
-    pinned: true,
-    category: 'Dịch Vụ VIP',
-    plat: 'All Thiết Bị • iOS & Adr',
-    buyers: '1.250+ Thành viên',
-    name: '1 Slot Nhóm File Tiền (Nexvia VIP)',
-    shortDesc: 'Vào nhóm File Tiền VIP của Nexvia VN - Nhận trọn bộ file kéo tâm, data vip, update trọn đời.',
-    fullDesc: '1 SLOT VÀO NHÓM FILE TIỀN ĐỘC QUYỀN NEXVIA VN:\n- Nhận toàn bộ kho file kéo tâm VIP, proxy siêu mượt, data obb độc quyền cho iOS & Android.\n- Cập nhật liên tục các bản file mới nhất khi game ra mùa/bản mới.\n- Hỗ trợ trực tiếp 1:1 từ Admin Phú Bán Hàng (Zalo: 0588500524).',
-    priceMin: 20000,
-    priceMax: 20000,
-    oldPrice: 50000,
-    image: 'assets/uploads/products/nhom-file-tien.jpg',
-    images: [
-      { src: 'assets/uploads/products/nhom-file-tien.jpg', label: 'Nhóm File Tiền VIP', title: '1 Slot Nhóm File Tiền (Nexvia VIP)' }
-    ],
-    plans: [
-      {
-        name: '1 Slot Vào Nhóm (Vĩnh Viễn)',
-        price: 20000,
-        badge: '👑 VIP GHIM',
-        action: 'Cấp quyền vào nhóm Zalo/Telegram File Tiền VIP độc quyền Nexvia VN trọn đời.',
-        fix: 'Nhận toàn bộ file kéo tâm VIP, fix rung, proxy mượt mà 120 FPS không giới hạn.',
-        pros: 'Admin Phú Bán Hàng trực tiếp duyệt vào nhóm và gửi link tải ngay sau khi thanh toán.',
-        note: 'Hỗ trợ tất cả thiết bị iOS, Android, PC.'
-      }
-    ]
-  },
 
   {
     id: 'innova-cheat',
@@ -1188,7 +1160,7 @@ function renderProducts() {
 
   filtered.forEach(function(p) {
     var article = document.createElement('article');
-    article.className = 'product product-clickable' + (p.pinned ? ' product-pinned' : '') + (p.soldOut ? ' product-soldout' : '');
+    article.className = 'product product-clickable' + (p.soldOut ? ' product-soldout' : '');
     article.setAttribute('data-category', p.category);
     article.setAttribute('data-price', p.priceMin);
     article.setAttribute('data-name', p.name.toLowerCase());
@@ -1211,13 +1183,6 @@ function renderProducts() {
     buyerTag.className = 'tag';
     buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
     thumbDiv.appendChild(buyerTag);
-
-    if (p.pinned) {
-      var pinBadge = document.createElement('span');
-      pinBadge.className = 'tag-pinned';
-      pinBadge.innerHTML = '<i class="fa-solid fa-crown"></i> GHIM';
-      thumbDiv.appendChild(pinBadge);
-    }
     buyerTag.className = 'tag';
     buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
     thumbDiv.appendChild(buyerTag);
@@ -1249,7 +1214,7 @@ function renderProducts() {
         }
         this.style.display = 'none';
         var fallbackPlaceholder = document.createElement('div');
-        fallbackPlaceholder.className = 'thumb-no-img' + (p.pinned ? ' thumb-pinned-vip' : '');
+        fallbackPlaceholder.className = 'thumb-no-img' + '';
         fallbackPlaceholder.innerHTML = p.pinned 
           ? '<i class="fa-solid fa-crown" style="color:#f5d372;font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
           : '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
@@ -1260,7 +1225,7 @@ function renderProducts() {
       thumbDiv.appendChild(img);
     } else {
       var noImg = document.createElement('div');
-      noImg.className = 'thumb-no-img' + (p.pinned ? ' thumb-pinned-vip' : '');
+      noImg.className = 'thumb-no-img' + '';
       noImg.innerHTML = p.pinned
         ? '<i class="fa-solid fa-crown" style="color:#f5d372;font-size:34px;filter:drop-shadow(0 0 16px rgba(245,211,114,0.75));"></i><span style="color:#fce08b;font-weight:900;letter-spacing:1.2px;font-size:11px;margin-top:4px;">NEXVIA VIP • NHÓM FILE TIỀN</span>'
         : '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';

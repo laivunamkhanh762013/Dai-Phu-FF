@@ -13,14 +13,6 @@ function deepFreeze(obj) {
 }
 
 const RAW_CATALOG = {
-  "slot-nhom-file-tien": {
-    "name": "1 Slot Nhóm File Tiền (Nexvia VIP)",
-    "soldOut": false,
-    "plans": {
-      "1 Slot Vào Nhóm (Vĩnh Viễn)": 20000
-    }
-  },
-
   "innova-cheat": {
     "name": "InNova Cheat (Adr • iOS)",
     "soldOut": false,
