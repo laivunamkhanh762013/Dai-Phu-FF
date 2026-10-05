@@ -2000,7 +2000,7 @@ body.storefront .product:hover {
   cursor: pointer !important;
   user-select: none !important;
   -webkit-user-select: none !important;
-  animation: fastOverlayFade 0.3s ease 2.7s forwards !important;
+  animation: fastOverlayFade 0.3s ease 1.7s forwards !important;
   will-change: opacity !important;
 }
 
@@ -2045,7 +2045,7 @@ body.storefront .product:hover {
   transform: translateZ(0) scale(1) !important;
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
-  animation: fastLogoZoom 3s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
+  animation: fastLogoZoom 2s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
 }
 
 @keyframes fastLogoZoom {
@@ -2053,20 +2053,20 @@ body.storefront .product:hover {
     opacity: 0;
     transform: translateZ(0) scale(0.6);
   }
-  15% {
+  20% {
     opacity: 1;
     transform: translateZ(0) scale(1.05);
   }
-  25% {
+  30% {
     opacity: 1;
     transform: translateZ(0) scale(1);
   }
-  /* Giữ logo ở trung tâm cùng chữ đến 70% (~2.1s) */
-  70% {
+  /* Giữ logo ở trung tâm cùng chữ đến 65% (~1.3s) */
+  65% {
     opacity: 1;
     transform: translateZ(0) scale(1);
   }
-  /* Phóng to siêu mượt vào storefront (2.2s - 3s) */
+  /* Phóng to siêu mượt vào storefront (1.4s - 2s) */
   100% {
     opacity: 0;
     transform: translateZ(0) scale(18);
@@ -2088,7 +2088,7 @@ body.storefront .product:hover {
   align-items: center !important;
   gap: 4px !important;
   will-change: opacity, transform !important;
-  animation: fastTextFade 3s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
+  animation: fastTextFade 2s cubic-bezier(0.25, 1, 0.35, 1) forwards !important;
 }
 
 @keyframes fastTextFade {
@@ -2096,17 +2096,17 @@ body.storefront .product:hover {
     opacity: 0;
     transform: translateY(10px);
   }
-  15% {
+  20% {
     opacity: 1;
     transform: translateY(0);
   }
-  /* Giữ chữ để đọc (0.5s - 2.0s) */
-  65% {
+  /* Giữ chữ để đọc (0.4s - 1.3s) */
+  60% {
     opacity: 1;
     transform: translateY(0);
   }
   /* Mờ chữ trước khi logo phóng to */
-  80%, 100% {
+  75%, 100% {
     opacity: 0;
     transform: translateY(-8px);
     pointer-events: none;
