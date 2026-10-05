@@ -361,11 +361,11 @@ var PRODUCTS = [
   {
     id: 'slot-nhom-file-tien',
     pinned: true,
-    category: 'Nhóm VIP & File Tiền',
+    category: 'Dịch Vụ VIP',
     plat: 'All Thiết Bị • iOS & Adr',
     buyers: '1.250+ Thành viên',
     name: '1 Slot Nhóm File Tiền (Nexvia VIP)',
-    shortDesc: '👑 [GHIM] Vào nhóm File Tiền VIP độc quyền Nexvia VN - Full data kéo tâm, proxy, file vip update trọn đời.',
+    shortDesc: 'Vào nhóm File Tiền VIP của Nexvia VN - Nhận trọn bộ file kéo tâm, data vip, update trọn đời.',
     fullDesc: '1 SLOT VÀO NHÓM FILE TIỀN ĐỘC QUYỀN NEXVIA VN:\n- Nhận toàn bộ kho file kéo tâm VIP, proxy siêu mượt, data obb độc quyền cho iOS & Android.\n- Cập nhật liên tục các bản file mới nhất khi game ra mùa/bản mới.\n- Hỗ trợ trực tiếp 1:1 từ Admin Phú Bán Hàng (Zalo: 0588500524).',
     priceMin: 20000,
     priceMax: 20000,
@@ -1207,13 +1207,17 @@ function renderProducts() {
     var thumbDiv = document.createElement('div');
     thumbDiv.className = 'product-thumb';
 
+    var buyerTag = document.createElement('span');
+    buyerTag.className = 'tag';
+    buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
+    thumbDiv.appendChild(buyerTag);
+
     if (p.pinned) {
       var pinBadge = document.createElement('span');
       pinBadge.className = 'tag-pinned';
-      pinBadge.innerHTML = '<i class="fa-solid fa-crown" style="color:#140d02;margin-right:2px;"></i> GHIM ĐẦU TRANG';
+      pinBadge.innerHTML = '<i class="fa-solid fa-crown"></i> GHIM';
       thumbDiv.appendChild(pinBadge);
     }
-    var buyerTag = document.createElement('span');
     buyerTag.className = 'tag';
     buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
     thumbDiv.appendChild(buyerTag);
