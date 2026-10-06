@@ -1243,7 +1243,7 @@ function renderProducts() {
 
   filtered.forEach(function(p) {
     var article = document.createElement('article');
-    article.className = 'product product-clickable' + (p.soldOut ? ' product-soldout' : '');
+    article.className = 'product product-clickable' + (p.pinned ? ' product-pinned' : '') + (p.soldOut ? ' product-soldout' : '');
     article.setAttribute('data-category', p.category);
     article.setAttribute('data-price', p.priceMin);
     article.setAttribute('data-name', p.name.toLowerCase());
@@ -1258,16 +1258,16 @@ function renderProducts() {
       }
     };
 
+    if (p.pinned) {
+      var pinRibbon = document.createElement('div');
+      pinRibbon.className = 'card-pin-ribbon';
+      pinRibbon.innerHTML = '<i class="fa-solid fa-thumbtack"></i> <span>GHIM NỔI BẬT</span>';
+      article.appendChild(pinRibbon);
+    }
+
     // Thumb & Badges
     var thumbDiv = document.createElement('div');
     thumbDiv.className = 'product-thumb';
-
-    if (p.pinned) {
-      var pinTag = document.createElement('span');
-      pinTag.className = 'tag tag-pinned';
-      pinTag.innerHTML = '<i class="fa-solid fa-thumbtack" style="color:#ef4444;font-size:9px;"></i> GHIM NỔI BẬT';
-      thumbDiv.appendChild(pinTag);
-    }
 
     var buyerTag = document.createElement('span');
     buyerTag.className = 'tag';
