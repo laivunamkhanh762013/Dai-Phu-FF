@@ -231,32 +231,13 @@ function stripVietnamese(str) {
 
 /* ═══════ REAL PRODUCTS DATA (SHOP ĐẠI PHÚ FF) ═══════ */
 /* ═══════════════════════════════════════════════════════════════════
-   🔑 PRODUCT REAL KEY VAULT & VIRTUAL STOCK COUNTER SYSTEM
-   - Kho Key thật chính hãng do Admin cấp cho từng sản phẩm và gói
-   - InNova Cheat: Gói 1 Ngày (9 keys do Admin nạp)
-   - Tự động xuất Key trực tiếp khi khách thanh toán thành công
-   - Mỗi lượt mua thật sẽ giảm trừ 1 key thật và cập nhật kho
+   📋 ORDER CODE DELIVERY & DIRECT ADMIN ZALO FULFILLMENT
+   - Toàn bộ đơn hàng sau khi thanh toán MBBank sẽ nhận Mã Đơn Hàng chính thức
+   - Khách sao chép Mã Đơn Hàng và gửi qua Zalo Anh Phú (0588500524) để nhận Key & cài đặt
    ═══════════════════════════════════════════════════════════════════ */
 var PRODUCT_KEY_VAULT = {
-  'innova-cheat': {
-    '1day': [
-      'INNOVA-1D-CEP2-GK3G',
-      'INNOVA-1D-E54R-V572',
-      'INNOVA-1D-HV49-NEQY',
-      'INNOVA-1D-ZXBT-BUET',
-      'INNOVA-1D-AZNQ-4MXK',
-      'INNOVA-1D-VMGF-YGB4',
-      'INNOVA-1D-YT6X-7BEV',
-      'INNOVA-1D-PBL7-H6L5',
-      'INNOVA-1D-FX2K-4KAA'
-    ],
-    '7day': [],
-    '30day': []
-  },
-  'trollmodz': {
-    '1day': [],
-    '12h': []
-  }
+  'innova-cheat': { '1day': [], '7day': [], '30day': [] },
+  'trollmodz': { '1day': [], '12h': [] }
 };
 var TROLLMODZ_KEY_VAULT = PRODUCT_KEY_VAULT['trollmodz'];
 
@@ -297,94 +278,19 @@ function saveUsedKeysMap(map) {
 }
 
 function getRemainingRealKeys(productIdOrPlanKey, maybePlanKey) {
-  var pId = maybePlanKey ? productIdOrPlanKey : 'trollmodz';
-  var planKey = maybePlanKey ? maybePlanKey : productIdOrPlanKey;
-
-  if (pId && !PRODUCT_KEY_VAULT[pId]) {
-    if (pId.includes('innova')) pId = 'innova-cheat';
-    else if (pId.includes('trollmodz')) pId = 'trollmodz';
-  }
-
-  var vault = PRODUCT_KEY_VAULT[pId] || {};
-  var pool = vault[planKey] || [];
-  var usedMap = getUsedKeysMap();
-  var usedList = Object.keys(usedMap).map(function(k) { return usedMap[k]; });
-  return pool.filter(function(k) {
-    return !usedList.includes(k);
-  });
+  return [];
 }
 
 function getDisplayStock(productId, planName) {
-  var pKey = normalizeVaultPlanKey(planName);
-  var pId = productId || 'innova-cheat';
-  if (pId && !PRODUCT_KEY_VAULT[pId]) {
-    if (pId.includes('innova')) pId = 'innova-cheat';
-    else if (pId.includes('trollmodz')) pId = 'trollmodz';
-  }
-  if (pKey && PRODUCT_KEY_VAULT[pId] && PRODUCT_KEY_VAULT[pId][pKey] !== undefined) {
-    var remainingReal = getRemainingRealKeys(pId, pKey).length;
-    return remainingReal;
-  }
   return 15;
 }
 
 function generateRandomTrollKey() {
-  var chars = '0123456789ABCDEF';
-  function seg() {
-    var s = '';
-    for (var i = 0; i < 4; i++) {
-      s += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return s;
-  }
-  return 'TRLL-' + seg() + '-' + seg() + '-' + seg();
+  return '';
 }
 
 function dispatchKeyForOrder(order) {
-  if (!order) return null;
-  var orderId = order.id || order.memo || window.currentOrderId || '';
-  if (!orderId) return null;
-
-  var usedMap = getUsedKeysMap();
-  if (usedMap[orderId]) {
-    return usedMap[orderId];
-  }
-
-  var prodName = (order.productName || order.product || (currentProduct ? currentProduct.name : '')).toLowerCase();
-  var prodId = (order.productId || (currentProduct ? currentProduct.id : '')).toLowerCase();
-  if (!prodId || prodId === 'undefined') {
-    if (prodName.includes('innova')) prodId = 'innova-cheat';
-    else if (prodName.includes('trollmodz')) prodId = 'trollmodz';
-  }
-
-  var planName = order.planName || order.plan || (currentPlan ? currentPlan.name : '');
-  // Gói tháng / vĩnh viễn không tự cấp key nếu không có cấu hình key
-  if (isLongTermOrMonthlyPlan(planName)) {
-    return null;
-  }
-
-  var planKey = normalizeVaultPlanKey(planName);
-  if (prodId && planKey) {
-    var available = getRemainingRealKeys(prodId, planKey);
-    if (available.length > 0) {
-      var key = available[0];
-      usedMap[orderId] = key;
-      saveUsedKeysMap(usedMap);
-      return key;
-    }
-  }
-
-  // Fallback check theo tên Innova Cheat
-  if (prodName.includes('innova') && planKey) {
-    var availableInnova = getRemainingRealKeys('innova-cheat', planKey);
-    if (availableInnova.length > 0) {
-      var keyInnova = availableInnova[0];
-      usedMap[orderId] = keyInnova;
-      saveUsedKeysMap(usedMap);
-      return keyInnova;
-    }
-  }
-
+  // Hạ key trên shop -> Chỉ cấp Mã Đơn Hàng cho khách gửi Zalo Admin
   return null;
 }
 
@@ -1671,11 +1577,7 @@ function renderModalVersionBlocks(p, activeIdx) {
           + '<h3 class="vb-title">' + escapeHTML(plan.name) + '</h3>'
           + '<div class="vb-meta-row">'
             + '<span class="vb-plat-badge"><i class="fa-solid fa-microchip"></i> ' + escapeHTML(p.plat || 'iOS & Android') + '</span>'
-            + (PRODUCT_KEY_VAULT[p.id] && normalizeVaultPlanKey(plan.name) && PRODUCT_KEY_VAULT[p.id][normalizeVaultPlanKey(plan.name)] !== undefined
-                ? (getDisplayStock(p.id, plan.name) > 0 
-                    ? '<span class="vb-stock-badge"><span class="stock-live-dot"></span> Còn ' + getDisplayStock(p.id, plan.name) + ' key sẵn kho</span>'
-                    : '<span class="vb-stock-badge" style="border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.1);color:#fbbf24;"><span class="stock-live-dot" style="background:#fbbf24;box-shadow:0 0 6px #fbbf24;"></span> Đang chờ nạp thêm key</span>')
-                : '')
+            + '<span class="vb-stock-badge"><span class="stock-live-dot"></span> Sẵn sàng kích hoạt</span>'
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'
@@ -2148,13 +2050,8 @@ function sendOrderToPhu() {
   var prod = currentProduct ? currentProduct.name : 'Phần Mềm FF';
   var plan = currentPlan ? currentPlan.name : '';
   var price = currentPlan ? currentPlan.price : 0;
-  var isMonthly = isLongTermOrMonthlyPlan(plan);
-  var usedMap = getUsedKeysMap();
-  var key = isMonthly ? '' : (usedMap[memo] || '');
 
-  var textToCopy = isMonthly
-    ? ('Chào Anh Phú, em vừa mua ' + prod + (plan ? ' (' + plan + ' - ' + formatVND(price) + ')' : '') + '. Mã đơn hàng của em là: ' + memo + '. Em mua gói tháng, anh check và gửi Key + file cài đặt cho em với ạ!')
-    : buildOrderReceiptText({ id: memo, product: prod, plan: plan, price: price, licenseKey: key });
+  var textToCopy = 'Chào Anh Phú, em vừa mua ' + prod + (plan ? ' (' + plan + ' - ' + formatVND(price) + ')' : '') + '. Mã đơn hàng của em là: ' + memo + '. Anh check và gửi Key + file cài đặt cho em với ạ!';
 
   if (navigator.clipboard) {
     navigator.clipboard.writeText(textToCopy);
@@ -2167,7 +2064,7 @@ function sendOrderToPhu() {
     document.body.removeChild(ta);
   }
 
-  toast('📋', 'Đã sao chép thông tin đơn hàng & Đang mở Zalo Anh Phú...');
+  toast('📋', 'Đã sao chép Mã Đơn & Đang mở Zalo Anh Phú...');
 
   setTimeout(function() {
     window.open('https://zalo.me/0588500524', '_blank');
@@ -2185,32 +2082,24 @@ function cleanTrollmodzPlanName(plan) {
 }
 
 function buildOrderReceiptText(order) {
-  var prod = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'TrollModz');
+  var prod = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'Sản phẩm Nexvia');
   var plan = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : '');
   var price = (order && order.price) || (currentPlan ? currentPlan.price : 0);
   var memo = (order && (order.id || order.memo)) || window.currentOrderId || 'NEXVIA000000';
-  var usedMap = getUsedKeysMap();
-  var key = (order && order.licenseKey) || usedMap[memo] || '';
-
-  var isTroll = (prod || '').toLowerCase().includes('trollmodz') || (order && order.productId === 'trollmodz');
-  var prodDisplay = isTroll 
-    ? ('Trollmodz - ' + (cleanTrollmodzPlanName(plan) || '12 Giờ'))
-    : (prod + (plan ? ' - ' + plan : ''));
 
   var lines = [
     '🎉 MUA HÀNG THÀNH CÔNG! 🎉',
     '',
     '🎮 Game: Free Fire',
-    '📦 Sản phẩm: ' + prodDisplay,
+    '📦 Sản phẩm: ' + prod + (plan ? ' - ' + plan : ''),
     '🔢 Số lượng: 1',
-    '💸Giá : ' + formatVndWithoutUnit(price) + 'VND'
+    '💸 Giá: ' + formatVndWithoutUnit(price) + ' VND',
+    '',
+    '📋 MÃ ĐƠN HÀNG CỦA BẠN:',
+    memo,
+    '',
+    '👉 Vui lòng gửi Mã Đơn cho Zalo Anh Phú (0588500524) để nhận Key & Hướng dẫn cài đặt!'
   ];
-
-  if (key) {
-    lines.push('');
-    lines.push('🔑 KEY CỦA BẠN:');
-    lines.push(key);
-  }
 
   return lines.join('\n');
 }
@@ -2220,18 +2109,9 @@ function openPaidModal(order) {
   window.currentOrderId = (order && order.id) || memo;
   window.currentOrderMemo = (order && order.memo) || window.currentOrderMemo;
 
-  var prodName = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'TrollModz');
+  var prodName = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'Phần Mềm FF');
   var planName = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : 'Gói phần mềm');
   var price = (order && order.price) || (currentPlan ? currentPlan.price : 50000);
-
-  var isMonthly = isLongTermOrMonthlyPlan(planName);
-
-  // Auto-dispatch real key for TrollModz if not monthly
-  var dispatchedKey = isMonthly ? null : dispatchKeyForOrder(order || { id: memo, product: prodName, plan: planName, price: price });
-  if (dispatchedKey && order) {
-    order.licenseKey = dispatchedKey;
-    saveOrder(order);
-  }
 
   var confirmCodeEl = document.getElementById('paidConfirmCode');
   var detailCodeEl = document.getElementById('paidDetailCode');
@@ -2272,46 +2152,18 @@ function openPaidModal(order) {
   if (headerIcon) headerIcon.textContent = '🎉';
   if (headerTitle) headerTitle.textContent = 'ĐÃ XÁC NHẬN TIỀN VÀO MBBANK!';
 
-  if (isMonthly) {
-    // THÔNG BÁO DÀNH CHO GÓI THÁNG / VĨNH VIỄN
-    if (headerSub) headerSub.innerHTML = '<span style="color:#fbbf24;font-weight:700;">Gói ' + escapeHTML(planName) + ' đã thanh toán thành công!</span> Vui lòng gửi Mã Đơn cho Anh Phú qua Zalo để nhận Key bản quyền & file cài đặt VIP.';
-    if (keyBox) keyBox.style.display = 'block';
-    if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-fingerprint" style="color:#f59e0b;"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ZALO ANH PHÚ ĐỂ LẤY KEY):';
-    if (keyEl) {
-      keyEl.textContent = memo;
-      keyEl.style.letterSpacing = '2px';
-      keyEl.style.color = '#38bdf8';
-    }
-    if (keyCopyBtn) {
-      keyCopyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Sao chép Mã Đơn';
-      keyCopyBtn.setAttribute('aria-label', 'Sao chép mã đơn');
-    }
-  } else if (dispatchedKey) {
-    if (headerSub) headerSub.textContent = 'Tài khoản MBBank đã khớp tiền! Key bản quyền của bạn đã được xuất tự động bên dưới:';
-    if (keyBox) keyBox.style.display = 'block';
-    if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-key" style="color:#f59e0b;"></i> KEY BẢN QUYỀN CỦA BẠN (KÍCH HOẠT NGAY):';
-    if (keyEl) {
-      keyEl.textContent = dispatchedKey;
-      keyEl.style.letterSpacing = '1px';
-      keyEl.style.color = '#38bdf8';
-    }
-    if (keyCopyBtn) {
-      keyCopyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Sao chép Mã Key';
-      keyCopyBtn.setAttribute('aria-label', 'Sao chép mã Key');
-    }
-  } else {
-    if (headerSub) headerSub.textContent = 'Tài khoản MBBank đã nhận đủ tiền! Nhắn tin cho Anh Phú để nhận file cài đặt & kích hoạt ngay.';
-    if (keyBox) keyBox.style.display = 'block';
-    if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-fingerprint"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ADMIN):';
-    if (keyEl) {
-      keyEl.textContent = memo;
-      keyEl.style.letterSpacing = 'normal';
-      keyEl.style.color = '';
-    }
-    if (keyCopyBtn) {
-      keyCopyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Sao chép Mã Đơn';
-      keyCopyBtn.setAttribute('aria-label', 'Sao chép mã đơn hàng');
-    }
+  // THÔNG BÁO CẤP MÃ ĐƠN HÀNG CHÍNH THỨC
+  if (headerSub) headerSub.innerHTML = '<span style="color:#fbbf24;font-weight:700;">Đơn hàng đã thanh toán thành công!</span> Vui lòng gửi <b>Mã Đơn Hàng</b> cho Anh Phú qua Zalo để nhận Key bản quyền & file cài đặt VIP.';
+  if (keyBox) keyBox.style.display = 'block';
+  if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-fingerprint" style="color:#f59e0b;"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ZALO ANH PHÚ ĐỂ LẤY KEY):';
+  if (keyEl) {
+    keyEl.textContent = memo;
+    keyEl.style.letterSpacing = '2px';
+    keyEl.style.color = '#38bdf8';
+  }
+  if (keyCopyBtn) {
+    keyCopyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Sao chép Mã Đơn';
+    keyCopyBtn.setAttribute('aria-label', 'Sao chép mã đơn hàng');
   }
 
   if (statusEl) {
@@ -2334,23 +2186,23 @@ function openPaidModal(order) {
 
 function copyGeneratedKey(btn) {
   var keyEl = document.getElementById('paidOrderCode');
-  var key = keyEl ? keyEl.textContent.trim() : '';
-  if (!key) return;
+  var code = keyEl ? keyEl.textContent.trim() : '';
+  if (!code) return;
 
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(key);
+    navigator.clipboard.writeText(code);
   } else {
     var ta = document.createElement('textarea');
-    ta.value = key;
+    ta.value = code;
     document.body.appendChild(ta);
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
   }
   var oldHtml = btn.innerHTML;
-  btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép!';
+  btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép Mã!';
   setTimeout(function() { btn.innerHTML = oldHtml; }, 2000);
-  toast('🔑', 'Đã sao chép mã Key bản quyền: ' + key);
+  toast('📋', 'Đã sao chép Mã Đơn Hàng: ' + code);
 }
 
 function closePaidModal() {
@@ -2485,23 +2337,15 @@ function lookupOrderCode(manualCode) {
     var cleanPhone = escapeHTML(o.phone || '');
     var cleanTime = escapeHTML(o.time || '');
     var cleanTxId = (o.status === 'approved' && o.txId) ? '<div style="color:#34d399;font-weight:700;">• Giao dịch MBBank: ' + escapeHTML(o.txId) + '</div>' : '';
-    var existingKey = o.licenseKey || (getUsedKeysMap()[o.id]) || '';
-    if (o.status === 'approved' && !existingKey) {
-      var autoKey = dispatchKeyForOrder(o);
-      if (autoKey) {
-        existingKey = autoKey;
-        o.licenseKey = autoKey;
-        saveOrder(o);
-      }
-    }
-    var licenseKeyHtml = '';
-    if (o.status === 'approved' && existingKey) {
-      licenseKeyHtml = '<div style="margin-top:8px;padding:10px 12px;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.3);border-radius:8px;">'
-        + '<div style="color:#38bdf8;font-size:11px;font-weight:800;margin-bottom:4px;text-transform:uppercase;"><i class="fa-solid fa-key"></i> Key bản quyền của bạn:</div>'
+    var orderActionHtml = '';
+    if (o.status === 'approved') {
+      orderActionHtml = '<div style="margin-top:8px;padding:10px 12px;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.3);border-radius:8px;">'
+        + '<div style="color:#38bdf8;font-size:11px;font-weight:800;margin-bottom:4px;text-transform:uppercase;"><i class="fa-solid fa-fingerprint"></i> Mã đơn hàng chính thức:</div>'
         + '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">'
-          + '<strong style="color:#00f0ff;font-family:monospace;font-size:14px;letter-spacing:1px;">' + escapeHTML(existingKey) + '</strong>'
-          + '<button type="button" class="btn" onclick="copyText(\'' + escapeHTML(existingKey) + '\', this)" style="background:var(--rd-volt,#d7ff3c);color:#0a0d14;font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;cursor:pointer;border:none;">Sao chép Key</button>'
+          + '<strong style="color:#00f0ff;font-family:monospace;font-size:15px;letter-spacing:1px;">' + cleanId + '</strong>'
+          + '<button type="button" class="btn" onclick="copyText(\'' + cleanId + '\', this)" style="background:var(--rd-volt,#d7ff3c);color:#0a0d14;font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;cursor:pointer;border:none;">Sao chép Mã Đơn</button>'
         + '</div>'
+        + '<div style="font-size:11.5px;color:#94a3b8;margin-top:6px;">👉 Vui lòng gửi Mã Đơn này cho Zalo <b>0588500524 (Anh Phú)</b> để nhận Key bản quyền & file cài đặt.</div>'
       + '</div>';
     }
 
@@ -2515,7 +2359,7 @@ function lookupOrderCode(manualCode) {
       + '<div>👤 <b>Tài khoản mua:</b> <span style="color:#fff;">' + cleanUser + '</span>' + (cleanPhone ? ' • SĐT/Zalo: <span style="color:#f59e0b;">' + cleanPhone + '</span>' : '') + '</div>'
       + '<div>⏰ <b>Thời gian:</b> ' + cleanTime + '</div>'
       + cleanTxId
-      + licenseKeyHtml
+      + orderActionHtml
       + (o.status !== 'approved' ? '<div style="margin-top:6px;padding:8px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:6px;color:#fbbf24;font-size:11.5px;"><i class="fa-solid fa-circle-info"></i> Nội dung chuyển khoản là <b>Tên tài khoản (Username)</b> của bạn. Sau khi MBBank xác nhận tiền vào, hệ thống sẽ tự động duyệt đơn và cấp mã đơn chính thức!</div>' : '')
     + '</div>'
     + '<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-wrap:wrap;gap:8px;">'
