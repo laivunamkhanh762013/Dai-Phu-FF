@@ -2814,3 +2814,52 @@ body.storefront .product:hover {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ⏰ 1-HOUR PENDING ORDER COUNTDOWN BADGE STYLING
+   ═══════════════════════════════════════════════════════════════════ */
+.m-order-countdown-wrap {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.m-countdown-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.16) 0%, rgba(245, 158, 11, 0.16) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.18);
+  transition: all 0.3s ease;
+}
+.m-countdown-badge strong {
+  color: #fef08a;
+  font-family: 'JetBrains Mono', monospace, Consolas, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+.m-countdown-badge i {
+  color: #f87171;
+  font-size: 13px;
+}
+.m-countdown-note {
+  font-size: 11px;
+  color: #94a3b8;
+  font-style: italic;
+  padding-left: 4px;
+}
+.m-order-countdown-wrap.expired .m-countdown-badge {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+.m-order-countdown-wrap.expired .m-countdown-badge strong {
+  color: #ef4444;
+}

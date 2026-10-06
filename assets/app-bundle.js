@@ -1733,7 +1733,9 @@ function startPaymentForPlan(p, plan) {
     // Lưu đơn pending vào cache của khách
     saveOrder(order);
 
-    // Bắt đầu lắng nghe trạng thái đơn từ server
+    // Bắt đầu đếm ngược 1 giờ (60:00 -> 00:00) và lắng nghe trạng thái thanh toán từ server
+    var expiryTime = order.expiresAt || (Date.now() + 60 * 60 * 1000);
+    startOrderExpiryCountdown(expiryTime, order.id);
     startPaymentWatcher(order.id, window.currentOrderMemo, order.price);
     toast('🛒', 'Đã khởi tạo đơn hàng: ' + order.id + '. Vui lòng chuyển khoản đúng nội dung.');
   })
@@ -1741,6 +1743,63 @@ function startPaymentForPlan(p, plan) {
     console.error('Create order error:', err);
     toast('⚠️', 'Lỗi kết nối máy chủ tạo đơn.');
   });
+}
+
+
+/* ═══════ BỘ ĐẾM NGƯỢC 1 GIỜ TỰ ĐỘNG HỦY ĐƠN CHỜ DUYỆT ═══════ */
+var orderCountdownInterval = null;
+
+function startOrderExpiryCountdown(expiresAt, orderId) {
+  stopOrderExpiryCountdown();
+  var timerEl = document.getElementById('mOrderTimer');
+  var boxEl = document.getElementById('mCountdownBox');
+  if (boxEl) boxEl.classList.remove('expired');
+
+  function updateTimer() {
+    var now = Date.now();
+    var diffMs = expiresAt - now;
+
+    if (diffMs <= 0) {
+      // HẾT HẠN 1 GIỜ -> DỪNG ĐẾM, DỪNG CHECK, THÔNG BÁO TỰ ĐỘNG HỦY
+      stopOrderExpiryCountdown();
+      stopPaymentWatcher();
+      if (timerEl) timerEl.textContent = '00:00 (Đã hết hạn)';
+      if (boxEl) boxEl.classList.add('expired');
+      
+      updateLiveStatus('expired', '⚠️ ĐƠN HÀNG ĐÃ HẾT HẠN 1 GIỜ VÀ TỰ ĐỘNG HỦY', 'Đơn hàng này đã quá thời gian chờ duyệt (1 tiếng) và bị xóa khỏi hệ thống. Vui lòng bấm quay lại để tạo đơn mới!');
+      
+      var qrEl = document.getElementById('mQrCode');
+      if (qrEl) qrEl.style.opacity = '0.2';
+      
+      var btnCheck = document.getElementById('btnCheckPaid');
+      if (btnCheck) {
+        btnCheck.disabled = true;
+        btnCheck.innerHTML = '<i class="fa-solid fa-ban"></i> Đơn hàng đã quá hạn 1 giờ';
+      }
+
+      toast('⏰', 'Đơn hàng đã hết hạn 1 giờ và tự động hủy. Vui lòng tạo đơn mới!');
+      return;
+    }
+
+    var totalSeconds = Math.floor(diffMs / 1000);
+    var minutes = Math.floor(totalSeconds / 60);
+    var seconds = totalSeconds % 60;
+    var formatted = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+    if (timerEl) {
+      timerEl.textContent = formatted;
+    }
+  }
+
+  updateTimer();
+  orderCountdownInterval = setInterval(updateTimer, 1000);
+}
+
+function stopOrderExpiryCountdown() {
+  if (orderCountdownInterval) {
+    clearInterval(orderCountdownInterval);
+    orderCountdownInterval = null;
+  }
 }
 
 
@@ -1951,16 +2010,18 @@ function goToStep(step) {
   if (!s1 || !s2) return;
   if (step === 1) {
     stopPaymentWatcher();
+    stopOrderExpiryCountdown();
     s1.style.display = 'block';
     s2.style.display = 'none';
   } else if (step === 2) {
     s1.style.display = 'none';
-      s2.style.display = 'block';
+    s2.style.display = 'block';
   }
 }
 
 function closeBuyModal() {
   stopPaymentWatcher();
+  stopOrderExpiryCountdown();
   window.currentOrderId = null;
   window.currentOrderMemo = '';
   window.currentPayAmountRaw = 0;

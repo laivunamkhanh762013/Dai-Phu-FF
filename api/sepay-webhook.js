@@ -88,7 +88,17 @@ module.exports = async function handler(req, res) {
     // ── XỬ LÝ ĐỒNG BỘ TRONG MUTEX (CHỐNG RACE CONDITION / LOST UPDATE) ──
     const result = await webhookMutex.run(async () => {
       const gistData = await getGist();
-      const existingOrders = Array.isArray(gistData.orders) ? gistData.orders : [];
+      const rawOrders = Array.isArray(gistData.orders) ? gistData.orders : [];
+
+      // Tự động dọn dẹp đơn pending quá hạn 1 giờ
+      const now = Date.now();
+      const existingOrders = rawOrders.filter(o => {
+        if (o && o.status === 'pending') {
+          const created = typeof o.createdAt === 'number' ? o.createdAt : (o.time ? Date.parse(o.time) : 0);
+          if (created && (now - created) > (60 * 60 * 1000)) return false;
+        }
+        return true;
+      });
 
       // Kiểm tra Idempotency chống duyệt trùng giao dịch O(1) qua Set
       const processedTxSet = new Set(

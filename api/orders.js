@@ -17,8 +17,29 @@ const ORDER_CONFIG = Object.freeze({
   createRateLimitCount: 5,
   createRateLimitWindowMs: 60000,
   maxIpLimitCache: 1000,
-  memoCollisionMaxRetries: 50
+  memoCollisionMaxRetries: 50,
+  pendingTtlMs: 60 * 60 * 1000 // 1 giờ (60 phút) tự động xóa đơn chờ duyệt
 });
+
+// Hàm hỗ trợ lọc và xóa sạch các đơn hàng 'pending' đã quá 1 giờ
+function pruneExpiredPendingOrders(orders) {
+  if (!Array.isArray(orders)) return { list: [], prunedCount: 0 };
+  const now = Date.now();
+  const validList = [];
+  let prunedCount = 0;
+
+  for (const o of orders) {
+    if (o && o.status === 'pending') {
+      const created = typeof o.createdAt === 'number' ? o.createdAt : (o.time ? Date.parse(o.time) : 0);
+      if (created && (now - created) > ORDER_CONFIG.pendingTtlMs) {
+        prunedCount++;
+        continue; // Bỏ qua đơn pending đã quá hạn 1h
+      }
+    }
+    validList.push(o);
+  }
+  return { list: validList, prunedCount };
+}
 
 // In-process rate limiter with memory bound & cleanup
 const createLimits = new Map();
@@ -87,8 +108,18 @@ module.exports = async function handler(req, res) {
     // ════════ LẤY DANH SÁCH / TRA CỨU ĐƠN HÀNG (GET) ════════
     if (req.method === 'GET') {
       const { orders, settings } = await getGist();
-      const all = Array.isArray(orders) ? orders : [];
+      const rawOrders = Array.isArray(orders) ? orders : [];
       const currentSettings = (settings && typeof settings === 'object') ? settings : {};
+
+      // Tự động dọn dẹp các đơn pending > 1h
+      const { list: all, prunedCount } = pruneExpiredPendingOrders(rawOrders);
+      if (prunedCount > 0) {
+        orderMutex.run(async () => {
+          const fresh = await getGist();
+          const { list: freshList } = pruneExpiredPendingOrders(fresh.orders || []);
+          await updateGist({ orders: freshList });
+        }).catch(err => console.error('Auto-prune background update error:', err));
+      }
 
       // 0. Tra cứu trạng thái hệ thống / bảo trì (Public)
       if (query.view === 'maintenance' || query.view === 'settings') {
@@ -143,20 +174,28 @@ module.exports = async function handler(req, res) {
 
       const found = all.find(o => (o.id && o.id.toUpperCase() === lookupCode) || (o.memo && o.memo.toUpperCase() === lookupCode));
       if (!found) {
-        return res.status(404).json({ success: false, error: 'Không tìm thấy thông tin đơn hàng.' });
+        return res.status(404).json({ success: false, error: 'Không tìm thấy thông tin đơn hàng hoặc đơn đã hết hạn 1 giờ và tự động hủy.' });
       }
 
       const isOwner = userPayload && userPayload.user.toLowerCase() === (found.user || '').toLowerCase();
       const canViewFull = isAdmin || isOwner;
+      const createdAt = typeof found.createdAt === 'number' ? found.createdAt : (found.time ? Date.parse(found.time) : Date.now());
+      const expiresAt = createdAt + ORDER_CONFIG.pendingTtlMs;
+      const ttlRemainingSeconds = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
+
       return res.status(200).json({
         success: true,
         order: {
           id: found.id,
+          memo: found.memo,
           product: found.product,
           plan: found.plan,
           price: found.price,
           user: canViewFull ? found.user : (found.user ? found.user.substring(0, 3) + '***' : '***'),
           time: found.time,
+          createdAt: createdAt,
+          expiresAt: expiresAt,
+          ttlSeconds: ttlRemainingSeconds,
           status: found.status,
           txId: canViewFull ? found.txId : undefined,
           licenseKey: found.licenseKey || found.key || ''
@@ -287,7 +326,10 @@ module.exports = async function handler(req, res) {
         let creationError = null;
         const orderCreationResult = await orderMutex.run(async () => {
           const { orders } = await getGist();
-          const list = Array.isArray(orders) ? orders : [];
+          const rawList = Array.isArray(orders) ? orders : [];
+
+          // Tự động dọn dẹp các đơn pending > 1h trước khi tạo đơn mới
+          const { list } = pruneExpiredPendingOrders(rawList);
 
           let memoCode = '';
           const pendingMemos = new Set(list.filter(o => o.status === 'pending').map(o => o.memo));
@@ -304,6 +346,7 @@ module.exports = async function handler(req, res) {
             return null;
           }
 
+          const nowTimestamp = Date.now();
           const orderItem = {
             id: newId,
             memo: memoCode,
@@ -313,7 +356,9 @@ module.exports = async function handler(req, res) {
             user: username,
             phone: phone,
             time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-            createdAt: Date.now(),
+            createdAt: nowTimestamp,
+            expiresAt: nowTimestamp + ORDER_CONFIG.pendingTtlMs,
+            ttlSeconds: Math.floor(ORDER_CONFIG.pendingTtlMs / 1000),
             status: 'pending',
             txId: ''
           };
