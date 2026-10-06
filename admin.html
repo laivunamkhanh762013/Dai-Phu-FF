@@ -236,32 +236,34 @@
     .scan-terminal .log-ok { color: #4ade80; }
     .scan-terminal .log-info { color: #c4b5fd; }
 
+    /* CUSTOM DARK CYBER SCROLLBAR (CHỐNG THANH CUỘN TRẮNG MẶC ĐỊNH) */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090c15;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.25);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.5);
+    }
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.25) #090c15;
+    }
+
     /* TOAST */
     .admin-toast { position: fixed; bottom: 24px; right: 24px; background: #14182f; border: 1px solid rgba(56,189,248,0.4); border-radius: 12px; padding: 12px 18px; color: #fff; font-size: 13px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.6); z-index: 999999; display: none; align-items: center; gap: 8px; }
     .admin-toast.show { display: flex; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  
-/* ═══ HIỆU ỨNG MỚI ═══ */
-@keyframes rowFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-#ordersTableBody tr {
-  animation: rowFadeIn .35s ease both;
-}
-#ordersTableBody tr:nth-child(1) { animation-delay: .02s; }
-#ordersTableBody tr:nth-child(2) { animation-delay: .05s; }
-#ordersTableBody tr:nth-child(3) { animation-delay: .08s; }
-#ordersTableBody tr:nth-child(4) { animation-delay: .11s; }
-#ordersTableBody tr:nth-child(5) { animation-delay: .14s; }
-#ordersTableBody tr:nth-child(n+6) { animation-delay: .16s; }
 
-.stat-data strong, .rev-period-card strong {
-  transition: color .2s ease;
-}
-.stat-card, .rev-period-card {
-  animation: rowFadeIn .4s ease both;
-}
+    .stat-data strong, .rev-period-card strong {
+      transition: color .2s ease;
+    }
 
 .btn-scan i { transition: transform .5s ease; }
 .btn-scan:active i { transform: rotate(180deg); }
@@ -1080,16 +1082,35 @@ function startAutoRefresh() {
   autoRefreshTimer = setInterval(function() { loadAllOrders(true); }, 30000);
   if (!countdownTickTimer) {
     countdownTickTimer = setInterval(function() {
-      // Cập nhật mượt mà từng giây cho bộ đếm 1h của các đơn pending
-      if (allOrders.some(function(o) { return o.status === 'pending' || !o.status; })) {
-        renderDashboard();
-      }
+      // Cập nhật mượt mà trực tiếp vào text thời gian, KHÔNG re-render lại cả bảng
+      updateLiveCountdowns();
     }, 1000);
   }
 }
 function stopAutoRefresh() {
   if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
   if (countdownTickTimer) { clearInterval(countdownTickTimer); countdownTickTimer = null; }
+}
+
+function updateLiveCountdowns() {
+  const timerElements = document.querySelectorAll('.admin-order-timer');
+  if (!timerElements.length) return;
+  const now = Date.now();
+  timerElements.forEach(function(el) {
+    const created = Number(el.getAttribute('data-created')) || 0;
+    if (!created) return;
+    const expireMs = created + (60 * 60 * 1000);
+    const diffSec = Math.max(0, Math.floor((expireMs - now) / 1000));
+    const mLeft = Math.floor(diffSec / 60);
+    const sLeft = diffSec % 60;
+    const timeStr = (mLeft < 10 ? '0' : '') + mLeft + ':' + (sLeft < 10 ? '0' : '') + sLeft;
+    if (diffSec <= 0) {
+      el.textContent = '00:00 (Hết hạn)';
+      el.style.color = '#ef4444';
+    } else {
+      el.textContent = timeStr;
+    }
+  });
 }
 
 /* ═══════ DATA HELPERS ═══════ */
@@ -1477,7 +1498,7 @@ function renderDashboard() {
       } else {
         badge = '<div style="display:flex;flex-direction:column;align-items:flex-start;gap:3px;">' +
                   '<span class="status-badge pending"><i class="fa-solid fa-clock"></i> CHỜ DUYỆT</span>' +
-                  '<span style="font-size:10px;color:#f59e0b;font-family:\'JetBrains Mono\',monospace;font-weight:700;"><i class="fa-solid fa-hourglass-half fa-spin-pulse"></i> Hủy sau: <b>' + timeStr + '</b></span>' +
+                  '<span style="font-size:10px;color:#f59e0b;font-family:\'JetBrains Mono\',monospace;font-weight:700;"><i class="fa-solid fa-hourglass-half fa-spin-pulse"></i> Hủy sau: <b class="admin-order-timer" data-created="' + createdMs + '">' + timeStr + '</b></span>' +
                 '</div>';
       }
     }
