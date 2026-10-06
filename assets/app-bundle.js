@@ -359,6 +359,60 @@ function dispatchKeyForOrder(order) {
 
 var PRODUCTS = [
   {
+    id: 'proxy-adr-ob55',
+    category: 'Proxy & Injector',
+    plat: 'Android (OB55)',
+    buyers: '890+ Người mua',
+    name: 'Proxy Adr OB55 (Android)',
+    shortDesc: 'Bản ổn định siêu mượt - An toàn Anti-Ban 99.99% - Hỗ trợ kéo tâm Aim Drag, No Recoil, Aim Assist, Menu ESP VIP.',
+    fullDesc: 'PROXY ANDROID OB55 (BẢN ỔN ĐỊNH SIÊU MƯỢT - AN TOÀN):\n- VIP 1: Aim Drag + No Recoil (Hỗ trợ kéo tâm mượt mà & giảm tối đa độ giật súng).\n- VIP 2: Aim Assist + ESP (Tự động ghim bám mục tiêu & định vị kẻ địch).\n- VIP 3: Menu ESP + Aim VIP (Tổ hợp tính năng VIP ngắm chuẩn & định vị toàn diện).\n- VIP 4: Aim Đầu + ESP VIP (Khóa đầu mục tiêu siêu chuẩn & định vị đối thủ VIP).\n- Bật / Tắt Nhanh Trực Tiếp ở App, Hỗ trợ 1:1 từ Admin Nexvia VN.',
+    priceMin: 25000,
+    priceMax: 500000,
+    oldPrice: 800000,
+    image: 'assets/uploads/products/proxy-android-ob55.jpg',
+    images: [
+      { src: 'assets/uploads/products/proxy-android-ob55.jpg', label: 'Proxy Adr OB55', title: 'Proxy Android OB55 - Menu VIP & Định Vị' }
+    ],
+    plans: [
+      {
+        name: 'Key 1 Ngày (1 Days)',
+        price: 25000,
+        badge: 'Trải nghiệm (0.96$)',
+        action: 'VIP 1 + VIP 2: Kéo tâm Aim Drag, No Recoil, Aim Assist & Menu ESP suốt 24h.',
+        fix: 'Anti-Ban 99.99%, bật/tắt nhanh trực tiếp trong App, mượt mà không delay.',
+        pros: 'Trải nghiệm bản OB55 mới nhất siêu mượt với giá cực mềm.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
+      },
+      {
+        name: 'Key 7 Ngày (7 Days)',
+        price: 70000,
+        badge: 'Tiết kiệm (2.69$)',
+        action: 'Sử dụng trọn bộ tính năng VIP 1, 2, 3, 4 liên tục 7 ngày (1 tuần).',
+        fix: 'Khóa đầu siêu chuẩn, định vị địch từ xa, bảo vệ tài khoản tối đa.',
+        pros: 'Leo rank tuần thả ga, cập nhật data bypass tự động 24/7.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
+      },
+      {
+        name: 'Key 30 Ngày (30 Days)',
+        price: 150000,
+        badge: 'Phổ biến (5.76$)',
+        action: 'Gói tháng toàn diện 30 ngày: Aimlock đầu, Aim Drag, ESP Box, ESP Line, No Recoil.',
+        fix: 'Bypass antiban 99.99% ổn định cả mùa giải, mượt mà 120 FPS.',
+        pros: 'Tiết kiệm tới 70% so với mua lẻ, hỗ trợ VIP ưu tiên 1:1 từ Anh Phú.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
+      },
+      {
+        name: 'Key Vĩnh Viễn (Lifetime)',
+        price: 500000,
+        badge: '👑 Vĩnh Viễn (19.21$)',
+        action: 'Sở hữu trọn đời vĩnh viễn không giới hạn thời gian mọi tính năng Proxy Android OB55.',
+        fix: 'Tự động cập nhật mọi bản OB mới (OB55, OB56, OB57...) miễn phí trọn đời.',
+        pros: 'Đặc quyền thành viên VIP Vĩnh Viễn, bảo hành 1 đổi 1 trọn đời.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
+      }
+    ]
+  },
+  {
     id: 'slot-nhom-file-tien',
     category: 'Dịch Vụ VIP',
     plat: 'iOS • Android • PC',

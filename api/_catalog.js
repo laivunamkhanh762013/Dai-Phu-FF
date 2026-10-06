@@ -13,6 +13,17 @@ function deepFreeze(obj) {
 }
 
 const RAW_CATALOG = {
+  "proxy-adr-ob55": {
+    "name": "Proxy Adr OB55 (Android)",
+    "soldOut": false,
+    "plans": {
+      "Key 1 Ngày (1 Days)": 25000,
+      "Key 7 Ngày (7 Days)": 70000,
+      "Key 30 Ngày (30 Days)": 150000,
+      "Key Vĩnh Viễn (Lifetime)": 500000
+    }
+  },
+
   "slot-nhom-file-tien": {
     "name": "Slot Nhóm File Tiền VIP",
     "soldOut": false,
