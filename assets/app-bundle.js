@@ -2025,7 +2025,7 @@ function buildOrderReceiptText(order) {
   var prod = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'TrollModz');
   var plan = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : '');
   var price = (order && order.price) || (currentPlan ? currentPlan.price : 0);
-  var memo = (order && (order.id || order.memo)) || window.currentOrderId || 'DP000000';
+  var memo = (order && (order.id || order.memo)) || window.currentOrderId || 'NEXVIA000000';
   var usedMap = getUsedKeysMap();
   var key = (order && order.licenseKey) || usedMap[memo] || '';
 
@@ -2053,7 +2053,7 @@ function buildOrderReceiptText(order) {
 }
 
 function openPaidModal(order) {
-  var memo = (order && order.id) || window.currentOrderId || 'DP000000';
+  var memo = (order && order.id) || window.currentOrderId || 'NEXVIA000000';
   window.currentOrderId = (order && order.id) || memo;
   window.currentOrderMemo = (order && order.memo) || window.currentOrderMemo;
 
@@ -2205,7 +2205,7 @@ function closePaidModal() {
 }
 
 function copyPaidSyntax() {
-  var memo = window.currentOrderMemo || (document.getElementById('paidConfirmCode') ? document.getElementById('paidConfirmCode').textContent.trim() : 'DP487340');
+  var memo = window.currentOrderMemo || (document.getElementById('paidConfirmCode') ? document.getElementById('paidConfirmCode').textContent.trim() : 'NX84920');
   
   if (!navigator.clipboard) {
     var ta = document.createElement('textarea');

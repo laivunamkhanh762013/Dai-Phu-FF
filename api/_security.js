@@ -232,7 +232,7 @@ function verifyUserToken(req) {
 
 function generateSecureOrderId() {
   const num = crypto.randomInt(100000, 1000000);
-  return 'DPVN' + num;
+  return 'NEXVIA' + num;
 }
 
 function validateOrderId(id) {
