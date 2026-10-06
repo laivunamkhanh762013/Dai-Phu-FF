@@ -1261,8 +1261,13 @@ function renderProducts() {
     if (p.pinned) {
       var pinRibbon = document.createElement('div');
       pinRibbon.className = 'card-pin-ribbon';
-      pinRibbon.innerHTML = '<i class="fa-solid fa-thumbtack"></i> <span>GHIM NỔI BẬT</span>';
+      pinRibbon.innerHTML = '<i class="fa-solid fa-crown"></i> <span>TOP 1 • GHIM NỔI BẬT</span>';
       article.appendChild(pinRibbon);
+
+      var sparkles = document.createElement('div');
+      sparkles.className = 'card-sparkle-stars';
+      sparkles.innerHTML = '<span class="star-sparkle s1">✦</span><span class="star-sparkle s2">★</span><span class="star-sparkle s3">✦</span><span class="star-sparkle s4">✨</span>';
+      article.appendChild(sparkles);
     }
 
     // Thumb & Badges
