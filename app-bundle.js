@@ -231,16 +231,34 @@ function stripVietnamese(str) {
 
 /* ═══════ REAL PRODUCTS DATA (SHOP ĐẠI PHÚ FF) ═══════ */
 /* ═══════════════════════════════════════════════════════════════════
-   🔑 TROLLMODZ REAL KEY VAULT & VIRTUAL STOCK COUNTER SYSTEM
-   - Kho Key thật chính hãng do Admin cấp (8 key 1 Ngày, 10 key 12 Giờ)
-   - Bộ đếm tồn kho ảo (+10 key ảo)
+   🔑 PRODUCT REAL KEY VAULT & VIRTUAL STOCK COUNTER SYSTEM
+   - Kho Key thật chính hãng do Admin cấp cho từng sản phẩm và gói
+   - InNova Cheat: Gói 1 Ngày (9 keys do Admin nạp)
    - Tự động xuất Key trực tiếp khi khách thanh toán thành công
-   - Mỗi lượt mua thật sẽ giảm trừ 1 key thật và 1 tồn kho thật
+   - Mỗi lượt mua thật sẽ giảm trừ 1 key thật và cập nhật kho
    ═══════════════════════════════════════════════════════════════════ */
-var TROLLMODZ_KEY_VAULT = {
-  '1day': [],
-  '12h': []
+var PRODUCT_KEY_VAULT = {
+  'innova-cheat': {
+    '1day': [
+      'INNOVA-1D-CEP2-GK3G',
+      'INNOVA-1D-E54R-V572',
+      'INNOVA-1D-HV49-NEQY',
+      'INNOVA-1D-ZXBT-BUET',
+      'INNOVA-1D-AZNQ-4MXK',
+      'INNOVA-1D-VMGF-YGB4',
+      'INNOVA-1D-YT6X-7BEV',
+      'INNOVA-1D-PBL7-H6L5',
+      'INNOVA-1D-FX2K-4KAA'
+    ],
+    '7day': [],
+    '30day': []
+  },
+  'trollmodz': {
+    '1day': [],
+    '12h': []
+  }
 };
+var TROLLMODZ_KEY_VAULT = PRODUCT_KEY_VAULT['trollmodz'];
 
 function normalizeVaultPlanKey(planName) {
   if (!planName) return null;
@@ -248,8 +266,17 @@ function normalizeVaultPlanKey(planName) {
   if (p.includes('1 ngày') || p.includes('1 ngay') || p.includes('1ngay') || p.includes('1 day') || p.includes('1 nga')) {
     return '1day';
   }
+  if (p.includes('7 ngày') || p.includes('7 ngay') || p.includes('7ngay') || p.includes('7 day') || p.includes('7 nga') || p.includes('1 tuần') || p.includes('1 tuan')) {
+    return '7day';
+  }
+  if (p.includes('30 ngày') || p.includes('30 ngay') || p.includes('30ngay') || p.includes('30 day') || p.includes('1 tháng') || p.includes('1 thang') || p.includes('tháng') || p.includes('thang')) {
+    return '30day';
+  }
   if (p.includes('12 giờ') || p.includes('12 gio') || p.includes('12gio') || p.includes('12h') || p.includes('12 h') || p.includes('12 hour') || p.includes('12 gi')) {
     return '12h';
+  }
+  if (p.includes('vĩnh viễn') || p.includes('vinh vien') || p.includes('lifetime')) {
+    return 'lifetime';
   }
   return null;
 }
@@ -269,8 +296,17 @@ function saveUsedKeysMap(map) {
   } catch (e) {}
 }
 
-function getRemainingRealKeys(planKey) {
-  var pool = TROLLMODZ_KEY_VAULT[planKey] || [];
+function getRemainingRealKeys(productIdOrPlanKey, maybePlanKey) {
+  var pId = maybePlanKey ? productIdOrPlanKey : 'trollmodz';
+  var planKey = maybePlanKey ? maybePlanKey : productIdOrPlanKey;
+
+  if (pId && !PRODUCT_KEY_VAULT[pId]) {
+    if (pId.includes('innova')) pId = 'innova-cheat';
+    else if (pId.includes('trollmodz')) pId = 'trollmodz';
+  }
+
+  var vault = PRODUCT_KEY_VAULT[pId] || {};
+  var pool = vault[planKey] || [];
   var usedMap = getUsedKeysMap();
   var usedList = Object.keys(usedMap).map(function(k) { return usedMap[k]; });
   return pool.filter(function(k) {
@@ -280,8 +316,13 @@ function getRemainingRealKeys(planKey) {
 
 function getDisplayStock(productId, planName) {
   var pKey = normalizeVaultPlanKey(planName);
-  if (productId === 'trollmodz' && pKey) {
-    var remainingReal = getRemainingRealKeys(pKey).length;
+  var pId = productId || 'innova-cheat';
+  if (pId && !PRODUCT_KEY_VAULT[pId]) {
+    if (pId.includes('innova')) pId = 'innova-cheat';
+    else if (pId.includes('trollmodz')) pId = 'trollmodz';
+  }
+  if (pKey && PRODUCT_KEY_VAULT[pId] && PRODUCT_KEY_VAULT[pId][pKey] !== undefined) {
+    var remainingReal = getRemainingRealKeys(pId, pKey).length;
     return remainingReal;
   }
   return 15;
@@ -304,25 +345,27 @@ function dispatchKeyForOrder(order) {
   var orderId = order.id || order.memo || window.currentOrderId || '';
   if (!orderId) return null;
 
-  var prodName = (order.productName || order.product || (currentProduct ? currentProduct.name : '')).toLowerCase();
-  var prodId = (order.productId || (currentProduct ? currentProduct.id : '')).toLowerCase();
-  var isTroll = prodId === 'trollmodz' || prodName.includes('trollmodz');
-  if (!isTroll) return null;
-
-  var planName = order.planName || order.plan || (currentPlan ? currentPlan.name : '');
-  // NẾU LÀ GÓI THÁNG (30 Ngày) HOẶC VĨNH VIỄN: KHÔNG TỰ ĐỘNG CẤP KEY MÀ NHẮN ADMIN ZALO MÃ ĐƠN
-  if (isLongTermOrMonthlyPlan(planName)) {
-    return null;
-  }
-
   var usedMap = getUsedKeysMap();
   if (usedMap[orderId]) {
     return usedMap[orderId];
   }
 
+  var prodName = (order.productName || order.product || (currentProduct ? currentProduct.name : '')).toLowerCase();
+  var prodId = (order.productId || (currentProduct ? currentProduct.id : '')).toLowerCase();
+  if (!prodId || prodId === 'undefined') {
+    if (prodName.includes('innova')) prodId = 'innova-cheat';
+    else if (prodName.includes('trollmodz')) prodId = 'trollmodz';
+  }
+
+  var planName = order.planName || order.plan || (currentPlan ? currentPlan.name : '');
+  // Gói tháng / vĩnh viễn không tự cấp key nếu không có cấu hình key
+  if (isLongTermOrMonthlyPlan(planName)) {
+    return null;
+  }
+
   var planKey = normalizeVaultPlanKey(planName);
-  if (planKey) {
-    var available = getRemainingRealKeys(planKey);
+  if (prodId && planKey) {
+    var available = getRemainingRealKeys(prodId, planKey);
     if (available.length > 0) {
       var key = available[0];
       usedMap[orderId] = key;
@@ -331,7 +374,17 @@ function dispatchKeyForOrder(order) {
     }
   }
 
-  // Khi kho key trống (Admin đã gỡ key để nạp đợt mới) -> không tự cấp key rác mà để khách nhắn Zalo nhận key mới
+  // Fallback check theo tên Innova Cheat
+  if (prodName.includes('innova') && planKey) {
+    var availableInnova = getRemainingRealKeys('innova-cheat', planKey);
+    if (availableInnova.length > 0) {
+      var keyInnova = availableInnova[0];
+      usedMap[orderId] = keyInnova;
+      saveUsedKeysMap(usedMap);
+      return keyInnova;
+    }
+  }
+
   return null;
 }
 
@@ -1618,7 +1671,11 @@ function renderModalVersionBlocks(p, activeIdx) {
           + '<h3 class="vb-title">' + escapeHTML(plan.name) + '</h3>'
           + '<div class="vb-meta-row">'
             + '<span class="vb-plat-badge"><i class="fa-solid fa-microchip"></i> ' + escapeHTML(p.plat || 'iOS & Android') + '</span>'
-            + (p.id === 'trollmodz' && normalizeVaultPlanKey(plan.name) ? '<span class="vb-stock-badge"><span class="stock-live-dot"></span> Còn ' + getDisplayStock(p.id, plan.name) + ' key sẵn kho</span>' : '')
+            + (PRODUCT_KEY_VAULT[p.id] && normalizeVaultPlanKey(plan.name) && PRODUCT_KEY_VAULT[p.id][normalizeVaultPlanKey(plan.name)] !== undefined
+                ? (getDisplayStock(p.id, plan.name) > 0 
+                    ? '<span class="vb-stock-badge"><span class="stock-live-dot"></span> Còn ' + getDisplayStock(p.id, plan.name) + ' key sẵn kho</span>'
+                    : '<span class="vb-stock-badge" style="border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.1);color:#fbbf24;"><span class="stock-live-dot" style="background:#fbbf24;box-shadow:0 0 6px #fbbf24;"></span> Đang chờ nạp thêm key</span>')
+                : '')
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'
