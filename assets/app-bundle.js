@@ -362,7 +362,7 @@ var PRODUCTS = [
     id: 'proxy-adr-ob55',
     category: 'Proxy & Injector',
     plat: 'Android (OB55)',
-    buyers: '890+ Người mua',
+    buyers: '50+ Người mua',
     name: 'Proxy Adr OB55 (Android)',
     shortDesc: 'Bản ổn định siêu mượt - An toàn Anti-Ban 99.99% - Hỗ trợ kéo tâm Aim Drag, No Recoil, Aim Assist, Menu ESP VIP.',
     fullDesc: 'PROXY ANDROID OB55 (BẢN ỔN ĐỊNH SIÊU MƯỢT - AN TOÀN):\n- VIP 1: Aim Drag + No Recoil (Hỗ trợ kéo tâm mượt mà & giảm tối đa độ giật súng).\n- VIP 2: Aim Assist + ESP (Tự động ghim bám mục tiêu & định vị kẻ địch).\n- VIP 3: Menu ESP + Aim VIP (Tổ hợp tính năng VIP ngắm chuẩn & định vị toàn diện).\n- VIP 4: Aim Đầu + ESP VIP (Khóa đầu mục tiêu siêu chuẩn & định vị đối thủ VIP).\n- Bật / Tắt Nhanh Trực Tiếp ở App, Hỗ trợ 1:1 từ Admin Nexvia VN.',
