@@ -1074,12 +1074,22 @@ async function adminLogout() {
 }
 
 /* ═══════ AUTO REFRESH ═══════ */
+let countdownTickTimer = null;
 function startAutoRefresh() {
   stopAutoRefresh();
   autoRefreshTimer = setInterval(function() { loadAllOrders(true); }, 30000);
+  if (!countdownTickTimer) {
+    countdownTickTimer = setInterval(function() {
+      // Cập nhật mượt mà từng giây cho bộ đếm 1h của các đơn pending
+      if (allOrders.some(function(o) { return o.status === 'pending' || !o.status; })) {
+        renderDashboard();
+      }
+    }, 1000);
+  }
 }
 function stopAutoRefresh() {
   if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
+  if (countdownTickTimer) { clearInterval(countdownTickTimer); countdownTickTimer = null; }
 }
 
 /* ═══════ DATA HELPERS ═══════ */
@@ -1446,11 +1456,31 @@ function renderDashboard() {
   }
 
   let html = '';
+  const nowMs = Date.now();
   filtered.forEach(function(o) {
     let badge = '';
-    if (o.status === 'approved') badge = '<span class="status-badge approved"><i class="fa-solid fa-circle-check"></i> ĐÃ GỬI FILE</span>';
-    else if (o.status === 'rejected') badge = '<span class="status-badge rejected"><i class="fa-solid fa-circle-xmark"></i> BÁO SAI</span>';
-    else badge = '<span class="status-badge pending"><i class="fa-solid fa-clock"></i> CHỜ DUYỆT</span>';
+    if (o.status === 'approved') {
+      badge = '<span class="status-badge approved"><i class="fa-solid fa-circle-check"></i> ĐÃ GỬI FILE</span>';
+    } else if (o.status === 'rejected') {
+      badge = '<span class="status-badge rejected"><i class="fa-solid fa-circle-xmark"></i> BÁO SAI</span>';
+    } else {
+      // Đơn chờ duyệt: Tính thời gian còn lại trong hạn 1 giờ
+      const createdMs = typeof o.createdAt === 'number' ? o.createdAt : (parseOrderDate(o.time) ? parseOrderDate(o.time).getTime() : nowMs);
+      const expireMs = createdMs + (60 * 60 * 1000);
+      const diffSec = Math.max(0, Math.floor((expireMs - nowMs) / 1000));
+      const mLeft = Math.floor(diffSec / 60);
+      const sLeft = diffSec % 60;
+      const timeStr = (mLeft < 10 ? '0' : '') + mLeft + ':' + (sLeft < 10 ? '0' : '') + sLeft;
+
+      if (diffSec <= 0) {
+        badge = '<span class="status-badge rejected" style="font-size:10px;"><i class="fa-solid fa-hourglass-end"></i> ĐÃ QUÁ 1H (HỦY)</span>';
+      } else {
+        badge = '<div style="display:flex;flex-direction:column;align-items:flex-start;gap:3px;">' +
+                  '<span class="status-badge pending"><i class="fa-solid fa-clock"></i> CHỜ DUYỆT</span>' +
+                  '<span style="font-size:10px;color:#f59e0b;font-family:\'JetBrains Mono\',monospace;font-weight:700;"><i class="fa-solid fa-hourglass-half fa-spin-pulse"></i> Hủy sau: <b>' + timeStr + '</b></span>' +
+                '</div>';
+      }
+    }
 
     const prodName = o.productName || o.product || '—';
     const planName = o.planName || o.plan || '';
