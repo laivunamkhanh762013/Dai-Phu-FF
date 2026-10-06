@@ -723,6 +723,15 @@ body.storefront .select { padding: 0 34px 0 16px !important; font-size: 13px !im
   backdrop-filter: blur(8px);
 }
 
+.product-thumb .tag-pinned {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.92) 0%, rgba(185, 28, 28, 0.95) 100%) !important;
+  border: 1px solid rgba(254, 202, 202, 0.6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.45) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.4px;
+}
+
 .product-meta { padding: 0 6px; color: var(--rd-dim) !important; font-size: 11px !important; font-weight: 600; }
 .product-meta .meta-cat {
   color: var(--rd-volt) !important;
