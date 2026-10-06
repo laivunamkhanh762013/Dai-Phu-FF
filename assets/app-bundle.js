@@ -238,26 +238,8 @@ function stripVietnamese(str) {
    - Mỗi lượt mua thật sẽ giảm trừ 1 key thật và 1 tồn kho thật
    ═══════════════════════════════════════════════════════════════════ */
 var TROLLMODZ_KEY_VAULT = {
-  '1day': [
-    'TRLL-3A42-4C06-1A81',
-    'TRLL-52A3-4DBD-0E2C',
-    'TRLL-3602-4561-3A0F',
-    'TRLL-BCF8-2A4E-879F',
-    'TRLL-58E1-6D3E-FCC5',
-    'TRLL-7C2D-18C2-E0F3'
-  ],
-  '12h': [
-    'TRLL-94A2-37A2-6377',
-    'TRLL-A4DB-A2BA-3971',
-    'TRLL-457D-B203-F099',
-    'TRLL-1131-215B-9607',
-    'TRLL-3FDE-7210-27CD',
-    'TRLL-593C-CA9A-7C4D',
-    'TRLL-39C2-939D-B241',
-    'TRLL-F732-3D30-DD8A',
-    'TRLL-0D13-5A72-90F9',
-    'TRLL-B73E-FB18-5FC3'
-  ]
+  '1day': [],
+  '12h': []
 };
 
 function normalizeVaultPlanKey(planName) {
@@ -300,8 +282,7 @@ function getDisplayStock(productId, planName) {
   var pKey = normalizeVaultPlanKey(planName);
   if (productId === 'trollmodz' && pKey) {
     var remainingReal = getRemainingRealKeys(pKey).length;
-    // Tăng thêm 10 key ảo theo yêu cầu (8 thật -> 18 ảo; 10 thật -> 20 ảo; mỗi mua thật giảm 1)
-    return remainingReal + 10;
+    return remainingReal;
   }
   return 15;
 }
@@ -350,11 +331,8 @@ function dispatchKeyForOrder(order) {
     }
   }
 
-  // Tự động cấp key TRLL cho các gói ngắn hạn (12h, 1 ngày, 1h...)
-  var genKey = generateRandomTrollKey();
-  usedMap[orderId] = genKey;
-  saveUsedKeysMap(usedMap);
-  return genKey;
+  // Khi kho key trống (Admin đã gỡ key để nạp đợt mới) -> không tự cấp key rác mà để khách nhắn Zalo nhận key mới
+  return null;
 }
 
 var PRODUCTS = [

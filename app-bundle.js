@@ -81,7 +81,7 @@ function playIntroAnimation() {
 
   introTimeoutId = setTimeout(function() {
     skipIntro();
-  }, 2000);
+  }, 2500);
 }
 window.playIntroAnimation = playIntroAnimation;
 
@@ -238,26 +238,8 @@ function stripVietnamese(str) {
    - Mỗi lượt mua thật sẽ giảm trừ 1 key thật và 1 tồn kho thật
    ═══════════════════════════════════════════════════════════════════ */
 var TROLLMODZ_KEY_VAULT = {
-  '1day': [
-    'TRLL-3A42-4C06-1A81',
-    'TRLL-52A3-4DBD-0E2C',
-    'TRLL-3602-4561-3A0F',
-    'TRLL-BCF8-2A4E-879F',
-    'TRLL-58E1-6D3E-FCC5',
-    'TRLL-7C2D-18C2-E0F3'
-  ],
-  '12h': [
-    'TRLL-94A2-37A2-6377',
-    'TRLL-A4DB-A2BA-3971',
-    'TRLL-457D-B203-F099',
-    'TRLL-1131-215B-9607',
-    'TRLL-3FDE-7210-27CD',
-    'TRLL-593C-CA9A-7C4D',
-    'TRLL-39C2-939D-B241',
-    'TRLL-F732-3D30-DD8A',
-    'TRLL-0D13-5A72-90F9',
-    'TRLL-B73E-FB18-5FC3'
-  ]
+  '1day': [],
+  '12h': []
 };
 
 function normalizeVaultPlanKey(planName) {
@@ -300,8 +282,7 @@ function getDisplayStock(productId, planName) {
   var pKey = normalizeVaultPlanKey(planName);
   if (productId === 'trollmodz' && pKey) {
     var remainingReal = getRemainingRealKeys(pKey).length;
-    // Tăng thêm 10 key ảo theo yêu cầu (8 thật -> 18 ảo; 10 thật -> 20 ảo; mỗi mua thật giảm 1)
-    return remainingReal + 10;
+    return remainingReal;
   }
   return 15;
 }
@@ -350,11 +331,8 @@ function dispatchKeyForOrder(order) {
     }
   }
 
-  // Tự động cấp key TRLL cho các gói ngắn hạn (12h, 1 ngày, 1h...)
-  var genKey = generateRandomTrollKey();
-  usedMap[orderId] = genKey;
-  saveUsedKeysMap(usedMap);
-  return genKey;
+  // Khi kho key trống (Admin đã gỡ key để nạp đợt mới) -> không tự cấp key rác mà để khách nhắn Zalo nhận key mới
+  return null;
 }
 
 var PRODUCTS = [
@@ -363,6 +341,7 @@ var PRODUCTS = [
     category: 'Dịch Vụ VIP',
     plat: 'iOS • Android • PC',
     buyers: '10+ Người mua',
+    pinned: true,
     name: 'Slot Nhóm File Tiền VIP',
     shortDesc: 'Vào nhóm File Tiền VIP Nexvia VN - Nhận trọn bộ file kéo tâm VIP, cập nhật trọn đời.',
     fullDesc: '1 SLOT VÀO NHÓM FILE TIỀN ĐỘC QUYỀN NEXVIA VN:\n- Nhận toàn bộ kho file kéo tâm VIP, proxy siêu mượt, data obb độc quyền cho iOS & Android.\n- Cập nhật liên tục các bản file mới nhất khi game ra mùa/bản mới.\n- Hỗ trợ trực tiếp 1:1 từ Admin Phú Bán Hàng (Zalo: 0588500524).',
@@ -382,6 +361,60 @@ var PRODUCTS = [
         fix: 'Nhận toàn bộ file kéo tâm VIP, fix rung, proxy mượt mà 120 FPS không giới hạn.',
         pros: 'Admin Phú Bán Hàng trực tiếp duyệt vào nhóm và gửi link tải ngay sau khi thanh toán.',
         note: 'Hỗ trợ tất cả thiết bị iOS, Android, PC.'
+      }
+    ]
+  },
+  {
+    id: 'proxy-adr-ob55',
+    category: 'Proxy & Injector',
+    plat: 'Android (OB55)',
+    buyers: '50+ Người mua',
+    name: 'Proxy Adr OB55 (Android)',
+    shortDesc: 'Bản ổn định siêu mượt - An toàn Anti-Ban 99.99% - Hỗ trợ kéo tâm Aim Drag, No Recoil, Aim Assist, Menu ESP VIP.',
+    fullDesc: 'PROXY ANDROID OB55 (BẢN ỔN ĐỊNH SIÊU MƯỢT - AN TOÀN):\n- VIP 1: Aim Drag + No Recoil (Hỗ trợ kéo tâm mượt mà & giảm tối đa độ giật súng).\n- VIP 2: Aim Assist + ESP (Tự động ghim bám mục tiêu & định vị kẻ địch).\n- VIP 3: Menu ESP + Aim VIP (Tổ hợp tính năng VIP ngắm chuẩn & định vị toàn diện).\n- VIP 4: Aim Đầu + ESP VIP (Khóa đầu mục tiêu siêu chuẩn & định vị đối thủ VIP).\n- Bật / Tắt Nhanh Trực Tiếp ở App, Hỗ trợ 1:1 từ Admin Nexvia VN.',
+    priceMin: 25000,
+    priceMax: 500000,
+    oldPrice: 800000,
+    image: 'assets/uploads/products/proxy-android-ob55.jpg',
+    images: [
+      { src: 'assets/uploads/products/proxy-android-ob55.jpg', label: 'Proxy Adr OB55', title: 'Proxy Android OB55 - Menu VIP & Định Vị' }
+    ],
+    plans: [
+      {
+        name: 'Key 1 Ngày (1 Days)',
+        price: 25000,
+        badge: 'Trải nghiệm',
+        action: 'VIP 1 + VIP 2: Kéo tâm Aim Drag, No Recoil, Aim Assist & Menu ESP suốt 24h.',
+        fix: 'Anti-Ban 99.99%, bật/tắt nhanh trực tiếp trong App, mượt mà không delay.',
+        pros: 'Trải nghiệm bản OB55 mới nhất siêu mượt với giá cực mềm.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
+      },
+      {
+        name: 'Key 7 Ngày (7 Days)',
+        price: 70000,
+        badge: 'Tiết kiệm',
+        action: 'Sử dụng trọn bộ tính năng VIP 1, 2, 3, 4 liên tục 7 ngày (1 tuần).',
+        fix: 'Khóa đầu siêu chuẩn, định vị địch từ xa, bảo vệ tài khoản tối đa.',
+        pros: 'Leo rank tuần thả ga, cập nhật data bypass tự động 24/7.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
+      },
+      {
+        name: 'Key 30 Ngày (30 Days)',
+        price: 150000,
+        badge: 'Phổ biến',
+        action: 'Gói tháng toàn diện 30 ngày: Aimlock đầu, Aim Drag, ESP Box, ESP Line, No Recoil.',
+        fix: 'Bypass antiban 99.99% ổn định cả mùa giải, mượt mà 120 FPS.',
+        pros: 'Tiết kiệm tới 70% so với mua lẻ, hỗ trợ VIP ưu tiên 1:1 từ Anh Phú.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
+      },
+      {
+        name: 'Key Vĩnh Viễn (Lifetime)',
+        price: 500000,
+        badge: '👑 VIP Vĩnh Viễn',
+        action: 'Sở hữu trọn đời vĩnh viễn không giới hạn thời gian mọi tính năng Proxy Android OB55.',
+        fix: 'Tự động cập nhật mọi bản OB mới (OB55, OB56, OB57...) miễn phí trọn đời.',
+        pros: 'Đặc quyền thành viên VIP Vĩnh Viễn, bảo hành 1 đổi 1 trọn đời.',
+        note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
       }
     ]
   },
@@ -1188,7 +1221,7 @@ function renderProducts() {
 
   filtered.forEach(function(p) {
     var article = document.createElement('article');
-    article.className = 'product product-clickable' + (p.soldOut ? ' product-soldout' : '');
+    article.className = 'product product-clickable' + (p.pinned ? ' product-pinned' : '') + (p.soldOut ? ' product-soldout' : '');
     article.setAttribute('data-category', p.category);
     article.setAttribute('data-price', p.priceMin);
     article.setAttribute('data-name', p.name.toLowerCase());
@@ -1202,6 +1235,18 @@ function renderProducts() {
         openBuyModalById(p.id);
       }
     };
+
+    if (p.pinned) {
+      var pinRibbon = document.createElement('div');
+      pinRibbon.className = 'card-pin-ribbon';
+      pinRibbon.innerHTML = '<i class="fa-solid fa-crown"></i> <span>TOP 1 • GHIM NỔI BẬT</span>';
+      article.appendChild(pinRibbon);
+
+      var sparkles = document.createElement('div');
+      sparkles.className = 'card-sparkle-stars';
+      sparkles.innerHTML = '<span class="star-sparkle s1">✦</span><span class="star-sparkle s2">★</span><span class="star-sparkle s3">✦</span><span class="star-sparkle s4">✨</span>';
+      article.appendChild(sparkles);
+    }
 
     // Thumb & Badges
     var thumbDiv = document.createElement('div');
@@ -1733,7 +1778,9 @@ function startPaymentForPlan(p, plan) {
     // Lưu đơn pending vào cache của khách
     saveOrder(order);
 
-    // Bắt đầu lắng nghe trạng thái đơn từ server
+    // Bắt đầu đếm ngược 1 giờ (60:00 -> 00:00) và lắng nghe trạng thái thanh toán từ server
+    var expiryTime = order.expiresAt || (Date.now() + 60 * 60 * 1000);
+    startOrderExpiryCountdown(expiryTime, order.id);
     startPaymentWatcher(order.id, window.currentOrderMemo, order.price);
     toast('🛒', 'Đã khởi tạo đơn hàng: ' + order.id + '. Vui lòng chuyển khoản đúng nội dung.');
   })
@@ -1741,6 +1788,63 @@ function startPaymentForPlan(p, plan) {
     console.error('Create order error:', err);
     toast('⚠️', 'Lỗi kết nối máy chủ tạo đơn.');
   });
+}
+
+
+/* ═══════ BỘ ĐẾM NGƯỢC 1 GIỜ TỰ ĐỘNG HỦY ĐƠN CHỜ DUYỆT ═══════ */
+var orderCountdownInterval = null;
+
+function startOrderExpiryCountdown(expiresAt, orderId) {
+  stopOrderExpiryCountdown();
+  var timerEl = document.getElementById('mOrderTimer');
+  var boxEl = document.getElementById('mCountdownBox');
+  if (boxEl) boxEl.classList.remove('expired');
+
+  function updateTimer() {
+    var now = Date.now();
+    var diffMs = expiresAt - now;
+
+    if (diffMs <= 0) {
+      // HẾT HẠN 1 GIỜ -> DỪNG ĐẾM, DỪNG CHECK, THÔNG BÁO TỰ ĐỘNG HỦY
+      stopOrderExpiryCountdown();
+      stopPaymentWatcher();
+      if (timerEl) timerEl.textContent = '00:00 (Đã hết hạn)';
+      if (boxEl) boxEl.classList.add('expired');
+      
+      updateLiveStatus('expired', '⚠️ ĐƠN HÀNG ĐÃ HẾT HẠN 1 GIỜ VÀ TỰ ĐỘNG HỦY', 'Đơn hàng này đã quá thời gian chờ duyệt (1 tiếng) và bị xóa khỏi hệ thống. Vui lòng bấm quay lại để tạo đơn mới!');
+      
+      var qrEl = document.getElementById('mQrCode');
+      if (qrEl) qrEl.style.opacity = '0.2';
+      
+      var btnCheck = document.getElementById('btnCheckPaid');
+      if (btnCheck) {
+        btnCheck.disabled = true;
+        btnCheck.innerHTML = '<i class="fa-solid fa-ban"></i> Đơn hàng đã quá hạn 1 giờ';
+      }
+
+      toast('⏰', 'Đơn hàng đã hết hạn 1 giờ và tự động hủy. Vui lòng tạo đơn mới!');
+      return;
+    }
+
+    var totalSeconds = Math.floor(diffMs / 1000);
+    var minutes = Math.floor(totalSeconds / 60);
+    var seconds = totalSeconds % 60;
+    var formatted = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+    if (timerEl) {
+      timerEl.textContent = formatted;
+    }
+  }
+
+  updateTimer();
+  orderCountdownInterval = setInterval(updateTimer, 1000);
+}
+
+function stopOrderExpiryCountdown() {
+  if (orderCountdownInterval) {
+    clearInterval(orderCountdownInterval);
+    orderCountdownInterval = null;
+  }
 }
 
 
@@ -1951,16 +2055,18 @@ function goToStep(step) {
   if (!s1 || !s2) return;
   if (step === 1) {
     stopPaymentWatcher();
+    stopOrderExpiryCountdown();
     s1.style.display = 'block';
     s2.style.display = 'none';
   } else if (step === 2) {
     s1.style.display = 'none';
-      s2.style.display = 'block';
+    s2.style.display = 'block';
   }
 }
 
 function closeBuyModal() {
   stopPaymentWatcher();
+  stopOrderExpiryCountdown();
   window.currentOrderId = null;
   window.currentOrderMemo = '';
   window.currentPayAmountRaw = 0;
@@ -2025,7 +2131,7 @@ function buildOrderReceiptText(order) {
   var prod = (order && (order.productName || order.product)) || (currentProduct ? currentProduct.name : 'TrollModz');
   var plan = (order && (order.planName || order.plan)) || (currentPlan ? currentPlan.name : '');
   var price = (order && order.price) || (currentPlan ? currentPlan.price : 0);
-  var memo = (order && (order.id || order.memo)) || window.currentOrderId || 'DP000000';
+  var memo = (order && (order.id || order.memo)) || window.currentOrderId || 'NEXVIA000000';
   var usedMap = getUsedKeysMap();
   var key = (order && order.licenseKey) || usedMap[memo] || '';
 
@@ -2053,7 +2159,7 @@ function buildOrderReceiptText(order) {
 }
 
 function openPaidModal(order) {
-  var memo = (order && order.id) || window.currentOrderId || 'DP000000';
+  var memo = (order && order.id) || window.currentOrderId || 'NEXVIA000000';
   window.currentOrderId = (order && order.id) || memo;
   window.currentOrderMemo = (order && order.memo) || window.currentOrderMemo;
 
@@ -2205,7 +2311,7 @@ function closePaidModal() {
 }
 
 function copyPaidSyntax() {
-  var memo = window.currentOrderMemo || (document.getElementById('paidConfirmCode') ? document.getElementById('paidConfirmCode').textContent.trim() : 'DP487340');
+  var memo = window.currentOrderMemo || (document.getElementById('paidConfirmCode') ? document.getElementById('paidConfirmCode').textContent.trim() : 'NX84920');
   
   if (!navigator.clipboard) {
     var ta = document.createElement('textarea');
