@@ -895,8 +895,8 @@ function toggleUserDropdown(e) {
     return;
   }
   if (e) {
-    e.preventDefault();
-    e.stopPropagation();
+    if (typeof e.preventDefault === 'function') e.preventDefault();
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
   }
   var menu = document.getElementById('userDropdownMenu');
   var wrapper = document.getElementById('userMenuWrapper');
@@ -919,8 +919,8 @@ function closeUserDropdown() {
 
 function handleMenuHistory(e) {
   if (e) {
-    e.preventDefault();
-    e.stopPropagation();
+    if (typeof e.preventDefault === 'function') e.preventDefault();
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
   }
   closeUserDropdown();
   openMyOrderHistory();
@@ -928,19 +928,20 @@ function handleMenuHistory(e) {
 
 function handleMenuLogout(e) {
   if (e) {
-    e.preventDefault();
-    e.stopPropagation();
+    if (typeof e.preventDefault === 'function') e.preventDefault();
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
   }
   closeUserDropdown();
   handleLogout();
 }
 
-document.addEventListener('click', function(e) {
+// Đóng dropdown khi click/tap bên ngoài
+document.addEventListener('pointerdown', function(e) {
   var wrapper = document.getElementById('userMenuWrapper');
   if (wrapper && !wrapper.contains(e.target)) {
     closeUserDropdown();
   }
-});
+}, { passive: true });
 
 function updateAuthUI() {
   var user = getCurrentUser();

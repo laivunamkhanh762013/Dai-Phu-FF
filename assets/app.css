@@ -87,7 +87,7 @@ body{overflow-x:hidden}.page-loader{position:fixed;inset:0;z-index:9999;backgrou
   body:before{display:none}
   .shell{width:calc(100% - 28px);max-width:none}
   .page-wrap{padding:16px 0 calc(108px + env(safe-area-inset-bottom));min-height:calc(100vh - 62px)}
-  .topbar{margin:8px 10px 0;border:1px solid rgba(214,219,225,.9);border-radius:16px;top:8px;box-shadow:0 8px 26px rgba(20,24,31,.08);overflow:hidden}
+  .topbar{margin:8px 10px 0;border:1px solid rgba(214,219,225,.9);border-radius:16px;top:8px;box-shadow:0 8px 26px rgba(20,24,31,.08);overflow:visible}
   .topbar-inner{height:58px;padding:0 4px;gap:10px}
   .brand{min-width:0;max-width:62%}.brand b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
   .top-actions{margin-left:auto;gap:6px}.wallet{max-width:115px}.wallet span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.avatar{width:34px;height:34px}
