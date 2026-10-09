@@ -436,37 +436,25 @@ var PRODUCTS = [
     plat: 'iOS • Android',
     buyers: '5+ Người mua',
     name: 'Uratr Cheat VIP 🇻🇳 (iOS • Android)',
-    shortDesc: 'File kéo tâm Uratr Cheat VIP độc quyền Nexvia VN - Tặng kèm Next Drag, cấu hình độ nhạy chuẩn & video cài.',
-    fullDesc: 'URATR CHEAT VIP 🇻🇳 (iOS & Android) - BỘ FILE KÉO TÂM & CẤU HÌNH ĐỈNH CAO:\n- File cấu hình Uratr Cheat Vip🇻🇳.mobileconfig tối ưu vuốt tâm mượt mà, ghim đầu 99.9%.\n- TẶNG KÈM TRỌN BỘ: File Next Drag🇻🇳.mobileconfig trị giá 150k + Video hướng dẫn cài đặt chi tiết.\n- Cung cấp sẵn bảng thông số độ nhạy chuẩn (Nhìn xung quanh, Red, 2X, 4X, AWM, Nút bắn) phù hợp cho cả máy Cấu Hình Thấp và Cấu Hình Cao.\n- Hỗ trợ trực tiếp 1:1 từ Admin Anh Phú (Zalo: 0588500524).',
+    shortDesc: 'Uratr Cheat VIP độc quyền - Cài nhanh không cần chứng chỉ, 100% Anti-Ban Bypass, tặng kèm Next Drag trị giá 150k & Video cài.',
+    fullDesc: 'URATR CHEAT VIP 🇻🇳 (iOS & Android) - BẢN VIP ĐỘC QUYỀN:\n- Cài nhanh không cần chứng chỉ cho iOS & Android.\n- 100% Anti-Ban Bypass - Chống khóa tài khoản tuyệt đối.\n- Hỗ trợ Android 11 - 16 & iOS 15.8.8 - iOS 26.5.\n- TẶNG KÈM TRỌN BỘ: File Next Drag🇻🇳 trị giá 150k + Video hướng dẫn chi tiết.\n- Cam kết chức năng rõ ràng, chuẩn như video (Hỗ trợ 1:1 từ Admin Zalo: 0588500524).',
     priceMin: 99000,
     priceMax: 99000,
     oldPrice: 200000,
-    image: 'assets/uploads/products/uratr-cheat-vip.jpg',
+    image: 'assets/uploads/products/uratr-cheat-vip.png',
     images: [
-      { src: 'assets/uploads/products/uratr-cheat-vip.jpg', label: 'Uratr Cheat VIP', title: 'Uratr Cheat VIP 🇻🇳 - File Kéo Tâm & Độ Nhạy Chuẩn' }
+      { src: 'assets/uploads/products/uratr-cheat-vip.png', label: 'Uratr Cheat VIP', title: 'Uratr Cheat VIP 🇻🇳 - Cài Nhanh Không Chứng Chỉ & 100% Anti-Ban' }
     ],
     plans: [
       {
-        name: 'Độ Nhạy Thấp (iPhone & Android Thấp)',
+        name: 'Uratr Cheat VIP (iOS & Android) - Vĩnh Viễn',
         price: 99000,
-        badge: 'Máy Cấu Hình Thấp - Vừa',
-        action: 'Cấu hình tối ưu cho máy yếu/vừa: Nhìn XQ 196 • Red 188 • X2 162 • X4 163 • AWM 180 • Camera 200 • Nút bắn 25-40.',
-        fix: 'Fix rung giật tâm, chống khựng màn hình, kéo tâm nhẹ tay không bị trôi đầu.',
-        pros: 'Tặng kèm File Next Drag + Video hướng dẫn cài đặt chi tiết.',
-        note: 'Hỗ trợ tất cả dòng máy iPhone & Android cấu hình thấp / tầm trung.',
-        downloadUrl: 'https://www.mediafire.com/file/o53apznyug90cf4/Next+Drag🇻🇳.mobileconfig/file',
-        sensConfig: 'Nhìn Xung Quanh: 196 | Red: 188 | Ống Nhắm X2: 162 | Ống Nhắm X4: 163 | Súng Ngắm: 180 | Camera: 200 | Nút Bắn: 25 - 40'
-      },
-      {
-        name: 'Độ Nhạy Cao (iPhone & Android Cao)',
-        price: 99000,
-        badge: 'Máy Cấu Hình Cao - Mượt',
-        action: 'Cấu hình tối ưu cho máy mạnh: Nhìn XQ 188 • Red 176 • X2 182 • X4 183 • AWM 120 • Camera 200 • Nút bắn 40-86.',
-        fix: 'Tối đa hóa tốc độ phản hồi 120 FPS, ghim đầu siêu dính. [Lưu ý: Nên Tắt Hiệu Ứng Trúng Đòn].',
-        pros: 'Tặng kèm File Next Drag + Video hướng dẫn cài đặt chi tiết.',
-        note: 'Hỗ trợ các dòng iPhone đời cao & Android Gaming Phone.',
-        downloadUrl: 'https://www.mediafire.com/file/o53apznyug90cf4/Next+Drag🇻🇳.mobileconfig/file',
-        sensConfig: 'Nhìn Xung Quanh: 188 | Red: 176 | Ống Nhắm X2: 182 | Ống Nhắm X4: 183 | Súng Ngắm: 120 | Camera: 200 | Nút Bắn: 40 - 86 [Tắt Hiệu Ứng Trúng Đòn]'
+        badge: '👑 VIP Trọn Đời',
+        action: 'Cài nhanh không cần chứng chỉ, 100% Anti-Ban Bypass, kéo tâm ghim đầu cực mượt.',
+        fix: 'Fix rung giật tâm, chống khựng màn hình, tương thích iOS 15.8.8 - 26.5 & Android 11 - 16.',
+        pros: 'Tặng kèm File Next Drag🇻🇳 (trị giá 150k) + Video hướng dẫn chi tiết. Cam kết chuẩn video.',
+        note: 'Hỗ trợ tất cả thiết bị iPhone & Android (Không cần JB / Không cần Root).',
+        downloadUrl: 'https://www.mediafire.com/file/o53apznyug90cf4/Next+Drag🇻🇳.mobileconfig/file'
       }
     ]
   },
@@ -2185,16 +2173,16 @@ function openPaidModal(order) {
       bonusCard.style.display = 'block';
       bonusCard.innerHTML = '<div style="margin:14px 0;padding:14px;background:linear-gradient(135deg,rgba(245,211,114,0.12) 0%,rgba(15,23,42,0.95) 100%);border:1.5px solid rgba(245,211,114,0.4);border-radius:14px;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,0.5);">'
         + '<div style="font-weight:900;color:#fde047;font-size:13px;margin-bottom:8px;display:flex;align-items:center;gap:6px;letter-spacing:0.3px;">'
-          + '<i class="fa-solid fa-crosshairs"></i> BẢNG ĐỘ NHẠY & FILE TẶNG KÈM:'
+          + '<i class="fa-solid fa-gift"></i> QUÀ TẶNG KÈM & LINK TẢI VIP:'
         + '</div>'
-        + '<div style="font-size:12px;color:#e2e8f0;line-height:1.6;background:rgba(0,0,0,0.5);padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);margin-bottom:10px;font-family:var(--rd-font-mono, monospace);">'
+        + (planObj.sensConfig ? '<div style="font-size:12px;color:#e2e8f0;line-height:1.6;background:rgba(0,0,0,0.5);padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);margin-bottom:10px;font-family:var(--rd-font-mono, monospace);">'
           + '<div style="color:#38bdf8;font-weight:700;margin-bottom:4px;">🎯 ' + escapeHTML(planObj.name) + '</div>'
-          + escapeHTML(planObj.sensConfig || '')
-        + '</div>'
+          + escapeHTML(planObj.sensConfig)
+        + '</div>' : '')
         + (planObj.downloadUrl ? '<a href="' + escapeHTML(planObj.downloadUrl) + '" target="_blank" rel="noopener noreferrer" class="btn btn-block" style="background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;font-weight:800;font-size:12.5px;padding:10px 14px;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-shadow:0 4px 14px rgba(2,132,199,0.4);">'
           + '<i class="fa-solid fa-cloud-arrow-down"></i> TẢI FILE NEXT DRAG (TẶNG KÈM TRỊ GIÁ 150K)'
         + '</a>' : '')
-        + '<div style="font-size:11px;color:#94a3b8;margin-top:6px;text-align:center;"><i class="fa-solid fa-video"></i> Video và File hướng dẫn chi tiết nằm trong mục tải xuống.</div>'
+        + '<div style="font-size:11px;color:#94a3b8;margin-top:6px;text-align:center;"><i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> Gửi Mã Đơn Hàng qua Zalo Admin Anh Phú (0588500524) để được kích hoạt & nhận hướng dẫn 1:1.</div>'
       + '</div>';
     } else {
       bonusCard.style.display = 'none';
@@ -2760,8 +2748,8 @@ initScrollReveal();
 (function initLivePurchasesTicker() {
   var sampleBuyers = [
     { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '1 phút trước' },
-    { name: 'Huy Hoàng (091***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Độ Nhạy Cao', img: 'assets/uploads/products/uratr-cheat-vip.jpg', time: '2 phút trước' },
-    { name: 'Khánh (035***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Độ Nhạy Thấp', img: 'assets/uploads/products/uratr-cheat-vip.jpg', time: '3 phút trước' },
+    { name: 'Huy Hoàng (091***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Bản VIP Vĩnh Viễn', img: 'assets/uploads/products/uratr-cheat-vip.png', time: '2 phút trước' },
+    { name: 'Khánh (035***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Bản VIP Vĩnh Viễn', img: 'assets/uploads/products/uratr-cheat-vip.png', time: '3 phút trước' },
     { name: 'Minh Đức (086***)', prod: 'InNova Cheat', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/innova-cheat.jpg', time: '5 phút trước' },
     { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '7 phút trước' },
     { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '9 phút trước' },
@@ -2797,11 +2785,32 @@ initScrollReveal();
     }, 4500);
   }
 
-  // Khởi chạy sau 2.5 giây và lặp lại mỗi 12-15 giây
-  setTimeout(function() {
-    showNextPurchase();
-    setInterval(function() {
+    // Khởi chạy sau 2.5 giây và lặp lại mỗi 12-15 giây
+    setTimeout(function() {
       showNextPurchase();
-    }, 13500);
-  }, 2500);
-})();
+      setInterval(function() {
+        showNextPurchase();
+      }, 13500);
+    }, 2500);
+  })();
+
+  /* ═══════ IMPECCABLE CYBER MOUSE SPOTLIGHT (INTERACTIVE KINETICS) ═══════ */
+  (function initCyberMouseSpotlight() {
+    if (window.matchMedia('(pointer: coarse)').matches) return; // Skip on touch-only mobile
+    
+    document.addEventListener('mousemove', function(e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      document.querySelectorAll('.p-card, .vip-flagship-bento, .wallet-summary').forEach(function(card) {
+        var rect = card.getBoundingClientRect();
+        if (x >= rect.left - 50 && x <= rect.right + 50 && y >= rect.top - 50 && y <= rect.bottom + 50) {
+          var relX = ((x - rect.left) / rect.width) * 100;
+          var relY = ((y - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mouse-x', relX + '%');
+          card.style.setProperty('--mouse-y', relY + '%');
+        }
+      });
+    }, { passive: true });
+  })();
+
+
