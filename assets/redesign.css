@@ -3191,3 +3191,135 @@ body.storefront .product:hover {
   margin: 4px 6px !important;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   IMPECCABLE & TASTE-SKILL V2 CRAFT POLISH PASS (ANTI-SLOP LUXURY)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. Luxury Glow & Ambient Shimmer Keyframes ── */
+@keyframes luxuryAuraPulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(245, 211, 114, 0.15), inset 0 0 12px rgba(245, 211, 114, 0.05);
+    border-color: rgba(245, 211, 114, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(245, 211, 114, 0.35), inset 0 0 18px rgba(245, 211, 114, 0.12);
+    border-color: rgba(245, 211, 114, 0.65);
+  }
+}
+
+@keyframes buttonSheenSweep {
+  0% { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
+  30% { opacity: 0.7; }
+  60% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
+  100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
+}
+
+@keyframes badgeGlow {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(245, 211, 114, 0.4)); }
+  50% { filter: drop-shadow(0 0 14px rgba(245, 211, 114, 0.85)); }
+}
+
+/* ── 2. Elevated Product Cards (Anti-Slop Craft) ── */
+.p-card, .product-card, .store-card {
+  position: relative !important;
+  background: linear-gradient(165deg, rgba(20, 24, 38, 0.88) 0%, rgba(10, 13, 22, 0.95) 100%) !important;
+  border: 1px solid rgba(245, 211, 114, 0.18) !important;
+  border-radius: 18px !important;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.32s ease !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7) !important;
+  overflow: hidden !important;
+}
+
+.p-card:hover, .product-card:hover, .store-card:hover {
+  transform: translateY(-6px) scale(1.008) !important;
+  border-color: rgba(245, 211, 114, 0.55) !important;
+  box-shadow: 0 20px 40px -12px rgba(245, 211, 114, 0.22), 0 0 24px rgba(56, 189, 248, 0.15) !important;
+}
+
+/* Card Image Thumbnail Dynamic Zoom */
+.p-card-thumb img, .product-card img, .store-card-img {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease !important;
+}
+
+.p-card:hover .p-card-thumb img,
+.product-card:hover img,
+.store-card:hover .store-card-img {
+  transform: scale(1.06) !important;
+  filter: contrast(1.05) brightness(1.05) !important;
+}
+
+/* ── 3. High-Conversion Luxury CTA Buttons ── */
+.btn-primary, .btn-buy, .p-card-action .btn, .modal-buy-btn {
+  position: relative !important;
+  overflow: hidden !important;
+  background: linear-gradient(135deg, #f5d372 0%, #e5a93b 50%, #d4912a 100%) !important;
+  color: #120b02 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.3px !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 20px rgba(229, 169, 59, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
+  transition: transform 0.18s ease, box-shadow 0.22s ease, filter 0.2s ease !important;
+}
+
+.btn-primary::after, .btn-buy::after, .p-card-action .btn::after, .modal-buy-btn::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 60% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent) !important;
+  pointer-events: none !important;
+  animation: buttonSheenSweep 4.5s infinite ease-in-out !important;
+}
+
+.btn-primary:hover, .btn-buy:hover, .p-card-action .btn:hover, .modal-buy-btn:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 10px 28px rgba(245, 211, 114, 0.55) !important;
+}
+
+.btn-primary:active, .btn-buy:active, .p-card-action .btn:active, .modal-buy-btn:active {
+  transform: translateY(1px) scale(0.98) !important;
+}
+
+/* ── 4. Stat Counter Cards & Trust Badges ── */
+.stat-card, .hero-stat, .trust-item {
+  background: rgba(18, 22, 36, 0.75) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(245, 211, 114, 0.18) !important;
+  border-radius: 16px !important;
+  transition: all 0.25s ease !important;
+}
+
+.stat-card:hover, .hero-stat:hover, .trust-item:hover {
+  border-color: rgba(245, 211, 114, 0.45) !important;
+  background: rgba(24, 30, 48, 0.88) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ── 5. Category Pills & Filter Nav ── */
+.cat-pill, .filter-btn, .category-btn {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  transition: all 0.22s ease !important;
+}
+
+.cat-pill.active, .filter-btn.active, .category-btn.active {
+  background: linear-gradient(135deg, rgba(245, 211, 114, 0.22) 0%, rgba(229, 169, 59, 0.35) 100%) !important;
+  border: 1.5px solid #f5d372 !important;
+  color: #fde047 !important;
+  box-shadow: 0 0 16px rgba(245, 211, 114, 0.3) !important;
+}
+
+/* ── 6. Live Purchase Ticker (Floating Pill) ── */
+.live-ticker, .ticker-pill, .live-buyer-toast {
+  background: rgba(15, 20, 32, 0.92) !important;
+  backdrop-filter: blur(18px) !important;
+  border: 1.2px solid rgba(245, 211, 114, 0.3) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 14px rgba(245, 211, 114, 0.15) !important;
+}
+
+
