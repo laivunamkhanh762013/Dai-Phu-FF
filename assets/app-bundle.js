@@ -1128,31 +1128,20 @@ function handleLogout() {
   toast('👋', 'Đã đăng xuất khỏi tài khoản.');
 }
 
-/* ═══════ RENDER PRODUCTS (EDITORIAL BRUTALIST GRID) ═══════ */
+/* ═══════ RENDER PRODUCTS WITH PRICE RANGE ═══════ */
 function renderProducts() {
-  var grid = document.getElementById('productGrid') || document.getElementById('product-grid');
+  var grid = document.getElementById('product-grid');
   var empty = document.getElementById('product-empty');
-  var countEl = document.getElementById('resultCount') || document.getElementById('product-count');
+  var countEl = document.getElementById('product-count');
   if (!grid) return;
 
-  var q = (searchQuery || '').toLowerCase().trim();
   var filtered = PRODUCTS.filter(function(p) {
-    var platStr = (p.plat || '').toLowerCase();
-    var nameStr = (p.name || '').toLowerCase();
-    var catStr = (p.category || '').toLowerCase();
-
-    var matchCat = true;
-    if (activeCategory === 'ios') {
-      matchCat = platStr.includes('ios') || platStr.includes('iphone') || nameStr.includes('ios');
-    } else if (activeCategory === 'android') {
-      matchCat = platStr.includes('android') || platStr.includes('adr') || nameStr.includes('android');
-    } else if (activeCategory === 'pc') {
-      matchCat = platStr.includes('pc') || catStr.includes('mod') || nameStr.includes('mod');
-    } else if (activeCategory !== 'all') {
-      matchCat = catStr.includes(activeCategory.toLowerCase()) || nameStr.includes(activeCategory.toLowerCase());
-    }
-
-    var matchSearch = !q || nameStr.includes(q) || (p.shortDesc || '').toLowerCase().includes(q) || catStr.includes(q);
+    var matchCat = (activeCategory === 'all' || 
+      p.category === activeCategory || 
+      (activeCategory === 'Proxy iOS' && (p.category === 'Proxy iOS' || p.category === 'NovaX' || p.category === 'Proxy & NovaX')) ||
+      (activeCategory === 'SX2 & Panel' && (p.category === 'Regedit & Panel' || p.category === 'SX2 & Panel')));
+    var q = searchQuery.toLowerCase().trim();
+    var matchSearch = !q || p.name.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
     return matchCat && matchSearch;
   });
 
@@ -1164,9 +1153,7 @@ function renderProducts() {
     filtered.sort(function(a, b) { return a.name.localeCompare(b.name); });
   }
 
-  if (countEl) {
-    countEl.textContent = String(filtered.length).padStart(2, '0') + ' mục';
-  }
+  if (countEl) countEl.textContent = filtered.length + ' sản phẩm';
 
   if (filtered.length === 0) {
     grid.innerHTML = '';
@@ -1175,26 +1162,15 @@ function renderProducts() {
   }
   if (empty) empty.classList.add('hidden');
 
+  // DOM Optimization: Use DocumentFragment to batch DOM mutations and reduce layout reflows
   var fragment = document.createDocumentFragment();
 
-  filtered.forEach(function(p, idx) {
-    var isFeatured = (p.id === 'uratr-cheat-vip' || p.pinned);
-    var visualClass = '';
-    if (isFeatured) {
-      visualClass = ''; // uses default acid lime
-    } else if (idx % 3 === 1) {
-      visualClass = 'product__visual--dark';
-    } else if (idx % 3 === 2) {
-      visualClass = 'product__visual--red';
-    } else {
-      visualClass = 'product__visual--blue';
-    }
-
+  filtered.forEach(function(p) {
     var article = document.createElement('article');
-    article.className = 'product' + (isFeatured ? ' product--feature' : '') + ' reveal is-visible';
-    article.setAttribute('data-name', (p.name || '').toLowerCase());
-    article.setAttribute('data-platform', (p.plat || '').toLowerCase());
-    article.setAttribute('data-category', (p.category || '').toLowerCase());
+    article.className = 'product product-clickable' + (p.pinned ? ' product-pinned' : '') + (p.soldOut ? ' product-soldout' : '');
+    article.setAttribute('data-category', p.category);
+    article.setAttribute('data-price', p.priceMin);
+    article.setAttribute('data-name', p.name.toLowerCase());
     article.setAttribute('tabindex', '0');
     article.setAttribute('role', 'region');
     article.setAttribute('aria-label', p.name + ' - ' + formatVND(p.priceMin));
@@ -1206,36 +1182,145 @@ function renderProducts() {
       }
     };
 
-    var firstChar = p.name.replace(/[^a-zA-Z0-9]/g, '').charAt(0) || 'N';
-    var serialText = 'UX—0' + (idx + 1);
-    var typeText = isFeatured ? 'Featured / 001' : ('Utility / 00' + (idx + 1));
-    var isSinglePrice = (p.priceMin === p.priceMax);
+    if (p.pinned) {
+      var pinRibbon = document.createElement('div');
+      pinRibbon.className = 'card-pin-ribbon';
+      pinRibbon.innerHTML = '<i class="fa-solid fa-crown"></i> <span>TOP 1 • GHIM NỔI BẬT</span>';
+      article.appendChild(pinRibbon);
 
-    article.innerHTML = '<div class="product__visual ' + visualClass + '">'
-      + '<span class="product__type">' + escapeHTML(typeText) + '</span>'
-      + '<span class="product__serial">' + escapeHTML(serialText) + '</span>'
-      + '<div class="product__graphic"><span>' + escapeHTML(firstChar) + '.</span></div>'
-      + '<div class="product__visual-bottom">'
-        + '<span class="product__tiny">' + escapeHTML((p.plat || 'DIGITAL DELIVERY').toUpperCase()) + '</span>'
-        + '<span class="product__arrow" aria-hidden="true">↗</span>'
+      var sparkles = document.createElement('div');
+      sparkles.className = 'card-sparkle-stars';
+      sparkles.innerHTML = '<span class="star-sparkle s1">✦</span><span class="star-sparkle s2">★</span><span class="star-sparkle s3">✦</span><span class="star-sparkle s4">✨</span>';
+      article.appendChild(sparkles);
+    }
+
+    // Thumb & Badges
+    var thumbDiv = document.createElement('div');
+    thumbDiv.className = 'product-thumb';
+
+    var buyerTag = document.createElement('span');
+    buyerTag.className = 'tag';
+    buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
+    thumbDiv.appendChild(buyerTag);
+
+    if (p.soldOut) {
+      var soldBadge = document.createElement('span');
+      soldBadge.className = 'tag-soldout';
+      soldBadge.innerHTML = '<i class="fa-solid fa-ban"></i> TẠM HẾT';
+      thumbDiv.appendChild(soldBadge);
+    }
+
+    if (p.image) {
+      var img = document.createElement('img');
+      img.className = 'js-product-image';
+      img.src = p.image;
+      img.alt = p.name;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.onerror = function() {
+        if (!this.getAttribute('data-tried-uploads')) {
+          this.setAttribute('data-tried-uploads', 'true');
+          var rawName = (p.image || '').split('/').pop() || '';
+          // Chỉ cho phép ký tự tên file an toàn (chữ, số, gạch ngang, gạch dưới, chấm)
+          var safeName = rawName.replace(/[^a-zA-Z0-9_.-]/g, '');
+          if (safeName && !safeName.startsWith('javascript:')) {
+            this.src = 'assets/uploads/products/' + safeName;
+            return;
+          }
+        }
+        this.style.display = 'none';
+                var fallbackPlaceholder = document.createElement('div');
+        fallbackPlaceholder.className = 'thumb-no-img';
+        fallbackPlaceholder.innerHTML = '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
+        if (this.parentNode) {
+          this.parentNode.appendChild(fallbackPlaceholder);
+        }
+      };
+      thumbDiv.appendChild(img);
+    } else {
+      var noImg = document.createElement('div');
+      noImg.className = 'thumb-no-img';
+      noImg.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i><span>Chờ Cập Nhật Ảnh</span>';
+      thumbDiv.appendChild(noImg);
+    }
+
+    article.appendChild(thumbDiv);
+
+    // Meta row
+    var metaDiv = document.createElement('div');
+    metaDiv.className = 'product-meta';
+    metaDiv.innerHTML = '<span class="meta-cat">' + escapeHTML(p.category) + '</span><span class="meta-sep">•</span><span class="meta-plat">' + escapeHTML(p.plat || 'iOS & Android') + '</span>';
+    article.appendChild(metaDiv);
+
+    // Title
+    var titleH3 = document.createElement('h3');
+    titleH3.textContent = p.name;
+    article.appendChild(titleH3);
+
+    // Description
+    var descP = document.createElement('p');
+    descP.textContent = p.shortDesc;
+    article.appendChild(descP);
+
+    // Mini plan chips
+    var plansDiv = document.createElement('div');
+    plansDiv.className = 'card-plans';
+    p.plans.forEach(function(plan, idx) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'card-plan-chip';
+      chip.setAttribute('data-pid', p.id);
+      chip.setAttribute('aria-label', plan.name + ' giá ' + formatVND(plan.price));
+      chip.textContent = cleanPlanLabel(plan.name) + ' · ' + formatVND(plan.price);
+      chip.onclick = function(e) {
+        e.stopPropagation();
+        openBuyModalById(p.id, idx);
+      };
+      plansDiv.appendChild(chip);
+    });
+    article.appendChild(plansDiv);
+
+    // Price Block (Crafted like top tier gaming storefront, zero awkward wrapping)
+    var priceBox = document.createElement('div');
+    priceBox.className = 'card-pricing-block';
+
+    var oldPriceHtml = p.oldPrice ? ' <del class="card-price-old">' + formatVND(p.oldPrice) + '</del>' : '';
+    var isSinglePrice = (p.priceMin === p.priceMax);
+    var tierBadgeText = p.plans.length > 1 ? (p.plans.length + ' phiên bản') : '1 phiên bản';
+
+    var priceHtml = '<div class="card-price-header">'
+      + '<div class="card-price-lead">'
+        + '<span class="card-price-from">' + (isSinglePrice ? 'Giá' : 'Chỉ từ') + '</span>'
+        + '<strong class="card-price-val">' + formatVND(p.priceMin) + '</strong>'
+        + oldPriceHtml
       + '</div>'
-    + '</div>'
-    + '<div class="product__body">'
-      + '<div class="product__meta">'
-        + '<span>' + escapeHTML(p.plat || 'iOS / Android') + '</span>'
-        + '<span>' + escapeHTML(p.buyers || '350+ Người mua') + '</span>'
-      + '</div>'
-      + '<h3>' + escapeHTML(p.name) + '</h3>'
-      + '<p>' + escapeHTML(p.shortDesc) + '</p>'
-      + '<div class="product__buy">'
-        + '<div class="price">'
-          + formatVND(p.priceMin)
-          + (p.oldPrice ? '<del style="font-size:12px;color:var(--red);margin-left:6px;font-weight:normal;">' + formatVND(p.oldPrice) + '</del>' : '')
-          + '<small>' + (isSinglePrice ? 'Trọn gói / Gói chuẩn' : ('Từ ' + formatVND(p.priceMin) + ' · ' + p.plans.length + ' phiên bản')) + '</small>'
-        + '</div>'
-        + '<button type="button" onclick="event.stopPropagation(); openBuyModalById(\'' + p.id + '\')">Xem chi tiết ↗</button>'
-      + '</div>'
+      + '<span class="card-tier-badge">' + tierBadgeText + '</span>'
     + '</div>';
+
+    if (!isSinglePrice) {
+      priceHtml += '<div class="card-price-span">Khoảng giá: ' + formatVND(p.priceMin) + ' – ' + formatVND(p.priceMax) + '</div>';
+    } else {
+      priceHtml += '<div class="card-price-span">Đồng giá trọn gói • Kích hoạt ngay</div>';
+    }
+
+    priceBox.innerHTML = priceHtml;
+    article.appendChild(priceBox);
+
+    // CTA Button
+    var cta = document.createElement('button');
+    cta.type = 'button';
+    cta.className = 'btn btn-buy btn-block' + (p.soldOut ? ' btn-soldout' : '');
+    cta.style.marginTop = '10px';
+    if (p.soldOut) {
+      cta.innerHTML = '<span>🔥 Cháy Hàng (Tạm Hết)</span><i class="fa-solid fa-ban"></i>';
+    } else {
+      cta.innerHTML = '<span>Xem chi tiết & Mua</span><i class="fa-solid fa-arrow-right"></i>';
+    }
+    cta.onclick = function(e) {
+      e.stopPropagation();
+      openBuyModalById(p.id);
+    };
+    article.appendChild(cta);
 
     fragment.appendChild(article);
   });
@@ -1245,21 +1330,53 @@ function renderProducts() {
   setTimeout(initScrollReveal, 40);
 }
 
+/* ═══════ 14 REAL CUSTOMER FEEDBACK ═══════ */
+function renderFeedback() {
+  var grid = document.getElementById('fb-grid');
+  if (!grid) return;
+  var fragment = document.createDocumentFragment();
+  for (var i = 1; i <= 14; i++) {
+    (function(num) {
+      var imgSrc = 'feedback-' + num + '.jpg';
+      var card = document.createElement('div');
+      card.className = 'fb-card';
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', 'Xem phóng to feedback khách hàng số ' + num);
+      card.onclick = function() { openLB(imgSrc); };
+      card.onkeydown = function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLB(imgSrc);
+        }
+      };
+      card.innerHTML = '<div class="fb-card-thumb">'
+        + '<img src="' + imgSrc + '" alt="Khách hàng feedback ' + num + '" loading="lazy" decoding="async">'
+        + '</div>'
+        + '<div class="fb-card-body">'
+        + '<div class="fb-badge"><i class="fa-solid fa-circle-check"></i> Đã Mua & Sử Dụng Tốt</div>'
+        + '<div class="fb-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>'
+        + '<div class="fb-title">Feedback Khách Hàng #' + num + '</div>'
+        + '</div>';
+      fragment.appendChild(card);
+    })(i);
+  }
+  grid.innerHTML = '';
+  grid.appendChild(fragment);
+  setTimeout(initScrollReveal, 40);
+}
+
 /* ═══════ FILTER & SEARCH EVENTS ═══════ */
-document.querySelectorAll('.filter-btn, .filter button').forEach(function(btn) {
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    document.querySelectorAll('.filter-btn, .filter button').forEach(function(b) {
-      b.classList.remove('active');
-      b.setAttribute('aria-pressed', 'false');
-    });
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    btn.setAttribute('aria-pressed', 'true');
-    activeCategory = btn.getAttribute('data-filter') || btn.getAttribute('data-category-filter') || 'all';
+    activeCategory = btn.getAttribute('data-category-filter');
     renderProducts();
   });
 });
 
-var searchInput = document.getElementById('productSearch') || document.getElementById('product-search');
+var searchInput = document.getElementById('product-search');
 var searchDebounceTimer = null;
 if (searchInput) {
   searchInput.addEventListener('input', function(e) {
@@ -1267,7 +1384,30 @@ if (searchInput) {
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(function() {
       renderProducts();
-    }, 180);
+    }, 220);
+  });
+}
+
+var sortSelect = document.getElementById('product-sort');
+if (sortSelect) {
+  sortSelect.addEventListener('change', function(e) {
+    sortOrder = e.target.value;
+    renderProducts();
+  });
+}
+
+var resetBtn = document.getElementById('reset-products');
+if (resetBtn) {
+  resetBtn.addEventListener('click', function() {
+    activeCategory = 'all';
+    searchQuery = '';
+    sortOrder = 'default';
+    if (searchInput) searchInput.value = '';
+    if (sortSelect) sortSelect.value = 'default';
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-category-filter') === 'all');
+    });
+    renderProducts();
   });
 }
 
