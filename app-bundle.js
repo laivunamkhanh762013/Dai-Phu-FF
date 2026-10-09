@@ -451,7 +451,7 @@ var PRODUCTS = [
         name: 'Uratr Cheat VIP (iOS & Android) - Vĩnh Viễn',
         price: 99000,
         badge: '👑 VIP Trọn Đời',
-        action: 'Cài nhanh không cần chứng chỉ, 100% Anti-Ban Bypass, kéo tâm ghim đầu cực mượt.',
+        action: 'Cài nhanh không cần chứng chỉ, 100% Anti-Ban Bypass, kéo tâm ghim đầu bám 80% cực mượt.',
         fix: 'Fix rung giật tâm, chống khựng màn hình, tương thích iOS 15.8.8 - 26.5 & Android 11 - 16.',
         pros: 'Tặng kèm File Next Drag🇻🇳 (trị giá 150k) + Video hướng dẫn chi tiết. Cam kết chuẩn video.',
         note: 'Hỗ trợ tất cả thiết bị iPhone & Android (Không cần JB / Không cần Root).',
