@@ -325,7 +325,8 @@ var PRODUCTS = [
         action: 'Cấp quyền vào nhóm Zalo/Telegram File Tiền VIP độc quyền Nexvia VN trọn đời.',
         fix: 'Nhận toàn bộ file kéo tâm VIP, fix rung, proxy mượt mà 120 FPS không giới hạn.',
         pros: 'Admin Phú Bán Hàng trực tiếp duyệt vào nhóm và gửi link tải ngay sau khi thanh toán.',
-        note: 'Hỗ trợ tất cả thiết bị iOS, Android, PC.'
+        note: 'Hỗ trợ tất cả thiết bị iOS, Android, PC.',
+        zaloGroupUrl: 'https://zalo.me/g/n6briixqnievletsfnoq'
       }
     ]
   },
@@ -2169,7 +2170,25 @@ function openPaidModal(order) {
     }
   }
   if (bonusCard) {
-    if (planObj && (planObj.sensConfig || planObj.downloadUrl)) {
+    if (prodObj && (prodObj.id === 'slot-nhom-file-tien' || (planObj && planObj.zaloGroupUrl))) {
+      var groupLink = (planObj && planObj.zaloGroupUrl) ? planObj.zaloGroupUrl : 'https://zalo.me/g/n6briixqnievletsfnoq';
+      bonusCard.style.display = 'block';
+      bonusCard.innerHTML = '<div style="margin:14px 0;padding:16px;background:linear-gradient(135deg,rgba(16,185,129,0.15) 0%,rgba(15,23,42,0.98) 100%);border:1.5px solid rgba(52,211,153,0.5);border-radius:14px;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,0.5);">'
+        + '<div style="font-weight:900;color:#34d399;font-size:13.5px;margin-bottom:8px;display:flex;align-items:center;gap:6px;letter-spacing:0.3px;">'
+          + '<i class="fa-solid fa-users-rectangle"></i> CẤP QUYỀN THAM GIA BOX ZALO FILE TIỀN VIP:'
+        + '</div>'
+        + '<div style="font-size:12.5px;color:#e2e8f0;line-height:1.55;background:rgba(0,0,0,0.55);padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);margin-bottom:12px;">'
+          + '<div style="color:#fde047;font-weight:800;margin-bottom:4px;">👑 Slot Nhóm File Tiền VIP (Vĩnh Viễn)</div>'
+          + 'Bạn đã được cấp quyền tham gia Box Zalo File Tiền VIP! Bấm nút bên dưới để tham gia nhóm ngay.'
+        + '</div>'
+        + '<a href="' + escapeHTML(groupLink) + '" target="_blank" rel="noopener noreferrer" class="btn btn-block" style="background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-weight:900;font-size:13px;padding:12px 14px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-shadow:0 4px 16px rgba(16,185,129,0.45);text-transform:uppercase;letter-spacing:0.5px;">'
+          + '<i class="fa-solid fa-arrow-up-right-from-square"></i> BẤM THAM GIA NHÓM ZALO VIP NGAY'
+        + '</a>'
+        + '<div style="font-size:11.5px;color:#94a3b8;margin-top:10px;line-height:1.5;text-align:left;background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;border:1px dashed rgba(255,255,255,0.15);">'
+          + '<b style="color:#38bdf8;"><i class="fa-solid fa-shield-halved"></i> Bảo mật chống Crack:</b> Hãy sao chép <b>Mã Đơn Hàng</b> ở trên và gửi khi xin vào nhóm hoặc nhắn Zalo Admin <b>Phú Bán Hàng (0588500524)</b> để được duyệt vào nhóm nhận trọn bộ file kéo tâm VIP!'
+        + '</div>'
+      + '</div>';
+    } else if (planObj && (planObj.sensConfig || planObj.downloadUrl)) {
       bonusCard.style.display = 'block';
       bonusCard.innerHTML = '<div style="margin:14px 0;padding:14px;background:linear-gradient(135deg,rgba(245,211,114,0.12) 0%,rgba(15,23,42,0.95) 100%);border:1.5px solid rgba(245,211,114,0.4);border-radius:14px;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,0.5);">'
         + '<div style="font-weight:900;color:#fde047;font-size:13px;margin-bottom:8px;display:flex;align-items:center;gap:6px;letter-spacing:0.3px;">'
