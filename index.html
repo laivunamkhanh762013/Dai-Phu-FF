@@ -1,887 +1,560 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXVIA VN - Hỗ Trợ Kéo Tâm Chuẩn Xác iOS &amp; Android</title>
-  <meta name="description" content="NEXVIA VN - Cung cấp phần mềm tiện ích, hỗ trợ kéo tâm chuẩn xác cho iOS và Android, uy tín 100%, bảo hành 24/7.">
-  <meta name="theme-color" content="#0d1020">
-  <meta property="og:title" content="NEXVIA VN - Gaming Store">
-  <meta property="og:description" content="Sản phẩm số gaming đỉnh cao - Hỗ trợ kéo tâm chuẩn xác, kích hoạt tự động qua VietQR.">
-  <meta property="og:image" content="assets/uploads/logos/aizen-logo.png">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="assets/uploads/logos/aizen-logo.png" type="image/png">
-  <link rel="canonical" href="https://nexvia.vn/">
-  <meta name="robots" content="index, follow">
-  <!-- Structured Data JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Store",
-    "name": "NEXVIA VN",
-    "description": "Cửa hàng sản phẩm số gaming, hỗ trợ kéo tâm chuẩn xác cho iOS và Android.",
-    "telephone": "0588500524",
-    "image": "assets/uploads/logos/aizen-logo.png",
-    "priceRange": "50.000đ - 500.000đ",
-    "paymentAccepted": "VietQR, Chuyển khoản ngân hàng MBBank",
-    "url": "https://nexvia.vn/",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Sản phẩm hỗ trợ kéo tâm Gaming",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Hỗ trợ kéo tâm chuẩn xác iOS & Android"
-          }
-        }
-      ]
-    }
-  }
-  </script>
-
-<link rel="preload" as="image" href="assets/uploads/logos/aizen-logo.png" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<!-- VipGoNoPro Core Styles -->
-<link rel="stylesheet" href="assets/app.css">
-<link rel="stylesheet" href="assets/theme.css">
-<link rel="stylesheet" href="assets/components.css">
-<!-- Redesign v3 "Graphite & Volt" -->
-<link rel="stylesheet" href="assets/redesign.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#e9e7de" />
+  <meta name="description" content="NEXVIA — Cửa hàng tiện ích gaming & hỗ trợ kéo tâm chuẩn xác iOS & Android. Xem danh mục, kiểm tra tương thích và nhận tư vấn 24/7." />
+  <title>NEXVIA — Gear up. Play your way.</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Editorial Brutalist Design System -->
+  <link rel="stylesheet" href="assets/editorial.css" />
 </head>
 
-<body class="storefront">
-<!-- ════════ GAMING SPLASH SCREEN INTRO: DUAL LIGHTNING CLASH ════════ -->
-<div id="gamingIntro" class="dp-intro-overlay" onclick="skipIntro(event)" onkeydown="if(event.key==='Enter'||event.key==='Escape')skipIntro(event)" role="alertdialog" aria-modal="true" aria-label="Giới thiệu cửa hàng">
-  <button type="button" class="intro-skip-btn" onclick="skipIntro(event)" aria-label="Bỏ qua giới thiệu">Bỏ qua ➔</button>
-  <div class="intro-cyber-grid-bg"></div>
-
-  <!-- Dual Lightning Energy Beams -->
-  <div class="intro-beam intro-beam-left"></div>
-  <div class="intro-beam intro-beam-right"></div>
+<body class="editorial-mode">
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
   
-  <!-- Central Shockwave Flash & Sparks -->
-  <div class="intro-shockwave"></div>
-  <div class="intro-flash-bg"></div>
-
-  <!-- Central Clash Content (Logo & Brand) -->
-  <div class="dp-intro-clash-content" id="dpIntroClashContent">
-    <div class="dp-intro-logo-glow" id="dpIntroLogoBox">
-      <img src="assets/uploads/logos/aizen-logo.png" alt="Logo NEXVIA VN" class="dp-intro-logo-img">
-    </div>
-    <div class="dp-intro-brand-box" id="dpIntroBrandBox">
-      <div class="dp-intro-title">NEXVIA VN</div>
-      <div class="dp-intro-subline">⚡ GAMING STORE • MOD &amp; UTILITIES ⚡</div>
+  <!-- ══ TOP TICKER MARQUEE ══ -->
+  <div class="ticker" aria-label="Thông báo cửa hàng">
+    <div class="ticker__track" aria-hidden="true">
+      <span><i class="ticker__dot"></i>NEXVIA / DIGITAL LOADOUT</span>
+      <span>THÔNG TIN RÕ RÀNG · KIỂM TRA TƯƠNG THÍCH TRƯỚC KHI MUA</span>
+      <span>HỖ TRỢ TRỰC TIẾP 1:1 QUA ZALO ADMIN: 0588500524</span>
+      <span>TỰ ĐỘNG KÍCH HOẠT VIETQR MBBANK TRONG 3 GIÂY</span>
+      <span><i class="ticker__dot"></i>NEXVIA / DIGITAL LOADOUT</span>
+      <span>THÔNG TIN RÕ RÀNG · KIỂM TRA TƯƠNG THÍCH TRƯỚC KHI MUA</span>
+      <span>HỖ TRỢ TRỰC TIẾP 1:1 QUA ZALO ADMIN: 0588500524</span>
     </div>
   </div>
-</div>
 
+  <!-- ══ EDITORIAL HEADER ══ -->
+  <header class="header">
+    <div class="shell header__inner">
+      <a class="brand" href="#top" aria-label="NEXVIA về đầu trang">
+        <span class="brand__mark">N</span>
+        <span>
+          <span class="brand__word">NEXVIA</span>
+          <span class="brand__sub">GAME UTILITY DEPT. / VN</span>
+        </span>
+      </a>
 
+      <nav class="nav" id="mainNav" aria-label="Điều hướng chính">
+        <a href="#catalog">Danh mục</a>
+        <a href="#manifesto">Quy trình</a>
+        <a href="#compatibility">Tương thích</a>
+        <a href="#faq">Hỏi đáp</a>
+        <a href="#reviews">Đánh giá</a>
+      </nav>
 
-
-
-<a class="skip-link" href="#main-content">Chuyển đến nội dung chính</a>
-<div id="nav-progress" class="nav-progress"></div>
-<div id="toast" class="toast"></div>
-
-
-
-<!-- ══ ANNOUNCEMENT BAR ══ -->
-<div class="announcement-bar">
-  <div class="shell">
-    <i class="fa-solid fa-crown" style="color:#ffd700;margin-right:6px;"></i> NEXVIA VN ROYAL EDITION • HỆ THỐNG SẢN PHẨM SỐ LUXURY 24/7 • ĐỐI SOÁT &amp; BÀN GIAO FILE 1:1 QUA ZALO ADMIN • UY TÍN 100%
-  </div>
-</div>
-
-<!-- ══ TOPBAR ══ -->
-<header class="topbar">
-  <div class="shell topbar-inner">
-    <a class="brand" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;" title="NEXVIA VN">
-      <span class="brand-mark"><img class="website-logo" src="assets/uploads/logos/aizen-logo.png" alt="Logo NEXVIA VN"></span>
-      <span><b style="display:flex;align-items:center;gap:6px;"><i class="fa-solid fa-crown" style="color:#f5d372;font-size:13px;"></i> NEXVIA VN</b><small style="letter-spacing:1.8px;color:#e5a93b;">ROYAL LUXURY STORE</small></span>
-    </a>
-    <nav class="desktop-nav" aria-label="Điều hướng chính">
-      <button type="button" class="nav-link-btn active" onclick="window.scrollTo({top:0,behavior:'smooth'})">Cửa hàng</button>
-      <a href="#products">Sản phẩm</a>
-      <a href="#feedback">Đánh giá</a>
-      <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Hỗ trợ Zalo (Mở tab mới)">Hỗ trợ Zalo</a>
-    </nav>
-    <div class="top-actions">
-      <div class="user-menu-wrapper" id="userMenuWrapper">
-        <button type="button" class="btn btn-ghost" onclick="toggleUserDropdown(event)" id="topAuthBtn" aria-haspopup="menu" aria-expanded="false">Đăng nhập</button>
-        <div class="user-dropdown-menu" id="userDropdownMenu" role="menu" aria-label="Tùy chọn tài khoản">
-          <button type="button" class="user-dropdown-item" role="menuitem" tabindex="0" onclick="handleMenuHistory(event)">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>Lịch sử đơn hàng</span>
-          </button>
-          <div class="user-dropdown-divider"></div>
-          <button type="button" class="user-dropdown-item text-danger" role="menuitem" tabindex="0" onclick="handleMenuLogout(event)">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Đăng xuất</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- ══ MAIN CONTENT ══ -->
-<main id="main-content" class="shell page-wrap">
-
-  <!-- ══ STORE HERO (PREMIUM CYBER-TACTICAL INTRO) ══ -->
-  <section class="store-hero">
-    <!-- Cyber Background FX & HUD Corner Brackets -->
-    <div class="hero-cyber-grid"></div>
-    <div class="hero-glow-orb hero-glow-orb-1"></div>
-    <div class="hero-glow-orb hero-glow-orb-2"></div>
-
-    <div class="hero-copy">
-      <div class="store-kicker">
-        <span class="live-dot-pulse"></span>
-        <span><i class="fa-solid fa-gem" style="color:#f5d372;"></i> EXCLUSIVE LUXURY GAMING SUITE • FREE FIRE VIP</span>
-        <span class="kicker-latency"><i class="fa-solid fa-wifi"></i> 18ms</span>
-      </div>
-      <h1 class="hero-main-title">
-        <span class="hero-brand-glitch">NEXVIA VN</span>
-        <span class="hero-gradient-text">ROYAL LUXURY • KÉO TÂM VIP</span>
-      </h1>
-      <p class="hero-lead-text">
-        Phần mềm tiện ích kéo tâm chuẩn xác đỉnh cao, không can thiệp sâu PMT3, an toàn bảo mật 100% cho cả <b>iOS (iPhone/iPad)</b>, <b>Android No Root</b> và <b>PC</b>. Kích hoạt tự động tức thì qua VietQR.
-      </p>
-
-      <!-- Key Feature Highlights -->
-      <div class="hero-feature-badges">
-        <span class="hfb-item"><i class="fa-solid fa-crown" style="color:#f5d372;"></i> 100% Anti-Ban Bypass</span>
-        <span class="hfb-item"><i class="fa-solid fa-bolt-lightning" style="color:#f5d372;"></i> Tự Động MBBank 3s</span>
-        <span class="hfb-item"><i class="fa-solid fa-gem" style="color:#f5d372;"></i> No Root / No Jailbreak</span>
-        <span class="hfb-item hfb-special"><i class="fa-solid fa-shield-halved" style="color:#f5d372;"></i> Chuẩn Xác 99.9%</span>
-      </div>
-
-      <div class="payment-badge-wrap">
-        <span class="payment-badge-title"><i class="fa-solid fa-credit-card"></i> Thanh toán:</span>
-        <span class="payment-badge-qr"><i class="fa-solid fa-qrcode"></i> Quét mã VietQR 24/7</span>
-        <span style="color:var(--rd-line-2);">|</span>
-        <span class="payment-badge-card"><i class="fa-solid fa-sim-card"></i> Thẻ cào / Card (Zalo)</span>
-      </div>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary btn-hero-cta" href="#products">
-          <i class="fa-solid fa-fire"></i>
-          <span>Xem bảng giá &amp; Mua ngay</span>
-          <span class="btn-cta-arrow"><i class="fa-solid fa-arrow-right"></i></span>
-        </a>
-        <a class="btn btn-ghost btn-hero-sub" href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo Admin (Mở tab mới)">
-          <i class="fa-solid fa-headset"></i>
-          <span>Zalo Admin: 0588500524</span>
-        </a>
-      </div>
-
-      <!-- Trust Metrics Counter -->
-      <div class="hero-stats-row">
-        <div class="hs-item">
-          <strong class="hs-num">3.800+</strong>
-          <small>Đơn hoàn tất</small>
-        </div>
-        <div class="hs-divider"></div>
-        <div class="hs-item">
-          <strong class="hs-num">99.9%</strong>
-          <small>Đánh giá 5 sao</small>
-        </div>
-        <div class="hs-divider"></div>
-        <div class="hs-item">
-          <strong class="hs-num">24/7</strong>
-          <small>Hỗ trợ trực tiếp</small>
-        </div>
-      </div>
-    </div>
-
-    <!-- Member Wallet Card (Glassmorphism & Border Beam) -->
-    <aside class="wallet-summary guest-summary">
-      <div class="wallet-border-beam"></div>
-      <div class="wallet-header-badge">
-        <div class="wallet-header-left">
-          <div class="wallet-icon"><i class="fa-solid fa-user-shield"></i></div>
-          <span class="wallet-status-tag"><i class="fa-solid fa-crown" style="color:#f5d372;"></i> ROYAL VIP MEMBER</span>
-        </div>
-        <!-- Mini Elegant Logout Button (Hidden when guest, visible when logged in) -->
-        <button type="button" class="btn-wallet-logout-mini hidden" id="sideMiniLogoutBtn" onclick="handleLogout()" title="Đăng xuất tài khoản" aria-label="Đăng xuất">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      <div class="header__actions">
+        <span class="micro-label"><i class="status-dot"></i>Hỗ trợ trực tuyến</span>
+        <button type="button" class="button button--line" onclick="openMyOrderHistory()" style="min-height:38px;padding:0 12px;font-size:10px;">
+          <i class="fa-solid fa-clock-rotate-left"></i> Tra cứu đơn
         </button>
-      </div>
-      <strong id="sideUserTitle">Đăng nhập tài khoản</strong>
-      <p id="sideUserSub">Đăng nhập để nhận mã key tự động, tra cứu lịch sử mua hàng và nhận ưu đãi riêng.</p>
-      
-      <!-- Primary Action: Login/Register (Only visible when guest) -->
-      <button type="button" class="btn btn-primary btn-block" onclick="openLogin()" id="sideAuthBtn">
-        <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập / Đăng ký
-      </button>
-
-      <!-- Ghost Action: Order History (Styled sleek and subdued) -->
-      <button type="button" class="btn btn-block btn-order-history hidden" onclick="openMyOrderHistory()" id="sideOrderHistoryBtn">
-        <i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đơn hàng của tôi
-      </button>
-      
-      <div class="wallet-quick-contact">
-        <i class="fa-solid fa-circle-check" style="color:var(--rd-volt);"></i>
-        <span>Đối soát bill &amp; Hỗ trợ trực tiếp qua Zalo Phú Bán Hàng</span>
-      </div>
-    </aside>
-  </section>
-
-  <!-- ══ VIP FLAGSHIP BENTO SHOWCASE (TASTE-SKILL & IMPECCABLE MASTERPIECE) ══ -->
-  <section class="vip-flagship-bento" onclick="openBuyModalById('uratr-cheat-vip')" tabindex="0" role="region" aria-label="Sản phẩm Flagship Uratr Cheat VIP">
-    <div class="bento-beam-glow"></div>
-    <div class="bento-cyber-crosshair"></div>
-    <div class="bento-left-content">
-      <div class="bento-badge-row">
-        <span class="bento-badge-hot"><i class="fa-solid fa-crown"></i> SIÊU PHẨM MỚI 2026</span>
-        <span class="bento-badge-plat"><i class="fa-brands fa-apple"></i> iOS &bull; <i class="fa-brands fa-android"></i> Android</span>
-        <span class="bento-badge-live"><span class="live-dot-pulse"></span> 350+ Người Mua</span>
-      </div>
-      <h2 class="bento-title">
-        Uratr Cheat VIP 🇻🇳 <span class="bento-title-sub">Edition Pro</span>
-      </h2>
-      <p class="bento-desc">
-        Bộ cấu hình độc quyền tối ưu vuốt tâm mượt mà, ghim đầu chuẩn xác 99.9%. Tự động mở khóa bảng thông số độ nhạy máy thấp & máy cao ngay sau khi kích hoạt!
-      </p>
-      <div class="bento-bonus-pill">
-        <i class="fa-solid fa-gift" style="color:#fde047;"></i>
-        <span>TẶNG KÈM: <b>File Next Drag🇻🇳 trị giá 150k</b> + Video hướng dẫn chi tiết</span>
-      </div>
-      <div class="bento-action-row">
-        <div class="bento-price-box">
-          <span class="bento-price-label">Giá ưu đãi hôm nay:</span>
-          <span class="bento-price-val">99.000đ</span>
-          <del class="bento-price-old">200.000đ</del>
-        </div>
-        <button type="button" class="btn btn-primary bento-buy-btn" onclick="event.stopPropagation(); openBuyModalById('uratr-cheat-vip')">
-          <i class="fa-solid fa-bolt"></i> Mua Ngay &amp; Mở Khóa <i class="fa-solid fa-arrow-right"></i>
-        </button>
+        <a class="button button--acid" href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer">
+          Nhắn Zalo <span aria-hidden="true">↗</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-controls="mainNav" aria-expanded="false">☰</button>
       </div>
     </div>
-    <div class="bento-right-visual">
-      <div class="bento-img-container">
-        <img src="assets/uploads/products/uratr-cheat-vip.png" alt="Uratr Cheat VIP 🇻🇳 Banner" class="bento-hero-img" loading="eager">
-        <div class="bento-hud-tag"><i class="fa-solid fa-shield-halved"></i> 100% Anti-Ban Bypass</div>
-      </div>
-    </div>
-  </section>
+  </header>
 
-  <!-- ══ PRODUCTS SECTION ══ -->
-  <section id="products" class="products-section">
-    <div class="section-head">
-      <div>
-        <h2><i class="fa-solid fa-crown" style="color:#f5d372;font-size:22px;margin-right:8px;"></i> Bộ Sưu Tập Sản Phẩm Luxury</h2>
-        <p>Tuyển chọn các phiên bản phần mềm tối ưu độc quyền, hiệu năng 120 FPS mượt mà cho game thủ chuyên nghiệp.</p>
-      </div>
-      <div class="product-tools">
-        <label class="search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="product-search" type="search" placeholder="Tìm sản phẩm..." autocomplete="off">
-          <kbd>/</kbd>
-        </label>
-      </div>
-    </div>
+  <!-- ══ MAIN CONTENT ══ -->
+  <main id="main">
 
-    <!-- Product Grid (Exact 4 columns matching vipgonopro.shop) -->
-    <div class="product-grid" id="product-grid">
-      <!-- Skeleton Loaders to prevent Cumulative Layout Shift (CLS) -->
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-    </div>
-
-    <div id="product-empty" class="empty-state hidden">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <h3>Không tìm thấy sản phẩm</h3>
-      <p>Thử từ khóa khác hoặc chọn lại danh mục.</p>
-      <button class="btn btn-ghost" id="reset-products">Xóa bộ lọc</button>
-    </div>
-  </section>
-
-  <!-- ══ FEEDBACK / KHÁCH HÀNG ĐÁNH GIÁ ══ -->
-  
-  <!-- ════ HIGH-TECH FEATURES / TẠI SAO CHỌN ĐẠI PHÚ FF ════ -->
-  <section class="features-section">
-    <div class="section-head text-center" style="justify-content: center; text-align: center; margin-bottom: 28px;">
-      <div>
-        <span class="store-kicker" style="margin: 0 auto 10px; display: inline-flex;"><i class="fa-solid fa-shield-heart" style="color:var(--rd-volt);"></i> CHẤT LƯỢNG HÀNG ĐẦU</span>
-        <h2 style="font-size: 26px;"><i class="fa-solid fa-crown" style="color:#f5d372;margin-right:8px;"></i> Đặc Quyền &amp; Đẳng Cấp Tại NEXVIA VN</h2>
-        <p style="max-width: 600px; margin: 6px auto 0;">Hệ thống phần mềm hỗ trợ Free Fire bản quyền uy tín số 1 Việt Nam với công nghệ tự động hóa 100%.</p>
-      </div>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="fc-glow"></div>
-        <div class="fc-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
-        <h3>Tự Động 100% Qua VietQR</h3>
-        <p>Hệ thống kết nối trực tiếp biến động số dư MBBank, nhận tiền là duyệt đơn và cấp Key tự động tức thì trong 3 giây.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="fc-glow"></div>
-        <div class="fc-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3>Bypass An Toàn & Anti-Ban</h3>
-        <p>Phần mềm tối ưu sâu từ gốc, chống quét PMT3 của Garena, cam kết 100% an toàn bảo vệ nick chính leo rank đỉnh cao.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="fc-glow"></div>
-        <div class="fc-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-        <h3>Full Nền Tảng: iOS • Adr • PC</h3>
-        <p>Hỗ trợ đầy đủ iPhone/iPad (không cần Jailbreak), Android (không cần Root) và máy tính PC giả lập mượt mà 120 FPS.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="fc-glow"></div>
-        <div class="fc-icon"><i class="fa-solid fa-headset"></i></div>
-        <h3>Bảo Hành & Hỗ Trợ 1:1 Tận Tâm</h3>
-        <p>Admin Phú Bán Hàng trực tiếp hỗ trợ qua Zalo 24/7, gửi video cài đặt chi tiết từng bước, lỗi 1 đổi 1 hoặc hoàn tiền uy tín.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="feedback" class="feedback-section">
-    <div class="section-head">
-      <div>
-        <span class="store-kicker" style="margin-bottom:8px;"><i class="fa-solid fa-gem"></i> ĐÁNH GIÁ THỰC TẾ VIP</span>
-        <h2>Khách Hàng VIP Nói Gì Về NEXVIA VN?</h2>
-        <p>100% hình ảnh bill giao dịch &amp; phản hồi thực tế từ anh em game thủ đã mua kéo tâm thành công. (Bấm vào ảnh để phóng to).</p>
-      </div>
-      <div class="fb-summary-badge">
-        <div class="fb-stars-row">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-        </div>
-        <strong>4.8 / 5.0</strong>
-        <small>3.800+ Khách Hài Lòng</small>
-      </div>
-    </div>
-
-    <!-- 14 Customer Feedback Grid populated by app-bundle.js -->
-    <div class="fb-grid" id="fb-grid">
-      <!-- Injected by renderFeedback() in app-bundle.js -->
-    </div>
-  </section>
-
-</main>
-
-<!-- ══ FOOTER ══ -->
-<footer class="footer">
-  <div class="shell footer-inner">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <img src="assets/uploads/logos/aizen-logo.png" alt="Logo NEXVIA VN" class="footer-logo">
-      <div>
-        <b>NEXVIA VN</b>
-        <p>Sản phẩm số • Kéo tâm đỉnh cao • Thanh toán nhanh • Hỗ trợ khi cần</p>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-      <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo hỗ trợ (Mở tab mới)"><i class="fa-solid fa-headset"></i> Liên hệ Zalo hỗ trợ</a>
-    </div>
-  </div>
-  <div class="shell" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);text-align:center;">
-    <p class="footer-copyright">
-      Bản quyền thuộc về NEXVIA VN • Admin Phú Bán Hàng
-    </p>
-  </div>
-</footer>
-
-<!-- ══ MOBILE BOTTOM NAVIGATION ══ -->
-<nav class="mobile-nav" aria-label="Điều hướng trên điện thoại">
-  <button type="button" class="mobile-nav-btn active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-store"></i><span>Cửa hàng</span></button>
-  <a href="#products"><i class="fa-solid fa-fire"></i><span>Sản phẩm</span></a>
-  <a href="#feedback"><i class="fa-solid fa-star"></i><span>Đánh giá</span></a>
-  <button type="button" class="mobile-nav-btn" onclick="openMyOrderHistory()"><i class="fa-solid fa-clock-rotate-left"></i><span>Lịch sử</span></button>
-  <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Hỗ trợ Zalo Admin (Mở tab mới)"><i class="fa-solid fa-headset"></i><span>Hỗ trợ</span></a>
-</nav>
-
-<!-- ══ BUY & PAYMENT MODAL (CHỌN GÓI + XEM ẢNH TÍNH NĂNG + VIETQR) ══ -->
-<div id="buyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mProdTitle">
-  <div class="modal-backdrop" onclick="closeBuyModal()"></div>
-  <div class="modal-card checkout-modal">
-    <button class="m-close-btn" onclick="closeBuyModal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
-
-    <div class="checkout-grid">
-      <!-- CỘT TRÁI: PREVIEW & ẢNH TÍNH NĂNG -->
-      <div class="m-gallery-col">
-        <div class="m-preview-card">
-          <span class="m-preview-badge" id="mPreviewBadge">ESP Ghim Đầu</span>
-          <img id="mPreviewImg" src="proxy-ios.png" alt="Preview tính năng" loading="lazy" decoding="async">
-          <div class="m-preview-empty" id="mPreviewEmpty" style="display:none;">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>Chờ Cập Nhật Banner Mới</span>
-            <small>Sản phẩm này đang được thiết kế banner chính thức</small>
+    <!-- ══ SECTION: HERO (EDITORIAL BRUTALIST DISPLAY) ══ -->
+    <section class="hero" id="top">
+      <div class="shell hero__grid">
+        <div class="hero__text">
+          <div class="eyebrow">
+            <span class="eyebrow__tag">Independent game tools</span>
+            <span>Hà Nội · Online store</span>
           </div>
-          <div class="m-preview-bottom">
-            <div class="m-preview-title" id="mPreviewTitle">ESP AIMCHECK R8 - Định Vị Ghim Đầu</div>
-            <button type="button" class="m-preview-zoom-btn" id="mZoomBtn" onclick="zoomCurrentPreview()">
-              <i class="fa-solid fa-magnifying-glass-plus"></i> Phóng to
+          <h1 class="hero-title">
+            Gear up.<br>
+            <span class="outline">Play</span> your<br>
+            <span class="accent">way.</span>
+          </h1>
+          <div class="hero__bottom">
+            <div>
+              <p class="hero__copy">
+                Một nơi để xem sản phẩm, đọc rõ thông tin và hỏi trước khi mua. <strong>Không cần đoán mò từ những dòng quảng cáo dài.</strong>
+              </p>
+              <div class="hero__ctas">
+                <a class="button button--acid" href="#catalog">Khám phá sản phẩm <span aria-hidden="true">↘</span></a>
+                <a class="button button--line" href="#manifesto">Cách hoạt động</a>
+              </div>
+            </div>
+            <span class="hero__index">VOL. 01 / 2026<br>SCROLL TO EXPLORE ↓</span>
+          </div>
+        </div>
+
+        <!-- Rotating Reticle Target Graphic Box -->
+        <div class="hero-art" onclick="openBuyModalById('uratr-cheat-vip')" role="button" tabindex="0" aria-label="Xem siêu phẩm Uratr Cheat VIP">
+          <div class="hero-art__top">
+            <span>NEXVIA FIELD NOTES</span>
+            <span class="hero-art__serial">SYSTEM / 001</span>
+          </div>
+          <span class="hero-art__side">TOOLS FOR THE NEXT ROUND — TOOLS FOR THE NEXT ROUND</span>
+          <div class="target">
+            <div class="target__cross"></div>
+            <div class="target__core"><span>N</span></div>
+          </div>
+          <div class="hero-art__name">
+            <small>FEATURED / 01</small>
+            <strong>URATR <em>VIP</em></strong>
+            <small>ANDROID · IOS · DIGITAL DELIVERY</small>
+          </div>
+          <div class="hero-art__stamp">CHECK<br>BEFORE<br>YOU BUY<br>✳</div>
+        </div>
+      </div>
+
+      <div class="shell ticker-small">
+        <span><b>01 /</b> THÔNG TIN SẢN PHẨM RÕ RÀNG</span>
+        <span><b>02 /</b> TƯƠNG THÍCH MỌI THIẾT BỊ</span>
+        <span><b>03 /</b> HỖ TRỢ 1:1 SAU KHI MUA</span>
+      </div>
+    </section>
+
+    <!-- ══ SECTION: CATALOG (THE LINEUP) ══ -->
+    <section class="section" id="catalog">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">01 — The lineup</div>
+            <h2 class="section-title">Chọn đúng<br>loadout.</h2>
+          </div>
+          <div class="section-head__right">
+            <p class="section-description">
+              Xem nhanh danh mục hiện có, lọc theo nền tảng và mở chi tiết trước khi quyết định. Kích hoạt tự động qua VietQR MBBank.
+            </p>
+            <span class="micro-label">Danh mục / 2026</span>
+          </div>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="catalog-tools">
+          <label class="search">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" id="productSearch" placeholder="Tìm tên sản phẩm..." aria-label="Tìm sản phẩm" />
+          </label>
+          <div class="filter" role="group" aria-label="Lọc theo nền tảng">
+            <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">Tất cả</button>
+            <button type="button" class="filter-btn" data-filter="ios" aria-pressed="false">iOS</button>
+            <button type="button" class="filter-btn" data-filter="android" aria-pressed="false">Android</button>
+            <button type="button" class="filter-btn" data-filter="pc" aria-pressed="false">PC / Mod</button>
+          </div>
+        </div>
+
+        <div class="catalog-meta">
+          <span>Danh mục sản phẩm bản quyền</span>
+          <span id="resultCount">05 mục</span>
+        </div>
+
+        <!-- Product Grid Dynamic Container -->
+        <div class="product-grid" id="productGrid">
+          <!-- Dynamically injected products via app-bundle.js -->
+        </div>
+
+        <div id="product-empty" class="empty hidden">
+          Không tìm thấy sản phẩm phù hợp. Vui lòng thử từ khóa tìm kiếm hoặc bộ lọc khác.
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION: MANIFESTO (02 — NO GUESSING) ══ -->
+    <section class="section manifesto" id="manifesto">
+      <div class="manifesto__circle" aria-hidden="true"></div>
+      <div class="shell manifesto__grid">
+        <div class="reveal">
+          <div class="section-kicker" style="color:#b6bbae">02 — No guessing</div>
+          <h2>Rõ từ<br>đầu.<br><span>Gọn về<br>sau.</span></h2>
+        </div>
+        <div class="manifesto__copy reveal">
+          <p class="manifesto__lead">
+            Một cửa hàng tốt không cần hét lên bằng hiệu ứng. Nó cần giúp bạn hiểu mình đang xem gì, trả tiền cho điều gì và nhận hỗ trợ ở đâu.
+          </p>
+          <p>
+            Thay vì hứa hẹn tuyệt đối, trang mới ưu tiên thông tin có thể kiểm tra, điều kiện tương thích và đường liên hệ rõ ràng. Mỗi sản phẩm có một điểm vào cụ thể, không cần lục qua hàng loạt khung quảng cáo rườm rà.
+          </p>
+          <ul class="manifesto__list">
+            <li>
+              <b>01.</b>
+              <div>
+                <strong>Đọc trước khi mua</strong>
+                <span>Mô tả, phiên bản hỗ trợ và những giới hạn cần biết được công khai.</span>
+              </div>
+            </li>
+            <li>
+              <b>02.</b>
+              <div>
+                <strong>Xác nhận đúng thiết bị</strong>
+                <span>Kiểm tra hệ điều hành (iOS / Android / PC) và gói phù hợp trước khi đặt.</span>
+              </div>
+            </li>
+            <li>
+              <b>03.</b>
+              <div>
+                <strong>Một đầu mối hỗ trợ</strong>
+                <span>Liên hệ Zalo Anh Phú (0588500524) rõ ràng cho thắc mắc về đơn và bàn giao key.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION: COMPATIBILITY (03 — CHECK FIRST) ══ -->
+    <section class="section" id="compatibility">
+      <div class="shell compat">
+        <div class="reveal">
+          <div class="section-kicker">03 — Compatibility</div>
+          <div class="compat__big">Check<br>first.<small>ĐỪNG MUA KHI CHƯA XÁC NHẬN</small></div>
+        </div>
+        <div class="reveal">
+          <div class="compat__rows">
+            <div class="compat__row">
+              <b>Android</b>
+              <span>Hỗ trợ Android 9 - 14, không cần Root máy, an toàn 100%.</span>
+              <i>↗</i>
+            </div>
+            <div class="compat__row">
+              <b>iPhone / iPad</b>
+              <span>Hỗ trợ iOS 15 - 18+, cài đặt trực tiếp qua file cấu hình mobileconfig.</span>
+              <i>↗</i>
+            </div>
+            <div class="compat__row">
+              <b>Giao nhận</b>
+              <span>Hệ thống tạo mã đơn ngay sau khi chuyển khoản, bàn giao link file + hướng dẫn tức thì.</span>
+              <i>↗</i>
+            </div>
+            <div class="compat__row">
+              <b>Hỗ trợ</b>
+              <span>Nhắn trực tiếp Zalo 0588500524 để được hỗ trợ cấu hình 1:1 mọi lúc.</span>
+              <i>↗</i>
+            </div>
+          </div>
+          <div class="trust-note">
+            <strong>Lưu ý:</strong> Khả năng tương thích và trạng thái tài khoản có thể phụ thuộc vào thiết bị, phiên bản phần mềm và quy định của trò chơi. Hãy tuân thủ hướng dẫn cài đặt từ Admin.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION: COMMUNITY NOTES / REVIEWS ══ -->
+    <section class="section reviews" id="reviews">
+      <div class="shell">
+        <div class="reviews__top reveal">
+          <div>
+            <div class="section-kicker">04 — Community notes</div>
+            <h2 class="section-title">Đừng chỉ<br>tin lời shop.</h2>
+          </div>
+          <div class="reviews__mark">REAL?<small>ĐÁNH GIÁ THỰC TỪ NGƯỜI DÙNG</small></div>
+        </div>
+        <div class="review-grid reveal">
+          <article class="review">
+            <div class="review__quote">“Uratr Cheat VIP kéo tâm rất êm tay, máy cấu hình thấp dùng không bị khựng hình.”</div>
+            <div class="review__foot">
+              <span>KHÁCH HÀNG IPHONE 11</span>
+              <span class="review__stars">★★★★★</span>
+            </div>
+          </article>
+          <article class="review">
+            <div class="review__quote">“Thanh toán quét VietQR xong là nhận được file và bảng độ nhạy ngay, admin rep Zalo nhiệt tình.”</div>
+            <div class="review__foot">
+              <span>QUÂN (098***) · ANDROID</span>
+              <span class="review__stars">★★★★★</span>
+            </div>
+          </article>
+          <article class="review">
+            <div class="review__quote">“TrollModz và NovaX chạy ổn định, chơi mượt mà không bị văng game.”</div>
+            <div class="review__foot">
+              <span>TUẤN ANH (090***)</span>
+              <span class="review__stars">★★★★★</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION: FAQ ══ -->
+    <section class="section" id="faq">
+      <div class="shell faq-layout">
+        <div class="reveal">
+          <div class="section-kicker">05 — FAQ</div>
+          <h2 class="section-title">Hỏi trước.<br>Chốt sau.</h2>
+          <p class="section-description" style="margin-top:18px">
+            Không tìm thấy câu trả lời? Hãy nhắn Zalo Admin 0588500524 để xác nhận trước khi mua.
+          </p>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button type="button" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>Làm sao biết sản phẩm có hợp thiết bị của mình?</span>
+              <span>+</span>
             </button>
+            <div class="faq-answer">
+              <div>
+                <p>Bạn chỉ cần kiểm tra dòng máy (iPhone hay Android) và chọn đúng phiên bản độ nhạy phù hợp khi mua. Nếu chưa rõ, hãy gửi tên máy cho Admin qua Zalo để được tư vấn.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>Thanh toán xong tôi nhận file và thông số ở đâu?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <div>
+                <p>Ngay sau khi ngân hàng MBBank ghi có tiền, màn hình sẽ tự động chuyển sang giao diện Thành Công với bảng thông số độ nhạy đầy đủ cùng Nút Tải File trực tiếp MediaFire.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>Có cần Root máy Android hay Jailbreak iPhone không?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <div>
+                <p>Hoàn toàn KHÔNG. Tất cả sản phẩm tại NEXVIA VN đều là file cấu hình chuẩn hoặc app no-root, cài đặt an toàn tuyệt đối không can thiệp sâu hệ thống.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button type="button" aria-expanded="false" onclick="toggleFaq(this)">
+              <span>Nếu tôi chuyển khoản bị trễ thì làm sao?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <div>
+                <p>Bạn chỉ cần chụp ảnh bill chuyển khoản và gửi kèm Mã Đơn Hàng cho Zalo Anh Phú (0588500524). Admin sẽ kiểm tra và kích hoạt đơn 1:1 ngay cho bạn.</p>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="m-thumbs-header" id="mThumbsHeader">
-          <i class="fa-solid fa-camera"></i> ẢNH TÍNH NĂNG (CHẠM ĐỂ XEM):
+    <!-- ══ SECTION: CONTACT CTA ══ -->
+    <section class="contact" id="contact">
+      <div class="shell contact__grid">
+        <div class="reveal">
+          <div class="section-kicker">06 — Talk to a human</div>
+          <h2>Need a<br>straight answer?</h2>
         </div>
-        <div class="m-thumbs-grid" id="mThumbsGrid">
-          <!-- Injected thumbnails -->
+        <div class="contact__right reveal">
+          <p>Hỏi về phiên bản, điều kiện hỗ trợ hoặc thông tin đơn hàng. Xác nhận mọi thứ trước khi thanh toán.</p>
+          <a class="button" href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer">
+            Liên hệ Zalo Admin 0588500524 <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
+    </section>
+  </main>
 
-      <!-- CỘT PHẢI: CHỌN GÓI (BƯỚC 1) HOẶC QUÉT QR (BƯỚC 2) -->
-      <div class="m-info-col">
-        <!-- BƯỚC 1: DANH SÁCH CHI TIẾT TỪNG PHIÊN BẢN (1.0, 2.0, 3.0...) -->
+  <!-- ══ EDITORIAL FOOTER ══ -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__top">
+        <a class="brand" href="#top">
+          <span class="brand__mark">N</span>
+          <span>
+            <span class="brand__word">NEXVIA</span>
+            <span class="brand__sub">GAME UTILITY DEPT. / VN</span>
+          </span>
+        </a>
+        <div class="footer__links">
+          <a href="#catalog">Danh mục</a>
+          <a href="#manifesto">Quy trình</a>
+          <a href="#compatibility">Tương thích</a>
+          <a href="#faq">Hỏi đáp</a>
+          <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer">Zalo Admin ↗</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 NEXVIA VN / OFFICIAL STORE</span>
+        <span>DESIGNED WITH CLARITY &amp; CRAFT · ANTI-SLOP</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       EDITORIAL CHECKOUT & PAYMENT MODAL (STEP 1 & STEP 2)
+       ═══════════════════════════════════════════════════════════════ -->
+  <div class="modal" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="mProdTitle">
+    <div class="modal__panel">
+      <!-- Modal Header -->
+      <div class="modal__head">
+        <div>
+          <div class="section-kicker" id="mProdSub">PRODUCT / 001</div>
+          <h3 id="mProdTitle">Uratr Cheat VIP</h3>
+        </div>
+        <button type="button" class="modal__close" onclick="closeBuyModal()" aria-label="Đóng">×</button>
+      </div>
+
+      <div class="modal__body">
+        <!-- BƯỚC 1: CHỌN PHIÊN BẢN / GÓI -->
         <div id="mStep1">
-          <h2 class="m-prod-title" id="mProdTitle">TrollModz</h2>
-          <div class="m-prod-sub" id="mProdSub">AimLock · iOS &amp; Adr · Đã bán 3.1k+</div>
-
-          <!-- Khoảng giá sản phẩm -->
-          <div class="m-range-banner" id="mRangeBanner">
-            <span class="m-range-text"><i class="fa-solid fa-tags"></i> Khoảng giá: <strong id="mRangePrice">50.000đ → 500.000đ</strong></span>
-            <span class="m-range-sub" id="mRangeCount">3 phiên bản</span>
+          <div class="m-range-banner" id="mRangeBanner" style="margin-bottom:16px;">
+            <div style="font:800 28px var(--display);color:var(--ink);" id="mRangePrice">99.000đ</div>
+            <div style="font:500 9px var(--mono);color:var(--muted);text-transform:uppercase;" id="mRangeCount">2 phiên bản riêng biệt</div>
           </div>
 
-          <!-- Quick Navigation giữa các phiên bản -->
-          <div class="m-quick-nav" id="mQuickNav">
-            <!-- Injected version pills -->
-          </div>
-
-          <div class="m-step-header m-step-header-accent">
-            <i class="fa-solid fa-layer-group"></i> CHI TIẾT &amp; MUA TỪNG PHIÊN BẢN
-          </div>
-
-          <!-- Container từng khối phiên bản riêng biệt -->
+          <div class="section-kicker" style="margin-bottom:10px;">CHỌN PHIÊN BẢN CẦN MUA:</div>
           <div class="m-version-blocks-wrap" id="mVersionBlocks">
-            <!-- Injected version blocks with full specs & dedicated buy button -->
+            <!-- Injected version blocks -->
           </div>
         </div>
 
-        <!-- BƯỚC 2: QUÉT MÃ QR THANH TOÁN -->
+        <!-- BƯỚC 2: QUÉT VIETQR MBBANK THANH TOÁN TỰ ĐỘNG -->
         <div id="mStep2" style="display:none;">
-          <div class="m-step2-topbar">
-            <button type="button" class="btn-step-back" onclick="goToStep(1)">
-              <i class="fa-solid fa-arrow-left"></i> Quay lại chọn gói khác
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <button type="button" class="button button--line" onclick="goToStep(1)" style="min-height:36px;padding:0 12px;font-size:10px;">
+              ← Quay lại chọn gói khác
             </button>
-            <span class="m-step2-badge">BƯỚC 2 / 2</span>
+            <span class="micro-label" style="font-weight:700;color:var(--ink);">BƯỚC 2: THANH TOÁN</span>
           </div>
 
-          <!-- Tóm tắt gói đã chọn & Bộ đếm ngược 1 giờ -->
-          <div class="m-selected-summary">
-            <div class="m-step2-title" id="mStep2ProdName">Proxy Aim iOS</div>
-            <div class="m-step2-meta">
-              <span class="m-summary-plan" id="mStep2PlanName">Key 1 ngày</span>
-              <span class="m-summary-price" id="mStep2Price">20.000đ</span>
+          <!-- Tóm tắt gói & Đếm ngược -->
+          <div style="background:var(--paper);border:1px solid var(--ink);padding:14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font:800 20px var(--display);text-transform:uppercase;" id="mStep2ProdName">Uratr Cheat VIP</div>
+              <div style="font:500 10px var(--mono);color:var(--muted);" id="mStep2PlanName">Độ Nhạy Thấp</div>
             </div>
-            <div class="m-order-countdown-wrap" id="mCountdownBox">
-              <div class="m-countdown-badge">
-                <i class="fa-solid fa-hourglass-half fa-spin-pulse"></i>
-                <span>Đơn giữ trong:</span>
-                <strong id="mOrderTimer">60:00</strong>
-              </div>
-              <span class="m-countdown-note">(Sau 1h tự hủy nếu chưa thanh toán)</span>
+            <div style="text-align:right;">
+              <div style="font:900 24px var(--display);color:var(--ink);" id="mStep2Price">99.000đ</div>
+              <div style="font:500 9px var(--mono);color:var(--muted);" id="mOrderTimer">Đơn giữ trong: 60:00</div>
             </div>
           </div>
 
-          <!-- Phương thức thanh toán Tabs -->
-          <div class="pay-method-tabs">
-            <button type="button" class="pay-method-tab active" id="tabPayBank" onclick="switchPayMethod('bank')">
-              <i class="fa-solid fa-qrcode"></i> Quét Mã QR Ngân Hàng
-            </button>
-            <button type="button" class="pay-method-tab" id="tabPayCard" onclick="switchPayMethod('card')">
-              <i class="fa-solid fa-credit-card"></i> Thẻ Cào (Card) <span class="tab-pill-badge">Liên hệ riêng</span>
-            </button>
+          <!-- Khung QR Code -->
+          <div class="m-qr-box">
+            <div id="mQrLoader" style="display:none;padding:20px;font-family:var(--mono);">
+              <i class="fa-solid fa-spinner fa-spin" style="font-size:24px;margin-bottom:8px;"></i>
+              <div>Đang tạo mã QR VietQR...</div>
+            </div>
+            <img id="mQrCode" src="" alt="VietQR MBBank" class="m-qr-img" />
+            <div style="font:500 10px var(--mono);color:var(--muted);margin-top:10px;">
+              Mở App Ngân hàng bất kỳ (MBBank, Vietcombank, Momo...) quét để thanh toán tự động trong 3 giây.
+            </div>
           </div>
 
-          <!-- PHƯƠNG THỨC 1: NGÂN HÀNG & VIETQR -->
-          <div id="bankPayView">
-            <div class="m-step-header m-step-header-accent">
-              <i class="fa-solid fa-qrcode"></i> QUÉT MÃ QR THANH TOÁN TỰ ĐỘNG
+          <!-- Chi tiết ngân hàng -->
+          <div style="margin:16px 0;">
+            <div class="m-bank-item">
+              <div><small>NGÂN HÀNG THỤ HƯỞNG</small><strong>MB BANK (Quân Đội)</strong></div>
+              <button type="button" class="m-copy-btn" onclick="copyText('MBBANK', this)">Sao chép</button>
             </div>
-
-            <!-- Khung VietQR -->
-            <div class="m-qr-box">
-              <div id="mQrLoader" class="qr-loader-overlay">
-                <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 34px; color: #3b82f6; margin-bottom: 12px;"></i>
-                <span style="color: #1e293b; font-size: 14px; font-weight: 700;">Đang tải mã QR...</span>
-                <span style="color: #64748b; font-size: 11px; margin-top: 4px;">Vui lòng đợi trong giây lát</span>
-              </div>
-              <img id="mQrCode" src="" alt="VietQR MBBank" class="m-qr-img">
-              <div class="m-qr-hint">Mở App ngân hàng bất kỳ (MBBank, Vietcombank, Momo...) quét để thanh toán tự động</div>
+            <div class="m-bank-item">
+              <div><small>SỐ TÀI KHOẢN</small><strong>0941414448</strong></div>
+              <button type="button" class="m-copy-btn" onclick="copyText('0941414448', this)">Sao chép</button>
             </div>
-
-            <!-- Chi tiết tài khoản ngân hàng -->
-            <div class="m-bank-rows">
-              <div class="m-bank-item">
-                <div><small>NGÂN HÀNG THỤ HƯỞNG</small><strong>MB BANK (Quân Đội)</strong></div>
-                <button class="m-copy-btn" onclick="copyText('MBBANK', this)"><i class="fa-solid fa-copy"></i> Sao chép</button>
-              </div>
-              <div class="m-bank-item">
-                <div><small>SỐ TÀI KHOẢN</small><strong>0941414448</strong></div>
-                <button class="m-copy-btn" onclick="copyText('0941414448', this)"><i class="fa-solid fa-copy"></i> Sao chép</button>
-              </div>
-              <div class="m-bank-item">
-                <div><small>CHỦ TÀI KHOẢN</small><strong>BUI VAN CAO</strong></div>
-              </div>
-              <div class="m-bank-item">
-                <div><small>SỐ TIỀN CẦN THANH TOÁN</small><strong id="mPayAmount" class="m-pay-amount-val">20.000 đ</strong></div>
-                <button class="m-copy-btn" data-action="copy-amount" aria-label="Sao chép số tiền"><i class="fa-solid fa-copy"></i></button>
-              </div>
-              <div class="m-bank-item m-bank-memo">
-                <div><small class="m-memo-title">NỘI DUNG CHUYỂN KHOẢN (BẮT BUỘC CHÍNH XÁC)</small><strong id="mOrderMemo" class="m-memo-code">Tài khoản web của bạn</strong></div>
-                <button class="m-copy-btn m-copy-memo" data-action="copy-memo" aria-label="Sao chép nội dung chuyển khoản"><i class="fa-solid fa-copy"></i></button>
-              </div>
+            <div class="m-bank-item">
+              <div><small>CHỦ TÀI KHOẢN</small><strong>BUI VAN CAO</strong></div>
             </div>
-
-            <!-- Live Auto Check Status Box via SePay -->
-            <div class="m-payment-status-card" id="mPayLiveStatus">
-              <div class="m-pls-icon" id="mPlsIcon"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
-              <div class="m-pls-info">
-                <div class="m-pls-title" id="mPlsTitle">HỆ THỐNG ĐANG TỰ ĐỘNG CHỜ TIỀN VÀO MBBANK...</div>
-                <div class="m-pls-desc" id="mPlsDesc">Sau khi chuyển khoản với nội dung <b id="mPlsMemo">...</b>, hệ thống sẽ tự động nhận diện và hoàn tất mua hàng trong 3 giây!</div>
-              </div>
+            <div class="m-bank-item">
+              <div><small>SỐ TIỀN</small><strong id="mPayAmount">99.000 đ</strong></div>
+              <button type="button" class="m-copy-btn" data-action="copy-amount">Sao chép</button>
             </div>
+            <div class="m-bank-item" style="background:var(--acid);padding:10px 8px;border:1px solid var(--ink);">
+              <div><small style="color:var(--ink);font-weight:700;">NỘI DUNG CHUYỂN KHOẢN (BẮT BUỘC CHÍNH XÁC)</small><strong id="mOrderMemo" style="font-size:14px;color:var(--ink);">...</strong></div>
+              <button type="button" class="m-copy-btn" data-action="copy-memo" style="background:var(--ink)!important;color:var(--acid)!important;">Sao chép mã</button>
+            </div>
+          </div>
 
-            <!-- Nút kiểm tra SePay -->
-            <button type="button" class="btn-mbbank-check" id="btnCheckPaid" onclick="manualCheckPayment()">
+          <!-- Trạng thái kiểm tra SePay -->
+          <div style="margin-top:14px;">
+            <button type="button" class="button button--acid" id="btnCheckPaid" onclick="manualCheckPayment()" style="width:100%;min-height:48px;">
               <i class="fa-solid fa-rotate"></i> Kiểm tra xác nhận tiền vào MBBank ngay
             </button>
-            <div id="checkPayFeedback" style="display:none;margin-top:10px;padding:12px 14px;border-radius:12px;font-size:12px;text-align:left;line-height:1.55;"></div>
-
-            <!-- Hướng dẫn Xác nhận Admin & Bàn giao -->
-            <div class="m-bot-box m-admin-box">
-              <div class="m-bot-title m-admin-title"><i class="fa-solid fa-user-shield"></i> Hỗ trợ trực tiếp từ Admin Shop:</div>
-              <p class="m-bot-desc m-admin-desc">
-                Nếu sau khi chuyển tiền ngân hàng bị trễ hoặc cần file cài đặt ngay, hãy gửi tên tài khoản <code class="m-code m-admin-code-tag"><span id="mAdminCode">...</span></code> kèm ảnh bill chuyển khoản đến <b>Zalo Admin: 0588500524 (Anh Phú)</b> để được hỗ trợ 1:1 ngay!
-              </p>
-            </div>
-
-            <!-- Card Hint Link -->
-            <div class="card-hint-box">
-              <i class="fa-solid fa-credit-card" style="color:#38bdf8;margin-right:4px;"></i> Bạn muốn thanh toán bằng <b>Thẻ cào (Card)</b>? <button type="button" class="card-hint-link" onclick="switchPayMethod('card')">Bấm vào đây để liên hệ riêng Anh Phú</button>
-            </div>
+            <div id="checkPayFeedback" style="display:none;margin-top:10px;padding:12px;border:1px solid var(--ink);font-family:var(--mono);font-size:11px;background:var(--paper);"></div>
           </div>
 
-          <!-- PHƯƠNG THỨC 2: THẺ CÀO (CARD) - LIÊN HỆ RIÊNG THEO YÊU CẦU ANH PHÚ -->
-          <div id="cardPayView" style="display:none;">
-            <div class="card-pay-box">
-              <div class="card-pay-header">
-                <div class="card-pay-icon"><i class="fa-solid fa-credit-card"></i></div>
-                <div>
-                  <h4 class="card-pay-title">Thanh Toán Thẻ Cào (Card)</h4>
-                  <span class="card-pay-sub"><i class="fa-solid fa-circle-info"></i> Phương thức này LIÊN HỆ RIÊNG Anh Phú để xử lý</span>
-                </div>
-              </div>
-
-              <div class="card-pay-body">
-                <p class="card-pay-intro">
-                  Anh Phú hỗ trợ nhận thanh toán qua các loại thẻ cào điện thoại &amp; thẻ game: <b>Viettel, Vinaphone, Mobifone, Zing, Gate...</b>
-                </p>
-
-                <div class="card-pay-notice">
-                  <i class="fa-solid fa-triangle-exclamation" style="color:#fbbf24;font-size:16px;flex-shrink:0;margin-top:2px;"></i>
-                  <div style="font-size:12px;color:#fef3c7;line-height:1.45;">
-                    <b>Quy định thanh toán thẻ:</b> Khi thanh toán bằng thẻ cào (Card), chiết khấu sẽ tính theo mệnh giá nhà mạng. Vui lòng nhắn tin trực tiếp cho <b>Anh Phú</b> để được tính mệnh giá thẻ cần nạp và gửi mã thẻ + seri.
-                  </div>
-                </div>
-
-                <div class="card-pay-memo-box">
-                  <div class="card-pay-memo-top">
-                    <div>
-                      <div class="card-pay-memo-lbl">Tài Khoản Mua Hàng:</div>
-                      <code id="mCardOrderMemo" class="card-pay-memo-val">...</code>
-                    </div>
-                    <button type="button" class="m-copy-btn" data-action="copy-memo" aria-label="Sao chép tên tài khoản mua hàng">
-                      <i class="fa-solid fa-copy"></i> Sao chép
-                    </button>
-                  </div>
-                  <div class="card-pay-memo-hint">
-                    Copy tên tài khoản này gửi kèm mã thẻ &amp; số seri cho Anh Phú để đối soát nhanh nhất!
-                  </div>
-                </div>
-
-                <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn-card-zalo" aria-label="Nhắn Zalo Phú Bán Hàng gửi thẻ cào (Mở tab mới)">
-                  <i class="fa-solid fa-comment-dots"></i> Nhắn Zalo Phú Bán Hàng: 0588500524 (Gửi Thẻ Cào)
-                </a>
-
-                <div style="text-align:center;margin-top:12px;">
-                  <button type="button" onclick="switchPayMethod('bank')" class="btn-switch-bank">
-                    <i class="fa-solid fa-arrow-left"></i> Chuyển lại thanh toán quét mã QR Ngân hàng
-                  </button>
-                </div>
-              </div>
-            </div>
+          <!-- Hỗ trợ Zalo -->
+          <div style="margin-top:16px;padding:12px;border:1px dashed var(--line);font-size:11px;color:var(--muted);text-align:center;">
+            Nếu cần hỗ trợ gấp hoặc gửi bill trực tiếp: <a href="https://zalo.me/0588500524" target="_blank" style="color:var(--ink);font-weight:700;text-decoration:underline;">Zalo Anh Phú (0588500524)</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ══ PAID SUCCESS CONFIRMATION MODAL (MÃ XÁC NHẬN ĐƠN HÀNG) ══ -->
-<div id="paidModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="paidHeaderTitle">
-  <div class="modal-backdrop" onclick="closePaidModal()"></div>
-  <div class="paid-modal-card">
-    <button type="button" class="paid-close-btn" onclick="closePaidModal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
-
-    <!-- Block 1: Receipt Header -->
-    <div class="paid-header-box">
-      <div class="paid-header-icon" id="paidHeaderIcon">🧾</div>
-      <div class="paid-header-title" id="paidHeaderTitle">Mã Xác Nhận Đơn Hàng</div>
-      <div class="paid-header-sub" id="paidHeaderSub">Gửi mã đơn hoặc ảnh chụp giao dịch cho Zalo Admin để kiểm tra và nhận file cài đặt</div>
-    </div>
-
-    <!-- Block Key Delivery (Tự động kích hoạt khi SePay xác nhận có tiền) -->
-    <div id="paidKeyDeliveryBox" class="paid-key-box">
-      <div class="paid-key-title"><i class="fa-solid fa-fingerprint"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ADMIN):</div>
-      <div id="paidOrderCode" class="paid-key-code">DP...</div>
-      <button type="button" class="btn btn-primary paid-copy-key-btn" onclick="copyGeneratedKey(this)" aria-label="Sao chép mã đơn hàng">
-          <i class="fa-solid fa-copy"></i> Sao chép Mã Đơn
-        </button>
-    </div>
-
-    <!-- NameThatUI Component 1: Order Processing Timeline -->
-    <div class="nt-timeline" id="paidOrderTimeline">
-      <div class="nt-timeline-item done">
-        <div class="nt-timeline-line"></div>
-        <div class="nt-timeline-node"><i class="fa-solid fa-check"></i></div>
-        <div class="nt-timeline-content">
-          <div class="nt-timeline-title">
-            <span>Tạo đơn hàng thành công</span>
-            <span class="nt-badge-presence"><span class="nt-dot-live"></span> Đã ghi nhận</span>
-          </div>
-          <div class="nt-timeline-desc">Mã đơn <b id="ntTimelineMemo" style="color:#38bdf8;">DP...</b> đã lưu trữ an toàn trên máy chủ.</div>
+  <!-- ═══════════════════════════════════════════════════════════════
+       EDITORIAL PAID SUCCESS MODAL (RECEIPT & DIRECT DOWNLOAD)
+       ═══════════════════════════════════════════════════════════════ -->
+  <div class="modal" id="paidModal" role="dialog" aria-modal="true" aria-labelledby="paidHeaderTitle">
+    <div class="modal__panel">
+      <div class="modal__head" style="background:var(--acid);">
+        <div>
+          <div class="section-kicker" style="color:var(--ink);">THANH TOÁN THÀNH CÔNG</div>
+          <h3 id="paidHeaderTitle" style="color:var(--ink);">ĐÃ NHẬN TIỀN MBBANK</h3>
         </div>
+        <button type="button" class="modal__close" onclick="document.getElementById('paidModal').classList.remove('open')" aria-label="Đóng">×</button>
       </div>
-      <div class="nt-timeline-item active" id="ntTimelineStep2">
-        <div class="nt-timeline-line"></div>
-        <div class="nt-timeline-node" id="ntTimelineNode2"><i class="fa-solid fa-rotate fa-spin"></i></div>
-        <div class="nt-timeline-content">
-          <div class="nt-timeline-title" id="ntTimelineTitle2">
-            <span>Đối soát biến động tiền MBBank</span>
-            <span class="nt-badge-presence pending" id="ntTimelineBadge2"><span class="nt-dot-live"></span> Đang chờ</span>
-          </div>
-          <div class="nt-timeline-desc" id="ntTimelineDesc2">Nếu đã chuyển khoản, hệ thống sẽ tự động cập nhật hoặc bạn gửi bill qua Zalo Phú Bán Hàng để nhận file ngay lập tức.</div>
+
+      <div class="modal__body">
+        <div style="border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:16px;">
+          <div style="font:500 10px var(--mono);color:var(--muted);text-transform:uppercase;">MÃ ĐƠN HÀNG CỦA BẠN:</div>
+          <div style="font:900 32px var(--display);letter-spacing:1px;color:var(--ink);margin:4px 0;" id="paidConfirmCode">NEXVIA000000</div>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Lưu lại mã đơn này để nhận hỗ trợ bảo hành 24/7 từ Admin Anh Phú.</p>
         </div>
-      </div>
-      <div class="nt-timeline-item" id="ntTimelineStep3">
-        <div class="nt-timeline-node" id="ntTimelineNode3"><i class="fa-solid fa-key"></i></div>
-        <div class="nt-timeline-content">
-          <div class="nt-timeline-title">Bàn giao Key &amp; File cài đặt</div>
-          <div class="nt-timeline-desc">Sau khi tiền vào hoặc duyệt qua Zalo, nhận file kèm video hướng dẫn cài đặt 1:1.</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-family:var(--mono);font-size:11px;margin-bottom:16px;">
+          <div><small style="color:var(--muted);display:block;">SẢN PHẨM</small><strong id="paidDetailProd">Uratr Cheat VIP</strong></div>
+          <div><small style="color:var(--muted);display:block;">PHIÊN BẢN</small><strong id="paidDetailPlan">Độ Nhạy Thấp</strong></div>
+          <div><small style="color:var(--muted);display:block;">SỐ TIỀN</small><strong id="paidDetailPrice">99.000đ</strong></div>
+          <div><small style="color:var(--muted);display:block;">TRẠNG THÁI</small><strong style="color:#15803d;">ĐÃ XÁC THỰC MBBANK</strong></div>
+        </div>
+
+        <!-- Bonus Content (Sensitivity spec table & Direct Download button for Uratr Cheat VIP) -->
+        <div id="paidBonusContent" style="margin:16px 0;"></div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;">
+          <button type="button" class="button button--acid" onclick="sendOrderToPhu()" style="flex:1;">
+            <i class="fa-brands fa-telegram"></i> Nhắn Zalo Anh Phú nhận file / hỗ trợ ↗
+          </button>
+          <button type="button" class="button button--line" onclick="document.getElementById('paidModal').classList.remove('open')">
+            Đóng
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Block 2: Syntax Box -->
-    <div class="paid-syntax-box">
-      <div class="paid-syntax-title">👤 MÃ ĐƠN HÀNG CỦA BẠN:</div>
-      <div class="paid-cmd-wrapper">
-        <div class="paid-cmd-pill" id="paidCmdPill" onclick="copyPaidSyntax()" title="Bấm để sao chép mã đơn">
-          <span class="paid-cmd-prefix">MÃ ĐƠN</span>
-          <span class="paid-cmd-code" id="paidConfirmCode">NEXVIA84920</span>
+  <!-- ══ ORDER HISTORY MODAL ══ -->
+  <div class="modal" id="historyModal" role="dialog" aria-modal="true" aria-labelledby="histModalTitle">
+    <div class="modal__panel">
+      <div class="modal__head">
+        <div>
+          <div class="section-kicker">TRA CỨU ĐƠN HÀNG</div>
+          <h3 id="histModalTitle">Lịch Sử Mua Hàng</h3>
         </div>
-        <button type="button" class="paid-copy-btn" id="paidCopyBtn" onclick="copyPaidSyntax()">
-          <span class="paid-copy-icon">📑</span>
-          <span class="paid-copy-text" id="paidCopyText">Sao chép</span>
-        </button>
+        <button type="button" class="modal__close" onclick="closeMyOrderHistory()" aria-label="Đóng">×</button>
       </div>
-      <button type="button" class="btn btn-primary btn-block btn-send-zalo" onclick="sendOrderToPhu()">
-        <i class="fa-solid fa-comment-dots" style="font-size:18px;"></i>
-        <span>Nhắn Tới Anh Phú Để Nhận File</span>
-      </button>
-      <div class="paid-note-text">
-        <i class="fa-solid fa-circle-info" style="color:#38bdf8;"></i> Bấm nút trên sẽ tự động sao chép mã đơn và mở Zalo <b>Anh Phú (0588500524)</b>
-      </div>
-    </div>
-
-    <!-- Block 3: Order Details Box -->
-    <div class="paid-details-box">
-      <div class="paid-detail-row">
-        <span class="paid-label">Mã đơn hàng:</span>
-        <span class="paid-val paid-code" id="paidDetailCode">NEXVIA84920</span>
-      </div>
-      <div class="paid-detail-row">
-        <span class="paid-label">Sản phẩm:</span>
-        <span class="paid-val" id="paidDetailProd">AimLock iOS</span>
-      </div>
-      <div class="paid-detail-row">
-        <span class="paid-label">Gói thời hạn:</span>
-        <span class="paid-val" id="paidDetailPlan">Gói 1 tháng</span>
-      </div>
-      <div class="paid-detail-row">
-        <span class="paid-label">Số tiền:</span>
-        <span class="paid-val paid-price" id="paidDetailPrice">50.000đ</span>
-      </div>
-      <div class="paid-detail-row">
-        <span class="paid-label">Trạng thái:</span>
-        <span class="paid-val paid-status paid-status-val">⏳ Chờ Admin kiểm tra &amp; Bàn giao file</span>
-      </div>
-      <div class="paid-detail-row">
-        <span class="paid-label">Thời gian:</span>
-        <span class="paid-val" id="paidDetailTime">23:10:45 26/9/2026</span>
-      </div>
-    </div>
-
-    <!-- NameThatUI Component 2: Inline Callout (Cam kết uy tín, chống tâm lý sợ lừa đảo) -->
-    <div class="nt-callout">
-      <div class="nt-callout-icon"><i class="fa-solid fa-shield-heart"></i></div>
-      <div class="nt-callout-body">
-        <b>Cam kết 100% Uy tín &amp; Bảo vệ quyền lợi:</b> Đơn hàng của bạn đã được ghi nhận trên cơ sở dữ liệu hệ thống. Sau khi chuyển tiền, nếu ngân hàng có độ trễ hoặc app bị chậm thông báo, bạn hoàn toàn yên tâm <b>không bao giờ bị mất tiền</b> — Zalo <b>Anh Phú (0588500524)</b> túc trực 24/7 để đối soát và gửi file trực tiếp cho bạn!
-      </div>
-    </div>
-
-    <!-- Khách thanh toán thẻ cào -->
-    <div class="card-notice-box">
-      <i class="fa-solid fa-credit-card" style="color:#fbbf24;font-size:16px;flex-shrink:0;"></i>
-      <div class="card-notice-text">
-        <b>Khách trả bằng Thẻ Cào (Card):</b> Gửi trực tiếp <b>Mã Đơn + Mã Thẻ &amp; Seri</b> qua Zalo Phú Bán Hàng (0588500524) để được nạp và nhận key!
+      <div class="modal__body">
+        <div id="myOrderHistoryList">
+          <p style="font-size:12px;color:var(--muted);font-family:var(--mono);">Chưa có đơn hàng nào được ghi nhận trên trình duyệt này.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ══ ORDER CHECK / ADMIN MODAL (TRA CỨU & CHECK ĐƠN HÀNG) ══ -->
-<div id="orderCheckModal" class="modal" role="dialog" aria-modal="true" aria-label="Lịch sử đơn hàng">
-  <div class="modal-backdrop" onclick="closeOrderCheckModal()"></div>
-  <div class="modal-card auth-modal-card" style="max-width:540px;">
-    <button class="modal-close" onclick="closeOrderCheckModal()" aria-label="Đóng lịch sử đơn hàng"><i class="fa-solid fa-xmark"></i></button>
+  <!-- Toast Container -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <div style="text-align:center;margin-bottom:16px;">
-      <div class="order-check-icon">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-      </div>
-      <h3 class="order-check-title">Lịch Sử Đơn Hàng Của Bạn</h3>
-      <p class="order-check-sub">Xem lại danh sách sản phẩm và gói bạn đã mua trên Shop</p>
-    </div>
-
-    <!-- Search box by Order Code -->
-    <div class="order-check-search">
-      <input type="text" id="checkOrderInput" class="input" placeholder="Tìm theo mã đơn (Ví dụ: NEXVIA123456)..." style="text-transform:uppercase;">
-      <button type="button" class="btn btn-primary order-check-btn" onclick="lookupOrderCode()">
-        <i class="fa-solid fa-magnifying-glass"></i> Tra cứu
-      </button>
-    </div>
-
-    <!-- Lookup result card -->
-    <div id="lookupResult" class="order-lookup-card">
-      <!-- Dynamic populated -->
-    </div>
-
-    <!-- Recent Orders List -->
-    <div style="border-top:1px solid var(--line);padding-top:14px;">
-      <div class="order-history-header">
-        <span style="font-size:12.5px;font-weight:700;color:#cbd5e1;"><i class="fa-solid fa-box-open"></i> Đơn hàng đã mua của bạn:</span>
-        <button type="button" class="order-clear-btn" onclick="clearOrdersHistory()">Xóa lịch sử trên máy</button>
-      </div>
-      <div id="recentOrdersList" class="order-history-scroll">
-        <!-- Populated orders -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ AUTH MODAL (ĐĂNG NHẬP / ĐĂNG KÝ) ══ -->
-<div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
-  <div class="modal-backdrop" onclick="closeLoginModal()"></div>
-  <div class="modal-card auth-modal-card">
-    <button class="modal-close" onclick="closeLoginModal()" title="Đóng" aria-label="Đóng hộp thoại đăng nhập"><i class="fa-solid fa-xmark"></i></button>
-
-    <div class="auth-modal-header">
-      <div class="auth-modal-icon">
-        <i class="fa-solid fa-shield-halved"></i>
-      </div>
-      <h3 class="auth-modal-title" id="loginModalTitle">Tài Khoản Thành Viên</h3>
-      <p class="auth-modal-subtitle">Đăng nhập để nhận mã key tự động &amp; kích hoạt nhanh chóng</p>
-    </div>
-
-    <!-- Notice if redirected from buy button -->
-    <div id="authNotice" class="auth-notice" style="display:none;">
-      <div class="auth-notice-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-      <div class="auth-notice-body" id="authNoticeText">Vui lòng đăng nhập hoặc đăng ký tài khoản để tiếp tục mua hàng!</div>
-    </div>
-
-    <!-- Tabs -->
-    <div class="auth-tabs">
-      <div class="auth-tab active" id="tabBtnLogin" onclick="switchAuthTab('login')">
-        <i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập
-      </div>
-      <div class="auth-tab" id="tabBtnRegister" onclick="switchAuthTab('register')">
-        <i class="fa-solid fa-user-plus"></i> Đăng Ký
-      </div>
-    </div>
-
-    <!-- FORM ĐĂNG NHẬP -->
-    <form id="formLogin" onsubmit="handleLoginSubmit(event)">
-      <div class="form-group">
-        <label class="label"><i class="fa-solid fa-user" style="color:#38bdf8;margin-right:4px;"></i> Tên tài khoản hoặc Email</label>
-        <input type="text" id="loginUser" class="input" placeholder="Nhập tên tài khoản..." required autocomplete="username">
-      </div>
-      <div class="form-group">
-        <label class="label"><i class="fa-solid fa-lock" style="color:#a78bfa;margin-right:4px;"></i> Mật khẩu</label>
-        <input type="password" id="loginPass" class="input" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
-      </div>
-      <button type="submit" class="btn-auth-submit">
-        <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập ngay
-      </button>
-      <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--muted);">
-        Chưa có tài khoản? <button type="button" class="btn-link-auth" onclick="switchAuthTab('register')">Đăng ký miễn phí</button>
-      </div>
-    </form>
-
-    <!-- FORM ĐĂNG KÝ -->
-    <form id="formRegister" onsubmit="handleRegisterSubmit(event)" style="display:none;">
-      <div class="form-group">
-        <label class="label"><i class="fa-solid fa-user-tag" style="color:#38bdf8;margin-right:4px;"></i> Tên tài khoản mong muốn</label>
-        <input type="text" id="regUser" class="input" placeholder="Ví dụ: gamer99..." required autocomplete="username">
-      </div>
-      <div class="form-group">
-        <label class="label"><i class="fa-solid fa-lock" style="color:#a78bfa;margin-right:4px;"></i> Mật khẩu</label>
-        <input type="password" id="regPass" class="input" placeholder="Tối thiểu 6 ký tự..." required autocomplete="new-password">
-      </div>
-      <div class="form-group">
-        <label class="label"><i class="fa-solid fa-phone" style="color:#34d399;margin-right:4px;"></i> Số điện thoại hoặc Zalo (nhận key &amp; hỗ trợ)</label>
-        <input type="tel" id="regPhone" class="input" placeholder="Tối thiểu 10 số (Ví dụ: 0987654321)..." minlength="10" required>
-      </div>
-      <button type="submit" class="btn-auth-submit">
-        <i class="fa-solid fa-user-check"></i> Hoàn tất đăng ký &amp; Tiếp tục mua
-      </button>
-      <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--muted);">
-        Đã có tài khoản? <button type="button" class="btn-link-auth" onclick="switchAuthTab('login')">Đăng nhập ngay</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- ══ LIGHTBOX MODAL ══ -->
-<div id="lbModal" class="lb-modal" role="dialog" aria-modal="true" aria-label="Phóng to ảnh chi tiết" tabindex="-1" onclick="closeLB()">
-  <div class="lb-wrap" onclick="event.stopPropagation()">
-    <button class="lb-close" onclick="closeLB()" aria-label="Đóng ảnh phóng to">✕</button>
-    <img id="lbImg" src="" alt="Ảnh chi tiết phóng to" loading="lazy" decoding="async">
-  </div>
-</div>
-
-<!-- ══ TOAST CONTAINER ══ -->
-<div id="tc" class="toasts" role="region" aria-live="polite" aria-label="Thông báo hệ thống"></div>
-
-<!-- ══ APP SCRIPTS ══ -->
-<script src="assets/app-bundle.js" defer></script>
+  <!-- ══ JAVASCRIPT LOGIC & INTERACTIONS ══ -->
+  <script src="assets/app-bundle.js"></script>
+  <script>
+    function toggleFaq(btn) {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+    }
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
