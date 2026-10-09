@@ -435,9 +435,9 @@ var PRODUCTS = [
     priceMin: 99000,
     priceMax: 99000,
     oldPrice: 200000,
-    image: 'assets/uploads/products/uratr-cheat-vip.jpg',
+    image: 'assets/uploads/products/uratr-cheat-vip.png',
     images: [
-      { src: 'assets/uploads/products/uratr-cheat-vip.jpg', label: 'Uratr Cheat VIP', title: 'Uratr Cheat VIP 🇻🇳 - File Kéo Tâm & Độ Nhạy Chuẩn' }
+      { src: 'assets/uploads/products/uratr-cheat-vip.png', label: 'Uratr Cheat VIP', title: 'Uratr Cheat VIP 🇻🇳 - File Kéo Tâm & Độ Nhạy Chuẩn' }
     ],
     plans: [
       {
@@ -2754,8 +2754,8 @@ initScrollReveal();
 (function initLivePurchasesTicker() {
   var sampleBuyers = [
     { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '1 phút trước' },
-    { name: 'Huy Hoàng (091***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Độ Nhạy Cao', img: 'assets/uploads/products/uratr-cheat-vip.jpg', time: '2 phút trước' },
-    { name: 'Khánh (035***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Độ Nhạy Thấp', img: 'assets/uploads/products/uratr-cheat-vip.jpg', time: '3 phút trước' },
+    { name: 'Huy Hoàng (091***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Độ Nhạy Cao', img: 'assets/uploads/products/uratr-cheat-vip.png', time: '2 phút trước' },
+    { name: 'Khánh (035***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Độ Nhạy Thấp', img: 'assets/uploads/products/uratr-cheat-vip.png', time: '3 phút trước' },
     { name: 'Minh Đức (086***)', prod: 'InNova Cheat', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/innova-cheat.jpg', time: '5 phút trước' },
     { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '7 phút trước' },
     { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '9 phút trước' },
