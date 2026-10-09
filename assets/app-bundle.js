@@ -299,7 +299,7 @@ var PRODUCTS = [
     id: 'slot-nhom-file-tien',
     category: 'Dịch Vụ VIP',
     plat: 'iOS • Android • PC',
-    buyers: '10+ Người mua',
+    buyers: '100+ Người mua',
     pinned: true,
     name: 'Slot Nhóm File Tiền VIP',
     shortDesc: 'Vào nhóm File Tiền VIP Nexvia VN - Nhận trọn bộ file kéo tâm VIP, cập nhật trọn đời.',
