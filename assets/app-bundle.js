@@ -2791,11 +2791,32 @@ initScrollReveal();
     }, 4500);
   }
 
-  // Khởi chạy sau 2.5 giây và lặp lại mỗi 12-15 giây
-  setTimeout(function() {
-    showNextPurchase();
-    setInterval(function() {
+    // Khởi chạy sau 2.5 giây và lặp lại mỗi 12-15 giây
+    setTimeout(function() {
       showNextPurchase();
-    }, 13500);
-  }, 2500);
-})();
+      setInterval(function() {
+        showNextPurchase();
+      }, 13500);
+    }, 2500);
+  })();
+
+  /* ═══════ IMPECCABLE CYBER MOUSE SPOTLIGHT (INTERACTIVE KINETICS) ═══════ */
+  (function initCyberMouseSpotlight() {
+    if (window.matchMedia('(pointer: coarse)').matches) return; // Skip on touch-only mobile
+    
+    document.addEventListener('mousemove', function(e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      document.querySelectorAll('.p-card, .vip-flagship-bento, .wallet-summary').forEach(function(card) {
+        var rect = card.getBoundingClientRect();
+        if (x >= rect.left - 50 && x <= rect.right + 50 && y >= rect.top - 50 && y <= rect.bottom + 50) {
+          var relX = ((x - rect.left) / rect.width) * 100;
+          var relY = ((y - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mouse-x', relX + '%');
+          card.style.setProperty('--mouse-y', relY + '%');
+        }
+      });
+    }, { passive: true });
+  })();
+
+
