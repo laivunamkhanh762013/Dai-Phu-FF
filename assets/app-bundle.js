@@ -467,32 +467,17 @@ var PRODUCTS = [
     name: 'TrollModz (Adr · iOS · PC)',
     shortDesc: 'Ngưng đọng thời gian, nhảy dù nhanh, định vị gắn đầu, Aimbot.',
     fullDesc: 'TrollModz bản quyền chính hãng hỗ trợ Android, iOS và PC.\nTính năng: Ngưng đọng thời gian, nhảy dù đáp đất tức thì, định vị gắn đầu, Aimbot tự động ghim, bypass an toàn tuyệt đối.',
-    priceMin: 10000,
-    priceMax: 200000,
+    priceMin: 30000,
+    priceMax: 300000,
     image: 'trollmodz.png',
     images: [
       { src: 'trollmodz.png', label: 'TrollModz', title: 'TrollModz - Menu Adr · iOS · PC' }
     ],
     plans: [
       {
-        name: 'Key 1 Giờ (Test)',
-        price: 10000,
-        action: 'Dùng thử trọn bộ tính năng: Ngưng đọng thời gian, nhảy dù tức thì.',
-        fix: 'Bypass qua mặt hệ thống kiểm tra, chống lag giật tối đa.',
-        pros: 'Chi phí cực rẻ để trải nghiệm sức mạnh trước khi mua dài hạn.',
-        note: 'Hỗ trợ Android, iOS và PC giả lập.'
-      },
-      {
-        name: 'Key 12 Giờ',
-        price: 15000,
-        action: 'Trải nghiệm 12 giờ trọn bộ tính năng: Ngưng đọng thời gian, nhảy dù tức thì, định vị ghim đầu.',
-        fix: 'Bypass qua mặt hệ thống kiểm tra, chống lag giật và ổn định suốt 12h.',
-        pros: 'Mức giá siêu tiết kiệm 15k, leo rank thả ga cả ngày.',
-        note: 'Hỗ trợ Android, iOS và PC giả lập.'
-      },
-      {
         name: 'Key 1 Ngày',
-        price: 25000,
+        price: 30000,
+        badge: 'Trải nghiệm',
         action: 'Aimbot tự động ghim, định vị gắn đầu, ngưng đọng thời gian liên tục 24h.',
         fix: 'Khắc phục delay tiếp đất, nhặt súng trước đối thủ trong chớp mắt.',
         pros: 'Bản quyền cập nhật mới nhất, leo rank thoải mái suốt ngày.',
@@ -509,7 +494,8 @@ var PRODUCTS = [
       },
       {
         name: 'Key 15 Ngày',
-        price: 150000,
+        price: 200000,
+        badge: 'Ưu đãi',
         action: 'Gói nửa tháng trải nghiệm đầy đủ menu TrollModz đỉnh cao.',
         fix: 'Cập nhật bypass liên tục theo từng bản vá nhỏ của game.',
         pros: 'Tự do tùy chỉnh bật/tắt từng tính năng theo ý muốn.',
@@ -517,8 +503,8 @@ var PRODUCTS = [
       },
       {
         name: 'Key 30 Ngày (1 Tháng)',
-        price: 200000,
-        badge: 'Phổ biến',
+        price: 300000,
+        badge: '👑 VIP Phổ biến',
         action: 'Gói tháng toàn diện, chiến game thả ga cả mùa giải xếp hạng.',
         fix: 'Bảo vệ tài khoản tối đa với cơ chế chống report nâng cao.',
         pros: 'Gói được đông đảo anh em game thủ tin tưởng lựa chọn nhất.',
@@ -2766,11 +2752,11 @@ initScrollReveal();
    ═══════════════════════════════════════════════════════════════════ */
 (function initLivePurchasesTicker() {
   var sampleBuyers = [
-    { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '1 phút trước' },
+    { name: 'Quân (098***)', prod: 'TrollModz', plan: 'Key 1 Ngày', img: 'trollmodz.png', time: '1 phút trước' },
     { name: 'Huy Hoàng (091***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Bản VIP Vĩnh Viễn', img: 'assets/uploads/products/uratr-cheat-vip.png', time: '2 phút trước' },
     { name: 'Khánh (035***)', prod: 'Uratr Cheat VIP 🇻🇳', plan: 'Bản VIP Vĩnh Viễn', img: 'assets/uploads/products/uratr-cheat-vip.png', time: '3 phút trước' },
     { name: 'Minh Đức (086***)', prod: 'InNova Cheat', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/innova-cheat.jpg', time: '5 phút trước' },
-    { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 12 Giờ', img: 'trollmodz.png', time: '7 phút trước' },
+    { name: 'Thanh Tùng (077***)', prod: 'TrollModz', plan: 'Key 7 Ngày', img: 'trollmodz.png', time: '7 phút trước' },
     { name: 'Tuấn Anh (090***)', prod: 'NovaX iOS', plan: 'Key 7 Ngày', img: 'assets/uploads/products/novax.jpg', time: '9 phút trước' },
     { name: 'Bảo Nam (093***)', prod: 'Sx2 External', plan: 'Gói 1 Ngày', img: 'assets/uploads/products/sx2-external.jpg', time: '14 phút trước' }
   ];
