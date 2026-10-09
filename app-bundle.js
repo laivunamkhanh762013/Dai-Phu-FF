@@ -428,7 +428,7 @@ var PRODUCTS = [
     id: 'uratr-cheat-vip',
     category: 'File Kéo Tâm & VIP',
     plat: 'iOS • Android',
-    buyers: '75+ Người mua',
+    buyers: '5+ Người mua',
     name: 'Uratr Cheat VIP 🇻🇳 (iOS • Android)',
     shortDesc: 'File kéo tâm Uratr Cheat VIP độc quyền Nexvia VN - Tặng kèm Next Drag, cấu hình độ nhạy chuẩn & video cài.',
     fullDesc: 'URATR CHEAT VIP 🇻🇳 (iOS & Android) - BỘ FILE KÉO TÂM & CẤU HÌNH ĐỈNH CAO:\n- File cấu hình Uratr Cheat Vip🇻🇳.mobileconfig tối ưu vuốt tâm mượt mà, ghim đầu 99.9%.\n- TẶNG KÈM TRỌN BỘ: File Next Drag🇻🇳.mobileconfig trị giá 150k + Video hướng dẫn cài đặt chi tiết.\n- Cung cấp sẵn bảng thông số độ nhạy chuẩn (Nhìn xung quanh, Red, 2X, 4X, AWM, Nút bắn) phù hợp cho cả máy Cấu Hình Thấp và Cấu Hình Cao.\n- Hỗ trợ trực tiếp 1:1 từ Admin Anh Phú (Zalo: 0588500524).',
