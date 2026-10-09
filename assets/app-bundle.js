@@ -75,9 +75,15 @@ function playIntroAnimation() {
       '</div>' +
     '</div>';
 
-  document.body.prepend(intro);
+  if (document.body) {
+    if (typeof document.body.prepend === 'function') {
+      document.body.prepend(intro);
+    } else {
+      document.body.insertBefore(intro, document.body.firstChild);
+    }
+    document.body.style.overflow = "hidden";
+  }
   intro.style.display = "flex";
-  document.body.style.overflow = "hidden";
 
   introTimeoutId = setTimeout(function() {
     skipIntro();
