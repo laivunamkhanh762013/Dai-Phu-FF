@@ -41,18 +41,12 @@ const RAW_CATALOG = {
       "Gói 30 Ngày": 150000
     }
   },
-  "aimlock-forget-2": {
-    "name": "AimLock Forget 2.0 (Adr • iOS)",
+  "uratr-cheat-vip": {
+    "name": "Uratr Cheat VIP 🇻🇳 (iOS • Android)",
     "soldOut": false,
     "plans": {
-      "AimLock Forget 2.0": 100000
-    }
-  },
-  "aimlock-forget-3": {
-    "name": "AimLock Forget 3.0 (Adr • iOS)",
-    "soldOut": false,
-    "plans": {
-      "AimLock Forget 3.0": 150000
+      "Độ Nhạy Thấp (iPhone & Android Thấp)": 99000,
+      "Độ Nhạy Cao (iPhone & Android Cao)": 99000
     }
   },
   "trollmodz": {
