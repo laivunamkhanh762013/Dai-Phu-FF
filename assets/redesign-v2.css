@@ -15,6 +15,7 @@
   --rd-surface: #1f1c19;
   --rd-surface-2: #262220;
   --rd-line: #38322c;
+  --rd-line-2: #453f38;
   --rd-text: #f3ede4;
   --rd-muted: #a69a8a;
   --rd-accent: #d98e3f;      /* đồng / cam đất, thay cho tím neon */
@@ -25,6 +26,13 @@
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Space Grotesk', 'Inter', sans-serif;
 }
+
+/* ── Icon Palette & Utility Classes (Thay thế hoàn toàn inline style) ── */
+.ic-accent { color: var(--rd-accent) !important; }
+.ic-muted  { color: var(--rd-muted) !important; }
+.ic-ok     { color: var(--rd-accent-2) !important; }
+.ic-warn   { color: #c98a3f !important; }
+.ic-danger { color: var(--rd-danger) !important; }
 
 body.storefront {
   background: var(--rd-bg) !important;

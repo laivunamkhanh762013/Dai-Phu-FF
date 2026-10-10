@@ -67,7 +67,7 @@ function playIntroAnimation() {
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
         '<div class="intro-logo-aura"></div>' +
-        '<img src="assets/uploads/logos/aizen-logo.png" alt="Logo NEXVIA VN" class="dp-intro-logo-img">' +
+        '<img src="assets/uploads/logos/nexvia-logo.png" alt="Logo NEXVIA VN" class="dp-intro-logo-img">' +
       '</div>' +
       '<div class="dp-intro-brand-box" id="dpIntroBrandBox">' +
         '<div class="dp-intro-title">NEXVIA VN</div>' +
@@ -3065,7 +3065,7 @@ function executeKeyRedemption(code, originalInput) {
   }
 
   var planName = plan ? plan.name : 'Bản VIP Vĩnh Viễn';
-  var prodImg = prod.image || 'assets/uploads/logos/aizen-logo.png';
+  var prodImg = prod.image || 'assets/uploads/logos/nexvia-logo.png';
   if (plan && plan.downloadUrl) downloadUrl = plan.downloadUrl;
   if (prod.id === 'slot-nhom-file-tien' || (plan && plan.zaloGroupUrl)) {
     isZaloBox = true;
@@ -3100,7 +3100,7 @@ function executeKeyRedemption(code, originalInput) {
   resultBox.innerHTML = '<div class="seller-result-card">'
     + '<div class="seller-result-header">'
       + '<div class="seller-prod-info">'
-        + '<img src="' + escapeHTML(prodImg) + '" alt="' + escapeHTML(prod.name) + '" class="seller-prod-img" onerror="this.src=\'assets/uploads/logos/aizen-logo.png\'">'
+        + '<img src="' + escapeHTML(prodImg) + '" alt="' + escapeHTML(prod.name) + '" class="seller-prod-img" onerror="this.src=\'assets/uploads/logos/nexvia-logo.png\'">'
         + '<div>'
           + '<div class="seller-prod-name">' + escapeHTML(prod.name) + '</div>'
           + '<div class="seller-prod-plan"><i class="fa-solid fa-crown" style="color:#fde047;"></i> ' + escapeHTML(planName) + '</div>'
