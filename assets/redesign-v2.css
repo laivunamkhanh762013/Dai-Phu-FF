@@ -145,11 +145,87 @@ h2, h3,
   box-shadow: none !important;
 }
 
-/* ── Bento hero: phá đối xứng — lệch trục, không center ── */
+/* ── Bento hero: Flagship Showcase (Bespoke 2-column Grid) ── */
 .vip-flagship-bento {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 1.25fr 1fr !important;
+  gap: 32px !important;
+  align-items: center !important;
   background: var(--rd-surface) !important;
   border: 1px solid var(--rd-line) !important;
+  border-radius: 6px !important;
+  padding: 32px 36px !important;
+  margin: 32px 0 40px 0 !important;
   clip-path: polygon(0 0, 100% 0, 100% 94%, 96% 100%, 0 100%);
+  overflow: hidden !important;
+  cursor: pointer !important;
+}
+
+.bento-beam-glow,
+.bento-cyber-crosshair {
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+.bento-left-content {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  z-index: 2 !important;
+}
+
+.bento-right-visual {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2 !important;
+}
+
+.bento-img-container {
+  width: 100% !important;
+  max-width: 480px !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--rd-line) !important;
+  background: var(--rd-bg) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.bento-hero-img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  object-fit: cover !important;
+  aspect-ratio: 3 / 2 !important;
+  transition: transform 0.4s ease !important;
+}
+
+.vip-flagship-bento:hover .bento-hero-img {
+  transform: scale(1.03) !important;
+}
+
+@media (max-width: 900px) {
+  .vip-flagship-bento {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 24px 20px !important;
+  }
+  .bento-left-content {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+  .bento-right-visual {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+  }
 }
 
 .bento-price-old { color: var(--rd-muted) !important; }
