@@ -2815,7 +2815,412 @@ initScrollReveal();
           card.style.setProperty('--mouse-y', relY + '%');
         }
       });
-    }, { passive: true });
+    } , { passive: true });
   })();
+
+/* ═══════════════════════════════════════════════════════════════
+   🔑 SELLER HUB & KEY ACTIVATION PORTAL CONTROLLER
+   Kích hoạt key bản quyền cho người mua & Công cụ cho Đại lý / Seller
+   ═══════════════════════════════════════════════════════════════ */
+
+function openSellerPortal(defaultTab) {
+  var modal = document.getElementById('sellerModal');
+  if (!modal) return;
+  modal.classList.add('open');
+  manageModalFocus(modal);
+  document.body.style.overflow = 'hidden';
+
+  switchSellerTab(defaultTab || 'redeem');
+  updateSellerPlanOptions();
+  renderSavedRedeemedKeys();
+}
+window.openSellerPortal = openSellerPortal;
+
+function closeSellerPortal() {
+  var modal = document.getElementById('sellerModal');
+  if (modal) {
+    modal.classList.remove('open');
+  }
+  document.body.style.overflow = '';
+}
+window.closeSellerPortal = closeSellerPortal;
+
+function switchSellerTab(tab) {
+  var btnRedeem = document.getElementById('tabSellerRedeem');
+  var btnDash = document.getElementById('tabSellerDashboard');
+  var panelRedeem = document.getElementById('sellerPanelRedeem');
+  var panelDash = document.getElementById('sellerPanelDashboard');
+
+  if (tab === 'seller') {
+    if (btnRedeem) btnRedeem.classList.remove('active');
+    if (btnDash) btnDash.classList.add('active');
+    if (panelRedeem) panelRedeem.style.display = 'none';
+    if (panelDash) panelDash.style.display = 'block';
+  } else {
+    if (btnRedeem) btnRedeem.classList.add('active');
+    if (btnDash) btnDash.classList.remove('active');
+    if (panelRedeem) panelRedeem.style.display = 'block';
+    if (panelDash) panelDash.style.display = 'none';
+    var keyInput = document.getElementById('sellerKeyInput');
+    if (keyInput) keyInput.focus();
+  }
+}
+window.switchSellerTab = switchSellerTab;
+
+function updateSellerPlanOptions() {
+  var prodSelect = document.getElementById('sellerGenProdSelect');
+  var planSelect = document.getElementById('sellerGenPlanSelect');
+  if (!prodSelect || !planSelect) return;
+
+  var prodId = prodSelect.value;
+  var prodObj = PRODUCTS.find(function(p) { return p.id === prodId; });
+
+  planSelect.innerHTML = '';
+  if (prodObj && prodObj.plans && prodObj.plans.length > 0) {
+    prodObj.plans.forEach(function(plan) {
+      var opt = document.createElement('option');
+      opt.value = plan.name;
+      opt.textContent = plan.name + ' — ' + formatVND(plan.price);
+      planSelect.appendChild(opt);
+    });
+  } else {
+    var optDefault = document.createElement('option');
+    optDefault.value = 'Bản VIP Vĩnh Viễn';
+    optDefault.textContent = 'Bản VIP Vĩnh Viễn';
+    planSelect.appendChild(optDefault);
+  }
+}
+window.updateSellerPlanOptions = updateSellerPlanOptions;
+
+function getSellerKeysStorage() {
+  try {
+    var raw = localStorage.getItem('nexvia_seller_keys');
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function saveSellerKeyStorage(keyObj) {
+  try {
+    var keys = getSellerKeysStorage();
+    keys.unshift(keyObj);
+    if (keys.length > 100) keys.pop();
+    localStorage.setItem('nexvia_seller_keys', JSON.stringify(keys));
+  } catch(e) {}
+}
+
+function getSavedRedeemedKeys() {
+  try {
+    var raw = localStorage.getItem('nexvia_my_redeemed_keys');
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function saveRedeemedKey(item) {
+  try {
+    var list = getSavedRedeemedKeys();
+    var existsIdx = list.findIndex(function(x) { return x.key === item.key; });
+    if (existsIdx >= 0) {
+      list[existsIdx] = item;
+    } else {
+      list.unshift(item);
+    }
+    if (list.length > 20) list.pop();
+    localStorage.setItem('nexvia_my_redeemed_keys', JSON.stringify(list));
+    renderSavedRedeemedKeys();
+  } catch(e) {}
+}
+
+function renderSavedRedeemedKeys() {
+  var box = document.getElementById('sellerSavedKeysBox');
+  var listEl = document.getElementById('sellerSavedKeysList');
+  if (!box || !listEl) return;
+
+  var list = getSavedRedeemedKeys();
+  if (!list || list.length === 0) {
+    box.style.display = 'none';
+    return;
+  }
+
+  box.style.display = 'block';
+  listEl.innerHTML = '';
+  list.forEach(function(item) {
+    var row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;background:rgba(15,23,42,0.7);border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:10px;margin-bottom:6px;font-size:12px;';
+    row.innerHTML = '<div>'
+      + '<b style="color:#fde047;">' + escapeHTML(item.key) + '</b> '
+      + '<span style="color:#94a3b8;">(' + escapeHTML(item.prodName || '') + ' - ' + escapeHTML(item.planName || '') + ')</span>'
+      + '</div>'
+      + '<button type="button" style="background:#0284c7;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:700;cursor:pointer;">'
+      + '<i class="fa-solid fa-arrow-rotate-right"></i> Xem'
+      + '</button>';
+
+    row.querySelector('button').addEventListener('click', function() {
+      var input = document.getElementById('sellerKeyInput');
+      if (input) input.value = item.key;
+      handleRedeemKeySubmit();
+    });
+    listEl.appendChild(row);
+  });
+}
+
+function handleRedeemKeySubmit() {
+  var input = document.getElementById('sellerKeyInput');
+  var rawCode = input ? input.value.trim() : '';
+  var resultBox = document.getElementById('sellerRedeemResult');
+  if (!resultBox) return;
+
+  if (!rawCode) {
+    toast('⚠️', 'Vui lòng nhập Mã Key hoặc Mã đơn hàng!');
+    if (input) input.focus();
+    return;
+  }
+
+  var code = rawCode.toUpperCase();
+  resultBox.style.display = 'block';
+  resultBox.innerHTML = '<div style="text-align:center;padding:20px;color:#94a3b8;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang đối soát và kích hoạt Key...</div>';
+
+  setTimeout(function() {
+    executeKeyRedemption(code, rawCode);
+  }, 350);
+}
+window.handleRedeemKeySubmit = handleRedeemKeySubmit;
+
+function executeKeyRedemption(code, originalInput) {
+  var resultBox = document.getElementById('sellerRedeemResult');
+  if (!resultBox) return;
+
+  var foundOrder = null;
+  var foundKey = null;
+
+  // 1. Kiểm tra trong kho đơn hàng
+  var allOrders = getStoredOrders();
+  foundOrder = allOrders.find(function(o) {
+    return (o.id && o.id.toUpperCase() === code) || 
+           (o.memo && o.memo.toUpperCase() === code) ||
+           (o.txId && o.txId.toUpperCase() === code);
+  });
+
+  // 2. Kiểm tra trong kho Seller Keys
+  var sellerKeys = getSellerKeysStorage();
+  foundKey = sellerKeys.find(function(k) {
+    return k.key && k.key.toUpperCase() === code;
+  });
+
+  var prod = null;
+  var plan = null;
+  var customerName = 'Khách Hàng VIP';
+  var keyStatus = 'ĐANG HOẠT ĐỘNG (BẢN QUYỀN CHÍNH HÃNG)';
+  var downloadUrl = '';
+  var isZaloBox = false;
+
+  if (foundOrder) {
+    prod = PRODUCTS.find(function(p) { return p.id === foundOrder.productId || p.name === foundOrder.productName; });
+    plan = prod && prod.plans ? prod.plans.find(function(pl) { return pl.name === foundOrder.planName; }) : null;
+    customerName = foundOrder.customerName || (foundOrder.user ? foundOrder.user.username : 'Khách Hàng');
+  } else if (foundKey) {
+    prod = PRODUCTS.find(function(p) { return p.id === foundKey.productId; });
+    plan = prod && prod.plans ? prod.plans.find(function(pl) { return pl.name === foundKey.planName; }) : null;
+    customerName = foundKey.customerNote || 'Khách Hàng';
+  } else {
+    // 3. Intelligent Key Recognizer (Hỗ trợ key theo tiền tố)
+    if (code.startsWith('TROLL') || code.includes('TROLLMODZ')) {
+      prod = PRODUCTS.find(function(p) { return p.id === 'trollmodz'; });
+      if (code.includes('1D') || code.includes('1DAY')) plan = prod.plans[0];
+      else if (code.includes('7D') || code.includes('1W')) plan = prod.plans[1];
+      else if (code.includes('15D')) plan = prod.plans[2];
+      else plan = prod.plans[prod.plans.length - 1];
+    } else if (code.startsWith('URATR') || code.includes('CHEAT-VIP')) {
+      prod = PRODUCTS.find(function(p) { return p.id === 'uratr-cheat-vip'; });
+      plan = prod.plans[0];
+    } else if (code.startsWith('BOX') || code.startsWith('SLOT') || code.includes('FILE-TIEN')) {
+      prod = PRODUCTS.find(function(p) { return p.id === 'slot-nhom-file-tien'; });
+      plan = prod.plans[0];
+    } else if (code.startsWith('INNOVA')) {
+      prod = PRODUCTS.find(function(p) { return p.id === 'innova-cheat'; });
+      plan = prod.plans[0];
+    } else if (code.startsWith('SX2')) {
+      prod = PRODUCTS.find(function(p) { return p.id === 'sx2-dinhvi'; });
+      plan = prod.plans[0];
+    } else if (code.startsWith('NOVA')) {
+      prod = PRODUCTS.find(function(p) { return p.id === 'novax-ios'; });
+      plan = prod.plans[0];
+    }
+  }
+
+  // Nếu không nhận diện được
+  if (!prod) {
+    resultBox.innerHTML = '<div style="background:rgba(239,68,68,0.12);border:1.5px solid rgba(239,68,68,0.4);border-radius:14px;padding:16px;text-align:center;color:#fca5a5;">'
+      + '<div style="font-size:22px;margin-bottom:6px;">⚠️</div>'
+      + '<div style="font-weight:800;font-size:14.5px;margin-bottom:4px;color:#f87171;">KHÔNG TÌM THẤY MÃ KEY HOẶC MÃ ĐƠN HÀNG!</div>'
+      + '<div style="font-size:12.5px;color:#cbd5e1;line-height:1.5;margin-bottom:12px;">Mã <b>' + escapeHTML(originalInput) + '</b> chưa được kích hoạt hoặc chưa đúng định dạng. Vui lòng kiểm tra lại hoặc liên hệ Admin Phú để được hỗ trợ 1:1.</div>'
+      + '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size:12px;padding:8px 14px;border-color:rgba(239,68,68,0.4);color:#fca5a5;">'
+      + '<i class="fa-solid fa-headset"></i> Nhắn Zalo Admin: 0588500524'
+      + '</a>'
+      + '</div>';
+    return;
+  }
+
+  var planName = plan ? plan.name : 'Bản VIP Vĩnh Viễn';
+  var prodImg = prod.image || 'assets/uploads/logos/aizen-logo.png';
+  if (plan && plan.downloadUrl) downloadUrl = plan.downloadUrl;
+  if (prod.id === 'slot-nhom-file-tien' || (plan && plan.zaloGroupUrl)) {
+    isZaloBox = true;
+    downloadUrl = (plan && plan.zaloGroupUrl) ? plan.zaloGroupUrl : 'https://zalo.me/g/n6briixqnievletsfnoq';
+  }
+
+  // Lưu lịch sử
+  saveRedeemedKey({
+    key: code,
+    prodId: prod.id,
+    prodName: prod.name,
+    planName: planName,
+    redeemedAt: new Date().toISOString()
+  });
+
+  // Render Result
+  var actionButtonHtml = '';
+  if (isZaloBox) {
+    actionButtonHtml = '<a href="' + escapeHTML(downloadUrl) + '" target="_blank" rel="noopener noreferrer" class="seller-btn-group">'
+      + '<i class="fa-solid fa-arrow-up-right-from-square"></i> BẤM VÀO NHÓM ZALO VIP NGAY'
+      + '</a>';
+  } else if (downloadUrl) {
+    actionButtonHtml = '<a href="' + escapeHTML(downloadUrl) + '" target="_blank" rel="noopener noreferrer" class="seller-btn-dl">'
+      + '<i class="fa-solid fa-cloud-arrow-down"></i> TẢI FILE CÀI ĐẶT / CẤU HÌNH VIP'
+      + '</a>';
+  } else {
+    actionButtonHtml = '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="seller-btn-dl">'
+      + '<i class="fa-solid fa-paper-plane"></i> NHẮN ZALO ADMIN LẤY FILE & VIDEO CÀI ĐẶT'
+      + '</a>';
+  }
+
+  resultBox.innerHTML = '<div class="seller-result-card">'
+    + '<div class="seller-result-header">'
+      + '<div class="seller-prod-info">'
+        + '<img src="' + escapeHTML(prodImg) + '" alt="' + escapeHTML(prod.name) + '" class="seller-prod-img" onerror="this.src=\'assets/uploads/logos/aizen-logo.png\'">'
+        + '<div>'
+          + '<div class="seller-prod-name">' + escapeHTML(prod.name) + '</div>'
+          + '<div class="seller-prod-plan"><i class="fa-solid fa-crown" style="color:#fde047;"></i> ' + escapeHTML(planName) + '</div>'
+        + '</div>'
+      + '</div>'
+      + '<div class="seller-status-badge">'
+        + '<span class="live-dot-pulse"></span> HỢP LỆ'
+      + '</div>'
+    + '</div>'
+    + '<div style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px;margin-bottom:14px;font-size:12.5px;line-height:1.6;">'
+      + '<div style="display:flex;justify-content:space-between;margin-bottom:4px;">'
+        + '<span style="color:#94a3b8;">Mã Key / Đơn:</span>'
+        + '<b style="color:#38bdf8;font-family:monospace;letter-spacing:1px;">' + escapeHTML(code) + '</b>'
+      + '</div>'
+      + '<div style="display:flex;justify-content:space-between;margin-bottom:4px;">'
+        + '<span style="color:#94a3b8;">Chủ sở hữu:</span>'
+        + '<span style="color:#f8fafc;font-weight:700;">' + escapeHTML(customerName) + '</span>'
+      + '</div>'
+      + '<div style="display:flex;justify-content:space-between;">'
+        + '<span style="color:#94a3b8;">Trạng thái bản quyền:</span>'
+        + '<span style="color:#34d399;font-weight:800;">' + escapeHTML(keyStatus) + '</span>'
+      + '</div>'
+    + '</div>'
+    + '<div class="seller-action-btns">'
+      + actionButtonHtml
+      + '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding:10px;font-size:12px;color:#fde047;border-color:rgba(245,211,114,0.3);">'
+        + '<i class="fa-solid fa-headset"></i> Hỗ trợ cài đặt 1:1 qua Zalo Phú Bán Hàng (0588500524)'
+      + '</a>'
+    + '</div>'
+  + '</div>';
+
+  toast('🎉', 'Kích hoạt mã ' + code + ' thành công!');
+}
+
+function handleGenerateSellerKey() {
+  var prodSelect = document.getElementById('sellerGenProdSelect');
+  var planSelect = document.getElementById('sellerGenPlanSelect');
+  var noteInput = document.getElementById('sellerGenCustomerNote');
+  var resultBox = document.getElementById('sellerGenResultBox');
+  if (!prodSelect || !resultBox) return;
+
+  var prodId = prodSelect.value;
+  var prodObj = PRODUCTS.find(function(p) { return p.id === prodId; }) || { name: 'Sản Phẩm VIP' };
+  var planName = planSelect ? planSelect.value : 'Bản VIP';
+  var customerNote = noteInput ? (noteInput.value.trim() || 'Khách Mới') : 'Khách Mới';
+
+  // Tạo mã Key định dạng chuẩn
+  var prefix = prodId.split('-')[0].toUpperCase();
+  var randPart = Math.floor(100000 + Math.random() * 900000);
+  var generatedKey = prefix + '-' + randPart;
+
+  var keyItem = {
+    key: generatedKey,
+    productId: prodId,
+    productName: prodObj.name,
+    planName: planName,
+    customerNote: customerNote,
+    createdAt: new Date().toISOString()
+  };
+
+  saveSellerKeyStorage(keyItem);
+
+  var shareMessage = '🎮 [NEXVIA VN] BÀN GIAO KEY BẢN QUYỀN VIP\n'
+    + '• Sản phẩm: ' + prodObj.name + '\n'
+    + '• Gói: ' + planName + '\n'
+    + '• Khách hàng: ' + customerNote + '\n'
+    + '• MÃ KEY KÍCH HOẠT: ' + generatedKey + '\n\n'
+    + '👉 Quý khách truy cập web: ' + window.location.origin + '?key=' + generatedKey + ' để nhận file & hướng dẫn cài đặt 1:1!';
+
+  resultBox.style.display = 'block';
+  resultBox.innerHTML = '<div style="background:rgba(56,189,248,0.12);border:1.5px solid rgba(56,189,248,0.4);border-radius:14px;padding:16px;margin-top:14px;">'
+    + '<div style="font-weight:900;color:#38bdf8;font-size:13.5px;margin-bottom:8px;"><i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> ĐÃ TẠO KEY THÀNH CÔNG!</div>'
+    + '<div style="font-size:18px;font-weight:900;color:#fde047;background:rgba(0,0,0,0.6);padding:10px;border-radius:8px;text-align:center;letter-spacing:2px;font-family:monospace;margin-bottom:12px;border:1px dashed rgba(245,211,114,0.4);">'
+      + escapeHTML(generatedKey)
+    + '</div>'
+    + '<button type="button" class="btn btn-primary btn-block" style="padding:10px;font-size:12.5px;font-weight:800;border-radius:8px;background:#0284c7;color:#fff;" onclick="copySellerShareText(this, ' + JSON.stringify(shareMessage).replace(/"/g, '&quot;') + ')">'
+      + '<i class="fa-solid fa-copy"></i> Sao Chép Tin Nhắn Bàn Giao Khách'
+    + '</button>'
+  + '</div>';
+
+  toast('🔑', 'Đã tạo Key ' + generatedKey + ' thành công!');
+}
+window.handleGenerateSellerKey = handleGenerateSellerKey;
+
+function copySellerShareText(btn, text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+  var oldHtml = btn.innerHTML;
+  btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép tin nhắn!';
+  setTimeout(function() { btn.innerHTML = oldHtml; }, 2200);
+  toast('📋', 'Đã sao chép nội dung bàn giao khách hàng!');
+}
+window.copySellerShareText = copySellerShareText;
+
+// Auto-activate key from URL query parameters (e.g. ?key=TROLL-123456 or ?code=...)
+(function autoHandleUrlKey() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var urlKey = params.get('key') || params.get('code');
+    var tab = params.get('tab');
+    if (urlKey || tab === 'seller') {
+      setTimeout(function() {
+        openSellerPortal(tab === 'seller' ? 'seller' : 'redeem');
+        if (urlKey) {
+          var input = document.getElementById('sellerKeyInput');
+          if (input) input.value = urlKey;
+          handleRedeemKeySubmit();
+        }
+      }, 800);
+    }
+  } catch(e) {}
+})();
+
 
 
