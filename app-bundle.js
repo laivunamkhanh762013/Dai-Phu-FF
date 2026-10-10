@@ -407,28 +407,31 @@ var PRODUCTS = [
       {
         name: 'Gói 1 Ngày',
         price: 10000,
+        oldPrice: 30000,
         badge: 'Xả Lỗ 10k',
         action: 'Buff dame, bắn siêu tốc, không giật 0%, cam xa FOV 85° suốt 24 giờ.',
         fix: 'Bypass qua mặt hệ thống kiểm tra an toàn 100%, chống giật lag.',
-        pros: 'Giá xả lỗ chỉ 10k - rẻ nhất thị trường để trải nghiệm InNova Cheat.',
+        pros: 'Giá xả lỗ chỉ 10k (gốc 30k) - rẻ nhất thị trường để trải nghiệm InNova Cheat.',
         note: 'Hỗ trợ Android & iOS.'
       },
       {
         name: 'Gói 7 Ngày',
         price: 30000,
+        oldPrice: 70000,
         badge: 'Xả Lỗ 30k',
         action: 'Sử dụng trọn bộ tính năng InNova Cheat liên tục trong 7 ngày (1 tuần).',
         fix: 'Tối ưu hóa đường truyền proxy, cập nhật bypass tự động 24/7.',
-        pros: 'Chỉ 30k cho 7 ngày trải nghiệm, tiết kiệm tối đa chi phí.',
+        pros: 'Chỉ 30k cho 7 ngày trải nghiệm (gốc 70k), tiết kiệm tối đa chi phí.',
         note: 'Hỗ trợ Android & iOS.'
       },
       {
         name: 'Gói 30 Ngày',
         price: 100000,
+        oldPrice: 150000,
         badge: 'Xả Lỗ 100k',
         action: 'Gói tháng toàn diện 30 ngày, leo rank Thách Đấu thả ga cả mùa giải.',
         fix: 'Khắc phục hoàn toàn delay, ổn định mượt mà 120 FPS, bảo hành trọn đời gói.',
-        pros: 'Chỉ 100k gói 30 ngày (giá cũ 150k), Zalo Admin Nexvia hỗ trợ ưu tiên 24/7.',
+        pros: 'Chỉ 100k gói 30 ngày (giá gốc 150k), Zalo Admin Nexvia hỗ trợ ưu tiên 24/7.',
         note: 'Hỗ trợ Android & iOS.'
       }
     ]
@@ -1563,6 +1566,16 @@ function renderModalVersionBlocks(p, activeIdx) {
       + '</div>';
     }
 
+    var planOldPrice = plan.oldPrice || (p.oldPrice && p.plans.length === 1 ? p.oldPrice : null);
+    if (!planOldPrice && p.id === 'innova-cheat') {
+      if (plan.price === 10000) planOldPrice = 30000;
+      else if (plan.price === 30000) planOldPrice = 70000;
+      else if (plan.price === 100000) planOldPrice = 150000;
+    }
+    var planOldPriceHtml = planOldPrice ? ' <del style="color:var(--rd-muted);font-size:13.5px;font-weight:600;margin-left:8px;text-decoration:line-through;">' + formatVND(planOldPrice) + '</del>' : '';
+    var planDiscountPercent = (planOldPrice && planOldPrice > plan.price) ? Math.round((1 - plan.price / planOldPrice) * 100) : 0;
+    var planDiscountTag = planDiscountPercent > 0 ? ' <span style="background:rgba(239,68,68,0.18);color:#f87171;border:1px solid rgba(239,68,68,0.4);font-size:10px;font-weight:900;padding:2px 6px;border-radius:4px;margin-left:6px;">-' + planDiscountPercent + '%</span>' : '';
+
     blocksHtml += '<div class="version-block-card" id="vb-' + p.id + '-' + idx + '">'
       + '<div class="vb-header">'
         + '<div class="vb-title-wrap">'
@@ -1573,7 +1586,11 @@ function renderModalVersionBlocks(p, activeIdx) {
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'
-          + '<div class="vb-price">' + formatVND(plan.price) + '</div>'
+          + '<div style="display:flex;align-items:baseline;justify-content:flex-end;flex-wrap:wrap;">'
+            + '<span class="vb-price">' + formatVND(plan.price) + '</span>'
+            + planOldPriceHtml
+            + planDiscountTag
+          + '</div>'
           + '<div class="vb-price-sub">Thanh toán 1 lần</div>'
         + '</div>'
       + '</div>'
