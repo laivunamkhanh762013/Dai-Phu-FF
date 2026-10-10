@@ -112,10 +112,10 @@
       <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Hỗ trợ Zalo (Mở tab mới)">Hỗ trợ Zalo</a>
     </nav>
     <div class="top-actions">
-      <a class="btn btn-ghost" href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:8px 14px;border-radius:999px;">
-        <i class="fa-solid fa-headset ic-accent"></i>
-        <span>Liên hệ Zalo</span>
-      </a>
+      <button type="button" class="btn btn-ghost" onclick="openSellerPortal('packages')" aria-label="Shop Seller & Bảng Giá Sỉ" style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:8px 14px;border-radius:999px;border:1px solid var(--rd-accent);color:var(--rd-accent);">
+        <i class="fa-solid fa-briefcase"></i>
+        <span>Shop Seller</span>
+      </button>
       <div class="user-menu-wrapper" id="userMenuWrapper">
         <button type="button" class="btn btn-ghost" onclick="toggleUserDropdown(event)" id="topAuthBtn" aria-haspopup="menu" aria-expanded="false">Đăng nhập</button>
         <div class="user-dropdown-menu" id="userDropdownMenu" role="menu" aria-label="Tùy chọn tài khoản">
@@ -179,9 +179,13 @@
           <span>Xem bảng giá &amp; Mua ngay</span>
           <span class="btn-cta-arrow"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
+        <button type="button" class="btn btn-ghost btn-hero-sub" onclick="openSellerPortal('packages')">
+          <i class="fa-solid fa-briefcase ic-accent"></i>
+          <span>Shop Mua Key Seller</span>
+        </button>
         <a class="btn btn-ghost btn-hero-sub" href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Liên hệ Zalo Admin Nexvia (Mở tab mới)">
           <i class="fa-solid fa-headset ic-accent"></i>
-          <span>Liên hệ Zalo Admin</span>
+          <span>Zalo Admin</span>
         </a>
       </div>
 
@@ -405,8 +409,9 @@
 <nav class="mobile-nav" aria-label="Điều hướng trên điện thoại">
   <button type="button" class="mobile-nav-btn active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-store"></i><span>Cửa hàng</span></button>
   <a href="#products"><i class="fa-solid fa-fire"></i><span>Sản phẩm</span></a>
+  <button type="button" class="mobile-nav-btn" onclick="openSellerPortal('packages')"><i class="fa-solid fa-briefcase ic-accent"></i><span>Shop Seller</span></button>
   <button type="button" class="mobile-nav-btn" onclick="openMyOrderHistory()"><i class="fa-solid fa-clock-rotate-left"></i><span>Lịch sử</span></button>
-  <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Hỗ trợ Zalo Admin (Mở tab mới)"><i class="fa-solid fa-headset ic-accent"></i><span>Hỗ trợ Zalo</span></a>
+  <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" aria-label="Hỗ trợ Zalo Admin (Mở tab mới)"><i class="fa-solid fa-headset ic-accent"></i><span>Hỗ trợ</span></a>
 </nav>
 
 <!-- ══ BUY & PAYMENT MODAL (CHỌN GÓI + XEM ẢNH TÍNH NĂNG + VIETQR) ══ -->
@@ -863,6 +868,145 @@
         Đã có tài khoản? <button type="button" class="btn-link-auth" onclick="switchAuthTab('login')">Đăng nhập ngay</button>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- ══ SHOP SELLER & ĐẠI LÝ SỈ KEY MODAL ══ -->
+<div id="sellerModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="sellerModalTitle">
+  <div class="modal-backdrop" onclick="closeSellerPortal()"></div>
+  <div class="seller-modal-card">
+    <button type="button" class="paid-close-btn" onclick="closeSellerPortal()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+
+    <div class="seller-header">
+      <div class="seller-header-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <h3 class="seller-title" id="sellerModalTitle">SHOP SELLER &amp; ĐẠI LÝ SỈ KEY</h3>
+      <p class="seller-sub">Bảng giá sỉ chiết khấu cao lên đến 65% • Mua gói sỉ &amp; Nhận kho key từ Nexvia</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="seller-tabs">
+      <button type="button" class="seller-tab-btn active" id="tabSellerPackages" onclick="switchSellerTab('packages')">
+        <i class="fa-solid fa-gem"></i> <span>Gói Mua Sỉ Key</span>
+      </button>
+      <button type="button" class="seller-tab-btn" id="tabSellerTools" onclick="switchSellerTab('tools')">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Công Cụ Xuất Key</span>
+      </button>
+      <button type="button" class="seller-tab-btn" id="tabSellerContact" onclick="switchSellerTab('contact')">
+        <i class="fa-solid fa-headset"></i> <span>Liên Hệ Nexvia Lấy Key</span>
+      </button>
+    </div>
+
+    <!-- Panel 1: Bảng Giá Mua Sỉ Key Seller -->
+    <div id="sellerPanelPackages">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:18px;">
+        <!-- Gói 1: Starter -->
+        <div style="background:var(--rd-surface-2);border:1px solid var(--rd-line);border-radius:6px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--rd-accent);letter-spacing:1px;text-transform:uppercase;">GÓI SELLER 5 KEY</div>
+            <div style="font-size:18px;font-weight:900;color:var(--rd-text);margin:4px 0 2px;">120.000đ <small style="font-size:11px;color:var(--rd-muted);text-decoration:line-through;">180.000đ</small></div>
+            <div style="font-size:11.5px;color:var(--rd-muted);line-height:1.4;margin-bottom:12px;">Nạp 5 Key (TrollModz / Uratr / NovaX). Chiết khấu 30%.</div>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" style="padding:8px 12px;font-size:12px;font-weight:800;border-radius:4px;" onclick="buySellerPackage('5 Key Sỉ (120k)', 120000)">
+            <i class="fa-solid fa-cart-shopping"></i> Mua Gói 5 Key
+          </button>
+        </div>
+
+        <!-- Gói 2: Pro -->
+        <div style="background:var(--rd-surface-2);border:1px solid var(--rd-accent);border-radius:6px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;position:relative;">
+          <div style="position:absolute;top:-8px;right:10px;background:var(--rd-accent);color:#121110;font-size:9px;font-weight:900;padding:2px 6px;border-radius:2px;letter-spacing:0.5px;">BÁN CHẠY NHẤT</div>
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--rd-accent);letter-spacing:1px;text-transform:uppercase;">GÓI ĐẠI LÝ 10 KEY</div>
+            <div style="font-size:18px;font-weight:900;color:var(--rd-text);margin:4px 0 2px;">220.000đ <small style="font-size:11px;color:var(--rd-muted);text-decoration:line-through;">360.000đ</small></div>
+            <div style="font-size:11.5px;color:var(--rd-muted);line-height:1.4;margin-bottom:12px;">Nạp 10 Key tuỳ chọn + Tặng 1 Key Vĩnh Viễn. Chiết khấu 45%.</div>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" style="padding:8px 12px;font-size:12px;font-weight:800;border-radius:4px;" onclick="buySellerPackage('10 Key Sỉ (220k)', 220000)">
+            <i class="fa-solid fa-cart-shopping"></i> Mua Gói 10 Key
+          </button>
+        </div>
+
+        <!-- Gói 3: VIP -->
+        <div style="background:var(--rd-surface-2);border:1px solid var(--rd-line);border-radius:6px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--rd-accent);letter-spacing:1px;text-transform:uppercase;">GÓI TỔNG ĐẠI LÝ 25 KEY</div>
+            <div style="font-size:18px;font-weight:900;color:var(--rd-text);margin:4px 0 2px;">490.000đ <small style="font-size:11px;color:var(--rd-muted);text-decoration:line-through;">900.000đ</small></div>
+            <div style="font-size:11.5px;color:var(--rd-muted);line-height:1.4;margin-bottom:12px;">Nạp 25 Key kho sỉ. Hỗ trợ tạo bot auto cấp key riêng. Chiết khấu 55%.</div>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" style="padding:8px 12px;font-size:12px;font-weight:800;border-radius:4px;" onclick="buySellerPackage('25 Key Sỉ (490k)', 490000)">
+            <i class="fa-solid fa-cart-shopping"></i> Mua Gói 25 Key
+          </button>
+        </div>
+
+        <!-- Gói 4: Master -->
+        <div style="background:var(--rd-surface-2);border:1px solid var(--rd-line);border-radius:6px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--rd-accent);letter-spacing:1px;text-transform:uppercase;">TRÙM SỈ MASTER 50 KEY</div>
+            <div style="font-size:18px;font-weight:900;color:var(--rd-text);margin:4px 0 2px;">890.000đ <small style="font-size:11px;color:var(--rd-muted);text-decoration:line-through;">1.800.000đ</small></div>
+            <div style="font-size:11.5px;color:var(--rd-muted);line-height:1.4;margin-bottom:12px;">Kho 50 Key VIP không giới hạn thời gian. Chiết khấu 65% cao nhất.</div>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" style="padding:8px 12px;font-size:12px;font-weight:800;border-radius:4px;" onclick="buySellerPackage('50 Key Master (890k)', 890000)">
+            <i class="fa-solid fa-cart-shopping"></i> Mua Gói 50 Key
+          </button>
+        </div>
+      </div>
+
+      <div style="background:var(--rd-bg-2);border:1px solid var(--rd-line);border-radius:4px;padding:12px;font-size:12px;color:var(--rd-muted);line-height:1.5;">
+        <i class="fa-solid fa-circle-info ic-accent"></i> <b>Quy trình mua Key Seller:</b> Chọn gói sỉ cần mua ➔ Thanh toán qua VietQR ➔ Sao chép mã đơn và gửi Zalo <b>Admin Nexvia (0588500524)</b> để nhận bàn giao kho Key Seller &amp; File cấu hình sỉ.
+      </div>
+    </div>
+
+    <!-- Panel 2: Công Cụ Xuất Key Cho Khách -->
+    <div id="sellerPanelTools" style="display:none;">
+      <div style="background:var(--rd-surface-2);border:1px solid var(--rd-line);border-radius:6px;padding:16px;margin-bottom:16px;">
+        <div style="font-weight:800;color:var(--rd-accent);font-size:13px;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> CÔNG CỤ TẠO MÃ KEY CHO KHÁCH HÀNG
+        </div>
+        
+        <div class="seller-form-group">
+          <label class="seller-form-label">Chọn Sản Phẩm Cấp Key:</label>
+          <select id="sellerGenProdSelect" class="seller-select" onchange="updateSellerPlanOptions()">
+            <option value="trollmodz">TrollModz (Menu Adr · iOS · PC)</option>
+            <option value="uratr-cheat-vip">Uratr Cheat VIP 🇻🇳 (Kéo tâm bám 80%)</option>
+            <option value="slot-nhom-file-tien">Slot Nhóm File Tiền VIP (Vào Box Zalo)</option>
+            <option value="innova-cheat">InNova Cheat (Adr · iOS)</option>
+            <option value="sx2-dinhvi">Sx2 Team External No Root</option>
+            <option value="novax-ios">NovaX iOS (ESP Aimcheck)</option>
+          </select>
+        </div>
+
+        <div class="seller-form-group">
+          <label class="seller-form-label">Chọn Gói / Thời Hạn:</label>
+          <select id="sellerGenPlanSelect" class="seller-select">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div class="seller-form-group">
+          <label class="seller-form-label">Tên hoặc SĐT Khách Hàng (Ghi chú):</label>
+          <input type="text" id="sellerGenCustomerNote" class="seller-input-text" placeholder="Ví dụ: Anh Tuấn (098***)...">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" style="padding:10px;font-weight:800;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;" onclick="handleGenerateSellerKey()">
+          <i class="fa-solid fa-plus-circle"></i> TẠO KEY &amp; XUẤT CHO KHÁCH
+        </button>
+      </div>
+
+      <!-- Generated Key Result Box -->
+      <div id="sellerGenResultBox" style="display:none;"></div>
+    </div>
+
+    <!-- Panel 3: Liên Hệ Nexvia Lấy Key -->
+    <div id="sellerPanelContact" style="display:none;">
+      <div style="background:var(--rd-surface-2);border:1px solid var(--rd-line);border-radius:6px;padding:20px;text-align:center;">
+        <div style="font-size:32px;color:var(--rd-accent);margin-bottom:10px;"><i class="fa-solid fa-handshake"></i></div>
+        <div style="font-weight:800;color:var(--rd-text);font-size:15px;margin-bottom:6px;">TRỰC TIẾP LẤY KEY SELLER QUA ADMIN NEXVIA</div>
+        <p style="font-size:12.5px;color:var(--rd-muted);line-height:1.6;max-width:440px;margin:0 auto 16px;">
+          Sau khi mua gói sỉ hoặc cần nạp thêm số lượng lớn, bạn chỉ cần gửi <b>Mã Đơn Hàng</b> qua Zalo Admin Nexvia để được kích hoạt tài khoản Đại Lý &amp; bàn giao kho Key ngay lập tức!
+        </p>
+        <a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;font-size:13px;font-weight:800;border-radius:4px;">
+          <i class="fa-solid fa-comment-dots"></i> Nhắn Zalo Admin Nexvia (0588500524)
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 

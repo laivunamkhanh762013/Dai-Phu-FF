@@ -2821,8 +2821,8 @@ initScrollReveal();
   })();
 
 /* ═══════════════════════════════════════════════════════════════
-   🔑 SELLER HUB & KEY ACTIVATION PORTAL CONTROLLER
-   Kích hoạt key bản quyền cho người mua & Công cụ cho Đại lý / Seller
+   🔑 SHOP SELLER & ĐẠI LÝ SỈ KEY NEXVIA CONTROLLER
+   Mua gói sỉ key chiết khấu cao & Công cụ tạo key cho Seller
    ═══════════════════════════════════════════════════════════════ */
 
 function openSellerPortal(defaultTab) {
@@ -2832,9 +2832,8 @@ function openSellerPortal(defaultTab) {
   manageModalFocus(modal);
   document.body.style.overflow = 'hidden';
 
-  switchSellerTab(defaultTab || 'redeem');
+  switchSellerTab(defaultTab || 'packages');
   updateSellerPlanOptions();
-  renderSavedRedeemedKeys();
 }
 window.openSellerPortal = openSellerPortal;
 
@@ -2848,26 +2847,46 @@ function closeSellerPortal() {
 window.closeSellerPortal = closeSellerPortal;
 
 function switchSellerTab(tab) {
-  var btnRedeem = document.getElementById('tabSellerRedeem');
-  var btnDash = document.getElementById('tabSellerDashboard');
-  var panelRedeem = document.getElementById('sellerPanelRedeem');
-  var panelDash = document.getElementById('sellerPanelDashboard');
+  var btnPackages = document.getElementById('tabSellerPackages');
+  var btnTools = document.getElementById('tabSellerTools');
+  var btnContact = document.getElementById('tabSellerContact');
+  
+  var panelPackages = document.getElementById('sellerPanelPackages');
+  var panelTools = document.getElementById('sellerPanelTools');
+  var panelContact = document.getElementById('sellerPanelContact');
 
-  if (tab === 'seller') {
-    if (btnRedeem) btnRedeem.classList.remove('active');
-    if (btnDash) btnDash.classList.add('active');
-    if (panelRedeem) panelRedeem.style.display = 'none';
-    if (panelDash) panelDash.style.display = 'block';
+  if (btnPackages) btnPackages.classList.remove('active');
+  if (btnTools) btnTools.classList.remove('active');
+  if (btnContact) btnContact.classList.remove('active');
+
+  if (panelPackages) panelPackages.style.display = 'none';
+  if (panelTools) panelTools.style.display = 'none';
+  if (panelContact) panelContact.style.display = 'none';
+
+  if (tab === 'tools') {
+    if (btnTools) btnTools.classList.add('active');
+    if (panelTools) panelTools.style.display = 'block';
+  } else if (tab === 'contact') {
+    if (btnContact) btnContact.classList.add('active');
+    if (panelContact) panelContact.style.display = 'block';
   } else {
-    if (btnRedeem) btnRedeem.classList.add('active');
-    if (btnDash) btnDash.classList.remove('active');
-    if (panelRedeem) panelRedeem.style.display = 'block';
-    if (panelDash) panelDash.style.display = 'none';
-    var keyInput = document.getElementById('sellerKeyInput');
-    if (keyInput) keyInput.focus();
+    if (btnPackages) btnPackages.classList.add('active');
+    if (panelPackages) panelPackages.style.display = 'block';
   }
 }
 window.switchSellerTab = switchSellerTab;
+
+function buySellerPackage(packageName, price) {
+  closeSellerPortal();
+  var sellerProd = PRODUCTS.find(function(p) { return p.id === 'trollmodz'; }) || PRODUCTS[0];
+  openBuyModal(sellerProd);
+  setTimeout(function() {
+    currentPlan = { name: 'Gói Seller Sỉ: ' + packageName, price: price };
+    currentCustomPrice = price;
+    updatePriceDisplay();
+  }, 120);
+}
+window.buySellerPackage = buySellerPackage;
 
 function updateSellerPlanOptions() {
   var prodSelect = document.getElementById('sellerGenProdSelect');
