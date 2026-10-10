@@ -1,0 +1,208 @@
+/* ═══════════════════════════════════════════
+   redesign-v2.css — NEXVIA VN Editorial Rework
+   Load SAU redesign.css, KHÔNG xoá file cũ.
+   Mục tiêu: phá công thức "dark SaaS AI-glow"
+   bằng bảng màu riêng, font có cá tính, bớt
+   đối xứng, bớt glow tràn lan.
+   ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Bỏ tím-cyan-neon mặc định, chuyển sang bảng màu "than + đồng" riêng biệt */
+  --rd-bg: #121110;
+  --rd-bg-2: #1a1816;
+  --rd-surface: #1f1c19;
+  --rd-surface-2: #262220;
+  --rd-line: #38322c;
+  --rd-text: #f3ede4;
+  --rd-muted: #a69a8a;
+  --rd-accent: #d98e3f;      /* đồng / cam đất, thay cho tím neon */
+  --rd-accent-2: #7d9b76;    /* xanh rêu, dùng cho trạng thái thành công */
+  --rd-danger: #c5553d;
+  --rd-volt: var(--rd-accent);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+body.storefront {
+  background: var(--rd-bg) !important;
+  color: var(--rd-text) !important;
+  font-family: var(--font-body) !important;
+}
+
+/* ── Typography: cặp serif-hiển thị + sans-grotesk tạo cá tính ── */
+.hero-main-title,
+.bento-title,
+h2, h3,
+.m-prod-title,
+.paid-header-title,
+.seller-title {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.hero-brand-glitch {
+  font-family: var(--font-display) !important;
+  font-style: italic;
+  font-weight: 500 !important;
+}
+
+.hero-gradient-text {
+  /* Bỏ gradient tím-cyan, dùng màu phẳng + gạch chân lệch thủ công */
+  background: none !important;
+  -webkit-text-fill-color: var(--rd-text) !important;
+  color: var(--rd-text) !important;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-gradient-text::after {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 4%;
+  bottom: 4px;
+  height: 7px;
+  background: var(--rd-accent);
+  opacity: .35;
+  z-index: -1;
+  transform: skewX(-6deg);
+}
+
+/* ── Bỏ glow/neon tràn lan, chỉ giữ shadow mềm có chủ đích ── */
+.hero-glow-orb, .bento-beam-glow, .wallet-border-beam,
+.intro-beam, .intro-shockwave, .intro-flash-bg {
+  display: none !important; /* các hiệu ứng "hào quang" rập khuôn AI — cắt bỏ */
+}
+
+.m-qr-box { 
+  animation: none !important; 
+  box-shadow: 0 1px 0 var(--rd-line) !important; 
+}
+
+/* ── Bo góc: phân cấp rõ ràng thay vì tròn đều hết ── */
+.product, .feature-card, .fb-card { border-radius: 4px !important; }
+.btn, .m-plan-row, .version-block-card { border-radius: 2px !important; }
+.wallet-summary, .vip-flagship-bento { border-radius: 6px !important; }
+.m-qr-box, .m-bank-item { border-radius: 3px !important; }
+.seller-modal-card { border-radius: 6px !important; }
+
+/* ── Border: 1px mảnh, màu đất thay vì viền phát sáng ── */
+.product, .feature-card, .wallet-summary, .version-block-card,
+.m-bank-item, .fb-card, .seller-result-card, .seller-modal-card {
+  border: 1px solid var(--rd-line) !important;
+  box-shadow: none !important;
+  background: var(--rd-surface) !important;
+}
+
+.product:hover, .feature-card:hover, .fb-card:hover {
+  border-color: var(--rd-accent) !important;
+  box-shadow: none !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Nút: màu phẳng, không gradient ── */
+.btn-primary, .btn-version-buy, .btn-proceed, .btn-paid-done,
+.btn-auth-submit, .bento-buy-btn, .seller-btn-activate {
+  background: var(--rd-accent) !important;
+  color: #16130f !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+}
+
+.btn-primary:hover, .btn-version-buy:hover, .btn-proceed:hover,
+.btn-paid-done:hover, .bento-buy-btn:hover, .seller-btn-activate:hover {
+  background: #c17c32 !important;
+  box-shadow: none !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-ghost, .btn-seller-portal, .btn-seller-hero {
+  border: 1px solid var(--rd-line) !important;
+  color: var(--rd-text) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.btn-seller-portal:hover, .btn-seller-hero:hover {
+  background: var(--rd-surface-2) !important;
+  border-color: var(--rd-accent) !important;
+  color: var(--rd-accent) !important;
+  box-shadow: none !important;
+}
+
+/* ── Bento hero: phá đối xứng — lệch trục, không center ── */
+.vip-flagship-bento {
+  background: var(--rd-surface) !important;
+  border: 1px solid var(--rd-line) !important;
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 96% 100%, 0 100%);
+}
+
+.bento-price-old { color: var(--rd-muted) !important; }
+.bento-price-val { color: var(--rd-accent) !important; }
+
+/* ── Badge/pill: vuông vức, kẻ chữ hoa, không viền-glow ── */
+.store-kicker, .bento-badge-hot, .bento-badge-plat, .hfb-item,
+.m-plan-badge, .vb-badge, .bento-badge-live, .seller-status-badge {
+  border-radius: 2px !important;
+  background: var(--rd-surface-2) !important;
+  border: 1px solid var(--rd-line) !important;
+  color: var(--rd-muted) !important;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  box-shadow: none !important;
+}
+
+/* ── Modal checkout: bớt tối tăm "cyber", chuyển ấm hơn ── */
+.modal-card.checkout-modal, .paid-modal-card, .seller-modal-card {
+  background: var(--rd-bg-2) !important;
+  border: 1px solid var(--rd-line) !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,.5) !important;
+}
+
+.m-plan-row.active, .m-bank-memo {
+  border-color: var(--rd-accent) !important;
+  box-shadow: none !important;
+  background: rgba(217,142,63,0.08) !important;
+}
+
+/* ── Feature icon box: vuông, không glow tròn ── */
+.fc-icon, .seller-header-icon {
+  border-radius: 3px !important;
+  background: var(--rd-surface-2) !important;
+  color: var(--rd-accent) !important;
+  box-shadow: none !important;
+  border: 1px solid var(--rd-line) !important;
+}
+
+.fc-glow { display: none !important; }
+
+/* ── Grain nhẹ toàn trang, chống cảm giác "nhựa phẳng" của AI render ── */
+body.storefront::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Toast: phẳng, không neon viền xanh ── */
+.toast-item {
+  background: var(--rd-surface) !important;
+  border: 1px solid var(--rd-line) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4) !important;
+  backdrop-filter: none !important;
+}
+
+.t-accent { 
+  background: var(--rd-accent) !important; 
+  box-shadow: none !important; 
+}
