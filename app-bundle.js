@@ -390,43 +390,43 @@ var PRODUCTS = [
     id: 'innova-cheat',
     category: 'Proxy & Injector',
     plat: 'Adr • iOS',
-    buyers: '580+ Người mua',
-    name: 'InNova Cheat (Adr • iOS)',
-    shortDesc: 'Free Fire Proxy VIP - Tăng sát thương, bắn siêu tốc, không giật 0%, cam xa FOV, an toàn bypass.',
-    fullDesc: 'INNOVA CHEAT - PROXY VIP FREE FIRE (Android & iOS):\n- Tăng sát thương (Buff Dame), Bắn siêu tốc (Fast Fire), Không giật (No Recoil 0%).\n- Bơm máu siêu tốc (Fast Medkit), Góc nhìn rộng Cam xa (FOV 85°), Tăng tốc chạy (Speed Run).\n- Bypass an toàn chống ban 100%, kết nối ổn định, mượt mà không lag.',
-    priceMin: 25000,
-    priceMax: 150000,
-    oldPrice: 300000,
+    buyers: '980+ Người mua',
+    name: 'InNova Cheat 🔥 [Xả Lỗ Rút Vốn]',
+    shortDesc: 'Xả lỗ rút vốn cạnh tranh đối thủ: Buff dame, bắn siêu tốc, không giật 0%, cam xa FOV, an toàn bypass 100%.',
+    fullDesc: 'INNOVA CHEAT - PROXY VIP FREE FIRE (Android & iOS) [XẢ LỖ RÚT VỐN CẠNH TRANH]:\n- Tăng sát thương (Buff Dame), Bắn siêu tốc (Fast Fire), Không giật (No Recoil 0%).\n- Bơm máu siêu tốc (Fast Medkit), Góc nhìn rộng Cam xa (FOV 85°), Tăng tốc chạy (Speed Run).\n- Bypass an toàn chống ban 100%, kết nối ổn định, mượt mà không lag.',
+    priceMin: 10000,
+    priceMax: 100000,
+    oldPrice: 250000,
     image: 'assets/uploads/products/innova-cheat.jpg',
     images: [
-      { src: 'assets/uploads/products/innova-cheat.jpg', label: 'InNova Cheat', title: 'InNova Cheat - Proxy VIP Free Fire' }
+      { src: 'assets/uploads/products/innova-cheat.jpg', label: 'InNova Cheat', title: 'InNova Cheat - Xả Lỗ Rút Vốn Cạnh Tranh' }
     ],
     plans: [
       {
         name: 'Gói 1 Ngày',
-        price: 25000,
-        badge: 'Trải nghiệm',
+        price: 10000,
+        badge: 'Xả Lỗ 10k',
         action: 'Buff dame, bắn siêu tốc, không giật 0%, cam xa FOV 85° suốt 24 giờ.',
         fix: 'Bypass qua mặt hệ thống kiểm tra an toàn 100%, chống giật lag.',
-        pros: 'Chi phí cực rẻ chỉ 25k để trải nghiệm sức mạnh InNova Cheat.',
+        pros: 'Giá xả lỗ chỉ 10k - rẻ nhất thị trường để trải nghiệm InNova Cheat.',
         note: 'Hỗ trợ Android & iOS.'
       },
       {
         name: 'Gói 7 Ngày',
-        price: 70000,
-        badge: 'Tiết kiệm',
+        price: 30000,
+        badge: 'Xả Lỗ 30k',
         action: 'Sử dụng trọn bộ tính năng InNova Cheat liên tục trong 7 ngày (1 tuần).',
         fix: 'Tối ưu hóa đường truyền proxy, cập nhật bypass tự động 24/7.',
-        pros: 'Tiết kiệm chi phí, hỗ trợ kích hoạt và hướng dẫn cài đặt 1:1 qua Zalo.',
+        pros: 'Chỉ 30k cho 7 ngày trải nghiệm, tiết kiệm tối đa chi phí.',
         note: 'Hỗ trợ Android & iOS.'
       },
       {
         name: 'Gói 30 Ngày',
-        price: 150000,
-        badge: 'Phổ biến nhất',
+        price: 100000,
+        badge: 'Xả Lỗ 100k',
         action: 'Gói tháng toàn diện 30 ngày, leo rank Thách Đấu thả ga cả mùa giải.',
         fix: 'Khắc phục hoàn toàn delay, ổn định mượt mà 120 FPS, bảo hành trọn đời gói.',
-        pros: 'Tự do tuỳ chỉnh mọi chức năng, Zalo Admin Nexvia hỗ trợ ưu tiên 24/7.',
+        pros: 'Chỉ 100k gói 30 ngày (giá cũ 150k), Zalo Admin Nexvia hỗ trợ ưu tiên 24/7.',
         note: 'Hỗ trợ Android & iOS.'
       }
     ]
