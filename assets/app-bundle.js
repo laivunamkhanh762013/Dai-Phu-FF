@@ -239,7 +239,7 @@ function stripVietnamese(str) {
 /* ═══════════════════════════════════════════════════════════════════
    📋 ORDER CODE DELIVERY & DIRECT ADMIN ZALO FULFILLMENT
    - Toàn bộ đơn hàng sau khi thanh toán MBBank sẽ nhận Mã Đơn Hàng chính thức
-   - Khách sao chép Mã Đơn Hàng và gửi qua Zalo Anh Phú (0588500524) để nhận Key & cài đặt
+   - Khách sao chép Mã Đơn Hàng và gửi qua Zalo Admin Nexvia (0588500524) để nhận Key & cài đặt
    ═══════════════════════════════════════════════════════════════════ */
 var PRODUCT_KEY_VAULT = {
   'innova-cheat': { '1day': [], '7day': [], '30day': [] },
@@ -309,7 +309,7 @@ var PRODUCTS = [
     pinned: true,
     name: 'Slot Nhóm File Tiền VIP',
     shortDesc: 'Vào nhóm File Tiền VIP Nexvia VN - Nhận trọn bộ file kéo tâm VIP, cập nhật trọn đời.',
-    fullDesc: '1 SLOT VÀO NHÓM FILE TIỀN ĐỘC QUYỀN NEXVIA VN:\n- Nhận toàn bộ kho file kéo tâm VIP, proxy siêu mượt, data obb độc quyền cho iOS & Android.\n- Cập nhật liên tục các bản file mới nhất khi game ra mùa/bản mới.\n- Hỗ trợ trực tiếp 1:1 từ Admin Phú Bán Hàng (Zalo: 0588500524).',
+    fullDesc: '1 SLOT VÀO NHÓM FILE TIỀN ĐỘC QUYỀN NEXVIA VN:\n- Nhận toàn bộ kho file kéo tâm VIP, proxy siêu mượt, data obb độc quyền cho iOS & Android.\n- Cập nhật liên tục các bản file mới nhất khi game ra mùa/bản mới.\n- Hỗ trợ trực tiếp 1:1 từ Admin Nexvia (Zalo: 0588500524).',
     priceMin: 20000,
     priceMax: 20000,
     oldPrice: 50000,
@@ -370,7 +370,7 @@ var PRODUCTS = [
         badge: 'Phổ biến',
         action: 'Gói tháng toàn diện 30 ngày: Aimlock đầu, Aim Drag, ESP Box, ESP Line, No Recoil.',
         fix: 'Bypass antiban 99.99% ổn định cả mùa giải, mượt mà 120 FPS.',
-        pros: 'Tiết kiệm tới 70% so với mua lẻ, hỗ trợ VIP ưu tiên 1:1 từ Anh Phú.',
+        pros: 'Tiết kiệm tới 70% so với mua lẻ, hỗ trợ VIP ưu tiên 1:1 từ Admin Nexvia.',
         note: 'Dành cho thiết bị Android (OB55). Hỗ trợ cài đặt 1:1 qua Zalo.'
       },
       {
@@ -426,7 +426,7 @@ var PRODUCTS = [
         badge: 'Phổ biến nhất',
         action: 'Gói tháng toàn diện 30 ngày, leo rank Thách Đấu thả ga cả mùa giải.',
         fix: 'Khắc phục hoàn toàn delay, ổn định mượt mà 120 FPS, bảo hành trọn đời gói.',
-        pros: 'Tự do tuỳ chỉnh mọi chức năng, Zalo Admin Anh Phú hỗ trợ ưu tiên 24/7.',
+        pros: 'Tự do tuỳ chỉnh mọi chức năng, Zalo Admin Nexvia hỗ trợ ưu tiên 24/7.',
         note: 'Hỗ trợ Android & iOS.'
       }
     ]
@@ -803,7 +803,7 @@ var PRODUCTS = [
         price: 450000,
         action: 'Bản quyền 1 tháng đầy đủ tính năng cao cấp của dòng Migul.',
         fix: 'Bảo vệ tài khoản liên tục với hệ thống cập nhật bypass tự động.',
-        pros: 'Được hỗ trợ kỹ thuật trực tiếp 1:1 từ Admin Phú Bán Hàng (NEXVIA VN).',
+        pros: 'Được hỗ trợ kỹ thuật trực tiếp 1:1 từ Admin Nexvia (NEXVIA VN).',
         note: 'Hỗ trợ các thiết bị iOS.'
       }
     ]
@@ -1601,7 +1601,7 @@ function handleBuyVersionClick(pId, planIdx) {
 
   // NẾU SẢN PHẨM ĐANG CHÁY HÀNG
   if (p.soldOut) {
-    toast('🔥', 'Sản phẩm này hiện đang CHÁY HÀNG! Vui lòng liên hệ Zalo Anh Phú (0588500524) để đặt trước.');
+    toast('🔥', 'Sản phẩm này hiện đang CHÁY HÀNG! Vui lòng liên hệ Zalo Admin Nexvia (0588500524) để đặt trước.');
     return;
   }
 
@@ -1880,7 +1880,7 @@ function checkPaymentApi(orderId, price, isManual) {
                 + '<b style="color:#f87171;font-size:13px;">Hệ thống chưa nhận được tiền!</b>'
                 + '<div style="margin-top:4px;color:#cbd5e1;font-size:11.5px;line-height:1.5;">'
                   + '• Vui lòng mở App Ngân hàng quét mã VietQR ở trên (Nội dung chuyển khoản phải là <b>' + window.currentOrderMemo + '</b>).<br>'
-                  + '• Ngân hàng có thể mất 5 - 15 giây để gửi thông báo. Bạn có thể bấm lại sau vài giây hoặc gửi ảnh bill cho <b>Anh Phú (Zalo: 0588500524)</b> để nhận file ngay!'
+                  + '• Ngân hàng có thể mất 5 - 15 giây để gửi thông báo. Bạn có thể bấm lại sau vài giây hoặc gửi ảnh bill cho <b>Admin Nexvia (Zalo: 0588500524)</b> để nhận file ngay!'
                 + '</div>'
               + '</div>'
             + '</div>';
@@ -2013,13 +2013,13 @@ function confirmPaid() {
   manualCheckPayment();
 }
 
-function sendOrderToPhu() {
+function sendOrderToNexvia() {
   var memo = window.currentOrderMemo || (document.getElementById('paidConfirmCode') ? document.getElementById('paidConfirmCode').textContent.trim() : '');
   var prod = currentProduct ? currentProduct.name : 'Phần Mềm FF';
   var plan = currentPlan ? currentPlan.name : '';
   var price = currentPlan ? currentPlan.price : 0;
 
-  var textToCopy = 'Chào Anh Phú, em vừa mua ' + prod + (plan ? ' (' + plan + ' - ' + formatVND(price) + ')' : '') + '. Mã đơn hàng của em là: ' + memo + '. Anh check và gửi Key + file cài đặt cho em với ạ!';
+  var textToCopy = 'Chào Admin Nexvia, em vừa mua ' + prod + (plan ? ' (' + plan + ' - ' + formatVND(price) + ')' : '') + '. Mã đơn hàng của em là: ' + memo + '. Shop check và gửi Key + file cài đặt cho em với ạ!';
 
   if (navigator.clipboard) {
     navigator.clipboard.writeText(textToCopy);
@@ -2032,12 +2032,14 @@ function sendOrderToPhu() {
     document.body.removeChild(ta);
   }
 
-  toast('📋', 'Đã sao chép Mã Đơn & Đang mở Zalo Anh Phú...');
+  toast('📋', 'Đã sao chép Mã Đơn & Đang mở Zalo Admin Nexvia...');
 
   setTimeout(function() {
     window.open('https://zalo.me/0588500524', '_blank');
   }, 350);
 }
+window.sendOrderToNexvia = sendOrderToNexvia;
+window.sendOrderToPhu = sendOrderToNexvia;
 
 
 function formatVndWithoutUnit(price) {
@@ -2066,7 +2068,7 @@ function buildOrderReceiptText(order) {
     '📋 MÃ ĐƠN HÀNG CỦA BẠN:',
     memo,
     '',
-    '👉 Vui lòng gửi Mã Đơn cho Zalo Anh Phú (0588500524) để nhận Key & Hướng dẫn cài đặt!'
+    '👉 Vui lòng gửi Mã Đơn cho Zalo Admin Nexvia (0588500524) để nhận Key & Hướng dẫn cài đặt!'
   ];
 
   return lines.join('\n');
@@ -2121,9 +2123,9 @@ function openPaidModal(order) {
   if (headerTitle) headerTitle.textContent = 'ĐÃ XÁC NHẬN TIỀN VÀO MBBANK!';
 
   // THÔNG BÁO CẤP MÃ ĐƠN HÀNG CHÍNH THỨC
-  if (headerSub) headerSub.innerHTML = '<span style="color:#fbbf24;font-weight:700;">Đơn hàng đã thanh toán thành công!</span> Vui lòng gửi <b>Mã Đơn Hàng</b> cho Anh Phú qua Zalo để nhận Key bản quyền & file cài đặt VIP.';
+  if (headerSub) headerSub.innerHTML = '<span style="color:#fbbf24;font-weight:700;">Đơn hàng đã thanh toán thành công!</span> Vui lòng gửi <b>Mã Đơn Hàng</b> cho Admin Nexvia qua Zalo để nhận Key bản quyền & file cài đặt VIP.';
   if (keyBox) keyBox.style.display = 'block';
-  if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-fingerprint" style="color:#f59e0b;"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ZALO ANH PHÚ ĐỂ LẤY KEY):';
+  if (keyTitleEl) keyTitleEl.innerHTML = '<i class="fa-solid fa-fingerprint" style="color:#f59e0b;"></i> MÃ ĐƠN HÀNG CỦA BẠN (GỬI ZALO ADMIN NEXVIA ĐỂ LẤY KEY):';
   if (keyEl) {
     keyEl.textContent = memo;
     keyEl.style.letterSpacing = '2px';
@@ -2187,7 +2189,7 @@ function openPaidModal(order) {
         + (planObj.downloadUrl ? '<a href="' + escapeHTML(planObj.downloadUrl) + '" target="_blank" rel="noopener noreferrer" class="btn btn-block" style="background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;font-weight:800;font-size:12.5px;padding:10px 14px;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-shadow:0 4px 14px rgba(2,132,199,0.4);">'
           + '<i class="fa-solid fa-cloud-arrow-down"></i> TẢI FILE NEXT DRAG (TẶNG KÈM TRỊ GIÁ 150K)'
         + '</a>' : '')
-        + '<div style="font-size:11px;color:#94a3b8;margin-top:6px;text-align:center;"><i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> Gửi Mã Đơn Hàng qua Zalo Admin Anh Phú (0588500524) để được kích hoạt & nhận hướng dẫn 1:1.</div>'
+        + '<div style="font-size:11px;color:#94a3b8;margin-top:6px;text-align:center;"><i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> Gửi Mã Đơn Hàng qua Zalo Admin Nexvia (0588500524) để được kích hoạt & nhận hướng dẫn 1:1.</div>'
       + '</div>';
     } else {
       bonusCard.style.display = 'none';
@@ -2370,7 +2372,7 @@ function lookupOrderCode(manualCode) {
           + '<strong style="color:#00f0ff;font-family:monospace;font-size:15px;letter-spacing:1px;">' + cleanId + '</strong>'
           + '<button type="button" class="btn" onclick="copyText(\'' + cleanId + '\', this)" style="background:var(--rd-volt,#d7ff3c);color:#0a0d14;font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;cursor:pointer;border:none;">Sao chép Mã Đơn</button>'
         + '</div>'
-        + '<div style="font-size:11.5px;color:#94a3b8;margin-top:6px;">👉 Vui lòng gửi Mã Đơn này cho Zalo <b>0588500524 (Anh Phú)</b> để nhận Key bản quyền & file cài đặt.</div>'
+        + '<div style="font-size:11.5px;color:#94a3b8;margin-top:6px;">👉 Vui lòng gửi Mã Đơn này cho Zalo <b>0588500524 (Admin Nexvia)</b> để nhận Key bản quyền & file cài đặt.</div>'
       + '</div>';
     }
 
@@ -2389,7 +2391,7 @@ function lookupOrderCode(manualCode) {
     + '</div>'
     + '<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-wrap:wrap;gap:8px;">'
       + '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener" class="btn" style="background:#0284c7;color:#fff;font-size:12px;padding:7px 14px;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-weight:700;">'
-        + '<i class="fa-solid fa-headset"></i> Cần hỗ trợ? Nhắn Zalo Anh Phú (0588500524)'
+        + '<i class="fa-solid fa-headset"></i> Cần hỗ trợ? Nhắn Zalo Admin Nexvia (0588500524)'
       + '</a>'
     + '</div>';
   }
@@ -2421,7 +2423,7 @@ function lookupOrderCode(manualCode) {
           resultBox.innerHTML = '<div style="text-align:center;padding:10px;color:#fca5a5;">'
             + '<i class="fa-solid fa-circle-xmark" style="font-size:24px;margin-bottom:6px;"></i>'
             + '<div style="font-weight:700;font-size:14px;">Không tìm thấy mã đơn: ' + escapeHTML(code) + '</div>'
-            + '<p style="font-size:11.5px;color:#cbd5e1;margin-top:4px;">Vui lòng kiểm tra lại mã hoặc liên hệ Zalo <b>0588500524 (Anh Phú)</b> để đối soát trực tiếp.</p>'
+            + '<p style="font-size:11.5px;color:#cbd5e1;margin-top:4px;">Vui lòng kiểm tra lại mã hoặc liên hệ Zalo <b>0588500524 (Admin Nexvia)</b> để đối soát trực tiếp.</p>'
           + '</div>';
         }
       })
@@ -3056,7 +3058,7 @@ function executeKeyRedemption(code, originalInput) {
     resultBox.innerHTML = '<div style="background:rgba(239,68,68,0.12);border:1.5px solid rgba(239,68,68,0.4);border-radius:14px;padding:16px;text-align:center;color:#fca5a5;">'
       + '<div style="font-size:22px;margin-bottom:6px;">⚠️</div>'
       + '<div style="font-weight:800;font-size:14.5px;margin-bottom:4px;color:#f87171;">KHÔNG TÌM THẤY MÃ KEY HOẶC MÃ ĐƠN HÀNG!</div>'
-      + '<div style="font-size:12.5px;color:#cbd5e1;line-height:1.5;margin-bottom:12px;">Mã <b>' + escapeHTML(originalInput) + '</b> chưa được kích hoạt hoặc chưa đúng định dạng. Vui lòng kiểm tra lại hoặc liên hệ Admin Phú để được hỗ trợ 1:1.</div>'
+      + '<div style="font-size:12.5px;color:#cbd5e1;line-height:1.5;margin-bottom:12px;">Mã <b>' + escapeHTML(originalInput) + '</b> chưa được kích hoạt hoặc chưa đúng định dạng. Vui lòng kiểm tra lại hoặc liên hệ Admin Nexvia để được hỗ trợ 1:1.</div>'
       + '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size:12px;padding:8px 14px;border-color:rgba(239,68,68,0.4);color:#fca5a5;">'
       + '<i class="fa-solid fa-headset"></i> Nhắn Zalo Admin: 0588500524'
       + '</a>'
@@ -3127,7 +3129,7 @@ function executeKeyRedemption(code, originalInput) {
     + '<div class="seller-action-btns">'
       + actionButtonHtml
       + '<a href="https://zalo.me/0588500524" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding:10px;font-size:12px;color:#fde047;border-color:rgba(245,211,114,0.3);">'
-        + '<i class="fa-solid fa-headset"></i> Hỗ trợ cài đặt 1:1 qua Zalo Phú Bán Hàng (0588500524)'
+        + '<i class="fa-solid fa-headset"></i> Hỗ trợ cài đặt 1:1 qua Zalo Admin Nexvia (0588500524)'
       + '</a>'
     + '</div>'
   + '</div>';
