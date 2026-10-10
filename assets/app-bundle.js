@@ -1056,10 +1056,20 @@ function handleRegisterSubmit(e) {
   e.preventDefault();
   var u = document.getElementById('regUser').value.trim();
   var p = document.getElementById('regPass') ? document.getElementById('regPass').value.trim() : '';
-  var phone = document.getElementById('regPhone').value.trim();
+  var phoneInput = document.getElementById('regPhone');
+  var phone = phoneInput ? phoneInput.value.trim() : '';
   if (!u) return;
-  if (phone.replace(/[^0-9]/g, '').length < 10) {
-    toast('📞', 'Số điện thoại/Zalo đăng ký phải từ 10 số trở lên!');
+
+  var cleanDigits = phone.replace(/[^0-9]/g, '');
+  if (cleanDigits.length !== 10 && cleanDigits.length !== 11) {
+    toast('⚠️', 'Số điện thoại/Zalo đăng ký phải đúng 10 số (Ví dụ: 0987654321)!');
+    if (phoneInput) phoneInput.focus();
+    return;
+  }
+
+  if (!/^(0[3|5|7|8|9])[0-9]{8}$/.test(cleanDigits) && !/^(84[3|5|7|8|9])[0-9]{8}$/.test(cleanDigits)) {
+    toast('⚠️', 'Số điện thoại không hợp lệ (Phải bắt đầu bằng 03, 05, 07, 08, 09)!');
+    if (phoneInput) phoneInput.focus();
     return;
   }
 

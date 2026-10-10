@@ -121,10 +121,12 @@ module.exports = async function handler(req, res) {
 
       // ──────────────── XỬ LÝ ĐĂNG KÝ (REGISTER) ────────────────
       if (action === 'register') {
-        const cleanPhoneDigits = rawPhone.replace(/\s+/g, '');
-        const digitsOnly = cleanPhoneDigits.replace(/[^0-9]/g, '');
-        if (digitsOnly.length < 10 || !/^(0|\+84)[0-9]{9,11}$/.test(cleanPhoneDigits)) {
-          return res.status(400).json({ success: false, error: 'Số điện thoại/Zalo đăng ký phải từ 10 số trở lên (Ví dụ: 0987654321)!' });
+        const cleanPhoneDigits = String(rawPhone || '').replace(/\D/g, '');
+        if (cleanPhoneDigits.length !== 10 && cleanPhoneDigits.length !== 11) {
+          return res.status(400).json({ success: false, error: 'Số điện thoại/Zalo đăng ký phải đúng 10 số (Ví dụ: 0987654321)!' });
+        }
+        if (!/^(0[3|5|7|8|9])[0-9]{8}$/.test(cleanPhoneDigits) && !/^(84[3|5|7|8|9])[0-9]{8}$/.test(cleanPhoneDigits)) {
+          return res.status(400).json({ success: false, error: 'Số điện thoại/Zalo không hợp lệ (Đầu số 03, 05, 07, 08, 09)!' });
         }
 
         const hashedPassword = await hashPassword(password);
@@ -158,7 +160,7 @@ module.exports = async function handler(req, res) {
           success: true,
           message: 'Đăng ký tài khoản thành công!',
           token: token,
-          user: { username: registerResult.user.username, phone: maskPhone(registerResult.user.phone) }
+          user: { username: registerResult.user.username, phone: registerResult.user.phone }
         });
       }
 
@@ -197,7 +199,7 @@ module.exports = async function handler(req, res) {
           success: true,
           message: 'Đăng nhập thành công!',
           token: token,
-          user: { username: user.username, phone: maskPhone(user.phone) }
+          user: { username: user.username, phone: user.phone || '' }
         });
       }
     }

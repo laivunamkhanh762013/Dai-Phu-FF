@@ -858,8 +858,8 @@
         <input type="password" id="regPass" class="input" placeholder="Tối thiểu 6 ký tự..." required autocomplete="new-password">
       </div>
       <div class="form-group">
-        <label class="label"><i class="fa-solid fa-phone" style="color:#34d399;margin-right:4px;"></i> Số điện thoại hoặc Zalo (nhận key &amp; hỗ trợ)</label>
-        <input type="tel" id="regPhone" class="input" placeholder="Tối thiểu 10 số (Ví dụ: 0987654321)..." minlength="10" required>
+        <label class="label"><i class="fa-solid fa-phone" style="color:#34d399;margin-right:4px;"></i> Số điện thoại / Zalo (Đúng 10 số để nhận key)</label>
+        <input type="tel" id="regPhone" class="input" placeholder="Nhập đúng 10 số (Ví dụ: 0987654321)..." minlength="10" maxlength="11" pattern="[0-9]{10,11}" required>
       </div>
       <button type="submit" class="btn-auth-submit">
         <i class="fa-solid fa-user-check"></i> Hoàn tất đăng ký &amp; Tiếp tục mua

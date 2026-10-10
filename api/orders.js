@@ -321,12 +321,19 @@ module.exports = async function handler(req, res) {
         const realProductName = (prodObj && prodObj.name) || prodKey;
         const newId = generateSecureOrderId();
         const username = userPayload ? userPayload.user : (sanitizeText(body.user, 40) || 'Khách vãng lai');
-        const phone = sanitizeText(body.phone, 15);
+        let userPhone = sanitizeText(body.phone, 20);
 
         let creationError = null;
         const orderCreationResult = await orderMutex.run(async () => {
-          const { orders } = await getGist();
+          const { orders, users } = await getGist();
           const rawList = Array.isArray(orders) ? orders : [];
+          const userList = Array.isArray(users) ? users : [];
+
+          // Nếu user đã đăng nhập, lấy số điện thoại gốc 10 số từ profile
+          const matchedUser = userList.find(u => u && u.username && u.username.toLowerCase() === username.toLowerCase());
+          if (matchedUser && matchedUser.phone && matchedUser.phone.length >= 10) {
+            userPhone = matchedUser.phone;
+          }
 
           // Tự động dọn dẹp các đơn pending > 1h trước khi tạo đơn mới
           const { list } = pruneExpiredPendingOrders(rawList);
@@ -354,7 +361,7 @@ module.exports = async function handler(req, res) {
             plan: planName,
             price: canonicalPrice,
             user: username,
-            phone: phone,
+            phone: userPhone,
             time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
             createdAt: nowTimestamp,
             expiresAt: nowTimestamp + ORDER_CONFIG.pendingTtlMs,
