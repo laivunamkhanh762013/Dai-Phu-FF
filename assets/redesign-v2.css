@@ -141,6 +141,38 @@ h1, h2, h3, h4,
   box-shadow: none !important;
 }
 
+/* ── Filter Buttons ── */
+.filter-btn {
+  background: var(--rd-surface) !important;
+  border: 1px solid var(--rd-line) !important;
+  color: var(--rd-muted) !important;
+  border-radius: 4px !important;
+  padding: 7px 14px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  transition: all .15s ease !important;
+  cursor: pointer !important;
+}
+
+.filter-btn:hover {
+  background: var(--rd-surface-2) !important;
+  color: var(--rd-text) !important;
+  border-color: var(--rd-accent) !important;
+}
+
+.filter-btn.active {
+  background: var(--rd-accent) !important;
+  border-color: var(--rd-accent) !important;
+  color: #121110 !important;
+  font-weight: 800 !important;
+}
+
+.tag-discount {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+}
+
 /* ── Bento hero: Flagship Showcase (Bespoke 2-column Grid) ── */
 .vip-flagship-bento {
   position: relative !important;
