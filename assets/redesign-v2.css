@@ -182,10 +182,10 @@ h1, h2, h3, h4,
   align-items: center !important;
   background: var(--rd-surface) !important;
   border: 1px solid var(--rd-line) !important;
-  border-radius: 6px !important;
+  border-radius: 16px !important;
   padding: 32px 36px !important;
-  margin: 32px 0 40px 0 !important;
-  clip-path: polygon(0 0, 100% 0, 100% 94%, 96% 100%, 0 100%);
+  margin: 20px 0 !important;
+  clip-path: none !important;
   overflow: hidden !important;
   cursor: pointer !important;
 }
