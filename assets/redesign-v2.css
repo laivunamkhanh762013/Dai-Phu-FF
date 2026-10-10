@@ -6,7 +6,7 @@
    đối xứng, bớt glow tràn lan.
    ═══════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
 
 :root {
   /* Bỏ tím-cyan-neon mặc định, chuyển sang bảng màu "than + đồng" riêng biệt */
@@ -23,8 +23,8 @@
   --rd-danger: #c5553d;
   --rd-volt: var(--rd-accent);
 
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Space Grotesk', 'Inter', sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+  --font-body: 'Be Vietnam Pro', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ── Icon Palette & Utility Classes (Thay thế hoàn toàn inline style) ── */
@@ -38,24 +38,30 @@ body.storefront {
   background: var(--rd-bg) !important;
   color: var(--rd-text) !important;
   font-family: var(--font-body) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Typography: cặp serif-hiển thị + sans-grotesk tạo cá tính ── */
+/* ── Typography: Hiện đại, sắc nét, thể thao & công nghệ ── */
 .hero-main-title,
 .bento-title,
-h2, h3,
+h1, h2, h3, h4,
 .m-prod-title,
 .paid-header-title,
-.seller-title {
+.seller-title,
+.card-price-val,
+.bento-price-val {
   font-family: var(--font-display) !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.01em !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
 }
 
 .hero-brand-glitch {
   font-family: var(--font-display) !important;
-  font-style: italic;
-  font-weight: 500 !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: uppercase;
 }
 
 .hero-gradient-text {
