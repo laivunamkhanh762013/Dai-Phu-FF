@@ -287,13 +287,16 @@
         <h2><i class="fa-solid fa-crown" style="color:#f5d372;font-size:22px;margin-right:8px;"></i> Bộ Sưu Tập Sản Phẩm Luxury</h2>
         <p>Tuyển chọn các phiên bản phần mềm tối ưu độc quyền, hiệu năng 120 FPS mượt mà cho game thủ chuyên nghiệp.</p>
       </div>
-      <div class="product-tools">
-        <label class="search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="product-search" type="search" placeholder="Tìm sản phẩm..." autocomplete="off">
-          <kbd>/</kbd>
-        </label>
+    <!-- Filter Buttons & Search -->
+    <div class="filters-row" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:18px 0 24px;">
+      <div class="filters" style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button type="button" class="filter-btn active" data-category="all">Tất cả</button>
+        <button type="button" class="filter-btn" data-category="giam-gia-manh" style="border-color:rgba(239,68,68,0.6);color:#fca5a5;background:rgba(239,68,68,0.12);"><i class="fa-solid fa-fire" style="color:#ef4444;"></i> Giảm Giá Mạnh</button>
+        <button type="button" class="filter-btn" data-category="Proxy & Injector">Proxy &amp; Injector</button>
+        <button type="button" class="filter-btn" data-category="Menu & Mod">Menu &amp; Mod</button>
+        <button type="button" class="filter-btn" data-category="File Kéo Tâm & VIP">File Kéo Tâm &amp; VIP</button>
       </div>
+      <div class="result-count" id="product-count" style="color:var(--rd-muted);font-size:12px;font-weight:700;"></div>
     </div>
 
     <!-- Product Grid (Exact 4 columns matching vipgonopro.shop) -->

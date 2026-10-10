@@ -391,9 +391,11 @@ var PRODUCTS = [
     category: 'Proxy & Injector',
     plat: 'Adr • iOS',
     buyers: '980+ Người mua',
+    hotSale: true,
+    discountBadge: 'GIẢM SỐC -65%',
     name: 'InNova Cheat 🔥 [Xả Lỗ Rút Vốn]',
-    shortDesc: 'Xả lỗ rút vốn cạnh tranh đối thủ: Buff dame, bắn siêu tốc, không giật 0%, cam xa FOV, an toàn bypass 100%.',
-    fullDesc: 'INNOVA CHEAT - PROXY VIP FREE FIRE (Android & iOS) [XẢ LỖ RÚT VỐN CẠNH TRANH]:\n- Tăng sát thương (Buff Dame), Bắn siêu tốc (Fast Fire), Không giật (No Recoil 0%).\n- Bơm máu siêu tốc (Fast Medkit), Góc nhìn rộng Cam xa (FOV 85°), Tăng tốc chạy (Speed Run).\n- Bypass an toàn chống ban 100%, kết nối ổn định, mượt mà không lag.',
+    shortDesc: 'Xả lỗ rút vốn cạnh tranh: 1 Ngày 10k · 7 Ngày 30k · 30 Ngày 100k. Buff dame, bắn siêu tốc, không giật 0%, cam xa FOV.',
+    fullDesc: 'INNOVA CHEAT - PROXY VIP FREE FIRE (Android & iOS) [XẢ LỖ RÚT VỐN CẠNH TRANH ĐỐI THỦ]:\n- 💥 Gói 1 Ngày: 10.000đ (Giá cũ 25.000đ)\n- 💥 Gói 7 Ngày: 30.000đ (Giá cũ 70.000đ)\n- 💥 Gói 30 Ngày: 100.000đ (Giá cũ 150.000đ)\n- Tính năng: Tăng sát thương (Buff Dame), Bắn siêu tốc (Fast Fire), Không giật (No Recoil 0%), Bơm máu siêu tốc (Fast Medkit), Góc nhìn rộng Cam xa (FOV 85°), Bypass an toàn 100%.',
     priceMin: 10000,
     priceMax: 100000,
     oldPrice: 250000,
@@ -436,6 +438,8 @@ var PRODUCTS = [
     category: 'File Kéo Tâm & VIP',
     plat: 'iOS • Android',
     buyers: '5+ Người mua',
+    hotSale: true,
+    discountBadge: 'GIẢM 50%',
     name: 'Uratr Cheat VIP 🇻🇳 (iOS • Android)',
     shortDesc: 'Uratr Cheat VIP độc quyền - Cài nhanh không cần chứng chỉ, 100% Anti-Ban Bypass, tặng kèm Next Drag trị giá 150k & Video cài.',
     fullDesc: 'URATR CHEAT VIP 🇻🇳 (iOS & Android) - BẢN VIP ĐỘC QUYỀN:\n- Cài nhanh không cần chứng chỉ cho iOS & Android.\n- 100% Anti-Ban Bypass - Chống khóa tài khoản tuyệt đối.\n- Hỗ trợ Android 11 - 16 & iOS 15.8.8 - iOS 26.5.\n- TẶNG KÈM TRỌN BỘ: File Next Drag🇻🇳 trị giá 150k + Video hướng dẫn chi tiết.\n- Cam kết chức năng rõ ràng, chuẩn như video (Hỗ trợ 1:1 từ Admin Zalo: 0588500524).',
@@ -1129,7 +1133,8 @@ function renderProducts() {
   var filtered = PRODUCTS.filter(function(p) {
     var matchCat = (activeCategory === 'all' || 
       p.category === activeCategory || 
-      (activeCategory === 'Proxy iOS' && (p.category === 'Proxy iOS' || p.category === 'NovaX' || p.category === 'Proxy & NovaX')) ||
+      (activeCategory === 'giam-gia-manh' && (p.hotSale || p.discountBadge || p.id === 'innova-cheat' || p.id === 'uratr-cheat-vip')) ||
+      (activeCategory === 'Proxy iOS' && (p.category === 'Proxy iOS' || p.category === 'NovaX' || p.category === 'Proxy & NovaX' || p.category === 'Proxy & Injector')) ||
       (activeCategory === 'SX2 & Panel' && (p.category === 'Regedit & Panel' || p.category === 'SX2 & Panel')));
     var q = searchQuery.toLowerCase().trim();
     var matchSearch = !q || p.name.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
@@ -1194,6 +1199,14 @@ function renderProducts() {
     buyerTag.innerHTML = '<i class="fa-solid fa-fire text-amber" style="color:#f59e0b;font-size:8.5px;"></i> ' + escapeHTML(p.buyers);
     thumbDiv.appendChild(buyerTag);
 
+    if (p.discountBadge || p.hotSale) {
+      var discountBadgeEl = document.createElement('span');
+      discountBadgeEl.className = 'tag tag-discount';
+      discountBadgeEl.style.cssText = 'position:absolute;top:8px;right:8px;background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;font-weight:900;font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid rgba(254,202,202,0.6);box-shadow:0 0 10px rgba(239,68,68,0.5);letter-spacing:0.3px;z-index:3;';
+      discountBadgeEl.innerHTML = '<i class="fa-solid fa-fire"></i> ' + escapeHTML(p.discountBadge || 'GIẢM GIÁ MẠNH');
+      thumbDiv.appendChild(discountBadgeEl);
+    }
+
     if (p.soldOut) {
       var soldBadge = document.createElement('span');
       soldBadge.className = 'tag-soldout';
@@ -1212,7 +1225,6 @@ function renderProducts() {
         if (!this.getAttribute('data-tried-uploads')) {
           this.setAttribute('data-tried-uploads', 'true');
           var rawName = (p.image || '').split('/').pop() || '';
-          // Chỉ cho phép ký tự tên file an toàn (chữ, số, gạch ngang, gạch dưới, chấm)
           var safeName = rawName.replace(/[^a-zA-Z0-9_.-]/g, '');
           if (safeName && !safeName.startsWith('javascript:')) {
             this.src = 'assets/uploads/products/' + safeName;
@@ -1220,7 +1232,7 @@ function renderProducts() {
           }
         }
         this.style.display = 'none';
-                var fallbackPlaceholder = document.createElement('div');
+        var fallbackPlaceholder = document.createElement('div');
         fallbackPlaceholder.className = 'thumb-no-img';
         fallbackPlaceholder.innerHTML = '<i class="fa-solid fa-gem"></i><span>' + escapeHTML(p.name) + '</span>';
         if (this.parentNode) {
@@ -1275,7 +1287,9 @@ function renderProducts() {
     var priceBox = document.createElement('div');
     priceBox.className = 'card-pricing-block';
 
-    var oldPriceHtml = p.oldPrice ? ' <del class="card-price-old">' + formatVND(p.oldPrice) + '</del>' : '';
+    var discountPercent = (p.oldPrice && p.priceMin && p.oldPrice > p.priceMin) ? Math.round((1 - p.priceMin / p.oldPrice) * 100) : 0;
+    var discountTagHtml = discountPercent > 0 ? ' <span style="background:rgba(239,68,68,0.18);color:#f87171;border:1px solid rgba(239,68,68,0.4);font-size:10px;font-weight:900;padding:1px 5px;border-radius:3px;margin-left:4px;">-' + discountPercent + '%</span>' : '';
+    var oldPriceHtml = p.oldPrice ? ' <del class="card-price-old">' + formatVND(p.oldPrice) + '</del>' + discountTagHtml : '';
     var isSinglePrice = (p.priceMin === p.priceMax);
     var tierBadgeText = p.plans.length > 1 ? (p.plans.length + ' phiên bản') : '1 phiên bản';
 
@@ -1362,7 +1376,7 @@ document.querySelectorAll('.filter-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    activeCategory = btn.getAttribute('data-category-filter');
+    activeCategory = btn.getAttribute('data-category') || btn.getAttribute('data-category-filter') || 'all';
     renderProducts();
   });
 });
