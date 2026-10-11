@@ -1507,6 +1507,26 @@ function openBuyModalById(id, targetPlanIdx) {
   }
 }
 
+/* FORMAT BADGE NỀN TẢNG THIẾT BỊ (APPLE / ANDROID / PC) */
+function formatProductPlatformHtml(platStr) {
+  var raw = platStr || 'iOS • Android';
+  var lower = raw.toLowerCase();
+  var hasApple = lower.indexOf('ios') !== -1 || lower.indexOf('iphone') !== -1 || lower.indexOf('ipad') !== -1 || lower.indexOf('apple') !== -1;
+  var hasAndroid = lower.indexOf('android') !== -1 || lower.indexOf('adr') !== -1;
+  var hasPC = lower.indexOf('pc') !== -1 || lower.indexOf('windows') !== -1;
+
+  var items = [];
+  if (hasApple) items.push('<i class="fa-brands fa-apple"></i> iOS');
+  if (hasAndroid) items.push('<i class="fa-brands fa-android"></i> Android');
+  if (hasPC) items.push('<i class="fa-solid fa-desktop"></i> PC');
+
+  if (items.length === 0) {
+    items.push('<i class="fa-solid fa-microchip"></i> ' + escapeHTML(raw));
+  }
+
+  return '<span class="vb-plat-group">' + items.join(' <span class="vb-plat-sep">•</span> ') + '</span>';
+}
+
 /* RENDER TỪNG KHỐI PHIÊN BẢN RIÊNG BIỆT (BLOCK 1.0, BLOCK 2.0...) */
 function renderModalVersionBlocks(p, activeIdx) {
   var quickNavEl = document.getElementById('mQuickNav');
@@ -1576,17 +1596,32 @@ function renderModalVersionBlocks(p, activeIdx) {
     var planDiscountPercent = (planOldPrice && planOldPrice > plan.price) ? Math.round((1 - plan.price / planOldPrice) * 100) : 0;
     var planDiscountTag = planDiscountPercent > 0 ? ' <span style="background:rgba(239,68,68,0.18);color:#f87171;border:1px solid rgba(239,68,68,0.4);font-size:10px;font-weight:900;padding:2px 6px;border-radius:4px;margin-left:6px;">-' + planDiscountPercent + '%</span>' : '';
 
+    var platHtml = formatProductPlatformHtml(p.plat);
+    var stockBadgeHtml = p.soldOut
+      ? '<span class="vb-stock-badge sold-out"><i class="fa-solid fa-circle-exclamation"></i> Tạm hết slot</span>'
+      : '<span class="vb-stock-badge"><span class="stock-live-dot"></span> Sẵn Hàng · Giao Tự Động</span>';
+    
+    var trustBadgeHtml = '';
+    if (plan.name.indexOf('Vĩnh Viễn') !== -1 || (plan.action && plan.action.indexOf('trọn đời') !== -1)) {
+      trustBadgeHtml = '<span class="vb-trust-badge"><i class="fa-solid fa-infinity"></i> Bản Vĩnh Viễn</span>';
+    } else if (p.id === 'nhom-file-tien') {
+      trustBadgeHtml = '<span class="vb-trust-badge"><i class="fa-solid fa-bolt"></i> Vào Nhóm Nhận File</span>';
+    } else {
+      trustBadgeHtml = '<span class="vb-trust-badge"><i class="fa-solid fa-shield-halved"></i> Hỗ Trợ 1:1</span>';
+    }
+
     blocksHtml += '<div class="version-block-card" id="vb-' + p.id + '-' + idx + '">'
       + '<div class="vb-header">'
         + '<div class="vb-title-wrap">'
           + '<h3 class="vb-title">' + escapeHTML(plan.name) + '</h3>'
           + '<div class="vb-meta-row">'
-            + '<span class="vb-plat-badge"><i class="fa-solid fa-microchip"></i> ' + escapeHTML(p.plat || 'iOS & Android') + '</span>'
-            + '<span class="vb-stock-badge"><span class="stock-live-dot"></span> Sẵn sàng kích hoạt</span>'
+            + platHtml
+            + stockBadgeHtml
+            + trustBadgeHtml
           + '</div>'
         + '</div>'
         + '<div class="vb-price-box">'
-          + '<div style="display:flex;align-items:baseline;justify-content:flex-end;flex-wrap:wrap;">'
+          + '<div class="vb-price-main-row">'
             + '<span class="vb-price">' + formatVND(plan.price) + '</span>'
             + planOldPriceHtml
             + planDiscountTag
