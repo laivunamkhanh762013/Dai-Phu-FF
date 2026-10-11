@@ -1612,21 +1612,21 @@ function renderModalVersionBlocks(p, activeIdx) {
 
     blocksHtml += '<div class="version-block-card" id="vb-' + p.id + '-' + idx + '">'
       + '<div class="vb-header">'
-        + '<div class="vb-title-wrap">'
+        + '<div class="vb-top-row">'
           + '<h3 class="vb-title">' + escapeHTML(plan.name) + '</h3>'
-          + '<div class="vb-meta-row">'
-            + platHtml
-            + stockBadgeHtml
-            + trustBadgeHtml
+          + '<div class="vb-price-box">'
+            + '<div class="vb-price-main-row">'
+              + '<span class="vb-price">' + formatVND(plan.price) + '</span>'
+              + planOldPriceHtml
+              + planDiscountTag
+            + '</div>'
+            + '<div class="vb-price-sub">Thanh toán 1 lần</div>'
           + '</div>'
         + '</div>'
-        + '<div class="vb-price-box">'
-          + '<div class="vb-price-main-row">'
-            + '<span class="vb-price">' + formatVND(plan.price) + '</span>'
-            + planOldPriceHtml
-            + planDiscountTag
-          + '</div>'
-          + '<div class="vb-price-sub">Thanh toán 1 lần</div>'
+        + '<div class="vb-meta-row">'
+          + platHtml
+          + stockBadgeHtml
+          + trustBadgeHtml
         + '</div>'
       + '</div>'
       + '<div class="vb-specs">'
