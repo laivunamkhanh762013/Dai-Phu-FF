@@ -320,54 +320,8 @@
     </div>
   </section>
 
-  <!-- ══ PRODUCTS SECTION ══ -->
-  <section id="products" class="products-section">
-    <div class="section-head">
-      <div>
-        <h2><i class="fa-solid fa-crown" style="color:#f5d372;font-size:22px;margin-right:8px;"></i> Bộ Sưu Tập Sản Phẩm Luxury</h2>
-        <p>Tuyển chọn các phiên bản phần mềm tối ưu độc quyền, hiệu năng 120 FPS mượt mà cho game thủ chuyên nghiệp.</p>
-      </div>
-      <div class="product-tools">
-        <label class="search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input id="product-search" type="search" placeholder="Tìm sản phẩm..." autocomplete="off">
-          <kbd>/</kbd>
-        </label>
-      </div>
-    </div>
-
-    <!-- Filter Buttons & Search -->
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:20px 0 28px;">
-      <div class="filters" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <button type="button" class="filter-btn active" data-category="all">Tất cả</button>
-        <button type="button" class="filter-btn" data-category="giam-gia-manh" style="border-color:rgba(239,68,68,0.6);color:#fca5a5;background:rgba(239,68,68,0.15);font-weight:800;"><i class="fa-solid fa-fire" style="color:#ef4444;margin-right:4px;"></i> Giảm Giá Mạnh</button>
-        <button type="button" class="filter-btn" data-category="Proxy & Injector">Proxy &amp; Injector</button>
-        <button type="button" class="filter-btn" data-category="Menu & Mod">Menu &amp; Mod</button>
-        <button type="button" class="filter-btn" data-category="File Kéo Tâm & VIP">File Kéo Tâm &amp; VIP</button>
-        <button type="button" class="filter-btn" data-category="thue-acc" onclick="document.getElementById('thue-acc').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-gamepad" style="color:var(--rd-accent);margin-right:4px;"></i> Thuê Acc <span style="background:rgba(217,142,63,0.18);color:var(--rd-accent);font-size:9.5px;padding:2px 6px;border-radius:4px;margin-left:4px;font-weight:800;border:1px solid rgba(217,142,63,0.4);">Sắp có</span></button>
-      </div>
-      <div class="result-count" id="product-count" style="color:var(--rd-muted);font-size:12px;font-weight:700;"></div>
-    </div>
-
-    <!-- Product Grid (Exact 4 columns matching vipgonopro.shop) -->
-    <div class="product-grid" id="product-grid">
-      <!-- Skeleton Loaders to prevent Cumulative Layout Shift (CLS) -->
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
-    </div>
-
-    <div id="product-empty" class="empty-state hidden">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <h3>Không tìm thấy sản phẩm</h3>
-      <p>Thử từ khóa khác hoặc chọn lại danh mục.</p>
-      <button class="btn btn-ghost" id="reset-products">Xóa bộ lọc</button>
-    </div>
-  </section>
-
-  <!-- ══ SECTION: DỊCH VỤ THUÊ ACC FREE FIRE (SẮP RA MẮT) ══ -->
-  <section id="thue-acc" class="thue-acc-section" style="margin:36px 0 44px;">
+  <!-- ══ SECTION 3: DỊCH VỤ THUÊ ACC FREE FIRE (SẮP RA MẮT) ══ -->
+  <section id="thue-acc" class="thue-acc-section" style="margin:24px 0 32px;">
     <div class="vip-flagship-bento thue-acc-bento" style="cursor:default;">
       <div class="bento-beam-glow"></div>
       <div class="bento-cyber-crosshair"></div>
@@ -411,15 +365,14 @@
           </div>
         </div>
 
-        <div class="bento-action-row" style="margin-top:8px;">
-          <div class="bento-price-box">
-            <span class="bento-price-label">Dự kiến giá thuê chỉ từ:</span>
-            <span class="bento-price-val">5.000đ / Giờ</span>
-            <span style="font-size:12px;color:var(--rd-muted);margin-left:6px;">(30k / Ngày)</span>
-          </div>
-          <button type="button" class="btn btn-primary bento-buy-btn" onclick="toast('⏳', 'Dịch vụ Thuê Acc VIP đang chuẩn bị, sắp có!')">
+        <!-- Action Row: Button Sắp có on the LEFT in GRAY (màu xám) -->
+        <div class="bento-action-row" style="margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <button type="button" class="btn btn-coming-soon" style="background:#262422 !important;color:#9ca3af !important;border:1px solid rgba(255,255,255,0.14) !important;box-shadow:none !important;padding:12px 26px !important;border-radius:8px !important;font-weight:700 !important;font-size:14px !important;cursor:not-allowed !important;display:inline-flex !important;align-items:center !important;gap:8px !important;" disabled>
             <i class="fa-solid fa-clock"></i> Sắp có
           </button>
+          <span style="font-size:13px;color:var(--rd-muted);display:flex;align-items:center;gap:6px;">
+            <i class="fa-solid fa-circle-info" style="color:var(--rd-muted);"></i> Đang chuẩn bị kho acc VIP &amp; hệ thống bàn giao tự động
+          </span>
         </div>
       </div>
 
@@ -460,6 +413,52 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ══ PRODUCTS SECTION ══ -->
+  <section id="products" class="products-section">
+    <div class="section-head">
+      <div>
+        <h2><i class="fa-solid fa-crown" style="color:#f5d372;font-size:22px;margin-right:8px;"></i> Bộ Sưu Tập Sản Phẩm Luxury</h2>
+        <p>Tuyển chọn các phiên bản phần mềm tối ưu độc quyền, hiệu năng 120 FPS mượt mà cho game thủ chuyên nghiệp.</p>
+      </div>
+      <div class="product-tools">
+        <label class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input id="product-search" type="search" placeholder="Tìm sản phẩm..." autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+      </div>
+    </div>
+
+    <!-- Filter Buttons & Search -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:20px 0 28px;">
+      <div class="filters" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <button type="button" class="filter-btn active" data-category="all">Tất cả</button>
+        <button type="button" class="filter-btn" data-category="giam-gia-manh" style="border-color:rgba(239,68,68,0.6);color:#fca5a5;background:rgba(239,68,68,0.15);font-weight:800;"><i class="fa-solid fa-fire" style="color:#ef4444;margin-right:4px;"></i> Giảm Giá Mạnh</button>
+        <button type="button" class="filter-btn" data-category="Proxy & Injector">Proxy &amp; Injector</button>
+        <button type="button" class="filter-btn" data-category="Menu & Mod">Menu &amp; Mod</button>
+        <button type="button" class="filter-btn" data-category="File Kéo Tâm & VIP">File Kéo Tâm &amp; VIP</button>
+        <button type="button" class="filter-btn" data-category="thue-acc" onclick="document.getElementById('thue-acc').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-gamepad" style="color:var(--rd-accent);margin-right:4px;"></i> Thuê Acc <span style="background:rgba(217,142,63,0.18);color:var(--rd-accent);font-size:9.5px;padding:2px 6px;border-radius:4px;margin-left:4px;font-weight:800;border:1px solid rgba(217,142,63,0.4);">Sắp có</span></button>
+      </div>
+      <div class="result-count" id="product-count" style="color:var(--rd-muted);font-size:12px;font-weight:700;"></div>
+    </div>
+
+    <!-- Product Grid (Exact 4 columns matching vipgonopro.shop) -->
+    <div class="product-grid" id="product-grid">
+      <!-- Skeleton Loaders to prevent Cumulative Layout Shift (CLS) -->
+      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
+      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
+      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
+      <div class="product-skeleton"><div class="skeleton-thumb"></div><div class="skeleton-line short"></div><div class="skeleton-line mid"></div><div class="skeleton-line btn"></div></div>
+    </div>
+
+    <div id="product-empty" class="empty-state hidden">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <h3>Không tìm thấy sản phẩm</h3>
+      <p>Thử từ khóa khác hoặc chọn lại danh mục.</p>
+      <button class="btn btn-ghost" id="reset-products">Xóa bộ lọc</button>
     </div>
   </section>
 
