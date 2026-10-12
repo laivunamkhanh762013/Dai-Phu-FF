@@ -687,39 +687,67 @@ body.storefront::before {
 }
 
 /* 3. Button Kinetic Feedback & Specular Sheen (button-kinetic-feedback) */
-.btn-primary, .btn-version-buy, .bento-buy-btn {
+.btn-buy,
+.btn-primary,
+.btn-version-buy,
+.bento-buy-btn {
   position: relative !important;
   overflow: hidden !important;
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease !important;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.25s ease !important;
 }
 
-.btn-primary:active, .btn-version-buy:active, .bento-buy-btn:active {
+.btn-buy:active,
+.btn-primary:active,
+.btn-version-buy:active,
+.bento-buy-btn:active {
   transform: scale(0.975) translateY(1px) !important;
 }
 
-.btn-primary::after, .btn-version-buy::after, .bento-buy-btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
+.btn-buy::after,
+.btn-primary::after,
+.btn-version-buy::after,
+.bento-buy-btn::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -20% !important;
+  left: -120% !important;
+  width: 55% !important;
+  height: 140% !important;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.42) 50%,
     transparent 100%
-  );
-  transform: skewX(-25deg);
-  pointer-events: none;
-  transition: none;
+  ) !important;
+  transform: skewX(-25deg) !important;
+  pointer-events: none !important;
+  animation: cinematicSheenSweep 3s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.btn-primary:hover::after, .btn-version-buy:hover::after, .bento-buy-btn:hover::after {
-  animation: buttonSheenSweep 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+.product:hover .btn-buy::after,
+.btn-buy:hover::after,
+.btn-primary:hover::after,
+.btn-version-buy:hover::after,
+.bento-buy-btn:hover::after {
+  animation: cinematicSheenHover 0.75s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-@keyframes buttonSheenSweep {
+.btn-buy i {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product:hover .btn-buy i,
+.btn-buy:hover i {
+  transform: translateX(5px) !important;
+}
+
+@keyframes cinematicSheenSweep {
+  0% { left: -120%; }
+  32% { left: 220%; }
+  100% { left: 220%; }
+}
+
+@keyframes cinematicSheenHover {
   0% { left: -120%; }
   100% { left: 220%; }
 }

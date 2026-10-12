@@ -3265,13 +3265,20 @@ body.storefront .product:hover {
 .btn-primary::after, .btn-buy::after, .p-card-action .btn::after, .modal-buy-btn::after {
   content: '' !important;
   position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 60% !important;
-  height: 100% !important;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent) !important;
+  top: -20% !important;
+  left: -120% !important;
+  width: 50% !important;
+  height: 140% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent) !important;
+  transform: skewX(-25deg) !important;
   pointer-events: none !important;
-  animation: buttonSheenSweep 4.5s infinite ease-in-out !important;
+  animation: cinematicSheenSweep 3s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@keyframes cinematicSheenSweep {
+  0% { left: -120%; }
+  32% { left: 220%; }
+  100% { left: 220%; }
 }
 
 .btn-primary:hover, .btn-buy:hover, .p-card-action .btn:hover, .modal-buy-btn:hover {
