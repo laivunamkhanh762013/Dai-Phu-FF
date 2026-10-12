@@ -3372,9 +3372,9 @@ window.copySellerShareText = copySellerShareText;
               animateCount(el, 1000, 3800, 1600, function(val) {
                 return Math.floor(val).toLocaleString('vi-VN') + '+';
               });
-            } else if (raw.indexOf('99.9') !== -1) {
-              animateCount(el, 80, 99.9, 1600, function(val) {
-                return val.toFixed(1) + '%';
+            } else if ((raw.indexOf('95') !== -1 || raw.indexOf('99.9') !== -1)) {
+              animateCount(el, 70, 95, 1400, function(val) {
+                return Math.round(val) + '%';
               });
             }
           });
