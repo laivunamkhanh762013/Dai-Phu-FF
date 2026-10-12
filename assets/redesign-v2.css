@@ -752,5 +752,172 @@ body.storefront::before {
   100% { left: 220%; }
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   SECTION: DỊCH VỤ THUÊ ACC FREE FIRE (SẮP RA MẮT)
+   ══════════════════════════════════════════════════════════════════ */
+.thue-acc-bento {
+  border-color: rgba(217, 142, 63, 0.3) !important;
+  background: linear-gradient(135deg, var(--rd-surface) 0%, rgba(26, 24, 22, 0.95) 100%) !important;
+}
+
+.thue-acc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+@media (max-width: 800px) {
+  .thue-acc-features-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.thue-acc-feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--rd-line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: all 0.2s ease;
+}
+
+.thue-acc-feat-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(217, 142, 63, 0.35);
+}
+
+.thue-acc-feat-item i {
+  font-size: 14px;
+  margin-top: 2px;
+  color: var(--rd-accent) !important;
+}
+
+.thue-acc-feat-item strong {
+  display: block;
+  font-size: 12.5px;
+  color: var(--rd-text);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.thue-acc-feat-item small {
+  font-size: 11px;
+  color: var(--rd-muted);
+  line-height: 1.35;
+  display: block;
+}
+
+.thue-acc-preview-box {
+  width: 100%;
+  max-width: 440px;
+}
+
+.thue-acc-visual-card {
+  background: var(--rd-bg);
+  border: 1px solid var(--rd-line);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  width: 100%;
+}
+
+.tav-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--rd-accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--rd-surface);
+  border: 1px solid var(--rd-line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tav-item:hover {
+  transform: translateX(3px);
+  border-color: rgba(217, 142, 63, 0.45);
+}
+
+.tav-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(217, 142, 63, 0.12);
+  color: var(--rd-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.tav-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.tav-info strong {
+  display: block;
+  font-size: 13px;
+  color: var(--rd-text);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tav-info small {
+  display: block;
+  font-size: 11px;
+  color: var(--rd-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tav-tag {
+  font-size: 10px;
+  font-weight: 800;
+  background: rgba(217, 142, 63, 0.15);
+  color: var(--rd-accent);
+  border: 1px solid rgba(217, 142, 63, 0.3);
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.tav-footer {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--rd-line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--rd-muted);
+}
+
+
 
 
