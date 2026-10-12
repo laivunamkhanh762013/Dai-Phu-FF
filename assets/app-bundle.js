@@ -1377,10 +1377,18 @@ function renderFeedback() {
 
 /* ═══════ FILTER & SEARCH EVENTS ═══════ */
 document.querySelectorAll('.filter-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
+  btn.addEventListener('click', function(e) {
+    var cat = btn.getAttribute('data-category') || btn.getAttribute('data-category-filter') || 'all';
+    if (cat === 'thue-acc') {
+      var thueAccSection = document.getElementById('thue-acc');
+      if (thueAccSection) {
+        thueAccSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
     document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    activeCategory = btn.getAttribute('data-category') || btn.getAttribute('data-category-filter') || 'all';
+    activeCategory = cat;
     renderProducts();
   });
 });

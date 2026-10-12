@@ -811,110 +811,224 @@ body.storefront::before {
   display: block;
 }
 
-.thue-acc-preview-box {
-  width: 100%;
-  max-width: 440px;
+/* ══════════════════════════════════════════════════════════════════
+   THUÊ ACC LUXURY HERO CARD & CTA STYLES
+   ══════════════════════════════════════════════════════════════════ */
+.thue-acc-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
 }
 
-.thue-acc-visual-card {
-  background: var(--rd-bg);
+.thue-acc-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(38, 34, 32, 0.8);
   border: 1px solid var(--rd-line);
-  border-radius: 12px;
-  padding: 18px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-  width: 100%;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--rd-muted);
 }
 
-.tav-badge {
+.thue-acc-status-pill b {
+  color: var(--rd-text);
+  font-weight: 700;
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rd-accent);
+  box-shadow: 0 0 10px var(--rd-accent);
+  display: inline-block;
+  animation: pulseLiveDot 1.8s infinite;
+}
+
+.btn-thue-contact {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  background: linear-gradient(135deg, #d98e3f 0%, #b8732a 100%) !important;
+  color: #121110 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 11px 22px !important;
+  border-radius: 6px !important;
+  font-weight: 800 !important;
+  font-size: 13.5px !important;
+  text-decoration: none !important;
+  box-shadow: 0 6px 20px rgba(217, 142, 63, 0.35) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.btn-thue-contact:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 28px rgba(217, 142, 63, 0.5) !important;
+  color: #000 !important;
+}
+
+.thue-acc-visual-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.thue-acc-hero-card {
+  width: 100%;
+  max-width: 420px;
+  background: #181614;
+  border: 1px solid rgba(217, 142, 63, 0.35);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.tah-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.tah-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: 11px;
   font-weight: 800;
+  color: var(--rd-muted);
+  letter-spacing: 0.05em;
+}
+
+.tah-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rd-accent-2);
+}
+
+.tah-rank-tag {
+  font-size: 10.5px;
+  font-weight: 850;
+  background: rgba(217, 142, 63, 0.18);
   color: var(--rd-accent);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-  display: flex;
+  border: 1px solid rgba(217, 142, 63, 0.45);
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
-.tav-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.tav-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--rd-surface);
-  border: 1px solid var(--rd-line);
+.tah-poster-box {
+  position: relative;
+  width: 100%;
+  height: 180px;
   border-radius: 8px;
-  padding: 10px 12px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+  border: 1px solid var(--rd-line);
 }
 
-.tav-item:hover {
-  transform: translateX(3px);
-  border-color: rgba(217, 142, 63, 0.45);
+.tah-poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
 }
 
-.tav-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  background: rgba(217, 142, 63, 0.12);
+.thue-acc-hero-card:hover .tah-poster-img {
+  transform: scale(1.05);
+}
+
+.tah-poster-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(18, 17, 16, 0.95) 100%);
+}
+
+.tah-poster-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  z-index: 2;
+}
+
+.tah-poster-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.tah-poster-sub {
+  font-size: 11px;
+  font-weight: 700;
   color: var(--rd-accent);
+  margin-top: 2px;
+}
+
+.tah-exclusive-chip {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 10px;
+  font-weight: 900;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tah-specs-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tah-spec-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-
-.tav-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.tav-info strong {
-  display: block;
-  font-size: 13px;
-  color: var(--rd-text);
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.tav-info small {
-  display: block;
+  gap: 6px;
+  background: var(--rd-surface);
+  border: 1px solid var(--rd-line);
+  border-radius: 6px;
+  padding: 8px 6px;
   font-size: 11px;
-  color: var(--rd-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-weight: 700;
+  color: var(--rd-text);
 }
 
-.tav-tag {
-  font-size: 10px;
-  font-weight: 800;
-  background: rgba(217, 142, 63, 0.15);
+.tah-spec-item i {
   color: var(--rd-accent);
-  border: 1px solid rgba(217, 142, 63, 0.3);
-  padding: 2px 7px;
-  border-radius: 4px;
-  flex-shrink: 0;
+  font-size: 12px;
 }
 
-.tav-footer {
-  margin-top: 14px;
+.tah-footer-note {
+  margin-top: 12px;
   padding-top: 10px;
   border-top: 1px dashed var(--rd-line);
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11.5px;
+  font-size: 11px;
   color: var(--rd-muted);
 }
 
