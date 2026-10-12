@@ -1164,8 +1164,9 @@ function renderProducts() {
   // DOM Optimization: Use DocumentFragment to batch DOM mutations and reduce layout reflows
   var fragment = document.createDocumentFragment();
 
-  filtered.forEach(function(p) {
+  filtered.forEach(function(p, idx) {
     var article = document.createElement('article');
+    article.style.setProperty('--item-idx', idx);
     article.className = 'product product-clickable' + (p.pinned ? ' product-pinned' : '') + (p.soldOut ? ' product-soldout' : '');
     article.setAttribute('data-category', p.category);
     article.setAttribute('data-price', p.priceMin);
@@ -1610,7 +1611,7 @@ function renderModalVersionBlocks(p, activeIdx) {
       trustBadgeHtml = '<span class="vb-trust-badge"><i class="fa-solid fa-shield-halved"></i> Hỗ Trợ 1:1</span>';
     }
 
-    blocksHtml += '<div class="version-block-card" id="vb-' + p.id + '-' + idx + '">'
+    blocksHtml += '<div class="version-block-card" id="vb-' + p.id + '-' + idx + '" style="--card-idx:' + idx + ';">'
       + '<div class="vb-header">'
         + '<div class="vb-top-row">'
           + '<h3 class="vb-title">' + escapeHTML(plan.name) + '</h3>'
@@ -3319,5 +3320,75 @@ window.copySellerShareText = copySellerShareText;
   } catch(e) {}
 })();
 
+/* ══════════════════════════════════════════════════════════════════
+   VIDEO-SHOTCRAFT INTERACTIVE MOTION ENGINE
+   ══════════════════════════════════════════════════════════════════ */
 
+// 1. Interactive Spotlight Hero Stage Lighting (spotlight-hero-card)
+(function initSpotlightTracking() {
+  if (typeof window === 'undefined') return;
+  document.addEventListener('mousemove', function(e) {
+    var target = e.target.closest('.vip-flagship-bento, .product, .version-block-card, .wallet-summary');
+    if (!target) return;
+    var rect = target.getBoundingClientRect();
+    var x = ((e.clientX - rect.left) / rect.width) * 100;
+    var y = ((e.clientY - rect.top) / rect.height) * 100;
+    target.style.setProperty('--mouse-x', x.toFixed(1) + '%');
+    target.style.setProperty('--mouse-y', y.toFixed(1) + '%');
+  }, { passive: true });
+})();
 
+// 2. Digit Roll Counter with Cubic Ease-Out Curve (digit-roll-counter)
+(function initDigitRollCounter() {
+  if (typeof window === 'undefined') return;
+  function runCounters() {
+    var statItems = document.querySelectorAll('.hs-item .hs-num');
+    if (!statItems.length) return;
+
+    function animateCount(el, start, end, duration, formatFn) {
+      var startTime = null;
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        // Remotion Shotcraft cubic ease-out curve
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var current = start + (end - start) * ease;
+        el.textContent = formatFn(current);
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          observer.disconnect();
+          statItems.forEach(function(el) {
+            var raw = el.textContent.trim();
+            if (raw.indexOf('3.800') !== -1 || raw.indexOf('3800') !== -1) {
+              animateCount(el, 1000, 3800, 1600, function(val) {
+                return Math.floor(val).toLocaleString('vi-VN') + '+';
+              });
+            } else if (raw.indexOf('99.9') !== -1) {
+              animateCount(el, 80, 99.9, 1600, function(val) {
+                return val.toFixed(1) + '%';
+              });
+            }
+          });
+        });
+      }, { threshold: 0.15 });
+
+      var row = document.querySelector('.hero-stats-row');
+      if (row) observer.observe(row);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runCounters);
+  } else {
+    runCounters();
+  }
+})();

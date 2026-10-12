@@ -586,4 +586,143 @@ body.storefront::before {
   padding-bottom: 24px !important;
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   VIDEO-SHOTCRAFT MOTION RECIPES: CINEMATIC INTERACTIONS
+   ══════════════════════════════════════════════════════════════════ */
+
+/* 1. Spotlight Hero Card Stage Lighting (spotlight-hero-card) */
+.vip-flagship-bento,
+.product,
+.version-block-card,
+.wallet-summary {
+  position: relative !important;
+  isolation: isolate;
+}
+
+.vip-flagship-bento::before,
+.product::before,
+.version-block-card::before,
+.wallet-summary::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(217, 142, 63, 0.16),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vip-flagship-bento:hover::before,
+.product:hover::before,
+.version-block-card:hover::before,
+.wallet-summary:hover::before {
+  opacity: 1;
+}
+
+/* Subtle Specular Border Highlight */
+.vip-flagship-bento::after,
+.product::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(217, 142, 63, 0.55),
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.vip-flagship-bento:hover::after,
+.product:hover::after {
+  opacity: 1;
+}
+
+/* 2. Deck-Deal Fly-in Physics Stagger (deck-deal-flyin) */
+@keyframes deckDealFlyIn {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.975);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.product {
+  animation: deckDealFlyIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--item-idx, 0) * 45ms);
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.35s ease !important;
+}
+
+.product:hover {
+  transform: translateY(-4px) scale3d(1.012, 1.012, 1.012) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(217, 142, 63, 0.1) !important;
+}
+
+.version-block-card {
+  animation: deckDealFlyIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--card-idx, 0) * 55ms);
+}
+
+/* 3. Button Kinetic Feedback & Specular Sheen (button-kinetic-feedback) */
+.btn-primary, .btn-version-buy, .bento-buy-btn {
+  position: relative !important;
+  overflow: hidden !important;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.btn-primary:active, .btn-version-buy:active, .bento-buy-btn:active {
+  transform: scale(0.975) translateY(1px) !important;
+}
+
+.btn-primary::after, .btn-version-buy::after, .bento-buy-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.btn-primary:hover::after, .btn-version-buy:hover::after, .bento-buy-btn:hover::after {
+  animation: buttonSheenSweep 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes buttonSheenSweep {
+  0% { left: -120%; }
+  100% { left: 220%; }
+}
+
+
 
