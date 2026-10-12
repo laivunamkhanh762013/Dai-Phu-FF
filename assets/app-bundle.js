@@ -36,14 +36,14 @@ function skipIntro(e) {
 window.skipIntro = skipIntro;
 
 function playIntroAnimation() {
-  var existingIntro = document.getElementById("gamingIntro");
-  if (existingIntro && existingIntro.parentNode) {
-    existingIntro.parentNode.removeChild(existingIntro);
-  }
-
   if (introTimeoutId) {
     clearTimeout(introTimeoutId);
     introTimeoutId = null;
+  }
+
+  var existingIntro = document.getElementById("gamingIntro");
+  if (existingIntro && existingIntro.parentNode) {
+    existingIntro.parentNode.removeChild(existingIntro);
   }
 
   var intro = document.createElement("div");
@@ -66,8 +66,7 @@ function playIntroAnimation() {
     '<div class="intro-flash-bg"></div>' +
     '<div class="dp-intro-clash-content" id="dpIntroClashContent">' +
       '<div class="dp-intro-logo-glow" id="dpIntroLogoBox">' +
-        '<div class="intro-logo-aura"></div>' +
-        '<img src="assets/uploads/logos/nexvia-logo.png" alt="Logo NEXVIA VN" class="dp-intro-logo-img">' +
+        '<img src="assets/uploads/logos/nexvia-logo.png" alt="Logo NEXVIA VN" class="dp-intro-logo-img" loading="eager">' +
       '</div>' +
       '<div class="dp-intro-brand-box" id="dpIntroBrandBox">' +
         '<div class="dp-intro-title">NEXVIA VN</div>' +
@@ -75,14 +74,15 @@ function playIntroAnimation() {
       '</div>' +
     '</div>';
 
-  if (document.body) {
-    if (typeof document.body.prepend === 'function') {
-      document.body.prepend(intro);
+  var mountTarget = document.body || document.documentElement;
+  if (mountTarget) {
+    if (typeof mountTarget.prepend === 'function') {
+      mountTarget.prepend(intro);
     } else {
-      document.body.insertBefore(intro, document.body.firstChild);
+      mountTarget.insertBefore(intro, mountTarget.firstChild);
     }
-    document.body.style.overflow = "hidden";
   }
+  document.body.style.overflow = "hidden";
   intro.style.display = "flex";
 
   introTimeoutId = setTimeout(function() {
@@ -92,13 +92,20 @@ function playIntroAnimation() {
 window.playIntroAnimation = playIntroAnimation;
 
 (function initSplash() {
-  // Nếu đang bảo trì thì không chạy intro ban đầu
-  if (document.getElementById("maintenanceOverlay") || window.isMaintenanceActive) {
-    var existingIntro = document.getElementById("gamingIntro");
-    if (existingIntro && existingIntro.parentNode) existingIntro.parentNode.removeChild(existingIntro);
-    return;
+  function startSplash() {
+    if (document.getElementById("maintenanceOverlay") || window.isMaintenanceActive) {
+      var existing = document.getElementById("gamingIntro");
+      if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+      return;
+    }
+    playIntroAnimation();
   }
-  playIntroAnimation();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startSplash);
+  } else {
+    startSplash();
+  }
 })();
 
 // ══ HỆ THỐNG KIỂM TRA BẢO TRÌ REALTIME (MAINTENANCE GUARD VỚI ÂN HẠN ĐƠN HÀNG) ══
