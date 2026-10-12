@@ -593,7 +593,10 @@ body.storefront::before {
 .vip-flagship-bento,
 .product,
 .version-block-card,
-.wallet-summary {
+.wallet-summary,
+.thue-acc-bento,
+.thue-acc-hero-card,
+.feature-card {
   position: relative !important;
   isolation: isolate;
 }
@@ -601,13 +604,16 @@ body.storefront::before {
 .vip-flagship-bento::before,
 .product::before,
 .version-block-card::before,
-.wallet-summary::before {
+.wallet-summary::before,
+.thue-acc-bento::before,
+.thue-acc-hero-card::before,
+.feature-card::before {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: inherit;
   background: radial-gradient(
-    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
     rgba(217, 142, 63, 0.16),
     transparent 55%
   );
@@ -620,20 +626,25 @@ body.storefront::before {
 .vip-flagship-bento:hover::before,
 .product:hover::before,
 .version-block-card:hover::before,
-.wallet-summary:hover::before {
+.wallet-summary:hover::before,
+.thue-acc-bento:hover::before,
+.thue-acc-hero-card:hover::before,
+.feature-card:hover::before {
   opacity: 1;
 }
 
 /* Subtle Specular Border Highlight */
 .vip-flagship-bento::after,
-.product::after {
+.product::after,
+.thue-acc-bento::after,
+.thue-acc-hero-card::after {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
   background: radial-gradient(
-    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    440px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
     rgba(217, 142, 63, 0.55),
     transparent 60%
   );
@@ -647,7 +658,9 @@ body.storefront::before {
 }
 
 .vip-flagship-bento:hover::after,
-.product:hover::after {
+.product:hover::after,
+.thue-acc-bento:hover::after,
+.thue-acc-hero-card:hover::after {
   opacity: 1;
 }
 
@@ -1577,6 +1590,170 @@ body.storefront::before {
   color: #121110 !important;
   border-color: var(--rd-accent) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   IMPECCABLE & TASTE-SKILL: MOBILE NAVIGATION 5-COLUMN OVERHAUL
+   Chữa lỗi tràn ô 4 cột cũ và đảm bảo đạt chuẩn touch target 44px+
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 980px) {
+  .mobile-nav {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    z-index: 9999 !important;
+    background: rgba(18, 17, 16, 0.94) !important;
+    border: 1px solid var(--rd-line) !important;
+    border-radius: 14px !important;
+    padding: 6px 3px !important;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.85), 0 0 16px rgba(217, 142, 63, 0.08) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+
+  .mobile-nav a,
+  .mobile-nav button.mobile-nav-btn {
+    background: transparent !important;
+    border: none !important;
+    color: var(--rd-muted) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    min-height: 48px !important;
+    padding: 4px 1px !important;
+    font-size: 9.5px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    border-radius: 9px !important;
+    transition: all .2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    font-family: var(--font-body) !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .mobile-nav a i,
+  .mobile-nav button.mobile-nav-btn i {
+    font-size: 14px !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .mobile-nav a.active,
+  .mobile-nav button.mobile-nav-btn.active {
+    color: var(--rd-accent) !important;
+    background: rgba(217, 142, 63, 0.14) !important;
+  }
+
+  .mobile-nav a.active i,
+  .mobile-nav button.mobile-nav-btn.active i {
+    transform: scale(1.12) !important;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav button.mobile-nav-btn:hover {
+    color: var(--rd-text) !important;
+  }
+
+  /* Đảm bảo đáy trang không bị thanh mobile nav che khuất */
+  body.storefront {
+    padding-bottom: 88px !important;
+  }
+
+  .footer {
+    padding-bottom: 96px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   VIDEO-SHOTCRAFT RECIPE 5: 2.5D PERSPECTIVE TILT PHYSICS
+   Hiệu ứng nghiêng 3D đa chiều mượt mà chuẩn Remotion trên Desktop
+   ══════════════════════════════════════════════════════════════════ */
+@media (hover: hover) and (pointer: fine) {
+  .product,
+  .vip-flagship-bento,
+  .thue-acc-hero-card,
+  .wallet-summary {
+    transform: perspective(1000px) rotateX(calc(var(--tilt-y, 0) * 1deg)) rotateY(calc(var(--tilt-x, 0) * 1deg)) translateZ(0);
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.25s ease !important;
+  }
+
+  .product:hover {
+    transform: perspective(1000px) rotateX(calc(var(--tilt-y, 0) * 1deg)) rotateY(calc(var(--tilt-x, 0) * 1deg)) translateY(-4px) scale3d(1.012, 1.012, 1.012) !important;
+    border-color: rgba(217, 142, 63, 0.45) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(217, 142, 63, 0.12) !important;
+  }
+
+  .vip-flagship-bento:hover {
+    transform: perspective(1000px) rotateX(calc(var(--tilt-y, 0) * 1deg)) rotateY(calc(var(--tilt-x, 0) * 1deg)) translateY(-2px) scale3d(1.006, 1.006, 1.006) !important;
+    border-color: rgba(217, 142, 63, 0.5) !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 32px rgba(217, 142, 63, 0.15) !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TASTE-SKILL & IMPECCABLE: TABULAR NUMBERS DISCIPLINE
+   Tránh rung giật font khi số nhảy & tạo sự sắc nét cho giá tiền
+   ══════════════════════════════════════════════════════════════════ */
+.hs-num,
+.card-price-val,
+.card-price-old,
+.bento-price-val,
+.bento-price-old,
+.tah-acc-price-tag,
+.seller-plan-price,
+.m-plan-price,
+.kicker-latency {
+  font-variant-numeric: tabular-nums lining-nums !important;
+  font-feature-settings: "tnum" 1, "lnum" 1 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   VIDEO-SHOTCRAFT RECIPE 3: KINETIC SHEEN SWEEP ON CTAS
+   ══════════════════════════════════════════════════════════════════ */
+.btn-thue-contact {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-thue-contact::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -20% !important;
+  left: -120% !important;
+  width: 55% !important;
+  height: 140% !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  ) !important;
+  transform: skewX(-25deg) !important;
+  pointer-events: none !important;
+  animation: cinematicSheenSweep 3.5s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-thue-contact:hover::after {
+  animation: cinematicSheenHover 0.75s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DECK-DEAL STAGGER ON RENTAL ACC COMPONENTS
+   ══════════════════════════════════════════════════════════════════ */
+.thue-acc-feat-item {
+  animation: deckDealFlyIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--item-idx, 0) * 60ms);
+}
+
+.tah-w-badge {
+  animation: deckDealFlyIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--item-idx, 0) * 50ms);
+}
+
 
 
 

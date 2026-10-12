@@ -3334,18 +3334,69 @@ window.copySellerShareText = copySellerShareText;
    VIDEO-SHOTCRAFT INTERACTIVE MOTION ENGINE
    ══════════════════════════════════════════════════════════════════ */
 
-// 1. Interactive Spotlight Hero Stage Lighting (spotlight-hero-card)
-(function initSpotlightTracking() {
+// 1. Interactive Spotlight Hero Stage Lighting & 2.5D Micro-Tilt (video-shotcraft)
+(function initVideoShotcraftMotion() {
   if (typeof window === 'undefined') return;
+
+  var isFinePointer = window.matchMedia('(pointer: fine)').matches;
+  var targetSelector = '.vip-flagship-bento, .product, .version-block-card, .wallet-summary, .thue-acc-bento, .thue-acc-hero-card, .feature-card';
+  var activeCard = null;
+
   document.addEventListener('mousemove', function(e) {
-    var target = e.target.closest('.vip-flagship-bento, .product, .version-block-card, .wallet-summary');
-    if (!target) return;
+    var target = e.target.closest(targetSelector);
+    if (!target) {
+      if (activeCard) {
+        activeCard.style.setProperty('--tilt-x', '0');
+        activeCard.style.setProperty('--tilt-y', '0');
+        activeCard = null;
+      }
+      return;
+    }
+
+    if (activeCard && activeCard !== target) {
+      activeCard.style.setProperty('--tilt-x', '0');
+      activeCard.style.setProperty('--tilt-y', '0');
+    }
+    activeCard = target;
+
     var rect = target.getBoundingClientRect();
     var x = ((e.clientX - rect.left) / rect.width) * 100;
     var y = ((e.clientY - rect.top) / rect.height) * 100;
     target.style.setProperty('--mouse-x', x.toFixed(1) + '%');
     target.style.setProperty('--mouse-y', y.toFixed(1) + '%');
+
+    if (isFinePointer) {
+      // 2.5D Perspective Tilt Physics (max 3.5 deg)
+      var tiltX = ((x - 50) / 50) * 3.5;
+      var tiltY = -((y - 50) / 50) * 3.5;
+      target.style.setProperty('--tilt-x', tiltX.toFixed(2));
+      target.style.setProperty('--tilt-y', tiltY.toFixed(2));
+    }
   }, { passive: true });
+
+  document.addEventListener('mouseleave', function() {
+    if (activeCard) {
+      activeCard.style.setProperty('--tilt-x', '0');
+      activeCard.style.setProperty('--tilt-y', '0');
+      activeCard = null;
+    }
+  });
+
+  // Assign stagger indices for rental features and badges
+  function assignStaggerIndices() {
+    document.querySelectorAll('.thue-acc-feat-item').forEach(function(el, i) {
+      el.style.setProperty('--item-idx', i);
+    });
+    document.querySelectorAll('.tah-w-badge').forEach(function(el, i) {
+      el.style.setProperty('--item-idx', i);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', assignStaggerIndices);
+  } else {
+    assignStaggerIndices();
+  }
 })();
 
 // 2. Digit Roll Counter with Cubic Ease-Out Curve (digit-roll-counter)
