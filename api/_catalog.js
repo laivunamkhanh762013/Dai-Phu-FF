@@ -33,12 +33,12 @@ const RAW_CATALOG = {
   },
 
   "innova-cheat": {
-    "name": "InNova Cheat (Adr • iOS)",
+    "name": "InNova Cheat (iOS)",
     "soldOut": false,
     "plans": {
-      "Gói 1 Ngày": 10000,
-      "Gói 7 Ngày": 30000,
-      "Gói 30 Ngày": 100000
+      "Gói 1 Ngày": 25000,
+      "Gói 7 Ngày": 70000,
+      "Gói 30 Ngày": 150000
     }
   },
   "uratr-cheat-vip": {

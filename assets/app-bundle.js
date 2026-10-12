@@ -396,50 +396,45 @@ var PRODUCTS = [
   {
     id: 'innova-cheat',
     category: 'Proxy & Injector',
-    plat: 'Adr • iOS',
+    plat: 'iOS',
     buyers: '980+ Người mua',
-    hotSale: true,
-    discountBadge: 'GIẢM SỐC -65%',
-    name: 'InNova Cheat 🔥 [Xả Lỗ Rút Vốn]',
-    shortDesc: 'Xả lỗ rút vốn cạnh tranh: 1 Ngày 10k · 7 Ngày 30k · 30 Ngày 100k. Buff dame, bắn siêu tốc, không giật 0%, cam xa FOV.',
-    fullDesc: 'INNOVA CHEAT - PROXY VIP FREE FIRE (Android & iOS) [XẢ LỖ RÚT VỐN CẠNH TRANH ĐỐI THỦ]:\n- 💥 Gói 1 Ngày: 10.000đ (Giá cũ 25.000đ)\n- 💥 Gói 7 Ngày: 30.000đ (Giá cũ 70.000đ)\n- 💥 Gói 30 Ngày: 100.000đ (Giá cũ 150.000đ)\n- Tính năng: Tăng sát thương (Buff Dame), Bắn siêu tốc (Fast Fire), Không giật (No Recoil 0%), Bơm máu siêu tốc (Fast Medkit), Góc nhìn rộng Cam xa (FOV 85°), Bypass an toàn 100%.',
-    priceMin: 10000,
-    priceMax: 100000,
-    oldPrice: 250000,
+    name: 'InNova Cheat (iOS)',
+    shortDesc: 'Free Fire Proxy VIP - Tăng sát thương, bắn siêu tốc, không giật 0%, cam xa FOV 85°, an toàn bypass 100%.',
+    fullDesc: 'INNOVA CHEAT - PROXY VIP FREE FIRE (Dành riêng cho iOS iPhone & iPad):\n- Tăng sát thương (Buff Dame), Bắn siêu tốc (Fast Fire), Không giật (No Recoil 0%).\n- Bơm máu siêu tốc (Fast Medkit), Góc nhìn rộng Cam xa (FOV 85°), Tăng tốc chạy (Speed Run).\n- Bypass an toàn chống ban 100%, kết nối ổn định, mượt mà không lag.',
+    priceMin: 25000,
+    priceMax: 150000,
+    oldPrice: 300000,
     image: 'assets/uploads/products/innova-cheat.jpg',
     images: [
-      { src: 'assets/uploads/products/innova-cheat.jpg', label: 'InNova Cheat', title: 'InNova Cheat - Xả Lỗ Rút Vốn Cạnh Tranh' }
+      { src: 'assets/uploads/products/innova-cheat.jpg', label: 'InNova Cheat', title: 'InNova Cheat - Proxy VIP iOS' }
     ],
     plans: [
       {
         name: 'Gói 1 Ngày',
-        price: 10000,
-        oldPrice: 30000,
-        badge: 'Xả Lỗ 10k',
+        price: 25000,
+        badge: 'Trải nghiệm',
         action: 'Buff dame, bắn siêu tốc, không giật 0%, cam xa FOV 85° suốt 24 giờ.',
         fix: 'Bypass qua mặt hệ thống kiểm tra an toàn 100%, chống giật lag.',
-        pros: 'Giá xả lỗ chỉ 10k (gốc 30k) - rẻ nhất thị trường để trải nghiệm InNova Cheat.',
-        note: 'Hỗ trợ Android & iOS.'
+        pros: 'Chi phí cực rẻ chỉ 25k để trải nghiệm sức mạnh InNova Cheat.',
+        note: 'Dành riêng cho hệ điều hành iOS (iPhone & iPad).'
       },
       {
         name: 'Gói 7 Ngày',
-        price: 30000,
-        oldPrice: 70000,
-        badge: 'Xả Lỗ 30k',
+        price: 70000,
+        badge: 'Tiết kiệm',
         action: 'Sử dụng trọn bộ tính năng InNova Cheat liên tục trong 7 ngày (1 tuần).',
         fix: 'Tối ưu hóa đường truyền proxy, cập nhật bypass tự động 24/7.',
-        pros: 'Chỉ 30k cho 7 ngày trải nghiệm (gốc 70k), tiết kiệm tối đa chi phí.',
-        note: 'Hỗ trợ Android & iOS.'
+        pros: 'Tiết kiệm chi phí, hỗ trợ kích hoạt và hướng dẫn cài đặt 1:1 qua Zalo.',
+        note: 'Dành riêng cho hệ điều hành iOS (iPhone & iPad).'
       },
       {
         name: 'Gói 30 Ngày',
-        price: 100000,
-        oldPrice: 150000,
-        badge: 'Xả Lỗ 100k',
+        price: 150000,
+        badge: 'Phổ biến nhất',
         action: 'Gói tháng toàn diện 30 ngày, leo rank Thách Đấu thả ga cả mùa giải.',
         fix: 'Khắc phục hoàn toàn delay, ổn định mượt mà 120 FPS, bảo hành trọn đời gói.',
-        pros: 'Chỉ 100k gói 30 ngày (giá gốc 150k), Zalo Admin Nexvia hỗ trợ ưu tiên 24/7.',
-        note: 'Hỗ trợ Android & iOS.'
+        pros: 'Tự do tuỳ chỉnh mọi chức năng, Zalo Admin Nexvia hỗ trợ ưu tiên 24/7.',
+        note: 'Dành riêng cho hệ điều hành iOS (iPhone & iPad).'
       }
     ]
   },
@@ -451,21 +446,21 @@ var PRODUCTS = [
     hotSale: true,
     discountBadge: 'GIẢM 50%',
     name: 'Uratr Cheat VIP 🇻🇳 (iOS • Android)',
-    shortDesc: 'Uratr Cheat VIP độc quyền - Cài nhanh không cần chứng chỉ, 100% Anti-Ban Bypass, tặng kèm Next Drag trị giá 150k & Video cài.',
-    fullDesc: 'URATR CHEAT VIP 🇻🇳 (iOS & Android) - BẢN VIP ĐỘC QUYỀN:\n- Cài nhanh không cần chứng chỉ cho iOS & Android.\n- 100% Anti-Ban Bypass - Chống khóa tài khoản tuyệt đối.\n- Hỗ trợ Android 11 - 16 & iOS 15.8.8 - iOS 26.5.\n- TẶNG KÈM TRỌN BỘ: File Next Drag🇻🇳 trị giá 150k + Video hướng dẫn chi tiết.\n- Cam kết chức năng rõ ràng, chuẩn như video (Hỗ trợ 1:1 từ Admin Zalo: 0588500524).',
+    shortDesc: 'Uratr Cheat VIP độc quyền - Cài nhanh siêu tốc, 100% Anti-Ban Bypass, tặng kèm Next Drag trị giá 150k & Video cài.',
+    fullDesc: 'URATR CHEAT VIP 🇻🇳 (iOS & Android) - BẢN VIP ĐỘC QUYỀN:\n- Cài nhanh siêu tốc cho iOS & Android.\n- 100% Anti-Ban Bypass - Chống khóa tài khoản tuyệt đối.\n- Hỗ trợ Android 11 - 16 & iOS 15.8.8 - iOS 26.5.\n- TẶNG KÈM TRỌN BỘ: File Next Drag🇻🇳 trị giá 150k + Video hướng dẫn chi tiết.\n- Cam kết chức năng rõ ràng, chuẩn như video (Hỗ trợ 1:1 từ Admin Zalo: 0588500524).',
     priceMin: 99000,
     priceMax: 99000,
     oldPrice: 200000,
     image: 'assets/uploads/products/uratr-cheat-vip.png',
     images: [
-      { src: 'assets/uploads/products/uratr-cheat-vip.png', label: 'Uratr Cheat VIP', title: 'Uratr Cheat VIP 🇻🇳 - Cài Nhanh Không Chứng Chỉ & 100% Anti-Ban' }
+      { src: 'assets/uploads/products/uratr-cheat-vip.png', label: 'Uratr Cheat VIP', title: 'Uratr Cheat VIP 🇻🇳 - Cài Nhanh Siêu Tốc & 100% Anti-Ban' }
     ],
     plans: [
       {
         name: 'Uratr Cheat VIP (iOS & Android) - Vĩnh Viễn',
         price: 99000,
         badge: '👑 VIP Trọn Đời',
-        action: 'Cài nhanh không cần chứng chỉ, 100% Anti-Ban Bypass, kéo tâm ghim đầu bám 80% cực mượt.',
+        action: 'Cài nhanh siêu tốc, 100% Anti-Ban Bypass, kéo tâm ghim đầu bám 80% cực mượt.',
         fix: 'Fix rung giật tâm, chống khựng màn hình, tương thích iOS 15.8.8 - 26.5 & Android 11 - 16.',
         pros: 'Tặng kèm File Next Drag🇻🇳 (trị giá 150k) + Video hướng dẫn chi tiết. Cam kết chuẩn video.',
         note: 'Hỗ trợ tất cả thiết bị iPhone & Android (Không cần JB / Không cần Root).',
@@ -1604,9 +1599,9 @@ function renderModalVersionBlocks(p, activeIdx) {
 
     var planOldPrice = plan.oldPrice || (p.oldPrice && p.plans.length === 1 ? p.oldPrice : null);
     if (!planOldPrice && p.id === 'innova-cheat') {
-      if (plan.price === 10000) planOldPrice = 30000;
-      else if (plan.price === 30000) planOldPrice = 70000;
-      else if (plan.price === 100000) planOldPrice = 150000;
+      if (plan.price === 25000) planOldPrice = 50000;
+      else if (plan.price === 70000) planOldPrice = 120000;
+      else if (plan.price === 150000) planOldPrice = 300000;
     }
     var planOldPriceHtml = planOldPrice ? ' <del style="color:var(--rd-muted);font-size:13.5px;font-weight:600;margin-left:8px;text-decoration:line-through;">' + formatVND(planOldPrice) + '</del>' : '';
     var planDiscountPercent = (planOldPrice && planOldPrice > plan.price) ? Math.round((1 - plan.price / planOldPrice) * 100) : 0;
