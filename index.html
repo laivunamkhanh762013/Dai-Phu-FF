@@ -2,13 +2,13 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>402: Payment Required • Dịch vụ tạm ngưng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>402: Payment Required • NEXVIA VN</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#090a0f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -17,268 +17,276 @@
     }
 
     :root {
-      --bg: #090a0f;
-      --surface: #11131a;
-      --surface-sub: #171a24;
+      --bg: #08090d;
+      --card: #11131a;
       --border: rgba(255, 255, 255, 0.08);
-      --border-focus: rgba(255, 255, 255, 0.16);
+      --danger: #f43f5e;
+      --danger-bg: rgba(244, 63, 94, 0.08);
+      --danger-border: rgba(244, 63, 94, 0.25);
       --text: #f1f5f9;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
-      --danger: #f43f5e;
-      --danger-bg: rgba(244, 63, 94, 0.08);
-      --danger-border: rgba(244, 63, 94, 0.22);
       --font-display: 'Outfit', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Be Vietnam Pro', -apple-system, sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden; /* Cố định 1 màn hình, tuyệt đối không cuộn */
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      min-height: 100vh;
-      min-height: 100dvh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 32px 20px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      background-image: 
-        radial-gradient(circle at 50% 20%, rgba(244, 63, 94, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(148, 163, 184, 0.03) 0%, transparent 40%);
+      padding: 16px;
+      background-image: radial-gradient(circle at 50% 30%, rgba(244, 63, 94, 0.06) 0%, transparent 60%);
     }
 
-    .shell {
+    .card {
       width: 100%;
-      max-width: 580px;
-      margin: auto;
+      max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 22px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: center;
     }
 
-    /* Top Brand & Status Header */
-    .brand-header {
+    /* Top Status Bar */
+    .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
+      gap: 8px;
     }
 
-    .brand-logo {
+    .brand-id {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 7px;
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 15px;
+      font-size: 13.5px;
       letter-spacing: -0.01em;
       color: #ffffff;
     }
 
-    .brand-logo img {
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
+    .brand-id img {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
       object-fit: cover;
-      opacity: 0.85;
-      filter: grayscale(40%);
     }
 
-    .status-code {
+    .badge-status {
       font-family: var(--font-mono);
-      font-size: 11.5px;
+      font-size: 10.5px;
       color: var(--danger);
       background: var(--danger-bg);
       border: 1px solid var(--danger-border);
-      padding: 3px 10px;
+      padding: 3px 8px;
       border-radius: 999px;
       font-weight: 600;
-      letter-spacing: 0.5px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      letter-spacing: 0.3px;
     }
 
-    .status-dot {
-      width: 6px;
-      height: 6px;
+    .badge-dot {
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--danger);
-      box-shadow: 0 0 8px var(--danger);
+      box-shadow: 0 0 6px var(--danger);
     }
 
-    /* Main Container Card */
-    .main-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    /* Lock Icon */
+    .lock-icon-wrap {
+      width: 48px;
+      height: 48px;
+      margin: 2px auto 0;
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
       border-radius: 14px;
-      padding: 32px 28px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--danger);
     }
 
-    h1 {
+    .lock-icon-wrap svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Main Title */
+    .title-wrap h1 {
       font-family: var(--font-display);
-      font-size: clamp(24px, 5vw, 30px);
+      font-size: clamp(20px, 4.8vw, 24px);
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #ffffff;
       line-height: 1.25;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
 
-    .lead-text {
+    .title-wrap p {
+      font-size: 12.5px;
       color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 24px;
+      line-height: 1.5;
     }
 
-    /* Minimalist Spec Table */
-    .spec-table {
-      background: var(--surface-sub);
+    /* Spec List */
+    .specs {
+      background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 6px 0;
-      margin-bottom: 24px;
+      padding: 4px 0;
+      text-align: left;
     }
 
-    .spec-row {
+    .spec-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 18px;
-      font-size: 13px;
+      padding: 7px 14px;
+      font-size: 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .spec-row:last-child {
+    .spec-item:last-child {
       border-bottom: none;
     }
 
-    .spec-label {
+    .spec-item .label {
       color: var(--text-dim);
-      font-weight: 500;
     }
 
-    .spec-val {
+    .spec-item .value {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--text);
     }
 
-    .spec-val.danger {
+    .spec-item .value.danger {
       color: #fda4af;
     }
 
-    /* Warning Callout Box */
-    .warning-box {
-      background: rgba(244, 63, 94, 0.05);
+    /* Warning Note */
+    .warning-note {
+      background: rgba(244, 63, 94, 0.06);
       border-left: 3px solid var(--danger);
-      border-radius: 0 8px 8px 0;
-      padding: 14px 16px;
-      font-size: 13px;
+      border-radius: 0 6px 6px 0;
+      padding: 8px 12px;
+      font-size: 11.5px;
       color: #fecdd3;
-      margin-bottom: 24px;
-      line-height: 1.55;
+      text-align: left;
+      line-height: 1.45;
     }
 
-    .warning-box strong {
+    .warning-note b {
       color: #ffffff;
-      display: block;
-      margin-bottom: 2px;
-      font-weight: 700;
     }
 
-    /* Resolution Guide */
-    .action-panel {
+    /* Action Note */
+    .action-note {
       border-top: 1px solid var(--border);
-      padding-top: 20px;
-      font-size: 13px;
+      padding-top: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
+      line-height: 1.5;
     }
 
-    .action-panel b {
+    .action-note b {
       color: #ffffff;
     }
 
-    .footer {
-      margin-top: 28px;
-      text-align: center;
+    .footer-tag {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 9.5px;
       color: var(--text-dim);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
-    @media (max-width: 480px) {
-      .main-card {
-        padding: 24px 18px;
-      }
-      .spec-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-        padding: 8px 14px;
-      }
+    @media (max-height: 600px) {
+      body { padding: 8px; }
+      .card { padding: 14px 16px; gap: 8px; }
+      .lock-icon-wrap { width: 36px; height: 36px; margin: 0 auto; }
+      .lock-icon-wrap svg { width: 18px; height: 18px; }
+      .title-wrap h1 { font-size: 18px; }
+      .title-wrap p { font-size: 11px; }
+      .spec-item { padding: 5px 10px; font-size: 11px; }
+      .warning-note { padding: 6px 10px; font-size: 10.5px; }
+      .action-note { padding-top: 8px; font-size: 10.5px; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <div class="brand-header">
-      <div class="brand-logo">
-        <img src="assets/uploads/logos/nexvia-logo.png" alt="NEXVIA VN" onerror="this.style.display='none'">
+  <div class="card">
+    <div class="top-bar">
+      <div class="brand-id">
+        <img src="assets/uploads/logos/nexvia-logo.png" alt="Nexvia" onerror="this.style.display='none'">
         <span>NEXVIA VN</span>
       </div>
-      <div class="status-code">
-        <span class="status-dot"></span>
+      <div class="badge-status">
+        <span class="badge-dot"></span>
         HTTP 402 PAYMENT REQUIRED
       </div>
     </div>
 
-    <main class="main-card">
-      <h1>Website đang bị tạm ngưng phục vụ</h1>
-      <p class="lead-text">
-        Hệ thống cửa hàng trực tuyến NEXVIA VN đã bị tạm dừng hoạt động do chủ sở hữu chưa hoàn tất nghĩa vụ thanh toán chi phí phát triển &amp; bàn giao với lập trình viên.
-      </p>
+    <div class="lock-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+    </div>
 
-      <div class="spec-table">
-        <div class="spec-row">
-          <span class="spec-label">Mã dịch vụ</span>
-          <span class="spec-val">NEXVIA-VN // CORE-STOREFRONT</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">Tình trạng thanh toán</span>
-          <span class="spec-val danger">Chưa tất toán hợp đồng</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">Cổng giao dịch VietQR</span>
-          <span class="spec-val">Tạm ngưng nhận đơn mới</span>
-        </div>
-        <div class="spec-row">
-          <span class="spec-label">Thời gian đình chỉ</span>
-          <span class="spec-val">Kể từ 15/11/2026</span>
-        </div>
+    <div class="title-wrap">
+      <h1>Website đang bị tạm ngưng</h1>
+      <p>Hệ thống bị ngắt kết nối do chủ shop chưa hoàn tất thanh toán hợp đồng phát triển với lập trình viên.</p>
+    </div>
+
+    <div class="specs">
+      <div class="spec-item">
+        <span class="label">Mã dịch vụ</span>
+        <span class="value">NEXVIA-VN // CORE</span>
       </div>
-
-      <div class="warning-box">
-        <strong>Lưu ý dành cho khách hàng:</strong>
-        Mọi hoạt động giao dịch trên website này tạm thời bị phong tỏa. Khách hàng vui lòng không thực hiện chuyển khoản vào bất kỳ tài khoản nào của shop để tránh rủi ro phát sinh.
+      <div class="spec-item">
+        <span class="label">Tình trạng</span>
+        <span class="value danger">Chưa tất toán công nợ</span>
       </div>
-
-      <div class="action-panel">
-        <p>
-          <b>Hướng dẫn dành cho chủ shop:</b> Vui lòng liên hệ trực tiếp với lập trình viên để thanh toán dứt điểm chi phí phát triển. Hệ thống và cơ sở dữ liệu sẽ được khôi phục nguyên vẹn ngay sau khi hoàn tất.
-        </p>
+      <div class="spec-item">
+        <span class="label">Cổng VietQR</span>
+        <span class="value">Đã vô hiệu hóa</span>
       </div>
-    </main>
+    </div>
 
-    <footer class="footer">
-      Developer Access Control • Intellectual Property Protection System
-    </footer>
+    <div class="warning-note">
+      <b>Lưu ý khách hàng:</b> Tuyệt đối không chuyển khoản vào tài khoản shop lúc này để tránh mất tiền.
+    </div>
+
+    <div class="action-note">
+      <b>Dành cho chủ shop:</b> Vui lòng chuyển khoản dứt điểm chi phí phát triển cho lập trình viên để mở lại web.
+    </div>
+
+    <div class="footer-tag">
+      Developer Access Control • Intellectual Property System
+    </div>
   </div>
 </body>
 </html>
