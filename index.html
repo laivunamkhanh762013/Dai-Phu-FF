@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>402: Payment Required • NEXVIA VN</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#08090d">
+  <meta name="theme-color" content="#090a0f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -17,30 +17,30 @@
     }
 
     :root {
-      --bg: #08090d;
+      --bg: #090a0f;
       --card: #11131a;
-      --card-inner: #161922;
+      --card-inner: #161822;
       --border: rgba(255, 255, 255, 0.08);
       --danger: #f43f5e;
       --danger-bg: rgba(244, 63, 94, 0.08);
-      --danger-border: rgba(244, 63, 94, 0.25);
-      --text: #f1f5f9;
+      --danger-border: rgba(244, 63, 94, 0.22);
+      --text: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
-      --font-display: 'Outfit', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --font-body: 'Be Vietnam Pro', -apple-system, sans-serif;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
     }
 
     html, body {
       width: 100%;
       height: 100%;
       height: 100dvh;
-      overflow: hidden; /* Cố định 1 màn hình, tuyệt đối không cuộn */
+      overflow: hidden;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-body);
+      font-family: var(--font);
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -49,33 +49,31 @@
       justify-content: center;
       padding: 20px;
       background-image: 
-        radial-gradient(circle at 50% 25%, rgba(244, 63, 94, 0.07) 0%, transparent 65%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+        radial-gradient(circle at 50% 25%, rgba(244, 63, 94, 0.07) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.015) 0%, transparent 40%);
     }
 
-    /* Rộng rãi, thoáng đạt chuẩn desktop & tablet */
     .card {
       width: 100%;
-      max-width: 640px;
+      max-width: 620px;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px 36px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(244, 63, 94, 0.06);
+      border-radius: 16px;
+      padding: 30px 36px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(244, 63, 94, 0.05);
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 16px;
       text-align: center;
-      position: relative;
     }
 
-    /* Top Status Bar */
+    /* Top Bar */
     .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -83,9 +81,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 14px;
+      font-weight: 700;
+      font-size: 13.5px;
       letter-spacing: -0.01em;
       color: #ffffff;
     }
@@ -109,7 +106,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.2px;
     }
 
     .badge-dot {
@@ -122,12 +119,12 @@
 
     /* Lock Icon */
     .lock-icon-wrap {
-      width: 46px;
-      height: 46px;
-      margin: 2px auto 0;
+      width: 44px;
+      height: 44px;
+      margin: 0 auto;
       background: var(--danger-bg);
       border: 1px solid var(--danger-border);
-      border-radius: 14px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -135,16 +132,15 @@
     }
 
     .lock-icon-wrap svg {
-      width: 23px;
-      height: 23px;
+      width: 22px;
+      height: 22px;
     }
 
-    /* Main Title */
+    /* Title & Description */
     .title-wrap h1 {
-      font-family: var(--font-display);
-      font-size: clamp(21px, 4.2vw, 26px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-size: clamp(20px, 4vw, 24px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
       color: #ffffff;
       line-height: 1.25;
       margin-bottom: 6px;
@@ -153,16 +149,17 @@
     .title-wrap p {
       font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.5;
-      max-width: 520px;
+      line-height: 1.55;
+      max-width: 500px;
       margin: 0 auto;
+      font-weight: 400;
     }
 
-    /* Spec List - Rộng và thoáng hơn */
+    /* Specs Box */
     .specs {
       background: var(--card-inner);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 10px;
       padding: 4px 0;
       text-align: left;
     }
@@ -182,6 +179,7 @@
 
     .spec-item .label {
       color: var(--text-dim);
+      font-weight: 450;
     }
 
     .spec-item .value {
@@ -199,16 +197,17 @@
     .warning-note {
       background: rgba(244, 63, 94, 0.06);
       border-left: 3px solid var(--danger);
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 6px 6px 0;
       padding: 9px 15px;
       font-size: 12px;
       color: #fecdd3;
       text-align: left;
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     .warning-note b {
       color: #ffffff;
+      font-weight: 600;
     }
 
     /* Action Note */
@@ -222,6 +221,7 @@
 
     .action-note b {
       color: #ffffff;
+      font-weight: 600;
     }
 
     .footer-tag {
@@ -234,8 +234,8 @@
 
     @media (max-width: 540px) {
       body { padding: 12px; }
-      .card { padding: 20px 18px; gap: 12px; }
-      .title-wrap h1 { font-size: 20px; }
+      .card { padding: 22px 18px; gap: 12px; }
+      .title-wrap h1 { font-size: 19px; }
       .title-wrap p { font-size: 12px; }
       .spec-item { padding: 7px 12px; font-size: 11.5px; }
     }
