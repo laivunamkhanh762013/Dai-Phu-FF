@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SYSTEM ACCESS REVOKED • NEXVIA VN</title>
+  <title>402: Payment Required • Dịch vụ tạm ngưng</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#07080a">
+  <meta name="theme-color" content="#090a0f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -17,22 +17,24 @@
     }
 
     :root {
-      --bg: #060709;
-      --bg-card: rgba(12, 14, 18, 0.92);
-      --red: #ff3344;
-      --red-glow: rgba(255, 51, 68, 0.35);
-      --amber: #f59e0b;
-      --cyan: #00f0ff;
-      --text: #f3f4f6;
-      --muted: #8b929e;
-      --border: rgba(255, 51, 68, 0.3);
+      --bg: #090a0f;
+      --surface: #11131a;
+      --surface-sub: #171a24;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(255, 255, 255, 0.16);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --danger: #f43f5e;
+      --danger-bg: rgba(244, 63, 94, 0.08);
+      --danger-border: rgba(244, 63, 94, 0.22);
       --font-display: 'Outfit', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body {
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--text);
       font-family: var(--font-body);
       min-height: 100vh;
@@ -41,471 +43,242 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
-      overflow-x: hidden;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* CRT Scanline & Cyber Grid Background */
-    .crt-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-      background-size: 100% 3px, 6px 100%;
-      pointer-events: none;
-      z-index: 10;
-      opacity: 0.85;
-    }
-
-    .ambient-glow {
-      position: fixed;
-      top: -10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255, 51, 68, 0.18) 0%, transparent 70%);
-      filter: blur(60px);
-      pointer-events: none;
-      z-index: 0;
-      animation: ambientPulse 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes ambientPulse {
-      0% { opacity: 0.6; transform: translateX(-50%) scale(0.95); }
-      100% { opacity: 1; transform: translateX(-50%) scale(1.08); }
-    }
-
-    .cyber-grid {
-      position: fixed;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 51, 68, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 51, 68, 0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
-    }
-
-    /* Danger Tape Banner Top/Bottom */
-    .danger-tape {
-      width: 100%;
-      height: 24px;
-      background: repeating-linear-gradient(
-        -45deg,
-        #f59e0b,
-        #f59e0b 16px,
-        #111111 16px,
-        #111111 32px
-      );
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
-      position: fixed;
-      left: 0;
-      z-index: 20;
-    }
-    .danger-tape-top { top: 0; }
-    .danger-tape-bottom { bottom: 0; }
-
-    /* Main Lockdown Container */
-    .lockdown-shell {
-      width: 100%;
-      max-width: 660px;
-      margin: 32px auto;
-      position: relative;
-      z-index: 5;
-    }
-
-    .lockdown-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 38px 32px;
-      box-shadow: 
-        0 30px 80px rgba(0, 0, 0, 0.85),
-        0 0 45px rgba(255, 51, 68, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Tactical HUD Corner Crosshairs */
-    .lockdown-panel::before {
-      content: '+                +';
-      position: absolute;
-      top: 10px;
-      left: 14px;
-      right: 14px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: rgba(255, 51, 68, 0.6);
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-
-    .lockdown-panel::after {
-      content: '+                +';
-      position: absolute;
-      bottom: 10px;
-      left: 14px;
-      right: 14px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: rgba(255, 51, 68, 0.6);
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-
-    /* Hazard Header Strip */
-    .hazard-strip {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      background: rgba(255, 51, 68, 0.14);
-      border: 1px solid rgba(255, 51, 68, 0.45);
-      color: #ff808b;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      padding: 7px 16px;
-      border-radius: 6px;
-      margin-bottom: 24px;
-      box-shadow: 0 0 16px rgba(255, 51, 68, 0.25);
-    }
-
-    .pulse-laser {
-      width: 9px;
-      height: 9px;
-      background: var(--red);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--red);
-      animation: pulseLaser 1.2s infinite;
-    }
-
-    @keyframes pulseLaser {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.7); }
-    }
-
-    /* Big Icon Glitch */
-    .lock-shield-icon {
-      width: 78px;
-      height: 78px;
-      margin: 0 auto 20px;
-      background: linear-gradient(135deg, rgba(255, 51, 68, 0.25), rgba(245, 158, 11, 0.15));
-      border: 2px solid var(--red);
-      border-radius: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--red);
-      box-shadow: 0 0 35px var(--red-glow);
-      position: relative;
-    }
-
-    .lock-shield-icon svg {
-      width: 42px;
-      height: 42px;
-      filter: drop-shadow(0 0 8px var(--red));
-    }
-
-    /* Glitch Headline */
-    .glitch-title {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 5.5vw, 32px);
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: #ffffff;
-      text-align: center;
-      line-height: 1.15;
-      margin-bottom: 8px;
-      text-shadow: 0 0 25px rgba(255, 51, 68, 0.5);
-    }
-
-    .glitch-title span {
-      color: var(--red);
-    }
-
-    .incident-tag {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--amber);
-      text-align: center;
-      letter-spacing: 1px;
-      margin-bottom: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    /* Cyber Terminal Log Box */
-    .terminal-box {
-      background: #030406;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-left: 3px solid var(--red);
-      border-radius: 8px;
-      padding: 16px 18px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.7;
-      color: #94a3b8;
-      margin-bottom: 24px;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-    }
-
-    .term-line {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .term-prompt {
-      color: var(--red);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .term-key {
-      color: #cbd5e1;
-      font-weight: 600;
-    }
-
-    .term-val-danger {
-      color: #ff6b77;
-      font-weight: 700;
-    }
-
-    .term-val-warn {
-      color: #fcd34d;
-    }
-
-    .term-val-ok {
-      color: #34d399;
-    }
-
-    /* Security Notice Box */
-    .notice-card {
-      background: rgba(255, 51, 68, 0.08);
-      border: 1px dashed rgba(255, 51, 68, 0.4);
-      border-radius: 10px;
-      padding: 15px 18px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      text-align: left;
-    }
-
-    .notice-card svg {
-      width: 22px;
-      height: 22px;
-      color: var(--red);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .notice-text {
-      font-size: 13px;
-      line-height: 1.55;
-      color: #fecdd3;
-    }
-
-    .notice-text strong {
-      color: #ffffff;
-      display: block;
-      margin-bottom: 3px;
-      font-size: 13.5px;
-    }
-
-    /* Resolution Steps */
-    .resolution-box {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 20px;
-      text-align: center;
-    }
-
-    .res-title {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      color: #e2e8f0;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .res-desc {
-      font-size: 13px;
-      color: var(--muted);
+      padding: 32px 20px;
       line-height: 1.6;
-      max-width: 520px;
-      margin: 0 auto 16px;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(244, 63, 94, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(148, 163, 184, 0.03) 0%, transparent 40%);
     }
 
-    .res-desc b {
+    .shell {
+      width: 100%;
+      max-width: 580px;
+      margin: auto;
+    }
+
+    /* Top Brand & Status Header */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: -0.01em;
       color: #ffffff;
     }
 
-    .status-pill-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
+    .brand-logo img {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      object-fit: cover;
+      opacity: 0.85;
+      filter: grayscale(40%);
     }
 
-    .status-pill {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .status-code {
       font-family: var(--font-mono);
-      font-size: 11px;
-      color: #cbd5e1;
-      padding: 5px 12px;
-      border-radius: 6px;
-      display: inline-flex;
+      font-size: 11.5px;
+      color: var(--danger);
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .status-pill i-dot {
+    .status-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #f59e0b;
-      display: inline-block;
+      background: var(--danger);
+      box-shadow: 0 0 8px var(--danger);
     }
 
-    .lock-footer {
-      margin-top: 24px;
+    /* Main Container Card */
+    .main-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 5vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .lead-text {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Minimalist Spec Table */
+    .spec-table {
+      background: var(--surface-sub);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px 0;
+      margin-bottom: 24px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 18px;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .spec-row:last-child {
+      border-bottom: none;
+    }
+
+    .spec-label {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .spec-val {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .spec-val.danger {
+      color: #fda4af;
+    }
+
+    /* Warning Callout Box */
+    .warning-box {
+      background: rgba(244, 63, 94, 0.05);
+      border-left: 3px solid var(--danger);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #fecdd3;
+      margin-bottom: 24px;
+      line-height: 1.55;
+    }
+
+    .warning-box strong {
+      color: #ffffff;
+      display: block;
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+
+    /* Resolution Guide */
+    .action-panel {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .action-panel b {
+      color: #ffffff;
+    }
+
+    .footer {
+      margin-top: 28px;
       text-align: center;
       font-family: var(--font-mono);
       font-size: 11px;
-      color: #475569;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
-    @media (max-width: 520px) {
-      .lockdown-panel {
-        padding: 28px 18px;
+    @media (max-width: 480px) {
+      .main-card {
+        padding: 24px 18px;
       }
-      .terminal-box {
-        font-size: 11px;
-        padding: 12px 14px;
-      }
-      .notice-card {
-        padding: 12px 14px;
+      .spec-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 8px 14px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- CRT Scanlines & Visual Atmosphere -->
-  <div class="crt-overlay"></div>
-  <div class="ambient-glow"></div>
-  <div class="cyber-grid"></div>
+  <div class="shell">
+    <div class="brand-header">
+      <div class="brand-logo">
+        <img src="assets/uploads/logos/nexvia-logo.png" alt="NEXVIA VN" onerror="this.style.display='none'">
+        <span>NEXVIA VN</span>
+      </div>
+      <div class="status-code">
+        <span class="status-dot"></span>
+        HTTP 402 PAYMENT REQUIRED
+      </div>
+    </div>
 
-  <!-- Caution Hazard Stripes -->
-  <div class="danger-tape danger-tape-top"></div>
-  <div class="danger-tape danger-tape-bottom"></div>
+    <main class="main-card">
+      <h1>Website đang bị tạm ngưng phục vụ</h1>
+      <p class="lead-text">
+        Hệ thống cửa hàng trực tuyến NEXVIA VN đã bị tạm dừng hoạt động do chủ sở hữu chưa hoàn tất nghĩa vụ thanh toán chi phí phát triển &amp; bàn giao với lập trình viên.
+      </p>
 
-  <div class="lockdown-shell">
-    <div class="lockdown-panel">
-      
-      <!-- Hazard Header Tag -->
-      <div style="text-align: center;">
-        <div class="hazard-strip">
-          <span class="pulse-laser"></span>
-          <span>DEV_SHIELD • CRITICAL ACCESS REVOKED</span>
+      <div class="spec-table">
+        <div class="spec-row">
+          <span class="spec-label">Mã dịch vụ</span>
+          <span class="spec-val">NEXVIA-VN // CORE-STOREFRONT</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Tình trạng thanh toán</span>
+          <span class="spec-val danger">Chưa tất toán hợp đồng</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Cổng giao dịch VietQR</span>
+          <span class="spec-val">Tạm ngưng nhận đơn mới</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Thời gian đình chỉ</span>
+          <span class="spec-val">Kể từ 15/11/2026</span>
         </div>
       </div>
 
-      <!-- Tactical Lock Icon -->
-      <div class="lock-shield-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          <path d="M9 12l2 2 4-4"></path>
-        </svg>
+      <div class="warning-box">
+        <strong>Lưu ý dành cho khách hàng:</strong>
+        Mọi hoạt động giao dịch trên website này tạm thời bị phong tỏa. Khách hàng vui lòng không thực hiện chuyển khoản vào bất kỳ tài khoản nào của shop để tránh rủi ro phát sinh.
       </div>
 
-      <!-- Headline -->
-      <h1 class="glitch-title">
-        QUYỀN TRUY CẬP <span>ĐÃ BỊ ĐÌNH CHỈ</span>
-      </h1>
-      <div class="incident-tag">
-        <span>[!] MÃ KHÓA: DEV-LOCK-UNPAID-0588500524</span>
-      </div>
-
-      <!-- Live Terminal Status Logs -->
-      <div class="terminal-box">
-        <div class="term-line">
-          <span class="term-prompt">&gt;</span>
-          <span class="term-key">HỆ THỐNG:</span>
-          <span>NEXVIA VN (Gaming Store &amp; Tool Engine)</span>
-        </div>
-        <div class="term-line">
-          <span class="term-prompt">&gt;</span>
-          <span class="term-key">TRẠNG THÁI BẢN QUYỀN:</span>
-          <span class="term-val-danger">KHÓA KHẨN CẤP (VI PHẠM HỢP ĐỒNG THANH TOÁN)</span>
-        </div>
-        <div class="term-line">
-          <span class="term-prompt">&gt;</span>
-          <span class="term-key">LÝ DO XỬ LÝ:</span>
-          <span class="term-val-warn">Chủ sở hữu chưa thanh toán chi phí phát triển web cho Developer</span>
-        </div>
-        <div class="term-line">
-          <span class="term-prompt">&gt;</span>
-          <span class="term-key">CỔNG BÁN HÀNG:</span>
-          <span class="term-val-danger">ĐÃ ĐÓNG TOÀN BỘ (VIETQR / MBBANK / API KEY SHUTDOWN)</span>
-        </div>
-        <div class="term-line">
-          <span class="term-prompt">&gt;</span>
-          <span class="term-key">THỜI GIAN HIỆU LỰC:</span>
-          <span class="term-val-danger">VÔ THỜI HẠN CHO ĐẾN KHI TẤT TOÁN CÔNG NỢ</span>
-        </div>
-      </div>
-
-      <!-- Customer Alert Card -->
-      <div class="notice-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-          <line x1="12" y1="9" x2="12" y2="13"></line>
-          <line x1="12" y1="17" x2="12.01" y2="17"></line>
-        </svg>
-        <div class="notice-text">
-          <strong>CẢNH BÁO KHÁCH HÀNG GAME THỦ:</strong>
-          Hiện tại trang web này đã bị nhà phát triển thu hồi toàn bộ quyền vận hành. <b>Tuyệt đối không chuyển khoản</b> vào bất kỳ tài khoản nào mang tên shop trong lúc này để tránh mất tiền oan.
-        </div>
-      </div>
-
-      <!-- Action Required for Owner -->
-      <div class="resolution-box">
-        <div class="res-title">ĐIỀU KIỆN MỞ KHÓA BẢN QUYỀN</div>
-        <p class="res-desc">
-          Chủ shop vui lòng liên hệ ngay với <b>Lập trình viên</b> để thanh toán dứt điểm 100% tiền công làm web như đã cam kết. Toàn bộ mã nguồn và hệ thống kinh doanh sẽ tự động được khôi phục ngay sau khi nhận tiền.
+      <div class="action-panel">
+        <p>
+          <b>Hướng dẫn dành cho chủ shop:</b> Vui lòng liên hệ trực tiếp với lập trình viên để thanh toán dứt điểm chi phí phát triển. Hệ thống và cơ sở dữ liệu sẽ được khôi phục nguyên vẹn ngay sau khi hoàn tất.
         </p>
-
-        <div class="status-pill-row">
-          <div class="status-pill"><i-dot></i-dot> Trạng thái: Chờ thanh toán</div>
-          <div class="status-pill"><i-dot style="background:#ff3344;"></i-dot> Bảo vệ: Dev Shield Active</div>
-        </div>
       </div>
+    </main>
 
-    </div>
-
-    <div class="lock-footer">
-      NEXVIA VN • SECURE INTELLECTUAL PROPERTY LOCK • DEVELOPER ENFORCEMENT
-    </div>
+    <footer class="footer">
+      Developer Access Control • Intellectual Property Protection System
+    </footer>
   </div>
 </body>
 </html>
